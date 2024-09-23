@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <!-- <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script> -->
+    <meta name="description" content="五子棋游戏开发流程一、游戏菜单（1）、开始游戏（2）、游戏设置（3）、游戏说明二、游戏面板（1）、棋盘（2）、玩家和电脑（3）、记录下子个数（4）、记录分数（5）、判定胜负（6）、头像三、电脑AI算法（1）、五元组遍历（2）、计分表权重​			五子棋盘为15 x 15 的大小，横竖斜四个方向共有572个五元组，给每个五元组一个评分（或权重），这个五元组为它的每个位置贡献的分数就是这个五元组自身的得">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VestJin">
+<meta property="og:url" content="http://jinmajue.site/games/gobang-main/README.html">
+<meta property="og:site_name" content="VestJin">
+<meta property="og:description" content="五子棋游戏开发流程一、游戏菜单（1）、开始游戏（2）、游戏设置（3）、游戏说明二、游戏面板（1）、棋盘（2）、玩家和电脑（3）、记录下子个数（4）、记录分数（5）、判定胜负（6）、头像三、电脑AI算法（1）、五元组遍历（2）、计分表权重​			五子棋盘为15 x 15 的大小，横竖斜四个方向共有572个五元组，给每个五元组一个评分（或权重），这个五元组为它的每个位置贡献的分数就是这个五元组自身的得">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/mao888/gobang/blob/main/img.assets/img-1.png">
+<meta property="og:image" content="https://github.com/mao888/gobang/blob/main/img.assets/img-2.png">
+<meta property="article:published_time" content="2024-09-23T04:39:30.485Z">
+<meta property="article:modified_time" content="2024-06-17T20:01:28.000Z">
+<meta property="article:author" content="VestJin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/mao888/gobang/blob/main/img.assets/img-1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VestJin</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">VestJin</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/search/">搜索</a></li><!--
+   --><!--
+     --><li><a href="/categories/">分类</a></li><!--
+   --><!--
+     --><li><a href="/games/">Games</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="五子棋游戏开发流程"><a href="#五子棋游戏开发流程" class="headerlink" title="五子棋游戏开发流程"></a>五子棋游戏开发流程</h1><h2 id="一、游戏菜单"><a href="#一、游戏菜单" class="headerlink" title="一、游戏菜单"></a>一、游戏菜单</h2><h3 id="（1）、开始游戏"><a href="#（1）、开始游戏" class="headerlink" title="（1）、开始游戏"></a>（1）、开始游戏</h3><h3 id="（2）、游戏设置"><a href="#（2）、游戏设置" class="headerlink" title="（2）、游戏设置"></a>（2）、游戏设置</h3><h3 id="（3）、游戏说明"><a href="#（3）、游戏说明" class="headerlink" title="（3）、游戏说明"></a>（3）、游戏说明</h3><h2 id="二、游戏面板"><a href="#二、游戏面板" class="headerlink" title="二、游戏面板"></a>二、游戏面板</h2><h3 id="（1）、棋盘"><a href="#（1）、棋盘" class="headerlink" title="（1）、棋盘"></a>（1）、棋盘</h3><h3 id="（2）、玩家和电脑"><a href="#（2）、玩家和电脑" class="headerlink" title="（2）、玩家和电脑"></a>（2）、玩家和电脑</h3><h3 id="（3）、记录下子个数"><a href="#（3）、记录下子个数" class="headerlink" title="（3）、记录下子个数"></a>（3）、记录下子个数</h3><h3 id="（4）、记录分数"><a href="#（4）、记录分数" class="headerlink" title="（4）、记录分数"></a>（4）、记录分数</h3><h3 id="（5）、判定胜负"><a href="#（5）、判定胜负" class="headerlink" title="（5）、判定胜负"></a>（5）、判定胜负</h3><h3 id="（6）、头像"><a href="#（6）、头像" class="headerlink" title="（6）、头像"></a>（6）、头像</h3><h2 id="三、电脑AI算法"><a href="#三、电脑AI算法" class="headerlink" title="三、电脑AI算法"></a>三、电脑AI算法</h2><h3 id="（1）、五元组遍历"><a href="#（1）、五元组遍历" class="headerlink" title="（1）、五元组遍历"></a>（1）、五元组遍历</h3><h3 id="（2）、计分表权重"><a href="#（2）、计分表权重" class="headerlink" title="（2）、计分表权重"></a>（2）、计分表权重</h3><p>​			五子棋盘为15 x 15 的大小，横竖斜四个方向共有572个五元组，给每个五元组一个评分（或权重），这个五元组为它的每个位置贡献的分数就是这个五元组自身的得分，对整个棋盘来说，每个位置的得分就是该位置所在的横竖斜四个方向的所有五元组的得分之和，</p>
+<p>然后从所有空位置中选出得分最高的位置就是机器落子的位置。</p>
+<h2 id="四、输赢算法"><a href="#四、输赢算法" class="headerlink" title="四、输赢算法"></a>四、输赢算法</h2><p>以当前落子位置为中心，只要横、竖、正斜、反斜任一方向有五颗同色棋子连成一线则判定获胜。</p>
+<h2 id="五、游戏截图"><a href="#五、游戏截图" class="headerlink" title="五、游戏截图"></a>五、游戏截图</h2><p><img src="https://github.com/mao888/gobang/blob/main/img.assets/img-1.png" alt="image"></p>
+<p><img src="https://github.com/mao888/gobang/blob/main/img.assets/img-2.png" alt="image"></p>
+<h2 id="六、命令"><a href="#六、命令" class="headerlink" title="六、命令"></a>六、命令</h2><p>使用 lessc 命令行工具来编译 Less 文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install -g less<br></code></pre></td></tr></table></figure>
+<p>编译 Less 文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">lessc css/game.less css/game.css<br></code></pre></td></tr></table></figure>
+<p>如果你想将编译后的 CSS 输出为单行，可以使用 –clean-css 插件</p>
+<p>使用 clean-css 插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install -g less-plugin-clean-css<br></code></pre></td></tr></table></figure>
+<p>编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">lessc css/game.less css/game.css --clean-css<br></code></pre></td></tr></table></figure>
+
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    VestJin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/games/">Games</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>

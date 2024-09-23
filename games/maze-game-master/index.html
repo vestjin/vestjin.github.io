@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <!-- <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script> -->
+    <meta name="description" content="在线走迷宫游戏">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VestJin">
+<meta property="og:url" content="http://jinmajue.site/games/maze-game-master/index.html">
+<meta property="og:site_name" content="VestJin">
+<meta property="og:description" content="在线走迷宫游戏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.shields.io/github/stars/knightyun/maze-game?style=social">
+<meta property="og:image" content="https://img.shields.io/github/forks/knightyun/maze-game?style=social">
+<meta property="article:published_time" content="2024-09-23T04:45:23.082Z">
+<meta property="article:modified_time" content="2023-05-27T17:37:22.000Z">
+<meta property="article:author" content="VestJin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/github/stars/knightyun/maze-game?style=social">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VestJin</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">VestJin</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/search/">搜索</a></li><!--
+   --><!--
+     --><li><a href="/categories/">分类</a></li><!--
+   --><!--
+     --><li><a href="/games/">Games</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,
+  initial-scale=1.0, user-scalable=no">
+  <title>在线走迷宫游戏</title>
+  <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body class="teal lighten-4">
+  <div class="container center-align">
+    <div class="row"></div>
+    <!-- Github buttons -->
+    <div class="row right-align">
+      <a target="_blank" rel="noopener" href="https://github.com/knightyun/maze-game">
+        <img alt="" src="https://img.shields.io/github/stars/knightyun/maze-game?style=social">
+        <img alt="" src="https://img.shields.io/github/forks/knightyun/maze-game?style=social">
+      </a>
+    </div>
+    <!-- 迷宫模块 -->
+    <div class="row">
+      <div class="maze">
+        <!-- 迷宫地图 -->
+        <canvas id="maze-map" class="z-depth-5"></canvas>
+        <!-- 小球 -->
+        <div id="maze-ball" class="deep-orange accent-3"></div>
+      </div>
+    </div>
+    <!-- 控制面板 -->
+    <div class="row center-align">
+      <div class="control teal col s12 m6 offset-m3
+      card-panel z-depth-3 row">
+        <!-- 地图尺寸 -->
+        <div class="row valign-wrapper" style="margin-bottom: 0;">
+          <div class="col s5">
+            <p class="teal-text text-lighten-5">地图大小：</p>
+          </div>
+          <div class="range-field col s7">
+            <input type="range" class="maze-size teal lighten-2"
+            value="31" min="31" max="101" step="2" />
+          </div>
+        </div>
+        <!-- 游戏难度 -->
+        <div class="row input-field teal lighten-1" style="margin-top: 0;">
+          <div class="col s5">
+            <p class="teal-text text-lighten-5">游戏难度：</p>
+          </div>
+          <div class="col s7">
+            <select class="game-level">
+              <option value="0" selected>简单</option>
+              <option value="2">困难</option>
+              <option value="1">复杂</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 游戏控制 -->
+        <div class="row">
+          <div class="col s6">
+            <button class="start-game btn waves-effect waves-light
+            teal-text text-lighten-5" onclick="startGame()">
+              开始游戏
+            </button>
+          </div>
+          <div class="col s6">
+            <button class="btn waves-effect offset-m3 waves-light
+            teal-text text-lighten-5" onclick="reGenMaze()">
+              重新生成
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 游戏提示 -->
+    <div class="fixed-action-btn">
+      <a class="game-hint btn-floating btn-large scale-transition
+      waves-effect waves-light z-depth-3 teal lighten-1 scale-out"
+      onclick="drawHintPath()">提示</a>
+    </div>
+    <!-- 彩蛋 -->
+    <div class="row">
+      <a class="waves-effect waves-light btn modal-trigger"
+      href="#modal-surprise">Modal</a>
+      <div id="modal-surprise" class="modal">
+        <div class="modal-content">
+          <div class="fireworks"></div>
+          <div class="surprise-msg">
+            <h4 class="orange-text">恭喜通关</h4>
+            <p class="orange-text text-darken-4 center-align">
+              祝贺你喜提彩蛋一枚
+            </p>
+            <p>✨🎉🎉🎉✨</p>
+            <p class="orange-text text-darken-4 center-align">
+              相信每一个能通关此地图的玩家
+            </p>
+            <p class="orange-text text-darken-4 center-align">
+              内心都住着一个有趣的灵魂
+            </p>
+            <p class="orange-text text-darken-4 center-align">
+              有着百折不挠的毅力，持之以恒的耐心
+            </p>
+            <p class="orange-text text-darken-4 center-align">
+              希望未来的你，也能长此以往
+            </p>
+            <p class="orange-text text-darken-4 center-align">
+              愿坚强和自信与你同在^_^
+            </p>
+            <a href="#!" class="modal-close waves-effect
+						waves-green btn-flat right red-text text-darken-3">关闭</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+  <script src="./js/materialize.min.js"></script>
+  <script>
+    M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function () {
+      var elms = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elms, { endingTop: '0' });
+    });
+  </script>
+  <!-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> -->
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/jquery.fireworks.min.js"></script>
+  <script src="./js/maze.js"></script>
+</body>
+
+</html>
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    VestJin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/games/">Games</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
