@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <!-- <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script> -->
+    <meta name="description" content="贪吃蛇网页版游戏设计 游戏界面设计  游戏界面主要分为游戏区域和控制区域。 游戏区域包括贪吃蛇和食物的位置。 控制区域包括游戏模式选择、难度选择、开始游戏按钮、重新开始按钮和游戏说明按钮。   游戏逻辑设计  玩家位置与食物位置每次都会随机生成 贪吃蛇的移动由定时器控制，每隔一定时间更新蛇的位置。 贪吃蛇方向的改变使用方向缓冲区进行控制 检测贪吃蛇是否吃到食物，如果吃到食物，则增加蛇的长度。 检测">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VestJin">
+<meta property="og:url" content="http://jinmajue.site/games/snake-main/Docs/design.html">
+<meta property="og:site_name" content="VestJin">
+<meta property="og:description" content="贪吃蛇网页版游戏设计 游戏界面设计  游戏界面主要分为游戏区域和控制区域。 游戏区域包括贪吃蛇和食物的位置。 控制区域包括游戏模式选择、难度选择、开始游戏按钮、重新开始按钮和游戏说明按钮。   游戏逻辑设计  玩家位置与食物位置每次都会随机生成 贪吃蛇的移动由定时器控制，每隔一定时间更新蛇的位置。 贪吃蛇方向的改变使用方向缓冲区进行控制 检测贪吃蛇是否吃到食物，如果吃到食物，则增加蛇的长度。 检测">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-23T01:04:07.008Z">
+<meta property="article:modified_time" content="2024-06-26T23:20:20.000Z">
+<meta property="article:author" content="VestJin">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VestJin</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">VestJin</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/search/">搜索</a></li><!--
+   --><!--
+     --><li><a href="/categories/">分类</a></li><!--
+   --><!--
+     --><li><a href="/games/">Games</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="贪吃蛇网页版"><a href="#贪吃蛇网页版" class="headerlink" title="贪吃蛇网页版"></a>贪吃蛇网页版</h1><h2 id="游戏设计"><a href="#游戏设计" class="headerlink" title="游戏设计"></a>游戏设计</h2><ol>
+<li><p><strong>游戏界面设计</strong></p>
+<ul>
+<li>游戏界面主要分为游戏区域和控制区域。</li>
+<li>游戏区域包括贪吃蛇和食物的位置。</li>
+<li>控制区域包括游戏模式选择、难度选择、开始游戏按钮、重新开始按钮和游戏说明按钮。</li>
+</ul>
+</li>
+<li><p><strong>游戏逻辑设计</strong></p>
+<ul>
+<li>玩家位置与食物位置每次都会随机生成</li>
+<li>贪吃蛇的移动由定时器控制，每隔一定时间更新蛇的位置。</li>
+<li>贪吃蛇方向的改变使用方向缓冲区进行控制</li>
+<li>检测贪吃蛇是否吃到食物，如果吃到食物，则增加蛇的长度。</li>
+<li>检测游戏结束条件，包括蛇撞墙、蛇撞到自己的身体（单人模式）以及两条蛇相撞（双人模式）。</li>
+</ul>
+</li>
+<li><p><strong>游戏模式设计</strong></p>
+<ul>
+<li>单人模式：玩家控制一条贪吃蛇，通过吃食物增加分数，直到游戏结束。</li>
+<li>双人模式：两位玩家分别控制两条贪吃蛇，竞争吃食物，最后一条存活的蛇获胜。</li>
+</ul>
+</li>
+<li><p><strong>难度设计</strong></p>
+<ul>
+<li>游戏难度分为简单、适中和困难三个等级，难度越高，贪吃蛇的移动速度越快，食物生成频率越低。</li>
+</ul>
+</li>
+</ol>
+<h2 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h2><ol>
+<li><p><strong>HTML5</strong></p>
+<ul>
+<li>使用 HTML5 绘制游戏界面，包括贪吃蛇、食物和游戏控制区域。</li>
+</ul>
+</li>
+<li><p><strong>CSS3</strong></p>
+<ul>
+<li>使用 CSS3 进行样式设计，美化游戏界面，提升用户体验。</li>
+</ul>
+</li>
+<li><p><strong>JavaScript</strong></p>
+<ul>
+<li>使用 JavaScript 实现游戏逻辑，包括贪吃蛇的移动、食物的生成、碰撞检测、模式切换等功能。</li>
+</ul>
+</li>
+<li><p><strong>游戏控制</strong></p>
+<ul>
+<li>单人模式默认使用上下左右控制移动</li>
+<li>双人模式玩家一使用上下左右控制移动，玩家二使用WASD控制移动</li>
+</ul>
+</li>
+</ol>
+<h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><ol>
+<li><p><strong>功能测试</strong></p>
+<ul>
+<li>测试单人模式下贪吃蛇的移动和吃食物功能。</li>
+<li>测试双人模式下两条蛇的移动和碰撞检测功能。</li>
+<li>测试游戏结束条件是否正确。</li>
+<li>测试切换模式后游戏逻辑是否正确。</li>
+</ul>
+</li>
+<li><p><strong>界面测试</strong></p>
+<ul>
+<li>测试游戏界面布局是否合理。</li>
+<li>测试游戏界面样式是否美观。</li>
+</ul>
+</li>
+<li><p><strong>性能测试</strong></p>
+<ul>
+<li>测试不同难度下游戏的性能表现，包括运行流畅度和响应速度。</li>
+</ul>
+</li>
+</ol>
+<h2 id="迭代计划"><a href="#迭代计划" class="headerlink" title="迭代计划"></a>迭代计划</h2><ol>
+<li><p><strong>迭代一：多人游戏功能实现</strong></p>
+<ul>
+<li>实现多人模式下的贪吃蛇移动和吃食物功能。</li>
+</ul>
+</li>
+<li><p><strong>迭代二：历史记录</strong></p>
+<ul>
+<li>对于单人模式记录前十。</li>
+</ul>
+</li>
+<li><p><strong>迭代三：性能优化</strong></p>
+<ul>
+<li>优化游戏性能，提升运行流畅度。</li>
+<li>增加游戏难度选择功能，使游戏更具挑战性。</li>
+</ul>
+</li>
+</ol>
+
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    VestJin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/games/">Games</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
