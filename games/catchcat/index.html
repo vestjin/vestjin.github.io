@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <!-- <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script> -->
+    <meta name="description" content="终极版围小猫游戏              body {             font-family: Arial, sans-serif;             display: flex;             justify-content: center;             align-items: center;             m">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VestJin">
+<meta property="og:url" content="http://jinmajue.site/games/catchcat/index.html">
+<meta property="og:site_name" content="VestJin">
+<meta property="og:description" content="终极版围小猫游戏              body {             font-family: Arial, sans-serif;             display: flex;             justify-content: center;             align-items: center;             m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-08T04:08:12.539Z">
+<meta property="article:modified_time" content="2024-10-08T04:08:12.539Z">
+<meta property="article:author" content="VestJin">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VestJin</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+
+    
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4 ">
+        
+          <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">VestJin</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">首页</a></li><!--
+   --><!--
+     --><li><a href="/search/">搜索</a></li><!--
+   --><!--
+     --><li><a href="/categories/">分类</a></li><!--
+   --><!--
+     --><li><a href="/games/">Games</a></li><!--
+   --><!--
+     --><li><a href="/about/">关于</a></li><!--
+   --><!--
+     --><li><a href="/archives/">归档</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>终极版围小猫游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            touch-action: manipulation;
+        }
+        #game-container {
+            text-align: center;
+            max-width: 100%;
+            padding: 10px;
+        }
+        #game-board {
+            display: inline-grid;
+            gap: 2px;
+            background-color: #ccc;
+            padding: 2px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #999;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cell.blocked {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+        .cell.cat {
+            background-color: #ffcccb;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message, #score, #high-score, #timer {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #difficulty, #game-mode {
+            margin: 10px 0;
+        }
+        .particle {
+            position: absolute;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        @media (max-width: 600px) {
+            .cell {
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div class="controls">
+            <div id="difficulty">
+                难度：
+                <select id="difficulty-select">
+                    <option value="easy">简单</option>
+                    <option value="medium" selected>中等</option>
+                    <option value="hard">困难</option>
+                </select>
+            </div>
+            <div id="game-mode">
+                模式：
+                <select id="mode-select">
+                    <option value="normal">普通</option>
+                    <option value="timed">计时</option>
+                    <option value="multi">多猫</option>
+                </select>
+            </div>
+        </div>
+        <div id="game-board"></div>
+        <div class="controls">
+            <button id="reset-button">重新开始</button>
+            <button id="sound-button">声音：开</button>
+        </div>
+        <div id="message"></div>
+        <div id="score">得分：0</div>
+        <div id="high-score">最高分：0</div>
+        <div id="timer" style="display: none;">时间：60秒</div>
+    </div>
+
+    <script>
+        let boardSize = 9;
+        let board = [];
+        let cats = [{ x: 4, y: 4 }];
+        let gameOver = false;
+        let score = 0;
+        let highScore = 0;
+        let soundOn = true;
+        let difficulty = 'medium';
+        let gameMode = 'normal';
+        let timer;
+        let timeLeft = 60;
+
+        const blockSound = new Audio("data:audio/wav;base64,UklGRmJdgA9XQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUJdgA8B");
+        const meowSound = new Audio("data:audio/wav;base64,UklGRmJdgA9XQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUJdgA8C");
+        const winSound = new Audio("data:audio/wav;base64,UklGRmJdgA9XQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUJdgA8D");
+        const loseSound = new Audio("data:audio/wav;base64,UklGRmJdgA9XQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUJdgA8E");
+
+        function initializeBoard() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.innerHTML = '';
+            gameBoard.style.gridTemplateColumns = `repeat(${boardSize}, auto)`;
+            
+            board = [];
+            for (let y = 0; y < boardSize; y++) {
+                board[y] = [];
+                for (let x = 0; x < boardSize; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.addEventListener('click', () => cellClick(x, y));
+                    gameBoard.appendChild(cell);
+                    board[y][x] = false;
+                }
+            }
+            
+            cats = gameMode === 'multi' ? [
+                { x: Math.floor(boardSize/4), y: Math.floor(boardSize/4) },
+                { x: Math.floor(3*boardSize/4), y: Math.floor(boardSize/4) },
+                { x: Math.floor(boardSize/4), y: Math.floor(3*boardSize/4) },
+                { x: Math.floor(3*boardSize/4), y: Math.floor(3*boardSize/4) }
+            ] : [{ x: Math.floor(boardSize/2), y: Math.floor(boardSize/2) }];
+            
+            updateCatPositions();
+        }
+
+        function cellClick(x, y) {
+            if (gameOver || board[y][x]) return;
+            board[y][x] = true;
+            const cell = document.querySelector(`#game-board > div:nth-child(${y * boardSize + x + 1})`);
+            cell.classList.add('blocked');
+            createParticles(cell);
+            if (soundOn) blockSound.play();
+            score++;
+            updateScore();
+            if (!gameOver) moveCats();
+        }
+
+        function moveCats() {
+            for (let i = 0; i < cats.length; i++) {
+                const moves = [
+                    { x: -1, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }, { x: 0, y: 1 },
+                    { x: -1, y: -1 }, { x: -1, y: 1 }, { x: 1, y: -1 }, { x: 1, y: 1 }
+                ];
+
+                let bestMove;
+                if (difficulty === 'easy') {
+                    bestMove = moves[Math.floor(Math.random() * moves.length)];
+                } else {
+                    bestMove = getBestMove(moves, cats[i]);
+                }
+
+                if (!bestMove) {
+                    if (i === cats.length - 1) {
+                        gameOver = true;
+                        document.getElementById('message').textContent = '游戏结束，你赢了！';
+                        if (soundOn) winSound.play();
+                    }
+                    continue;
+                }
+
+                animateCatMove(bestMove, i);
+            }
+        }
+
+        function getBestMove(moves, cat) {
+            const possibleMoves = moves.filter(move => {
+                const newX = cat.x + move.x;
+                const newY = cat.y + move.y;
+                return newX >= 0 && newX < boardSize && newY >= 0 && newY < boardSize && !board[newY][newX];
+            });
+
+            if (possibleMoves.length === 0) return null;
+
+            if (difficulty === 'hard') {
+                return possibleMoves.reduce((best, move) => {
+                    const newX = cat.x + move.x;
+                    const newY = cat.y + move.y;
+                    const distanceToEdge = Math.min(newX, newY, boardSize - 1 - newX, boardSize - 1 - newY);
+                    if (!best || distanceToEdge < best.distanceToEdge) {
+                        return { move, distanceToEdge };
+                    }
+                    return best;
+                }, null).move;
+            } else {
+                const edgeMoves = possibleMoves.filter(move => {
+                    const newX = cat.x + move.x;
+                    const newY = cat.y + move.y;
+                    return newX === 0 || newX === boardSize - 1 || newY === 0 || newY === boardSize - 1;
+                });
+                return edgeMoves.length > 0 ? edgeMoves[Math.floor(Math.random() * edgeMoves.length)] : possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+            }
+        }
+
+        function animateCatMove(move, catIndex) {
+            const cat = cats[catIndex];
+            const oldCell = document.querySelector(`#game-board > div:nth-child(${cat.y * boardSize + cat.x + 1})`);
+            oldCell.classList.remove('cat');
+            
+            cat.x += move.x;
+            cat.y += move.y;
+            
+            const newCell = document.querySelector(`#game-board > div:nth-child(${cat.y * boardSize + cat.x + 1})`);
+            newCell.classList.add('cat');
+            newCell.textContent = '🐱';
+            
+            if (soundOn) meowSound.play();
+
+            if (cat.x === 0 || cat.x === boardSize - 1 || cat.y === 0 || cat.y === boardSize - 1) {
+                gameOver = true;
+                document.getElementById('message').textContent = '游戏结束，猫逃脱了！';
+                if (soundOn) loseSound.play();
+            }
+        }
+
+        function updateCatPositions() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.classList.remove('cat');
+                cell.textContent = '';
+            });
+            cats.forEach(cat => {
+                const catCell = cells[cat.y * boardSize + cat.x];
+                catCell.classList.add('cat');
+                catCell.textContent = '🐱';
+            });
+        }
+
+        function resetGame() {
+            gameOver = false;
+            score = 0;
+            updateScore();
+            document.getElementById('message').textContent = '';
+            initializeBoard();
+            if (gameMode === 'timed') {
+                timeLeft = 60;
+                updateTimer();
+                startTimer();
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `得分：${score}`;
+            if (score > highScore) {
+                highScore = score;
+                document.getElementById('high-score').textContent = `最高分：${highScore}`;
+                localStorage.setItem('highScore', highScore);
+            }
+        }
+
+        function toggleSound() {
+            soundOn = !soundOn;
+            document.getElementById('sound-button').textContent = `声音：${soundOn ? '开' : '关'}`;
+        }
+
+        function changeDifficulty() {
+            difficulty = document.getElementById('difficulty-select').value;
+            if (difficulty === 'easy') {
+                boardSize = 7;
+            } else if (difficulty === 'medium') {
+                boardSize = 9;
+            } else {
+                boardSize = 11;
+            }
+            resetGame();
+        }
+
+        function changeGameMode() {
+            gameMode = document.getElementById('mode-select').value;
+            document.getElementById('timer').style.display = gameMode === 'timed' ? 'block' : 'none';
+            resetGame();
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    gameOver = true;
+                    document.getElementById('message').textContent = '时间到，游戏结束！';
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            document.getElementById('timer').textContent = `时间：${timeLeft}秒`;
+        }
+
+        function createParticles(element) {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                element.appendChild(particle);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 2 + 1;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                let opacity = 1;
+                const animate = () => {
+                    const x = parseFloat(particle.style.left);
+                    const y = parseFloat(particle.style.top);
+                    particle.style.left = x + vx + '%';
+                    particle.style.top = y + vy + '%';
+                    opacity -= 0.02;
+                    particle.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        element.removeChild(particle);
+                    }
+                };
+                requestAnimationFrame(animate);
+            }
+        }
+
+// 移动设备触摸优化
+function initTouchEvents() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.addEventListener('touchstart', handleTouch, false);
+            gameBoard.addEventListener('touchmove', handleTouch, false);
+        }
+
+        function handleTouch(event) {
+            event.preventDefault();
+            const touch = event.touches[0];
+            const gameBoard = document.getElementById('game-board');
+            const rect = gameBoard.getBoundingClientRect();
+            const x = Math.floor((touch.clientX - rect.left) / (rect.width / boardSize));
+            const y = Math.floor((touch.clientY - rect.top) / (rect.height / boardSize));
+            if (x >= 0 && x < boardSize && y >= 0 && y < boardSize) {
+                cellClick(x, y);
+            }
+        }
+
+        // 事件监听器
+        document.getElementById('reset-button').addEventListener('click', resetGame);
+        document.getElementById('sound-button').addEventListener('click', toggleSound);
+        document.getElementById('difficulty-select').addEventListener('change', changeDifficulty);
+        document.getElementById('mode-select').addEventListener('change', changeGameMode);
+
+        // 初始化函数
+        function init() {
+            highScore = parseInt(localStorage.getItem('highScore')) || 0;
+            document.getElementById('high-score').textContent = `最高分：${highScore}`;
+            initializeBoard();
+            initTouchEvents();
+        }
+
+        // 启动游戏
+        init();
+    </script>
+</body>
+</html>
+        
+  </div>
+</article>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021-2024
+    VestJin
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/games/">Games</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://github.com/vestjin">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?571c3612023b230e8c1243489bf880cb";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
