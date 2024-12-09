@@ -3,7 +3,7 @@
   <entry>
     <title>how to ask</title>
     <url>//posts/77ccf015/</url>
-    <content><![CDATA[<h1 id="提问的智慧"><a href="#提问的智慧" class="headerlink" title="提问的智慧"></a>提问的智慧</h1><p><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/pulls"><img lazyload="" src="/images/loading.svg" data-src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a></p>
+    <content><![CDATA[<h1 id="提问的智慧"><a href="#提问的智慧" class="headerlink" title="提问的智慧"></a>提问的智慧</h1><p><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/pulls"><figure class="image-caption"><img lazyload="" src="/images/loading.svg" data-src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"><figcaption>PRs Welcome</figcaption></figure></a></p>
 <p><strong>How To Ask Questions The Smart Way</strong></p>
 <p>Copyright © 2001,2006,2014 Eric S. Raymond, Rick Moen</p>
 <p>本指南英文版版权为 Eric S. Raymond, Rick Moen 所有。</p>
@@ -415,6 +415,9 @@
 <p>当你发布软件或补丁时，试着按<a class="link" href="http://en.tldp.org/HOWTO/Software-Release-Practice-HOWTO/index.html">软件发布实践<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>操作。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>Evelyn Mitchel 贡献了一些愚蠢问题例子并启发了编写<code>如何更好地回答问题</code>这一节， Mikhail Ramendik 贡献了一些特别有价值的建议和改进。</p>
 ]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
   </entry>
   <entry>
     <title>the first</title>
@@ -438,7 +441,7 @@
 <p><big>==幽灵系==</big>  克制幽灵、超能系,对格斗、钢、恶系效果减半</p>
 ]]></content>
       <tags>
-        <tag>Pokemmo</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -671,7 +674,7 @@
 </ol>
 ]]></content>
       <tags>
-        <tag>fiction</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -762,7 +765,7 @@
 <figure class="highlight"><table><tbody><tr><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></tbody></table></figure>
 ]]></content>
       <tags>
-        <tag>code</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -807,7 +810,7 @@
 <p>这些技巧可以显著提高你的搜索效率，使你能够更快、更准确地找到需要的信息。根据你的需求，灵活运用这些技巧，可以帮助你更有效地使用 Google 搜索。</p>
 ]]></content>
       <tags>
-        <tag>tips</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -816,9 +819,6 @@
     <content><![CDATA[<h3 id="TestGist"><a href="#TestGist" class="headerlink" title="TestGist"></a>TestGist</h3><script src="https://gist.github.com/vestjin/0bb38efbb06cfc962f2b7b25087a05e4.js"></script>
 
 ]]></content>
-      <tags>
-        <tag>gist</tag>
-      </tags>
   </entry>
   <entry>
     <title>常用正则表达式</title>
@@ -991,6 +991,9 @@
 
 <h3 id="户口薄"><a href="#户口薄" class="headerlink" title="户口薄"></a>户口薄</h3><div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tbody><tr><td class="code"><pre><code class="hljs javascript">/(^\d{<span class="hljs-number">15</span>}$)|(^\d{<span class="hljs-number">18</span>}$)|(^\d{<span class="hljs-number">17</span>}(\d|X|x)$)/<br></code></pre></td></tr></tbody></table></figure></div>
 ]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
   </entry>
   <entry>
     <title>简历</title>
@@ -1633,6 +1636,9 @@ import {initHBE} from "/js/plugins/hbe.js";
 <h3 id="并行化优化"><a href="#并行化优化" class="headerlink" title="#并行化优化"></a>#并行化优化</h3><p>利用多核处理器等多种技术，将程序中的计算任务并行化，以提高程序的执行效率。</p>
 <h3 id="代码生成"><a href="#代码生成" class="headerlink" title="#代码生成"></a>#代码生成</h3><p>根据中间代码生成目标机器的汇编代码或机器码，需要考虑处理器指令集、内存访问模式等因素，以产生高效的目标代码。</p>
 ]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
   </entry>
   <entry>
     <title>血型性格论</title>
@@ -1751,5 +1757,51 @@ import {initHBE} from "/js/plugins/hbe.js";
 </ol>
 <p>原文链接： <a class="link" href="http://ccr.sigcomm.org/online/files/p83-keshavA.pdf">S. Keshav<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>  翻译： <a class="link" href="http://blog.jobbole.com/">伯乐在线 <i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>- <a class="link" href="http://blog.jobbole.com/author/qianlong/">乾龙<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>译文链接： <a class="link" href="http://blog.jobbole.com/47506/">http://blog.jobbole.com/47506/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 ]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>00 开篇词 爱与被爱，是人一生最值得学习的能力</title>
+    <url>//posts/71104663/</url>
+    <content><![CDATA[<h1 id="00-开篇词-爱与被爱，是人一生最值得学习的能力"><a href="#00-开篇词-爱与被爱，是人一生最值得学习的能力" class="headerlink" title="00 开篇词 爱与被爱，是人一生最值得学习的能力"></a>00 开篇词 爱与被爱，是人一生最值得学习的能力</h1><p>从蹒跚学步到牙牙学语，从徒手开根号到闭眼背英文，我们一直在孜孜不倦地学习获取新的技能。然而学校从来没有开设一门课，教你如何去爱一个人，或者怎样享受被一个人爱。</p>
+<p>甚至教导主任们视恋爱如洪水猛兽，一发现爱的苗头就要赶尽杀绝、斩草除根。</p>
+<p>以至于当你遇到那个让你魂牵梦绕的人时，当你父母开始着急忙慌催婚时，你只能像一个从未训练过的士兵，手无寸铁地走向战场。更有甚者，有人相信了损友们不知道从哪个网络小说中学到的恋爱宝典，简直就像拿着贴了双面胶的炸药包上战场，结果可想而知。</p>
+<p>谈恋爱看似很容易，只要不太挑，总能搂到人跟你组 cp。两个人眼一闭一睁，恋爱就算谈上了。谈恋爱又很难，找人难、追求难、维系关系难、分手也很难，相见时难别亦难。</p>
+<p>这么多年，我看过许多以幸福模样开局，却草草收场的恋情，也见过很多在恋情中相互折磨的恋人。不是不爱，只是不懂如何去爱。</p>
+<p>你是不是也曾经为了一个人，茶饭不思辗转反侧，费尽心力也只是友情以上恋爱未满；</p>
+<p>你是不是也曾经在某个深夜，骤然醒来回想起某个人如同月光皎洁，却遗憾就此错过；</p>
+<p>你是不是也突然醒悟，当初那句话若是换个说法，现在那个人是否还会留在身边。</p>
+<p>于是，我们总在一遍遍地感叹，感叹命运为何如此残酷，总是让我们在错的时间遇到对的人，让我们一次次地在 KTV 大声唱着，“后来，当我学会如何去爱，你却已经不在。”</p>
+<p>打住，不要伤春悲秋，这还上升不到命运的高度。其实，恋爱就是个技能问题。</p>
+<h2 id="恋爱，是一项技能"><a href="#恋爱，是一项技能" class="headerlink" title="恋爱，是一项技能"></a>恋爱，是一项技能</h2><p>但是，从理论上来说，恋爱这个技能，你也可以不学。</p>
+<p>因为在一段长时间、近距离、高频次接触的、密切的亲密关系中，两个人一切的性格缺陷都会被放大。所以理论上，如果你是性格特别圆融的人，根本没有缺陷，那自然不用学，就像练了九阳神功的张无忌，什么武功都不用练，一路平 A 别人也破不了防。</p>
+<p>不过一般历史上，我们称这种没有缺陷的人为完人、圣人，比如孔子、王阳明。这是最治本的路子，但也是普通人最难以企及的路子。</p>
+<p>对我们普通人来说，学习这项技能就显得性价比非常高。恋爱技能就像太极剑，是让你掩盖破绽、化解矛盾，和自己，也和对方的缺陷达成和解的一种能力。</p>
+<p>培养爱的能力，这里既涉及知识，也包括方法，最终上升到能力。</p>
+<p>比如，我们经常聊防渣的话题，如果你连渣男渣女是什么样都不知道，以为只要女孩前凸后翘、性感妩媚、长袖善舞就是渣女，那自然防不住。识渣是防渣的第一步，这类知识不学自然不会，如果靠自己在恋爱中学习，那代价往往是撞得头破血流。</p>
+<p>所以，学习这样一门课，往小了说，避开一个雷，能为你节约多少时间精力；往大了说，北大包丽、WePhone 苏享茂，不就是“死于”渣男渣女之手，学会这课还能救命。</p>
+<p>再比如，我们还会聊“暧昧”的话题，就要讲如何利用暧昧期推进关系，讲亲密关系的六层交互理论。这种方法不学，你也有可能会不自觉地用，就好像很多人没上过游泳课也会游泳，没上过羽毛球课也会打羽毛球一样。但是成系统成体系学习过的人，稍加训练就比自己领悟的野路子强。</p>
+<p>知识和方法，都是可复制、可传授的，所以恋爱能力是能够习得的。当然，我们在恋爱课堂里谈不成恋爱，还需要你在掌握了知识和方法，构建了正确的恋爱框架后，在生活中不断地积极实践，才能真正将其内化为自己的能力。</p>
+<p>但是，恋爱这种能力，是一种需要长期学习和培训的能力。</p>
+<p>它不像 21 天就能玩转的 Python 或者每天 5 分钟就能轻松记下的单词，“爱”这个能力没法突击。但是，越早学习，你就越不容易错过天命之人，而留下不容挽回的遗憾。</p>
+<p>你也发现了，这个专栏叫《恋爱必修课》，不是想鼓吹人生要以恋爱为中心，而是想告诉你，爱与被爱，是人一生最值得学习的能力。其他技能，最多也只是支撑你事业发展的一条腿，爱的能力却是通向你爱情和家庭唯一的一张船票，现在这张船票的票价仅仅是两杯星巴克的价钱。</p>
+<h2 id="恋爱，是自我成长"><a href="#恋爱，是自我成长" class="headerlink" title="恋爱，是自我成长"></a>恋爱，是自我成长</h2><p>既然讲恋爱课，要讲什么呢？</p>
+<p>有人问过我，要不要学习和了解一下最近大火的 PUA、茶艺学等学问；还有人问我，网上的恋爱套路，到底有几分可以效仿。我理解这种心态，在这个普通人都会几句土味情话的时代，好像学了就有可能找到对象，不学就要落后，落后就要孤单。</p>
+<p>可是，为什么套路化和模板化的东西这么流行？背后的根本原因就是，我们害怕没人爱，害怕自己是单身。人口焦虑还未结束，信息焦虑的脚步就跟上了，随之而来的就是“爱情焦虑”。</p>
+<p>别急，先停止你的焦虑。我们先来想一想，恋爱到底是什么？</p>
+<p>在我做情感咨询的这么多年，问我“为什么和怎么办”的人很多，问我“是什么”的人还没碰见过。偏偏这个问题又极度重要，对“是什么”理解得越深刻，对“为什么”分析的原因才能越精确，“怎么办”的方法才能越有效。</p>
+<p>现在搜索引擎的强大往往让人产生一种错觉，认为是什么这个问题只需要敲击几下键盘就唾手可得。不过互联网或者书本上给你的概念、定义、结论都是他人对经验的总结，是外在的认知。</p>
+<p>在我看来，恋爱是自我成长。所有情感问题都是内在的领悟，是处理自己与这个世界的关系。</p>
+<p>你好像觉得，有些人天生就受欢迎，总是有很多追求者，还有的人谈恋爱就像过家家一样轻松简单，但这都不是厉害，谈得多谈得快不代表谈的好。很多帅哥美女，追求者很多，但是饱受情伤，在爱情中是非常苦恼的。你必须要靠自己培养爱的能力，不断去解决爱情难题，在爱情这条路上，最终修炼和找到更好的自我，这才是爱情带给你的真正财富。</p>
+<p>所以，我必须声明的是，这与你看到的大部分情感课都不一样。</p>
+<p>在某些人眼里，或许是史上最没用的情感课。因为这个课程既不会讲搭讪技巧也不会提供撩妹的话术，我绝不会保证你学完这个课程后就成为恋爱达人，三言两语就轻松让人投怀送抱。</p>
+<p>我甚至不能承诺，学完这个课程，你就能熟练掌握爱的能力。因为爱的能力没法凭空获得，只有在不断实践中才能掌握属于自己的秘籍。但是漫无目的地盲目实践，对于绝大多数人来说都没有效果，你往往不是谈了三次恋爱，而是把一个错误的恋爱模式重复了三次。</p>
+<p>但是，我能够承诺的是，通过本次课程，帮助你建立一个正确的恋爱框架，让你在未来的人生中能够始终朝着正确方向构筑自己爱的能力。</p>
+<p>以道驭术，术必成；离道之术，术必衰。人要成长，根本永远重于枝节。</p>
+]]></content>
+      <categories>
+        <category>恋爱必修课</category>
+      </categories>
   </entry>
 </search>
