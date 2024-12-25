@@ -1555,32 +1555,200 @@ import {initHBE} from "/js/plugins/hbe.js";
 <div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tbody><tr><td class="code"><pre><code class="hljs c">略。。。。<br></code></pre></td></tr></tbody></table></figure></div>
 
 <p>以下是每个函数及整个程序的流程图，使用Mermaid语法表示。</p>
-<h3 id="整体程序流程图"><a href="#整体程序流程图" class="headerlink" title="整体程序流程图"></a>整体程序流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    Start["程序开始"]<br>    Input["输入程序字符串"]<br>    Scaner["词法分析器 (scaner)"]<br>    Parser["语法分析器 (lrparser)"]<br>    Quad["生成四元式"]<br>    Output["输出四元式"]<br>    End["程序结束"]<br><br>    Start --&gt; Input --&gt; Scaner --&gt; Parser<br>    Parser --&gt;|解析成功| Quad --&gt; Output --&gt; End<br>    Parser --&gt;|解析失败| Error["错误处理 (error)"] --&gt; End<br></code></pre></td></tr></tbody></table></figure></div>
+<h3 id="整体程序流程图"><a href="#整体程序流程图" class="headerlink" title="整体程序流程图"></a>整体程序流程图</h3><pre class="mermaid">graph TD
+    Start["程序开始"]
+    Input["输入程序字符串"]
+    Scaner["词法分析器 (scaner)"]
+    Parser["语法分析器 (lrparser)"]
+    Quad["生成四元式"]
+    Output["输出四元式"]
+    End["程序结束"]
 
-<h3 id="lrparser-函数流程图"><a href="#lrparser-函数流程图" class="headerlink" title="lrparser 函数流程图"></a><code>lrparser</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    LRStart["调用 lrparser"]<br>    BeginCheck["检查是否以 'begin' 开头"]<br>    ParseStatements["解析语句块 (parse_statements)"]<br>    EndCheck["检查是否以 'end' 结束"]<br>    Success["成功，程序结束"]<br>    Error["错误处理 (error)"]<br><br>    LRStart --&gt; BeginCheck<br>    BeginCheck --&gt;|是| ParseStatements<br>    BeginCheck --&gt;|否| Error<br>    ParseStatements --&gt; EndCheck<br>    EndCheck --&gt;|是| Success<br>    EndCheck --&gt;|否| Error<br></code></pre></td></tr></tbody></table></figure></div>
+    Start --&gt; Input --&gt; Scaner --&gt; Parser
+    Parser --&gt;|解析成功| Quad --&gt; Output --&gt; End
+    Parser --&gt;|解析失败| Error["错误处理 (error)"] --&gt; End</pre>
 
-<h3 id="parse-statements-函数流程图"><a href="#parse-statements-函数流程图" class="headerlink" title="parse_statements 函数流程图"></a><code>parse_statements</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    ParseStatementsStart["调用 parse_statements"]<br>    CheckIdent["检查是否为标识符"]<br>    Statement["解析语句 (statement)"]<br>    Semicolon["检查是否以 ';' 结束"]<br>    EndParseStatements["返回"]<br><br>    ParseStatementsStart --&gt; CheckIdent<br>    CheckIdent --&gt;|是| Statement<br>    CheckIdent --&gt;|否| EndParseStatements<br>    Statement --&gt; Semicolon<br>    Semicolon --&gt;|是| CheckIdent<br>    Semicolon --&gt;|否| EndParseStatements<br></code></pre></td></tr></tbody></table></figure></div>
+<ul>
+<li><code>lrparser</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    LRStart["调用 lrparser"]
+    BeginCheck["检查是否以 'begin' 开头"]
+    ParseStatements["解析语句块 (parse_statements)"]
+    EndCheck["检查是否以 'end' 结束"]
+    Success["成功，程序结束"]
+    Error["错误处理 (error)"]
 
-<h3 id="statement-函数流程图"><a href="#statement-函数流程图" class="headerlink" title="statement 函数流程图"></a><code>statement</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    StatementStart["调用 statement"]<br>    CheckIdent["检查是否为标识符"]<br>    Define["检查并定义标识符"]<br>    Assignment["检查赋值符号 ':='"]<br>    Expression["解析表达式 (expression)"]<br>    Emit["生成赋值四元式"]<br>    EndStatement["返回"]<br>    Error["错误处理 (error)"]<br><br>    StatementStart --&gt; CheckIdent<br>    CheckIdent --&gt;|是| Define<br>    CheckIdent --&gt;|否| EndStatement<br>    Define --&gt; Assignment<br>    Assignment --&gt;|是| Expression<br>    Assignment --&gt;|否| Error<br>    Expression --&gt; Emit<br>    Emit --&gt; EndStatement<br></code></pre></td></tr></tbody></table></figure></div>
+    LRStart --&gt; BeginCheck
+    BeginCheck --&gt;|是| ParseStatements
+    BeginCheck --&gt;|否| Error
+    ParseStatements --&gt; EndCheck
+    EndCheck --&gt;|是| Success
+    EndCheck --&gt;|否| Error</pre>
 
-<h3 id="expression-函数流程图"><a href="#expression-函数流程图" class="headerlink" title="expression 函数流程图"></a><code>expression</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    ExpressionStart["调用 expression"]<br>    Term["解析项 (term)"]<br>    OpCheck["检查是否有 '+' 或 '-'"]<br>    NewTemp["生成新临时变量"]<br>    Emit["生成四元式"]<br>    EndExpression["返回"]<br>    <br>    ExpressionStart --&gt; Term<br>    Term --&gt; OpCheck<br>    OpCheck --&gt;|有| NewTemp<br>    OpCheck --&gt;|无| EndExpression<br>    NewTemp --&gt; Emit<br>    Emit --&gt; Term<br></code></pre></td></tr></tbody></table></figure></div>
+<ul>
+<li><code>parse_statements</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    ParseStatementsStart["调用 parse_statements"]
+    CheckIdent["检查是否为标识符"]
+    Statement["解析语句 (statement)"]
+    Semicolon["检查是否以 ';' 结束"]
+    EndParseStatements["返回"]
 
-<h3 id="term-函数流程图"><a href="#term-函数流程图" class="headerlink" title="term 函数流程图"></a><code>term</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    TermStart["调用 term"]<br>    Factor["解析因子 (factor)"]<br>    OpCheck["检查是否有 '*' 或 '/'"]<br>    NewTemp["生成新临时变量"]<br>    Emit["生成四元式"]<br>    EndTerm["返回"]<br>    <br>    TermStart --&gt; Factor<br>    Factor --&gt; OpCheck<br>    OpCheck --&gt;|有| NewTemp<br>    OpCheck --&gt;|无| EndTerm<br>    NewTemp --&gt; Emit<br>    Emit --&gt; Factor<br></code></pre></td></tr></tbody></table></figure></div>
+    ParseStatementsStart --&gt; CheckIdent
+    CheckIdent --&gt;|是| Statement
+    CheckIdent --&gt;|否| EndParseStatements
+    Statement --&gt; Semicolon
+    Semicolon --&gt;|是| CheckIdent
+    Semicolon --&gt;|否| EndParseStatements</pre>
 
-<h3 id="factor-函数流程图"><a href="#factor-函数流程图" class="headerlink" title="factor 函数流程图"></a><code>factor</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    FactorStart["调用 factor"]<br>    CheckType["检查类型 (标识符/数字/括号)"]<br>    IdentCheck["检查标识符是否已定义"]<br>    Expr["递归解析表达式"]<br>    EndFactor["返回"]<br>    Error["错误处理 (error)"]<br><br>    FactorStart --&gt; CheckType<br>    CheckType --&gt;|标识符| IdentCheck<br>    CheckType --&gt;|数字| EndFactor<br>    CheckType --&gt;|括号| Expr<br>    CheckType --&gt;|其他| Error<br>    IdentCheck --&gt;|已定义| EndFactor<br>    IdentCheck --&gt;|未定义| Error<br>    Expr --&gt; EndFactor<br></code></pre></td></tr></tbody></table></figure></div>
+<ul>
+<li><code>statement</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    StatementStart["调用 statement"]
+    CheckIdent["检查是否为标识符"]
+    Define["检查并定义标识符"]
+    Assignment["检查赋值符号 ':='"]
+    Expression["解析表达式 (expression)"]
+    Emit["生成赋值四元式"]
+    EndStatement["返回"]
+    Error["错误处理 (error)"]
 
-<h3 id="scaner-函数流程图"><a href="#scaner-函数流程图" class="headerlink" title="scaner 函数流程图"></a><code>scaner</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    ScanerStart["调用 scaner"]<br>    SkipSpaces["跳过空格"]<br>    Ident["处理标识符或关键字"]<br>    Num["处理数字"]<br>    Symbol["处理符号"]<br>    EndScaner["返回"]<br><br>    ScanerStart --&gt; SkipSpaces<br>    SkipSpaces --&gt; Ident<br>    SkipSpaces --&gt; Num<br>    SkipSpaces --&gt; Symbol<br>    Ident --&gt; EndScaner<br>    Num --&gt; EndScaner<br>    Symbol --&gt; EndScaner<br></code></pre></td></tr></tbody></table></figure></div>
+    StatementStart --&gt; CheckIdent
+    CheckIdent --&gt;|是| Define
+    CheckIdent --&gt;|否| EndStatement
+    Define --&gt; Assignment
+    Assignment --&gt;|是| Expression
+    Assignment --&gt;|否| Error
+    Expression --&gt; Emit
+    Emit --&gt; EndStatement</pre>
 
-<h3 id="emit-函数流程图"><a href="#emit-函数流程图" class="headerlink" title="emit 函数流程图"></a><code>emit</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    EmitStart["调用 emit"]<br>    GenerateQuad["生成四元式并存储"]<br>    EndEmit["返回"]<br><br>    EmitStart --&gt; GenerateQuad --&gt; EndEmit<br></code></pre></td></tr></tbody></table></figure></div>
+<ul>
+<li><code>expression</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    ExpressionStart["调用 expression"]
+    Term["解析项 (term)"]
+    OpCheck["检查是否有 '+' 或 '-'"]
+    NewTemp["生成新临时变量"]
+    Emit["生成四元式"]
+    EndExpression["返回"]
+    
+    ExpressionStart --&gt; Term
+    Term --&gt; OpCheck
+    OpCheck --&gt;|有| NewTemp
+    OpCheck --&gt;|无| EndExpression
+    NewTemp --&gt; Emit
+    Emit --&gt; Term</pre>
 
-<h3 id="error-函数流程图"><a href="#error-函数流程图" class="headerlink" title="error 函数流程图"></a><code>error</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    ErrorStart["调用 error"]<br>    PrintMsg["打印错误信息"]<br>    Exit["退出程序"]<br><br>    ErrorStart --&gt; PrintMsg --&gt; Exit<br></code></pre></td></tr></tbody></table></figure></div>
+<ul>
+<li><code>term</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    TermStart["调用 term"]
+    Factor["解析因子 (factor)"]
+    OpCheck["检查是否有 '*' 或 '/'"]
+    NewTemp["生成新临时变量"]
+    Emit["生成四元式"]
+    EndTerm["返回"]
+    
+    TermStart --&gt; Factor
+    Factor --&gt; OpCheck
+    OpCheck --&gt;|有| NewTemp
+    OpCheck --&gt;|无| EndTerm
+    NewTemp --&gt; Emit
+    Emit --&gt; Factor</pre>
+
+<ul>
+<li><code>factor</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    FactorStart["调用 factor"]
+    CheckType["检查类型 (标识符/数字/括号)"]
+    IdentCheck["检查标识符是否已定义"]
+    Expr["递归解析表达式"]
+    EndFactor["返回"]
+    Error["错误处理 (error)"]
+
+    FactorStart --&gt; CheckType
+    CheckType --&gt;|标识符| IdentCheck
+    CheckType --&gt;|数字| EndFactor
+    CheckType --&gt;|括号| Expr
+    CheckType --&gt;|其他| Error
+    IdentCheck --&gt;|已定义| EndFactor
+    IdentCheck --&gt;|未定义| Error
+    Expr --&gt; EndFactor</pre>
+
+<ul>
+<li><code>scaner</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    ScanerStart["调用 scaner"]
+    SkipSpaces["跳过空格"]
+    Ident["处理标识符或关键字"]
+    Num["处理数字"]
+    Symbol["处理符号"]
+    EndScaner["返回"]
+
+    ScanerStart --&gt; SkipSpaces
+    SkipSpaces --&gt; Ident
+    SkipSpaces --&gt; Num
+    SkipSpaces --&gt; Symbol
+    Ident --&gt; EndScaner
+    Num --&gt; EndScaner
+    Symbol --&gt; EndScaner</pre>
+
+<ul>
+<li><code>emit</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    EmitStart["调用 emit"]
+    GenerateQuad["生成四元式并存储"]
+    EndEmit["返回"]
+
+    EmitStart --&gt; GenerateQuad --&gt; EndEmit</pre>
+
+<ul>
+<li><code>error</code> 函数流程图</li>
+</ul>
+<pre class="mermaid">graph TD
+    ErrorStart["调用 error"]
+    PrintMsg["打印错误信息"]
+    Exit["退出程序"]
+
+    ErrorStart --&gt; PrintMsg --&gt; Exit</pre>
 
 <p>以下是补充的 <strong>变量检查函数 (<code>is_defined</code>)</strong> 和 <strong>定义变量函数 (<code>define</code>)</strong> 的流程图：</p>
 <hr>
-<h3 id="is-defined-函数流程图"><a href="#is-defined-函数流程图" class="headerlink" title="is_defined 函数流程图"></a><code>is_defined</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    IsDefinedStart["调用 is_defined"]<br>    Loop["遍历符号表"]<br>    CheckMatch["检查是否匹配"]<br>    Match["返回 true"]<br>    EndLoop["遍历结束"]<br>    NoMatch["返回 false"]<br><br>    IsDefinedStart --&gt; Loop<br>    Loop --&gt; CheckMatch<br>    CheckMatch --&gt;|匹配| Match<br>    CheckMatch --&gt;|不匹配| Loop<br>    Loop --&gt;|结束| EndLoop --&gt; NoMatch<br></code></pre></td></tr></tbody></table></figure></div>
+<p>1 <code>is_defined</code> 函数流程图</p>
+<pre class="mermaid">graph TD
+    IsDefinedStart["调用 is_defined"]
+    Loop["遍历符号表"]
+    CheckMatch["检查是否匹配"]
+    Match["返回 true"]
+    EndLoop["遍历结束"]
+    NoMatch["返回 false"]
+
+    IsDefinedStart --&gt; Loop
+    Loop --&gt; CheckMatch
+    CheckMatch --&gt;|匹配| Match
+    CheckMatch --&gt;|不匹配| Loop
+    Loop --&gt;|结束| EndLoop --&gt; NoMatch</pre>
 
 <hr>
-<h3 id="define-函数流程图"><a href="#define-函数流程图" class="headerlink" title="define 函数流程图"></a><code>define</code> 函数流程图</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tbody><tr><td class="code"><pre><code class="hljs mermaid">graph TD<br>    DefineStart["调用 define"]<br>    CheckCapacity["检查符号表容量是否已满"]<br>    AddSymbol["将新变量加入符号表"]<br>    OverflowError["错误处理 (符号表溢出)"]<br>    EndDefine["返回"]<br><br>    DefineStart --&gt; CheckCapacity<br>    CheckCapacity --&gt;|未满| AddSymbol --&gt; EndDefine<br>    CheckCapacity --&gt;|已满| OverflowError --&gt; EndDefine<br></code></pre></td></tr></tbody></table></figure></div>
+<p>2 <code>define</code> 函数流程图</p>
+<pre class="mermaid">graph TD
+    DefineStart["调用 define"]
+    CheckCapacity["检查符号表容量是否已满"]
+    AddSymbol["将新变量加入符号表"]
+    OverflowError["错误处理 (符号表溢出)"]
+    EndDefine["返回"]
+
+    DefineStart --&gt; CheckCapacity
+    CheckCapacity --&gt;|未满| AddSymbol --&gt; EndDefine
+    CheckCapacity --&gt;|已满| OverflowError --&gt; EndDefine</pre>
 
 
 
