@@ -327,7 +327,7 @@
     <link href="http://blog.jinmajue.site/posts/1e1f9da/"/>
     <id>http://blog.jinmajue.site/posts/1e1f9da/</id>
     <published>2024-05-04T08:29:56.000Z</published>
-    <updated>2024-12-12T09:17:50.759Z</updated>
+    <updated>2024-12-25T01:01:18.758Z</updated>
     
     <content type="html"><![CDATA[<h1 id="VScode使用的一些记录"><a href="#VScode使用的一些记录" class="headerlink" title="VScode使用的一些记录"></a>VScode使用的一些记录</h1><h4 id="VScode查看SQLite"><a href="#VScode查看SQLite" class="headerlink" title="VScode查看SQLite"></a>VScode查看SQLite</h4><p>在VSCode中查看SQLite内容可以通过以下步骤实现：</p><ol><li>安装SQLite插件：在VSCode的插件商店中搜索并安装SQLite插件。</li><li>打开SQLite文件：在VSCode中打开一个包含SQLite数据库的文件。这可以是一个已有的SQLite数据库文件（.db文件）或者是一个新建的文件。</li><li>打开SQLite数据库终端：按下<code>Ctrl + Shift + P</code>（Windows/Linux）或者<code>Cmd + Shift + P</code>（Mac）调出命令面板，然后输入”SQLite: Open Database”并按下回车键。选择要打开的SQLite数据库文件。</li><li>执行SQL查询：在打开的SQLite数据库终端上方的文本框中，输入SQL查询语句，例如<code>SELECT * FROM table_name;</code>，然后按下回车键执行查询。</li><li>查看查询结果：查询结果将会在SQLite数据库终端下方显示出来。你可以通过上下滚动查看所有的结果。</li><li>可选操作：SQLite插件还提供了其他功能，如创建表、导入数据等，你可以在终端中输入相应的SQL语句使用这些功能。</li></ol><p>总结：<br>以上便是在VSCode中查看SQLite内容的步骤。通过安装SQLite插件并在VSCode中打开SQLite数据库文件，你可以执行SQL查询语句并查看查询结果。</p>]]></content>
     
