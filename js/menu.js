@@ -1,1 +1,0 @@
-function toggleMenu(){var e=document.getElementsByClassName("menu-list")[0],n=document.getElementById("menu-btn");e.classList.contains("active")?(e.classList.remove("active"),n.innerHTML="Menu"):(e.classList.add("active"),n.innerHTML='<div class="icon arrow-up"> </div>')}
