@@ -6909,74 +6909,91 @@ I’ll be glad to translate responses, if you only use one or the other.</p>
 <hr>
 <p>原文链接: <a href="https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems">SQLite vs MySQL vs PostgreSQL：关系数据库管理系统的比较 |数字海洋</a></p>
 <hr>
-<h1 id="SQLite-vs-MySQL-vs-PostgreSQL-比较关系型数据库管理系统"><a href="#SQLite-vs-MySQL-vs-PostgreSQL-比较关系型数据库管理系统" class="headerlink" title="SQLite vs MySQL vs PostgreSQL: 比较关系型数据库管理系统"></a>SQLite vs MySQL vs PostgreSQL: 比较关系型数据库管理系统</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本文比较了三种广泛使用的关系型数据库管理系统：SQLite、MySQL 和 PostgreSQL。通过比较它们的性能、可扩展性、社区支持、安全性和使用场景，帮助开发者选择最适合其项目的数据库。</p>
-<h2 id="1-SQLite"><a href="#1-SQLite" class="headerlink" title="1. SQLite"></a>1. SQLite</h2><h3 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h3><ul>
+<h1 id="sqlite-vs-mysql-vs-postgresql-比较关系型数据库管理系统"><a class="markdownIt-Anchor" href="#sqlite-vs-mysql-vs-postgresql-比较关系型数据库管理系统"></a> SQLite vs MySQL vs PostgreSQL: 比较关系型数据库管理系统</h1>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<p>本文比较了三种广泛使用的关系型数据库管理系统：SQLite、MySQL 和 PostgreSQL。通过比较它们的性能、可扩展性、社区支持、安全性和使用场景，帮助开发者选择最适合其项目的数据库。</p>
+<h2 id="1-sqlite"><a class="markdownIt-Anchor" href="#1-sqlite"></a> 1. SQLite</h2>
+<h3 id="基本特点"><a class="markdownIt-Anchor" href="#基本特点"></a> 基本特点</h3>
+<ul>
 <li><strong>轻量级</strong>：无服务器、零配置。</li>
 <li><strong>嵌入式</strong>：适合移动设备、物联网设备和小型应用。</li>
 <li><strong>易用性</strong>：简单易部署，无需管理服务器。</li>
 <li><strong>数据量限制</strong>：适合小到中等规模的数据（最大数据库大小为 140 TB）。</li>
 </ul>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h3>
+<ul>
 <li><strong>零配置</strong>：无需安装或配置。</li>
 <li><strong>跨平台</strong>：支持多种操作系统。</li>
 <li><strong>事务支持</strong>：完整的 ACID 事务支持。</li>
 <li><strong>资源占用低</strong>：内存和磁盘使用效率高。</li>
 </ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<h3 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h3>
+<ul>
 <li><strong>性能限制</strong>：不适合高并发环境。</li>
 <li><strong>扩展性差</strong>：不支持连接池、复制等高级功能。</li>
 <li><strong>社区支持有限</strong>：社区较小，文档和资源较少。</li>
 </ul>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<h3 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h3>
+<ul>
 <li><strong>移动应用</strong>：如 iOS 和 Android 应用。</li>
 <li><strong>嵌入式系统</strong>：如物联网设备。</li>
 <li><strong>小型应用</strong>：如桌面应用或原型开发。</li>
 </ul>
-<h2 id="2-MySQL"><a href="#2-MySQL" class="headerlink" title="2. MySQL"></a>2. MySQL</h2><h3 id="基本特点-1"><a href="#基本特点-1" class="headerlink" title="基本特点"></a>基本特点</h3><ul>
+<h2 id="2-mysql"><a class="markdownIt-Anchor" href="#2-mysql"></a> 2. MySQL</h2>
+<h3 id="基本特点-2"><a class="markdownIt-Anchor" href="#基本特点-2"></a> 基本特点</h3>
+<ul>
 <li><strong>开源</strong>：广泛使用，支持多种许可模式（社区版和企业版）。</li>
 <li><strong>性能</strong>：适合中等规模的应用，支持高并发。</li>
 <li><strong>可扩展性</strong>：支持水平扩展、复制和集群。</li>
 <li><strong>生态系统丰富</strong>：有大量的工具、库和框架支持。</li>
 </ul>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点-2"><a class="markdownIt-Anchor" href="#优点-2"></a> 优点</h3>
+<ul>
 <li><strong>高性能</strong>：适用于高并发和大数据量的场景。</li>
 <li><strong>可扩展性</strong>：支持水平扩展和复制。</li>
 <li><strong>企业支持</strong>：Oracle 提供商业支持和服务。</li>
 <li><strong>社区活跃</strong>：拥有庞大的开发者社区和丰富的资源。</li>
 </ul>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<h3 id="缺点-2"><a class="markdownIt-Anchor" href="#缺点-2"></a> 缺点</h3>
+<ul>
 <li><strong>许可证限制</strong>：企业版有一些限制和成本。</li>
 <li><strong>功能有限</strong>：某些高级功能需要第三方插件。</li>
 <li><strong>SQL 标准 compliance</strong>：对 SQL 标准的支持不如 PostgreSQL 完整。</li>
 </ul>
-<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<h3 id="使用场景-2"><a class="markdownIt-Anchor" href="#使用场景-2"></a> 使用场景</h3>
+<ul>
 <li><strong>Web 应用</strong>：如 WordPress、Drupal 等。</li>
 <li><strong>电子商务</strong>：如 Magento、WooCommerce 等。</li>
 <li><strong>大数据应用</strong>：如日志存储、数据分析等。</li>
 </ul>
-<h2 id="3-PostgreSQL"><a href="#3-PostgreSQL" class="headerlink" title="3. PostgreSQL"></a>3. PostgreSQL</h2><h3 id="基本特点-2"><a href="#基本特点-2" class="headerlink" title="基本特点"></a>基本特点</h3><ul>
+<h2 id="3-postgresql"><a class="markdownIt-Anchor" href="#3-postgresql"></a> 3. PostgreSQL</h2>
+<h3 id="基本特点-3"><a class="markdownIt-Anchor" href="#基本特点-3"></a> 基本特点</h3>
+<ul>
 <li><strong>开源</strong>：功能丰富，支持高级特性。</li>
 <li><strong>性能</strong>：适用于复杂查询和大数据量。</li>
 <li><strong>可扩展性</strong>：支持用户定义的数据类型、索引、操作符等。</li>
 <li><strong>社区支持</strong>：活跃的社区和丰富的文档。</li>
 </ul>
-<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点-3"><a class="markdownIt-Anchor" href="#优点-3"></a> 优点</h3>
+<ul>
 <li><strong>功能丰富</strong>：支持复杂查询、全文搜索、空间数据库等。</li>
 <li><strong>SQL 标准 compliance</strong>：对 SQL 标准的支持非常好。</li>
 <li><strong>可扩展性</strong>：支持用户定义的函数、操作符和数据类型。</li>
 <li><strong>安全性</strong>：支持角色-based访问控制、加密等。</li>
 </ul>
-<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<h3 id="缺点-3"><a class="markdownIt-Anchor" href="#缺点-3"></a> 缺点</h3>
+<ul>
 <li><strong>性能</strong>：在某些场景下可能不如 MySQL 性能高。</li>
 <li><strong>复杂性</strong>：配置和管理相对复杂。</li>
 <li><strong>资源占用</strong>：相对于 SQLite 和 MySQL，资源占用较高。</li>
 </ul>
-<h3 id="使用场景-2"><a href="#使用场景-2" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<h3 id="使用场景-3"><a class="markdownIt-Anchor" href="#使用场景-3"></a> 使用场景</h3>
+<ul>
 <li><strong>复杂应用</strong>：如地理信息系统、科学计算等。</li>
 <li><strong>大数据应用</strong>：如数据仓库、数据分析等。</li>
 <li><strong>需要高级功能的项目</strong>：如全文搜索、JSON 支持等。</li>
 </ul>
-<h2 id="4-比较总结"><a href="#4-比较总结" class="headerlink" title="4. 比较总结"></a>4. 比较总结</h2><div class="table-container">
+<h2 id="4-比较总结"><a class="markdownIt-Anchor" href="#4-比较总结"></a> 4. 比较总结</h2>
 <table>
 <thead>
 <tr>
@@ -7025,16 +7042,17 @@ I’ll be glad to translate responses, if you only use one or the other.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="5-选择建议"><a href="#5-选择建议" class="headerlink" title="5. 选择建议"></a>5. 选择建议</h2><ul>
+<h2 id="5-选择建议"><a class="markdownIt-Anchor" href="#5-选择建议"></a> 5. 选择建议</h2>
+<ul>
 <li><strong>选择 SQLite</strong>，如果你需要一个轻量级、无服务器的数据库，适合小型应用或嵌入式系统。</li>
 <li><strong>选择 MySQL</strong>，如果你需要一个高性能、可扩展的数据库，适合Web应用和电子商务。</li>
 <li><strong>选择 PostgreSQL</strong>，如果你需要一个功能丰富、可扩展的数据库，适合复杂应用和大数据场景。</li>
 </ul>
-<h2 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h2><p>每种数据库都有其优缺点和适用场景。选择合适的数据库取决于你的项目需求、数据量、并发需求和功能要求。希望本文的比较能帮助你做出明智的选择。</p>
+<h2 id="6-结论"><a class="markdownIt-Anchor" href="#6-结论"></a> 6. 结论</h2>
+<p>每种数据库都有其优缺点和适用场景。选择合适的数据库取决于你的项目需求、数据量、并发需求和功能要求。希望本文的比较能帮助你做出明智的选择。</p>
 ]]></content>
       <tags>
-        <tag>aticles</tag>
+        <tag>articles</tag>
       </tags>
   </entry>
   <entry>
