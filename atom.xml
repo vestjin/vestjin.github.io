@@ -6,7 +6,7 @@
   <link href="http://blog.jinmajue.site/atom.xml" rel="self"/>
   
   <link href="http://blog.jinmajue.site/"/>
-  <updated>2025-02-07T02:02:34.913Z</updated>
+  <updated>2025-02-20T13:14:28.020Z</updated>
   <id>http://blog.jinmajue.site/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C运算符优先级</title>
+    <link href="http://blog.jinmajue.site/posts/5a7450ff/"/>
+    <id>http://blog.jinmajue.site/posts/5a7450ff/</id>
+    <published>2025-02-20T12:50:35.000Z</published>
+    <updated>2025-02-20T13:14:28.020Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="c运算符优先级"><a class="markdownIt-Anchor" href="#c运算符优先级"></a> C运算符优先级</h2><p>下表列出C运算符的优先级和结合性。运算符从上到下以降序列出。</p><table><thead><tr><th>优先级</th><th>运算符</th><th>描述</th><th style="text-align:center">结合性</th></tr></thead><tbody><tr><td>1</td><td>++   –</td><td>后缀自增与自减</td><td style="text-align:center">从左到右</td></tr><tr><td></td><td>()</td><td>函数调用</td><td style="text-align:center"></td></tr><tr><td></td><td>[]</td><td>数组下标</td><td style="text-align:center"></td></tr><tr><td></td><td>.</td><td>结构体与联合体成员访问</td><td style="text-align:center"></td></tr><tr><td></td><td>-&gt;</td><td>结构体与联合体成员通过指针访问</td><td style="text-align:center"></td></tr><tr><td></td><td>{type}{list}</td><td>复合字面量(C99)</td><td style="text-align:center"></td></tr><tr><td>2</td><td>++   –</td><td>前缀自增与自减</td><td style="text-align:center">从右到左</td></tr><tr><td></td><td>+  -</td><td>一元加与减</td><td style="text-align:center"></td></tr><tr><td></td><td>!  ~</td><td>逻辑非与逐位非</td><td style="text-align:center"></td></tr><tr><td></td><td>(type)</td><td>转型</td><td style="text-align:center"></td></tr><tr><td></td><td>*</td><td>间接(解引用)</td><td style="text-align:center"></td></tr><tr><td></td><td>&amp;</td><td>取址</td><td style="text-align:center"></td></tr><tr><td></td><td>sizeof</td><td>取大小</td><td style="text-align:center"></td></tr><tr><td></td><td>_Alignof</td><td>对齐要求(C11)</td><td style="text-align:center"></td></tr><tr><td>3</td><td>* / %</td><td>乘法-除法-余数</td><td style="text-align:center">从左到右</td></tr><tr><td>4</td><td>+  -</td><td>加法-减法</td><td style="text-align:center"></td></tr><tr><td>5</td><td>&lt;&lt; &gt;&gt;</td><td>逐位左移 右移</td><td style="text-align:center"></td></tr><tr><td>6</td><td>&lt;  &lt;=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>&gt;  &gt;=</td><td></td><td style="text-align:center"></td></tr><tr><td>7</td><td>==   !=</td><td></td><td style="text-align:center"></td></tr><tr><td>8</td><td>&amp;</td><td>逐位与</td><td style="text-align:center"></td></tr><tr><td>9</td><td>^</td><td>逐位异或</td><td style="text-align:center"></td></tr><tr><td>10</td><td>|</td><td>逐位或</td><td style="text-align:center"></td></tr><tr><td>11</td><td>&amp;&amp;</td><td>逻辑与</td><td style="text-align:center"></td></tr><tr><td>12</td><td>||</td><td>逻辑或</td><td style="text-align:center"></td></tr><tr><td>13</td><td>? :</td><td>三元条件</td><td style="text-align:center">从右到左</td></tr><tr><td>14</td><td>=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>+=  -=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>*=  /=  %=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>&lt;&lt;=   &gt;&gt;=</td><td>逐位左移右移</td><td style="text-align:center"></td></tr><tr><td></td><td>&amp;=  ^=  |=</td><td>逐位与-异或-赋值</td><td style="text-align:center"></td></tr><tr><td>15</td><td>,</td><td>逗号</td><td style="text-align:center">从左到右</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;c运算符优先级&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#c运算符优先级&quot;&gt;&lt;/a&gt; C运算符优先级&lt;/h2&gt;
+&lt;p&gt;下表列出C运算符的优先级和结合性。运算符从上到下以降序列出。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;</summary>
+      
+    
+    
+    
+    <category term="C_Cplusplus" scheme="http://blog.jinmajue.site/categories/C-Cplusplus/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>AI让我变成了文盲程序员</title>
     <link href="http://blog.jinmajue.site/posts/70db6a66/"/>
     <id>http://blog.jinmajue.site/posts/70db6a66/</id>
     <published>2025-02-07T02:00:20.000Z</published>
-    <updated>2025-02-07T02:02:34.913Z</updated>
+    <updated>2025-02-07T02:02:51.122Z</updated>
     
     <content type="html"><![CDATA[<hr><hr><hr><p>原文链接：<a href="https://nmn.gl/blog/ai-illiterate-programmers">AI 让我变成文盲程序员</a></p><hr><p>我长期使用 AI，靠它帮助编程，已经不能在没有 AI 帮助的情况下解决问题了。</p><p>我不再阅读文档。既然 AI 可以立即解释一切，为什么还要费心阅读呢？</p><p>我的调试技能日益生疏。我甚至不再阅读报错消息，只是把它们复制并粘贴到 AI，让 AI 解读。</p><p>我已经成为了一个人肉剪贴板，仅仅是代码和 AI 之间的中介。</p><p>以前，每条报错都会让我学到一些东西。现在呢？AI 提供了解决方案，我却什么也没学到。实时答案带来的多巴胺刺激，取代了真正理解的满足感。</p><p>另一个受到影响的地方是深度理解。以前，我花费数小时来理解某个解决方案为何有效，现在，我只是照着 AI 建议实施。如果这些建议不起作用，我会改进提示的上下文，再次询问 AI。这种循环使得我对 AI 的依赖性不断增加。</p><p>我的情绪也受到影响。以前，解决新问题是编程乐趣的一部分。现在，如果 AI 不能在五分钟内给出解决方案，我就会感到沮丧。</p><p>我该怎么办？我不想采取任何激进的措施，比如完全放弃 AI，这是不现实的。我打算每周实行一天"无 AI 日"。</p><p>我的感觉是，AI 不会让我们成为10倍效率的程序员，只会让我们对它的依赖程度增加10倍。</p><p>每当我们让 AI 解决我们自己可以解决的问题时，我们就是用短期生产力换取长期理解，我们以牺牲明天的能力为代价来完成今天的效率。</p><p>我并不是建议放弃 AI，只是建议大家不要放弃尝试独立解决问题。</p><p>我们正在创造 AI 一代程序员，他们可以向 AI 提出正确的问题，但不理解 AI 给出的答案。每次 AI 出现故障，他们就会显得无助。到目前为止，AI 还不足以完全取代程序员，但随着 AI 的进步，这种情况只会变得更糟。</p>]]></content>
     
