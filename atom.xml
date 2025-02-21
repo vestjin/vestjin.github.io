@@ -6,7 +6,7 @@
   <link href="http://blog.jinmajue.site/atom.xml" rel="self"/>
   
   <link href="http://blog.jinmajue.site/"/>
-  <updated>2025-02-20T13:14:28.020Z</updated>
+  <updated>2025-02-21T13:31:59.428Z</updated>
   <id>http://blog.jinmajue.site/</id>
   
   <author>
@@ -17,11 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C保留字</title>
+    <link href="http://blog.jinmajue.site/posts/78102cb9/"/>
+    <id>http://blog.jinmajue.site/posts/78102cb9/</id>
+    <published>2025-02-21T13:26:00.000Z</published>
+    <updated>2025-02-21T13:31:59.428Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td>auto</td><td>if</td><td>break</td></tr><tr><td>int</td><td>case</td><td>long</td></tr><tr><td>char</td><td>register</td><td>continue</td></tr><tr><td>return</td><td>default</td><td>short</td></tr><tr><td>do</td><td>sizeof</td><td>double</td></tr><tr><td>static</td><td>else</td><td>struct</td></tr><tr><td>entry</td><td>switch</td><td>extern</td></tr><tr><td>typedef</td><td>float</td><td>union</td></tr><tr><td>for</td><td>unsigned</td><td>goto</td></tr><tr><td>while</td><td>enum</td><td>void</td></tr><tr><td>const</td><td>signed</td><td>volatile</td></tr></tbody></table><h1 id="c保留字表"><a class="markdownIt-Anchor" href="#c保留字表"></a> C保留字表</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;auto&lt;/td&gt;
+&lt;td&gt;if&lt;/td&gt;
+&lt;td&gt;break&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/</summary>
+      
+    
+    
+    
+    <category term="C_Cplusplus" scheme="http://blog.jinmajue.site/categories/C-Cplusplus/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>C运算符优先级</title>
     <link href="http://blog.jinmajue.site/posts/5a7450ff/"/>
     <id>http://blog.jinmajue.site/posts/5a7450ff/</id>
     <published>2025-02-20T12:50:35.000Z</published>
-    <updated>2025-02-20T13:14:28.020Z</updated>
+    <updated>2025-02-20T13:14:55.678Z</updated>
     
     <content type="html"><![CDATA[<h2 id="c运算符优先级"><a class="markdownIt-Anchor" href="#c运算符优先级"></a> C运算符优先级</h2><p>下表列出C运算符的优先级和结合性。运算符从上到下以降序列出。</p><table><thead><tr><th>优先级</th><th>运算符</th><th>描述</th><th style="text-align:center">结合性</th></tr></thead><tbody><tr><td>1</td><td>++   –</td><td>后缀自增与自减</td><td style="text-align:center">从左到右</td></tr><tr><td></td><td>()</td><td>函数调用</td><td style="text-align:center"></td></tr><tr><td></td><td>[]</td><td>数组下标</td><td style="text-align:center"></td></tr><tr><td></td><td>.</td><td>结构体与联合体成员访问</td><td style="text-align:center"></td></tr><tr><td></td><td>-&gt;</td><td>结构体与联合体成员通过指针访问</td><td style="text-align:center"></td></tr><tr><td></td><td>{type}{list}</td><td>复合字面量(C99)</td><td style="text-align:center"></td></tr><tr><td>2</td><td>++   –</td><td>前缀自增与自减</td><td style="text-align:center">从右到左</td></tr><tr><td></td><td>+  -</td><td>一元加与减</td><td style="text-align:center"></td></tr><tr><td></td><td>!  ~</td><td>逻辑非与逐位非</td><td style="text-align:center"></td></tr><tr><td></td><td>(type)</td><td>转型</td><td style="text-align:center"></td></tr><tr><td></td><td>*</td><td>间接(解引用)</td><td style="text-align:center"></td></tr><tr><td></td><td>&amp;</td><td>取址</td><td style="text-align:center"></td></tr><tr><td></td><td>sizeof</td><td>取大小</td><td style="text-align:center"></td></tr><tr><td></td><td>_Alignof</td><td>对齐要求(C11)</td><td style="text-align:center"></td></tr><tr><td>3</td><td>* / %</td><td>乘法-除法-余数</td><td style="text-align:center">从左到右</td></tr><tr><td>4</td><td>+  -</td><td>加法-减法</td><td style="text-align:center"></td></tr><tr><td>5</td><td>&lt;&lt; &gt;&gt;</td><td>逐位左移 右移</td><td style="text-align:center"></td></tr><tr><td>6</td><td>&lt;  &lt;=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>&gt;  &gt;=</td><td></td><td style="text-align:center"></td></tr><tr><td>7</td><td>==   !=</td><td></td><td style="text-align:center"></td></tr><tr><td>8</td><td>&amp;</td><td>逐位与</td><td style="text-align:center"></td></tr><tr><td>9</td><td>^</td><td>逐位异或</td><td style="text-align:center"></td></tr><tr><td>10</td><td>|</td><td>逐位或</td><td style="text-align:center"></td></tr><tr><td>11</td><td>&amp;&amp;</td><td>逻辑与</td><td style="text-align:center"></td></tr><tr><td>12</td><td>||</td><td>逻辑或</td><td style="text-align:center"></td></tr><tr><td>13</td><td>? :</td><td>三元条件</td><td style="text-align:center">从右到左</td></tr><tr><td>14</td><td>=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>+=  -=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>*=  /=  %=</td><td></td><td style="text-align:center"></td></tr><tr><td></td><td>&lt;&lt;=   &gt;&gt;=</td><td>逐位左移右移</td><td style="text-align:center"></td></tr><tr><td></td><td>&amp;=  ^=  |=</td><td>逐位与-异或-赋值</td><td style="text-align:center"></td></tr><tr><td>15</td><td>,</td><td>逗号</td><td style="text-align:center">从左到右</td></tr></tbody></table>]]></content>
     
