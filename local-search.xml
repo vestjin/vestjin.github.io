@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>word</title>
+    <link href="/posts/c3f17511/"/>
+    <url>/posts/c3f17511/</url>
+    
+    <content type="html"><![CDATA[<hr><hr><h3 id="对勾方块"><a class="markdownIt-Anchor" href="#对勾方块"></a> 对勾方块</h3><p>方法一：在文档中输入数字“2611”，然后按下组合键 Alt + X，数字会自动转换为方框对勾符号（☑）<br>方法二：按住 Alt 键，然后在数字小键盘上输入“9745”，松开 Alt 键后，方框对勾符号会出现</p><h3 id="快速中英文字符格式设置"><a class="markdownIt-Anchor" href="#快速中英文字符格式设置"></a> 快速中英文字符格式设置</h3><p>在Word文档中快速设置中文和英文不同格式，可以通过以下步骤实现：</p><p>方法一：使用样式</p><ol><li><strong>创建样式</strong>：<ul><li>点击“开始”选项卡，选择“样式”组中的“新建样式”。</li><li>设置中文样式（如字体、字号等），命名为“中文样式”。</li><li>再次新建样式，设置英文样式，命名为“英文样式”。</li></ul></li><li><strong>应用样式</strong>：<ul><li>选中中文文本，应用“中文样式”。</li><li>选中英文文本，应用“英文样式”。</li></ul></li></ol><p>方法二：使用“查找和替换”功能</p><ol><li><strong>查找英文文本</strong>：<ul><li>按 <code>Ctrl + H</code> 打开“查找和替换”对话框。</li><li>在“查找内容”输入 <code>[A-Za-z]</code>，勾选“使用通配符”。</li></ul></li><li><strong>设置英文格式</strong>：<ul><li>点击“更多”，选择“格式”中的“字体”，设置英文格式。</li><li>点击“全部替换”。</li></ul></li><li><strong>设置中文格式</strong>：<ul><li>查找内容留空，直接设置中文格式，点击“全部替换”。</li></ul></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>office</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C保留字</title>
     <link href="/posts/78102cb9/"/>
     <url>/posts/78102cb9/</url>
