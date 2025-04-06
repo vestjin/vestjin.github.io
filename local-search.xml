@@ -1164,4 +1164,61 @@
   
   
   
+  
+  
+  <entry>
+    <title>about</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<h1 id="关于我"><a class="markdownIt-Anchor" href="#关于我"></a> 关于我</h1><p>我是一名正在学习和成长的开发者，对技术充满热情，正在不断提升自己的技能。如果您有任何问题或建议，欢迎联系我！</p><h2 id="联系方式"><a class="markdownIt-Anchor" href="#联系方式"></a> 联系方式</h2><ul><li><p><strong>手机号</strong>: +86 176 33088 571</p></li><li><p><strong>邮箱</strong>: <a href="mailto:jinmajue@gmail.com">jinmajue@gmail.com</a></p></li></ul><h2 id="个人简介"><a class="markdownIt-Anchor" href="#个人简介"></a> 个人简介</h2><p>目前正在努力学习编程和技术相关知识，未来会不断充实自己。希望以后能做出有趣的项目，期待与大家共同进步！</p><p>性格标签：INTJ-T</p><p>喜欢看书，喜欢散步骑行，喜欢探索一个城市的图书馆、书店、科技馆这些地点；</p><p>抽过烟喝过酒，现在没碰了</p><p>喜欢小孩，喜欢小狗。</p><h2 id="技能与专长"><a class="markdownIt-Anchor" href="#技能与专长"></a> 技能与专长</h2><ul><li><strong>编程语言</strong>: Python, Java, C</li><li><strong>框架与工具</strong>: Django , Docker , Spring</li><li><strong>数据库</strong>: MySQL, PostgreSQL, MongoDB</li><li><strong>其他技能</strong>: 版本控制 (Git),</li></ul><h2 id="项目经验"><a class="markdownIt-Anchor" href="#项目经验"></a> 项目经验</h2><h2 id="教育背景"><a class="markdownIt-Anchor" href="#教育背景"></a> 教育背景</h2><ul><li><strong>学位</strong>: 计算机科学与技术 学士</li><li><strong>学校</strong>: 河北科技大学大学</li><li><strong>时间</strong>: 2021.9 - 2025.7</li></ul><h2 id="兴趣爱好"><a class="markdownIt-Anchor" href="#兴趣爱好"></a> 兴趣爱好</h2><ul><li>跑步</li><li>睡觉</li><li>编程</li><li>阅读</li></ul><p>感谢您访问我的页面，期待与您的合作！</p>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分类</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>图库</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>search</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>tags</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
 </search>
