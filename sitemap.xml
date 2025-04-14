@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.jinmajue.site/posts/f8da9b56/</loc>
+    <loc>http://blog.jinmajue.site/posts/e9498842/</loc>
     
     <lastmod>2025-04-14</lastmod>
     
@@ -21,6 +21,15 @@
   
   <url>
     <loc>http://blog.jinmajue.site/posts/3fd23ce3/</loc>
+    
+    <lastmod>2025-04-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.jinmajue.site/posts/f8da9b56/</loc>
     
     <lastmod>2025-04-14</lastmod>
     

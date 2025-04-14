@@ -6,7 +6,7 @@
   <link href="http://blog.jinmajue.site/atom.xml" rel="self"/>
   
   <link href="http://blog.jinmajue.site/"/>
-  <updated>2025-04-14T10:14:56.195Z</updated>
+  <updated>2025-04-14T14:01:01.027Z</updated>
   <id>http://blog.jinmajue.site/</id>
   
   <author>
@@ -17,11 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>办公自动化PyQt</title>
+    <link href="http://blog.jinmajue.site/posts/e9498842/"/>
+    <id>http://blog.jinmajue.site/posts/e9498842/</id>
+    <published>2025-04-14T14:00:26.000Z</published>
+    <updated>2025-04-14T14:01:01.027Z</updated>
+    
+    
+    
+    
+    <category term="projects" scheme="http://blog.jinmajue.site/categories/projects/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>毕业设计-基于Linux的文件管理系统</title>
     <link href="http://blog.jinmajue.site/posts/f8da9b56/"/>
     <id>http://blog.jinmajue.site/posts/f8da9b56/</id>
     <published>2025-04-14T10:14:35.000Z</published>
-    <updated>2025-04-14T10:14:56.195Z</updated>
+    <updated>2025-04-14T10:15:05.361Z</updated>
     
     
     
@@ -36,7 +51,7 @@
     <link href="http://blog.jinmajue.site/posts/97171005/"/>
     <id>http://blog.jinmajue.site/posts/97171005/</id>
     <published>2025-04-14T10:13:32.000Z</published>
-    <updated>2025-04-14T10:13:58.430Z</updated>
+    <updated>2025-04-14T10:15:05.364Z</updated>
     
     
     
@@ -51,7 +66,7 @@
     <link href="http://blog.jinmajue.site/posts/3fd23ce3/"/>
     <id>http://blog.jinmajue.site/posts/3fd23ce3/</id>
     <published>2025-04-14T10:10:09.000Z</published>
-    <updated>2025-04-14T10:12:47.011Z</updated>
+    <updated>2025-04-14T10:15:05.362Z</updated>
     
     
     
