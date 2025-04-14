@@ -6,7 +6,7 @@
   <link href="http://blog.jinmajue.site/atom.xml" rel="self"/>
   
   <link href="http://blog.jinmajue.site/"/>
-  <updated>2025-04-08T14:04:16.172Z</updated>
+  <updated>2025-04-14T10:14:56.195Z</updated>
   <id>http://blog.jinmajue.site/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>毕业设计-基于Linux的文件管理系统</title>
+    <link href="http://blog.jinmajue.site/posts/f8da9b56/"/>
+    <id>http://blog.jinmajue.site/posts/f8da9b56/</id>
+    <published>2025-04-14T10:14:35.000Z</published>
+    <updated>2025-04-14T10:14:56.195Z</updated>
+    
+    
+    
+    
+    <category term="projects" scheme="http://blog.jinmajue.site/categories/projects/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>高校招生数据分析与可视化平台</title>
+    <link href="http://blog.jinmajue.site/posts/97171005/"/>
+    <id>http://blog.jinmajue.site/posts/97171005/</id>
+    <published>2025-04-14T10:13:32.000Z</published>
+    <updated>2025-04-14T10:13:58.430Z</updated>
+    
+    
+    
+    
+    <category term="projects" scheme="http://blog.jinmajue.site/categories/projects/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>本地知识库聊天助手（基于DeepSeek模型）</title>
+    <link href="http://blog.jinmajue.site/posts/3fd23ce3/"/>
+    <id>http://blog.jinmajue.site/posts/3fd23ce3/</id>
+    <published>2025-04-14T10:10:09.000Z</published>
+    <updated>2025-04-14T10:12:47.011Z</updated>
+    
+    
+    
+    
+    <category term="projects" scheme="http://blog.jinmajue.site/categories/projects/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>各种客服服务电话</title>

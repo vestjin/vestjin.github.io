@@ -1,3 +1,6 @@
+http://blog.jinmajue.site/posts/f8da9b56/
+http://blog.jinmajue.site/posts/97171005/
+http://blog.jinmajue.site/posts/3fd23ce3/
 http://blog.jinmajue.site/posts/83dcefb7/
 http://blog.jinmajue.site/posts/522e0aa5/
 http://blog.jinmajue.site/posts/25293a33/
@@ -82,3 +85,4 @@ http://blog.jinmajue.site/categories/office/
 http://blog.jinmajue.site/categories/%E5%BF%83%E7%90%86/
 http://blog.jinmajue.site/categories/health/
 http://blog.jinmajue.site/categories/%E4%B8%AD%E5%9B%BD%E5%8F%A4%E6%96%87/
+http://blog.jinmajue.site/categories/projects/
