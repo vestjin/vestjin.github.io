@@ -11477,10 +11477,104 @@ title UDP Packet
 <p>关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。</p>
 <p>使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值。</p>
 <p>以下实例在函数 printme() 调用时使用参数名：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment">#可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printme</span>(<span class="hljs-params"> <span class="hljs-built_in">str</span> </span>):<br>   <span class="hljs-string">"打印任何传入的字符串"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-built_in">str</span>)<br>   <span class="hljs-keyword">return</span><br> <br><span class="hljs-comment">#调用printme函数</span><br>printme( <span class="hljs-built_in">str</span> = <span class="hljs-string">"菜鸟教程"</span>)<br></code></pre></td></tr></tbody></table></figure>
+<p>以下实例中演示了函数参数的使用不需要使用指定顺序：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment">#可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> name, age </span>):<br>   <span class="hljs-string">"打印任何传入的字符串"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"名字: "</span>, name)<br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"年龄: "</span>, age)<br>   <span class="hljs-keyword">return</span><br> <br><span class="hljs-comment">#调用printinfo函数</span><br>printinfo( age=<span class="hljs-number">50</span>, name=<span class="hljs-string">"runoob"</span> )<br><br><span class="hljs-string">'''</span><br><span class="hljs-string">名字:  runoob</span><br><span class="hljs-string">年龄:  50</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="默认参数"><a class="markdownIt-Anchor" href="#默认参数"></a> 默认参数</h4>
+<p>调用函数时，如果没有传递参数，则会使用默认参数。以下实例中如果没有传入 age 参数，则使用默认值：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment">#可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> name, age = <span class="hljs-number">35</span> </span>):<br>   <span class="hljs-string">"打印任何传入的字符串"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"名字: "</span>, name)<br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"年龄: "</span>, age)<br>   <span class="hljs-keyword">return</span><br> <br><span class="hljs-comment">#调用printinfo函数</span><br>printinfo( age=<span class="hljs-number">50</span>, name=<span class="hljs-string">"runoob"</span> )<br><span class="hljs-built_in">print</span> (<span class="hljs-string">"------------------------"</span>)<br>printinfo( name=<span class="hljs-string">"runoob"</span> )<br><br><span class="hljs-string">"""</span><br><span class="hljs-string">名字:  runoob</span><br><span class="hljs-string">年龄:  50</span><br><span class="hljs-string">------------------------</span><br><span class="hljs-string">名字:  runoob</span><br><span class="hljs-string">年龄:  35</span><br><span class="hljs-string">"""</span><br></code></pre></td></tr></tbody></table></figure>
+<h4 id="不定长参数"><a class="markdownIt-Anchor" href="#不定长参数"></a> 不定长参数</h4>
+<p>你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。基本语法如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">functionname</span>(<span class="hljs-params">[formal_args,] *var_args_tuple </span>):<br>   <span class="hljs-string">"函数_文档字符串"</span><br>   function_suite<br>   <span class="hljs-keyword">return</span> [expression]<br></code></pre></td></tr></tbody></table></figure>
+<p>加了星号 ***** 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br>  <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> arg1, *vartuple </span>):<br>   <span class="hljs-string">"打印任何传入的参数"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"输出: "</span>)<br>   <span class="hljs-built_in">print</span> (arg1)<br>   <span class="hljs-built_in">print</span> (vartuple)<br> <br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo( <span class="hljs-number">70</span>, <span class="hljs-number">60</span>, <span class="hljs-number">50</span> )<br><span class="hljs-string">'''</span><br><span class="hljs-string">输出: </span><br><span class="hljs-string">70</span><br><span class="hljs-string">(60, 50)</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<p>如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。如下实例：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> arg1, *vartuple </span>):<br>   <span class="hljs-string">"打印任何传入的参数"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"输出: "</span>)<br>   <span class="hljs-built_in">print</span> (arg1)<br>   <span class="hljs-keyword">for</span> var <span class="hljs-keyword">in</span> vartuple:<br>      <span class="hljs-built_in">print</span> (var)<br>   <span class="hljs-keyword">return</span><br> <br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo( <span class="hljs-number">10</span> )<br>printinfo( <span class="hljs-number">70</span>, <span class="hljs-number">60</span>, <span class="hljs-number">50</span> )<br><br><span class="hljs-string">"""</span><br><span class="hljs-string">输出:</span><br><span class="hljs-string">10</span><br><span class="hljs-string">输出:</span><br><span class="hljs-string">70</span><br><span class="hljs-string">60</span><br><span class="hljs-string">50</span><br><span class="hljs-string">"""</span><br></code></pre></td></tr></tbody></table></figure>
+<p>还有一种就是参数带两个星号 **基本语法如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">functionname</span>(<span class="hljs-params">[formal_args,] **var_args_dict </span>):<br>   <span class="hljs-string">"函数_文档字符串"</span><br>   function_suite<br>   <span class="hljs-keyword">return</span> [expression]<br><br></code></pre></td></tr></tbody></table></figure>
+<p>加了两个星号 *<strong>*</strong> 的参数会以字典的形式导入。</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br>  <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">printinfo</span>(<span class="hljs-params"> arg1, **vardict </span>):<br>   <span class="hljs-string">"打印任何传入的参数"</span><br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"输出: "</span>)<br>   <span class="hljs-built_in">print</span> (arg1)<br>   <span class="hljs-built_in">print</span> (vardict)<br> <br><span class="hljs-comment"># 调用printinfo 函数</span><br>printinfo(<span class="hljs-number">1</span>, a=<span class="hljs-number">2</span>,b=<span class="hljs-number">3</span>)<br><span class="hljs-string">'''</span><br><span class="hljs-string">输出: </span><br><span class="hljs-string">1</span><br><span class="hljs-string">{'a': 2, 'b': 3}</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<p>声明函数时，参数中星号 ***** 可以单独出现，例如:</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a,b,*,c</span>):<br>    <span class="hljs-keyword">return</span> a+b+c<br></code></pre></td></tr></tbody></table></figure>
+<p>如果单独出现星号 *****，则星号 ***** 后的参数必须用关键字传入：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a,b,*,c</span>):<br><span class="hljs-meta">... </span>    <span class="hljs-keyword">return</span> a+b+c<br><span class="hljs-meta">... </span><br><span class="hljs-meta">&gt;&gt;&gt; </span>f(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)   <span class="hljs-comment"># 报错</span><br>Traceback (most recent call last):<br>  File <span class="hljs-string">"&lt;stdin&gt;"</span>, line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;<br>TypeError: f() takes <span class="hljs-number">2</span> positional arguments but <span class="hljs-number">3</span> were given<br><span class="hljs-meta">&gt;&gt;&gt; </span>f(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,c=<span class="hljs-number">3</span>) <span class="hljs-comment"># 正常</span><br><span class="hljs-number">6</span><br>&gt;&gt;&gt;<br></code></pre></td></tr></tbody></table></figure>
+<h3 id="匿名函数"><a class="markdownIt-Anchor" href="#匿名函数"></a> 匿名函数</h3>
+<p>Python 使用 <strong>lambda</strong> 来创建匿名函数。</p>
+<p>所谓匿名，意即不再使用 <strong>def</strong> 语句这样标准的形式定义一个函数。</p>
+<ul>
+<li><strong>lambda</strong> 只是一个表达式，函数体比 <strong>def</strong> 简单很多。</li>
+<li>lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。</li>
+<li>lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。</li>
+<li>虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，内联函数的目的是调用小函数时不占用栈内存从而减少函数调用的开销，提高代码的执行速度。</li>
+</ul>
+<h4 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h4>
+<p>lambda 函数的语法只包含一个语句，如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">lambda</span> [arg1 [,arg2,.....argn]]:expression<br></code></pre></td></tr></tbody></table></figure>
+<p>设置参数 a 加上 10:</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python">x = <span class="hljs-keyword">lambda</span> a : a + <span class="hljs-number">10</span><br><span class="hljs-built_in">print</span>(x(<span class="hljs-number">5</span>))<br><span class="hljs-string">'''</span><br><span class="hljs-string">15</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<p>以下实例匿名函数设置两个参数：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-built_in">sum</span> = <span class="hljs-keyword">lambda</span> arg1, arg2: arg1 + arg2<br> <br><span class="hljs-comment"># 调用sum函数</span><br><span class="hljs-built_in">print</span> (<span class="hljs-string">"相加后的值为 : "</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">10</span>, <span class="hljs-number">20</span> ))<br><span class="hljs-built_in">print</span> (<span class="hljs-string">"相加后的值为 : "</span>, <span class="hljs-built_in">sum</span>( <span class="hljs-number">20</span>, <span class="hljs-number">20</span> ))<br><span class="hljs-string">"""</span><br><span class="hljs-string">相加后的值为 :  30</span><br><span class="hljs-string">相加后的值为 :  40</span><br><span class="hljs-string">"""</span><br></code></pre></td></tr></tbody></table></figure>
+<p>我们可以将匿名函数封装在一个函数内，这样可以使用同样的代码来创建多个匿名函数。</p>
+<p>以下实例将匿名函数封装在 myfunc 函数中，通过传入不同的参数来创建不同的匿名函数：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">myfunc</span>(<span class="hljs-params">n</span>):<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">lambda</span> a : a * n<br> <br>mydoubler = myfunc(<span class="hljs-number">2</span>)<br>mytripler = myfunc(<span class="hljs-number">3</span>)<br> <br><span class="hljs-built_in">print</span>(mydoubler(<span class="hljs-number">11</span>))<br><span class="hljs-built_in">print</span>(mytripler(<span class="hljs-number">11</span>))<br><span class="hljs-string">'''</span><br><span class="hljs-string">22</span><br><span class="hljs-string">33</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<h3 id="return-语句"><a class="markdownIt-Anchor" href="#return-语句"></a> return 语句</h3>
+<p><strong>return [表达式]</strong> 语句用于退出函数，选择性地向调用方返回一个表达式。不带参数值的 return 语句返回 None。之前的例子都没有示范如何返回数值，以下实例演示了 return 语句的用法：</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br> <br><span class="hljs-comment"># 可写函数说明</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params"> arg1, arg2 </span>):<br>   <span class="hljs-comment"># 返回2个参数的和."</span><br>   total = arg1 + arg2<br>   <span class="hljs-built_in">print</span> (<span class="hljs-string">"函数内 : "</span>, total)<br>   <span class="hljs-keyword">return</span> total<br> <br><span class="hljs-comment"># 调用sum函数</span><br>total = <span class="hljs-built_in">sum</span>( <span class="hljs-number">10</span>, <span class="hljs-number">20</span> )<br><span class="hljs-built_in">print</span> (<span class="hljs-string">"函数外 : "</span>, total)<br><span class="hljs-string">'''</span><br><span class="hljs-string">函数内 :  30</span><br><span class="hljs-string">函数外 :  30</span><br><span class="hljs-string">'''</span><br></code></pre></td></tr></tbody></table></figure>
+<h3 id="强制位置参数"><a class="markdownIt-Anchor" href="#强制位置参数"></a> 强制位置参数</h3>
+<p>Python3.8 新增了一个函数形参语法 <strong>/</strong> 用来指明函数形参必须使用指定位置参数，不能使用关键字参数的形式。</p>
+<p>在以下的例子中，形参 a 和 b 必须使用指定位置参数，c 或 d 可以是位置形参或关键字形参，而 e 和 f 要求为关键字形参:</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">a, b, /, c, d, *, e, f</span>):<br>    <span class="hljs-built_in">print</span>(a, b, c, d, e, f)<br>    <br><span class="hljs-comment"># 正确使用</span><br>f(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, d=<span class="hljs-number">40</span>, e=<span class="hljs-number">50</span>, f=<span class="hljs-number">60</span>)<br><span class="hljs-comment"># 错误使用</span><br>f(<span class="hljs-number">10</span>, b=<span class="hljs-number">20</span>, c=<span class="hljs-number">30</span>, d=<span class="hljs-number">40</span>, e=<span class="hljs-number">50</span>, f=<span class="hljs-number">60</span>)   <span class="hljs-comment"># b 不能使用关键字参数的形式</span><br>f(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>, f=<span class="hljs-number">60</span>)           <span class="hljs-comment"># e 必须使用关键字参数的形式</span><br></code></pre></td></tr></tbody></table></figure>
+<h2 id="python-lambda匿名函数"><a class="markdownIt-Anchor" href="#python-lambda匿名函数"></a> Python lambda（匿名函数）</h2>
+<p>Python 使用 <strong>lambda</strong> 来创建匿名函数。</p>
+<p>lambda 函数是一种小型、匿名的、内联函数，它可以具有任意数量的参数，但只能有一个表达式。</p>
+<p>匿名函数不需要使用 <strong>def</strong> 关键字定义完整函数。</p>
+<p>lambda 函数通常用于编写简单的、单行的函数，通常在需要函数作为参数传递的情况下使用，例如在 map()、filter()、reduce() 等函数中。</p>
+<p><strong>lambda 函数特点：</strong></p>
+<ul>
+<li>lambda 函数是匿名的，它们没有函数名称，只能通过赋值给变量或作为参数传递给其他函数来使用。</li>
+<li>lambda 函数通常只包含一行代码，这使得它们适用于编写简单的函数。</li>
+</ul>
+<p><strong>lambda 语法格式：</strong></p>
 ]]></content>
       <categories>
         <category>python</category>
       </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>应用插件列表</title>
+    <url>//posts/315e2be4/</url>
+    <content><![CDATA[<p><strong>手机</strong></p>
+<blockquote>
+<p>翻墙：google play store–X–zotero–网易邮箱–Gmail–Quora–Reddit–Harmonic–Discord–Z-lib----维基百科–Github–clash–claude–Beago–ChatGPT–TG</p>
+<p>生活：1. 微信读书–zpod–知乎–豆瓣–</p>
+<ol start="2">
+<li>
+<p>安居客–58同城–懂车帝–交管12123----虎扑–下厨房</p>
+</li>
+<li>
+<p>淘宝–京东–美团–阿里巴巴–闲鱼</p>
+</li>
+</ol>
+<p>工具：edge–欧陆词典–百度网盘–wps便签–省心英语----多邻国</p>
+</blockquote>
+<hr>
+<p><strong>电脑</strong></p>
+<p>解压软件：<a href="https://www.bandisoft.com/bandizip/">Bandizip</a> 、<a href="https://www.7-zip.org/">7-zip</a></p>
+<p>媒体播放录屏：<a href="http://www.potplayercn.com/">Potplayer</a>、<a href="https://obsproject.com/zh-cn/download">OBS Studio</a>、<a href="https://www.bandicam.cn/">班迪录屏</a></p>
+<p>卸载工具：<a href="https://uninstall-tools.com/">Uninstall Tool</a>、<a href="https://geekuninstaller.com/">Geek</a>、<a href="https://www.wisecleaner.com.cn/wise-force-deleter.html">Wise Force Deleter</a></p>
+<p>桌面-查找工具：<a href="http://www.winstep.net/nexus.asp">Nexus 桌面整理工具</a>、<a href="https://www.stardock.com/products/fences/">Stardock Fence</a>、<a href="https://www.voidtools.com/zh-cn/downloads/">Everything</a></p>
+<p>截图工具：<a href="https://zh.snipaste.com/">Snipaste</a>、<a href="https://pixpin.cn/">PixPin</a></p>
+<p>远程控制：<a href="https://www.todesk.com/">ToDesk</a>、<a href="https://sunlogin.oray.com/">向日葵</a></p>
+<p>办公：Office、<a href="https://www.drawio.com/">Draw.io</a>、<a href="https://typora.io/">Typora</a>、<a href="https://www.adobe.com/acrobat.html">Adobe Acrobat</a>、<a href="https://www.zotero.org/">Zotero</a>、<a href="https://www.sumatrapdfreader.org/free-pdf-reader">Sumatra PDF</a></p>
+<p>开发编程文本：<a href="https://www.sublimetext.com/">Sublime Text</a>、<a href="https://code.visualstudio.com/">VS Code</a>、<a href="https://www.jetbrains.com/pycharm/">Pycharm</a>、<a href="https://www.jetbrains.com/idea/">IDEA</a>、<a href="https://www.jetbrains.com.cn/clion/">Clion</a>、<a href="https://visualstudio.microsoft.com/zh-hans/">Visual Studio</a>、<a href="https://www.anaconda.com/products/navigator">Anaconda Navigater</a> 、<a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion#resources">VMware</a>、<a href="https://www.docker.com/">Docker</a>、<a href="https://zealdocs.org/">Zeal</a>、<a href="https://www.xshell.com/zh/xshell/">Xshell</a>、</p>
+<p>其它：<a href="%EF%BC%88https://www.bypass.cn/%EF%BC%89">Bypass</a></p>
+<hr>
+<p><strong>插件</strong></p>
+<p>zotero connector、iTab标签页、AIX智能下载器、沙拉查词、黑暗模式 - 夜眼、AdGuard 广告拦截器、SuperCopy 超级复制、篡改猴、类似的网站 - 发现相关网站</p>
+]]></content>
       <tags>
         <tag>notes</tag>
       </tags>
