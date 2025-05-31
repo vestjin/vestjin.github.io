@@ -10717,7 +10717,7 @@ title UDP Packet
       </categories>
   </entry>
   <entry>
-    <title>毕业设计-基于Linux的文件管理系统</title>
+    <title>基于Linux的文件管理系统</title>
     <url>//posts/f8da9b56/</url>
     <content><![CDATA[]]></content>
       <categories>
@@ -14402,5 +14402,116 @@ mi shi la nu fu,ta ni no,ma ma<br>
       <categories>
         <category>中国古文</category>
       </categories>
+  </entry>
+  <entry>
+    <title>如何成为黑客</title>
+    <url>//posts/8be77e58/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>关于开始</title>
+    <url>//posts/7ab32b85/</url>
+    <content><![CDATA[<p>先了解一些基础内容，</p>
+<p>Youtube上有门课：<a href="https://www.youtube.com/watch?v=tpIctyqH29Q&amp;list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo">速成班计算机科学预览</a></p>
+<p>bilibili链接：[【计算机科学速成课】<a href="https://www.bilibili.com/video/BV1EW411u7th/?spm_id_from=333.337.search-card.all.click&amp;vd_source=df3e26a691d84ad8881a8e4eb1c6e243">40集全/精校] - Crash Course Computer Science_哔哩哔哩_bilibili</a></p>
+<p>提问的艺术：<a href="http://www.catb.org/~esr/faqs/smart-questions.html">How To Ask Questions The Smart Way</a></p>
+<p>群里提问的艺术[Github]：<a href="https://github.com/betaseeker/How-To-Ask-Questions?tab=readme-ov-file">betaseeker/How-To-Ask-Questions: 群里提问的艺术</a></p>
+<p>如何成为黑客？：<a href="http://www.catb.org/~esr/faqs/hacker-howto.html">如何成为黑客</a></p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提问的艺术总结</title>
+    <url>//posts/cdbc0f1c/</url>
+    <content><![CDATA[<h1 id="提问的艺术如何有效提出问题与接收解答"><a class="markdownIt-Anchor" href="#提问的艺术如何有效提出问题与接收解答"></a> 提问的艺术：如何有效提出问题与接收解答</h1>
+<h2 id="基本原则"><a class="markdownIt-Anchor" href="#基本原则"></a> 基本原则</h2>
+<h3 id="提出问题的三大原则"><a class="markdownIt-Anchor" href="#提出问题的三大原则"></a> 提出问题的三大原则</h3>
+<ol>
+<li>
+<p><strong>三思后问</strong></p>
+<ul>
+<li>确保已自行思考/搜索过。</li>
+<li>避免提“显而易见”的问题。</li>
+<li>附上有价值的思考过程或具体困惑点。</li>
+</ul>
+</li>
+<li>
+<p><strong>有条有理</strong></p>
+<ul>
+<li>问题需包含充足有效信息。</li>
+<li>避免：
+<ul>
+<li>过于笼统</li>
+<li>逻辑不通</li>
+<li>信息不全</li>
+<li>内容臃肿</li>
+</ul>
+</li>
+<li>可辅以图片/视频说明（避免长语音）。</li>
+</ul>
+</li>
+<li>
+<p><strong>No Hello</strong></p>
+<ul>
+<li>直接提出完整问题。</li>
+<li>避免“在吗？”等无效开场白。</li>
+</ul>
+</li>
+</ol>
+<h3 id="接收解答的三大原则"><a class="markdownIt-Anchor" href="#接收解答的三大原则"></a> 接收解答的三大原则</h3>
+<ol>
+<li>
+<p><strong>有耐心</strong></p>
+<ul>
+<li>理解解答是自愿行为。</li>
+<li>保持礼貌的交流态度。</li>
+</ul>
+</li>
+<li>
+<p><strong>持续思考</strong></p>
+<ul>
+<li>主动理解解答内容。</li>
+<li>补全可能的简化/省略部分。</li>
+</ul>
+</li>
+<li>
+<p><strong>不自说自话</strong></p>
+<ul>
+<li>以解答内容为中心展开讨论。</li>
+<li>避免固执己见。</li>
+</ul>
+</li>
+</ol>
+<h2 id="最佳实践"><a class="markdownIt-Anchor" href="#最佳实践"></a> 最佳实践</h2>
+<h3 id="优质问题特征"><a class="markdownIt-Anchor" href="#优质问题特征"></a> 优质问题特征</h3>
+<ul>
+<li>包含具体场景描述。</li>
+<li>说明已尝试的解决方式。</li>
+<li>有清晰的问题陈述。</li>
+<li>附带相关错误信息/截图。</li>
+</ul>
+<h3 id="低效问题示例"><a class="markdownIt-Anchor" href="#低效问题示例"></a> 低效问题示例</h3>
+<ul>
+<li>❌ “这个怎么用？”</li>
+<li>❌ “有人懂Python吗？”</li>
+<li>❌ “报错了怎么办？”</li>
+</ul>
+<h3 id="高效问题示例"><a class="markdownIt-Anchor" href="#高效问题示例"></a> 高效问题示例</h3>
+<ul>
+<li>✅ “Python中使用Pandas读取Excel时出现<code>KeyError</code>，已尝试<code>pd.read_excel('data.xlsx')</code>，文件存在且路径正确。完整报错：…”</li>
+<li>✅ “Vue3组合式API中，如何实现跨组件状态共享？已尝试provide/inject但遇到更新不响应问题…”</li>
+</ul>
+<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
+<ul>
+<li>尊重解答者的时间。</li>
+<li>问题解决后给予反馈。</li>
+<li>重要问题建议书面沟通（避免语音）。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
   </entry>
 </search>
