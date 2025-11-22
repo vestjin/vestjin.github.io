@@ -205,6 +205,52 @@
             height: 1.5rem;
             vertical-align: middle;
         }
+        /* --- [自适应优化] --- */
+        
+        /* 1. 限制主容器的最大宽度，防止在超大屏幕上卡片过宽 */
+        main.container {
+            max-width: 500px; /* 您可以根据喜好调整这个值 */
+            width: 90%; /* 确保在任何屏幕上都至少占用90%的宽度 */
+            box-sizing: border-box; /* 确保 padding 不会导致溢出 */
+        }
+        
+        /* 2. 针对小屏幕/移动设备进行调整 (例如，宽度小于 480px) */
+        @media (max-width: 480px) {
+            
+            /* 调整主容器的内边距，使其在小屏幕上更紧凑 */
+            main.container {
+                padding: 1.5rem 1rem;
+            }
+
+            /* 调整较大的字体，避免在小屏幕上过大 */
+            .name {
+                font-size: 2rem; 
+            }
+
+            .motto {
+                font-size: 1rem;
+            }
+
+            /* 调整日期显示字体 */
+            #date-year {
+                font-size: 1.8rem;
+            }
+
+            #date-md {
+                font-size: 1rem;
+            }
+            
+            /* 调整导航链接的间距 */
+            .navigation a {
+                margin: 0 0.3rem; 
+                padding: 0.4rem 0.8rem;
+            }
+
+            /* 调整社交图标间距 */
+            .social-links a {
+                margin: 0 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
