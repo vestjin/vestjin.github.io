@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vestjin - Limited tenderness, infinite sorrow.</title> <meta name="description" content="Vestjin 的个人主页，专注于编程、创造和生活，包含博客、简历和项目链接。">
     <link rel="icon" href="assets/icon.ico" type="image/x-icon">
-    <meta name="keywords" content="Lurker,jinmajue, 个人主页, 博客, 简历, 编程, Web开发, 有限温存无限伤感">
+    <meta name="keywords" content="Vestjin, 个人主页, 博客, 简历, 编程, 后端开发, Linux C/C++">
 
     <meta property="og:title" content="Vestjin - Limited tenderness, infinite sorrow.">
-    <meta property="og:description" content="Vestjin 的个人主页，探索他的代码项目、博客和简历。">
-    <!-- <meta property="og:image" content="https://yourdomain.com/assets/share-image.png">  -->
-    <meta property="og:url" content="https://www.jinmajue.top/"> 
+    <meta property="og:description" content="Vestjin 的个人主页，探索他的代码项目、博客和简历。后端开发 · 2026 届应届生。">
+    <meta property="og:image" content="assets/og-image.svg">
+    <meta property="og:url" content="https://www.jinmajue.top/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vestjin - Limited tenderness, infinite sorrow.">
+    <meta name="twitter:description" content="Vestjin 的个人主页 - 后端开发">
+    <meta name="twitter:image" content="assets/og-image.svg">
 
     <style>
         /* --- 基础和背景设置 --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #222;
+            background-color: #1a1a1a;
             color: #f0f0f0;
             margin: 0;
             padding: 0;
@@ -31,15 +34,35 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: background-image 1s ease-in-out;
+            transition: background-image 1s ease-in-out, background-color 0.5s ease;
+        }
+
+        /* 首屏兜底渐变（壁纸加载前显示，避免纯黑） */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 50%, #1a3a5c 100%);
+            z-index: -1;
+            transition: opacity 0.8s ease;
+        }
+
+        body.bg-loaded::before {
+            opacity: 0;
+        }
+
+        /* 全局文字描边阴影，保证浅色壁纸下的可读性 */
+        .name, .motto, .identity {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.4);
         }
 
         main.container {
             padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.55);
             border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         /* --- 头像翻转效果 --- */
@@ -124,11 +147,40 @@
             margin: 1rem 0 0.5rem 0;
         }
 
+        .name .role-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #a8c7e0;
+            letter-spacing: 1px;
+            margin-left: 0.6rem;
+            padding: 0.15rem 0.6rem;
+            border: 1px solid rgba(74, 144, 226, 0.45);
+            border-radius: 12px;
+            background: rgba(74, 144, 226, 0.12);
+            vertical-align: middle;
+            text-shadow: none;
+        }
+
         .motto {
             font-size: 1.2rem;
             font-style: italic;
             color: #ccc;
             margin: 0;
+        }
+
+        /* --- 身份标签 --- */
+        .identity {
+            font-size: 0.9rem;
+            color: #a8c7e0;
+            margin: 0.6rem 0 0 0;
+            letter-spacing: 0.5px;
+        }
+
+        .identity .sep {
+            color: #4A90E2;
+            margin: 0 0.5rem;
+            opacity: 0.7;
         }
 
         .divider {
@@ -171,6 +223,17 @@
             border-radius: 20px;
             transition: background-color 0.3s;
             display: inline-block;
+        }
+
+        /* 简历按钮高亮 */
+        .navigation a.nav-resume {
+            background: rgba(74, 144, 226, 0.18);
+            border: 1px solid rgba(74, 144, 226, 0.5);
+            color: #fff;
+        }
+
+        .navigation a.nav-resume:hover {
+            background: rgba(74, 144, 226, 0.35);
         }
 
         /* 滚动条美化 */
@@ -272,7 +335,7 @@
             </div>
         </div>
 
-        <h1 class="name">𝓥𝓮𝓼𝓽𝓳𝓲𝓷</h1>
+        <h1 class="name">𝓥𝓮𝓼𝓽𝓳𝓲𝓷<span class="role-tag">后端开发</span></h1>
         <p class="motto">Limited tenderness, infinite sorrow.</p>
         <hr class="divider">
         <blockquote class="answer-box">
@@ -284,6 +347,7 @@
             <!-- <a href="#">简历</a> -->
             <a href="http://www.jinmajue.top/music_online">歌单</a>
             <a href="about.html">关于</a>
+            <a href="resume.html" class="nav-resume">简历</a>
         </nav>
         <div class="social-links">
             <a href="https://github.com/vestjin" aria-label="GitHub">
@@ -322,15 +386,27 @@
                 const response = await fetch('https://60s.viki.moe/v2/bing');
                 if (!response.ok) throw new Error('网络响应失败');
                 const data = await response.json();
-                
+
                 const originalUrl = data.data.cover;
                 // 优化 URL: 限制宽度, 设置质量, 自动转换为 WebP
                 const optimizedUrl = `https://images.weserv.nl/?url=${encodeURIComponent(originalUrl)}&w=1920&q=80&output=webp`;
 
-                document.body.style.backgroundImage = `url(${optimizedUrl})`;
-                
+                // 预加载图片，加载完成后再切背景，避免叠加闪烁
+                const img = new Image();
+                img.onload = function() {
+                    document.body.style.backgroundImage = `url(${optimizedUrl})`;
+                    document.body.classList.add('bg-loaded');
+                };
+                img.onerror = function() {
+                    // 加载失败时也移除兜底渐变，避免一直显示
+                    document.body.classList.add('bg-loaded');
+                    console.warn('Bing 壁纸加载失败');
+                };
+                img.src = optimizedUrl;
+
             } catch (error) {
                 console.error("获取Bing壁纸失败:", error);
+                document.body.classList.add('bg-loaded');
             }
         }
 

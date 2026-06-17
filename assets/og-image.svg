@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0a1929"/>
+            <stop offset="50%" stop-color="#1a3a5c"/>
+            <stop offset="100%" stop-color="#0d2540"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4A90E2" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#4A90E2" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="40"/>
+        </filter>
+    </defs>
+
+    <!-- 背景渐变 -->
+    <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+    <!-- 装饰光晕 -->
+    <circle cx="900" cy="200" r="250" fill="url(#glow)"/>
+    <circle cx="200" cy="500" r="200" fill="url(#glow)"/>
+
+    <!-- 网格点装饰 -->
+    <g fill="#4A90E2" opacity="0.15">
+        <circle cx="100" cy="100" r="2"/>
+        <circle cx="200" cy="100" r="2"/>
+        <circle cx="300" cy="100" r="2"/>
+        <circle cx="100" cy="200" r="2"/>
+        <circle cx="200" cy="200" r="2"/>
+        <circle cx="1100" cy="500" r="2"/>
+        <circle cx="1000" cy="500" r="2"/>
+        <circle cx="1100" cy="400" r="2"/>
+        <circle cx="1000" cy="400" r="2"/>
+    </g>
+
+    <!-- 主体卡片 -->
+    <g transform="translate(600, 315)">
+        <rect x="-440" y="-200" width="880" height="400" rx="24"
+              fill="rgba(255,255,255,0.06)"
+              stroke="rgba(74,144,226,0.3)" stroke-width="1.5"/>
+
+        <!-- 顶部装饰线 -->
+        <line x1="-380" y1="-150" x2="-200" y2="-150"
+              stroke="#4A90E2" stroke-width="2"/>
+
+        <!-- 名称 + 职位标签 -->
+        <text x="0" y="-60" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="76" font-weight="700" fill="#ffffff"
+              letter-spacing="2">𝓥𝓮𝓼𝓽𝓳𝓲𝓷<tspan font-size="22" font-weight="400" fill="#a8c7e0" dx="14" dy="-2" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">Linux 开发</tspan></text>
+
+        <!-- 身份标签 -->
+        <text x="0" y="0" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="22" fill="#a8c7e0" letter-spacing="3">后端开发</text>
+
+        <!-- 座右铭 -->
+        <text x="0" y="55" text-anchor="middle"
+              font-family="Georgia, 'Times New Roman', serif"
+              font-size="20" font-style="italic" fill="#cccccc">
+            Limited tenderness, infinite sorrow.
+        </text>
+
+        <!-- 装饰代码符号 -->
+        <g font-family="'Courier New', monospace" font-size="16" fill="#4A90E2" opacity="0.6">
+            <text x="-380" y="-100">&lt;/&gt;</text>
+            <text x="350" y="-100" text-anchor="end">{ }</text>
+            <text x="-380" y="160">$ vim</text>
+            <text x="380" y="160" text-anchor="end">epoll &gt;_</text>
+        </g>
+
+        <!-- 底部信息 -->
+        <text x="0" y="160" text-anchor="middle"
+              font-family="-apple-system, sans-serif"
+              font-size="18" fill="#88a4c2" letter-spacing="2">
+            www.jinmajue.top
+        </text>
+    </g>
+
+    <!-- 四角装饰 -->
+    <g stroke="#4A90E2" stroke-width="2" fill="none" opacity="0.5">
+        <path d="M 40 40 L 40 80 M 40 40 L 80 40"/>
+        <path d="M 1160 40 L 1160 80 M 1160 40 L 1120 40"/>
+        <path d="M 40 590 L 40 550 M 40 590 L 80 590"/>
+        <path d="M 1160 590 L 1160 550 M 1160 590 L 1120 590"/>
+    </g>
+</svg>
