@@ -221,600 +221,798 @@ mjx-container { break-inside: avoid; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 </style>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&amp;subset=latin,cyrillic-ext,cyrillic,latin-ext' type='text/css' />
-<style type='text/css'  id="style-theme_css">/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+<style type='text/css'  id="style-theme_css">/* ============================================================
+   Resume Theme for Typora
+   简历主题 - 专为 Markdown 简历设计
+   版本: 1.0
+   
+   使用说明:
+   1. 将此文件复制到 Typora 主题目录
+      - Windows: %APPDATA%/Typora/themes/
+      - macOS: ~/Library/Application Support/Typora/themes/
+      - Linux: ~/.config/Typora/themes/
+   2. 重启 Typora，在"主题"菜单中选择 "resume-theme"
+   3. 导出 PDF 时选择该主题即可获得精美简历
+   
+   Markdown 简历结构建议:
+   - # 姓名（一级标题作为姓名）
+   - > 个人简介/求职意向（引用块）
+   - ## 教育背景 / 工作经历 / 项目经验（二级标题作为板块）
+   - ### 公司/学校名称（三级标题作为条目）
+   - **粗体** 用于职位/学位
+   - `代码` 用于技能标签
+   - --- 分隔线用于板块分隔
+   - | 表格 | 用于结构化信息
+   ============================================================ */
 
-@include-when-export url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
-
-/* =========== */
-
-/* pt-serif-regular - latin */
-/* pt-serif-italic - latin */
-/* pt-serif-700 - latin */
-/* pt-serif-700italic - latin */
+/* === 基础变量 === */
 :root {
-	--active-file-bg-color: #dadada;
-	--active-file-bg-color: rgba(32, 43, 51, 0.63);
-	--active-file-text-color: white;
-	--bg-color: #f3f2ee;
-	--text-color: #1f0909;
-	--control-text-color: #444;
-	--rawblock-edit-panel-bd: #e5e5e5;
-
-	--select-text-bg-color: rgba(32, 43, 51, 0.63);
-  --select-text-font-color: white;
+  --primary-color: #2c3e50;
+  --accent-color: #3498db;
+  --accent-light: #ebf5fb;
+  --text-color: #333333;
+  --text-secondary: #555555;
+  --text-light: #777777;
+  --border-color: #dce1e6;
+  --bg-color: #ffffff;
+  --bg-alt: #f8f9fa;
+  --tag-bg: #e8f4fd;
+  --tag-border: #b3d9f2;
+  --tag-text: #1a6fa3;
+  --link-color: #2980b9;
+  --hr-color: #3498db;
+  --quote-border: #3498db;
+  --quote-bg: #f0f7fc;
+  --table-header-bg: #2c3e50;
+  --table-header-text: #ffffff;
+  --table-stripe: #f5f8fa;
+  --code-bg: #f0f3f5;
+  --code-text: #c7254e;
+  --sidebar-bg: #f5f7fa;
+  --page-margin: 1.8cm;
 }
 
-pre {
-	--select-text-bg-color: #36284e;
-	--select-text-font-color: #fff;
+/* === 全局样式 === */
+body {
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-html {
-	font-size: 16px;
-	-webkit-font-smoothing: antialiased;
-}
-
-html, body {
-	background-color: #f3f2ee;
-	font-family: "PT Serif", 'Times New Roman', 'SF Pro', Times, serif;
-	color: #1f0909;
-	line-height: 1.5em;
-}
-
-/*#write {
-	overflow-x: auto;
-    max-width: initial;
-	padding-left: calc(50% - 17em);
-    padding-right: calc(50% - 17em);
-}
-
-@media (max-width: 36em) {
- 	#write {
- 		padding-left: 1em;
-    	padding-right: 1em;
- 	}
-}*/
 
 #write {
-	max-width: 40em;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--page-margin) 2.2cm;
 }
 
-@media only screen and (min-width: 1400px) {
-	#write {
-			max-width: 914px;
-	}
+/* 内容区域背景 */
+content {
+  background-color: var(--bg-color);
 }
 
-ol li {
-	list-style-type: decimal;
-	list-style-position: outside;
-}
-ul li {
-	list-style-type: disc;
-	list-style-position: outside;
-}
-
-ol,
-ul {
-	list-style: none;
-}
-
-blockquote,
-q {
-	quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/* styles */
-
-/* ====== */
-
-/* headings */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-weight: bold;
-}
+/* === 一级标题 - 姓名 === */
 h1 {
-	font-size: 1.875em;
-	/*30 / 16*/
-	line-height: 1.6em;
-	/* 48 / 30*/
-	margin-top: 2em;
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 26pt;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 4pt;
+  padding-bottom: 0;
+  letter-spacing: 4pt;
+  border: none;
+  line-height: 1.3;
 }
-h2,
+
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 8pt auto 0 auto;
+  border-radius: 2px;
+}
+
+/* === 二级标题 - 板块标题（教育背景、工作经历等）=== */
+h2 {
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: 18pt;
+  margin-bottom: 8pt;
+  padding-bottom: 4pt;
+  padding-left: 0;
+  border-bottom: 2px solid var(--accent-color);
+  letter-spacing: 2pt;
+  line-height: 1.4;
+}
+
+/* === 三级标题 - 条目标题（公司名、学校名等）=== */
 h3 {
-	font-size: 1.3125em;
-	/*21 / 16*/
-	line-height: 1.15;
-	/*24 / 21*/
-	margin-top: 2.285714em;
-	/*48 / 21*/
-	margin-bottom: 1.15em;
-	/*24 / 21*/
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 12pt;
+  margin-bottom: 2pt;
+  border: none;
+  line-height: 1.5;
 }
-h3 {
-	font-weight: normal;
-}
+
+/* === 四级标题 - 子条目 === */
 h4 {
-	font-size: 1.125em;
-	/*18 / 16*/
-	margin-top: 2.67em;
-	/*48 / 18*/
+  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 8pt;
+  margin-bottom: 2pt;
+  border: none;
+  line-height: 1.5;
 }
+
 h5,
 h6 {
-	font-size: 1em;
-	/*16*/
+  font-size: 10pt;
+  color: var(--text-light);
+  margin-top: 6pt;
+  margin-bottom: 2pt;
 }
-h1 {
-	border-bottom: 1px solid;
-	margin-bottom: 1.875em;
-	padding-bottom: 0.8125em;
-}
-/* links */
 
-a {
-	text-decoration: none;
-	color: #065588;
+/* === 段落 === */
+p {
+  font-size: 10.5pt;
+  line-height: 1.7;
+  margin-top: 2pt;
+  margin-bottom: 4pt;
+  color: var(--text-color);
+  text-align: justify;
 }
-a:hover,
-a:active {
-	text-decoration: underline;
-}
-/* block spacing */
 
-p,
-blockquote,
-.md-fences {
-	margin-bottom: 1.5em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin-bottom: 1.5em;
-}
-/* blockquote */
-
+/* === 引用块 - 个人简介/求职意向 === */
 blockquote {
-	font-style: italic;
-	border-left: 5px solid;
-	margin-left: 2em;
-	padding-left: 1em;
+  border-left: 3px solid var(--quote-border);
+  background-color: var(--quote-bg);
+  margin: 8pt 0;
+  padding: 8pt 14pt;
+  border-radius: 0 4px 4px 0;
+  font-size: 10pt;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
-/* lists */
 
+blockquote p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 10pt;
+}
+
+blockquote blockquote {
+  border-left-color: #7fb3d8;
+  background-color: #e8f1f7;
+}
+
+/* === 列表 === */
 ul,
 ol {
-	margin: 0 0 1.5em 1.5em;
-}
-/* tables */
-.md-meta,.md-before, .md-after {
-	color:#999;
+  margin-top: 2pt;
+  margin-bottom: 4pt;
+  padding-left: 1.4em;
 }
 
-table {
-	margin-bottom: 1.5em;
-	/*24 / 16*/
-	font-size: 1em;
-	/* width: 100%; */
-}
-thead th,
-tfoot th {
-	padding: .25em .25em .25em .4em;
-	text-transform: uppercase;
-}
-th {
-	text-align: left;
-}
-td {
-	vertical-align: top;
-	padding: .25em .25em .25em .4em;
+li {
+  font-size: 10.5pt;
+  line-height: 1.7;
+  margin-bottom: 1pt;
+  color: var(--text-color);
 }
 
-code,
-.md-fences {
-	background-color: #dadada;
+/* 无序列表样式 */
+ul li::marker {
+  color: var(--accent-color);
+  font-size: 8pt;
 }
 
+/* 二级列表 */
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 1pt;
+  margin-bottom: 1pt;
+}
+
+/* 任务列表 */
+.task-list-item {
+  list-style-type: none;
+  position: relative;
+}
+
+.task-list-item input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--accent-color);
+}
+
+/* === 粗体与斜体 === */
+strong {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* === 行内代码 - 技能标签 === */
 code {
-	padding-left: 2px;
-	padding-right: 2px;
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas,
+    monospace;
+  font-size: 9pt;
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 1.5pt 6pt;
+  border-radius: 3px;
+  border: 1px solid var(--tag-border);
+  white-space: nowrap;
+  font-weight: 500;
 }
 
-.md-fences {
-	margin-left: 2em;
-	margin-bottom: 3em;
-	padding-left: 1ch;
-	padding-right: 1ch;
+/* === 代码块 === */
+pre {
+  background-color: var(--code-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  margin: 8pt 0;
+  padding: 10pt 14pt;
+  font-size: 9pt;
+  line-height: 1.6;
+  overflow-x: auto;
 }
 
-pre,
-code,
-tt {
-	font-size: .875em;
-	line-height: 1.714285em;
-}
-/* some fixes */
-
-h1 {
-	line-height: 1.3em;
-	font-weight: normal;
-	margin-bottom: 0.5em;
+pre code {
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: 9pt;
+  white-space: pre;
 }
 
-p + ul,
-p + ol{
-	margin-top: .5em;
-}
-
-h3 + ul,
-h4 + ul,
-h5 + ul,
-h6 + ul,
-h3 + ol,
-h4 + ol,
-h5 + ol,
-h6 + ol {
-	margin-top: .5em;
-}
-
-li > ul,
-li > ol {
-	margin-top: inherit;
-	margin-bottom: 0;
-}
-
-li ol>li {
-	list-style-type: lower-alpha;
-}
-
-li li ol>li{
-	list-style-type: lower-roman;
-}
-
-h2,
-h3 {
-	margin-bottom: .75em;
-}
+/* === 分隔线 === */
 hr {
-	border-top: none;
-	border-right: none;
-	border-bottom: 1px solid;
-	border-left: none;
-}
-h1 {
-	border-color: #c5c5c5;
-}
-blockquote {
-	border-color: #bababa;
-	color: #656565;
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
+  margin: 14pt 0;
 }
 
-blockquote ul,
-blockquote ol {
-	margin-left:0;
+/* === 链接 === */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
-.ty-table-edit {
-	background-color: transparent;
+a:hover {
+  border-bottom-color: var(--link-color);
 }
+
+/* === 表格 === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8pt 0;
+  font-size: 10pt;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
 thead {
-	background-color: #dadada;
-}
-tr:nth-child(even) {
-	background: #e8e7e7;
-}
-hr {
-	border-color: #c5c5c5;
-}
-.task-list{
-	padding-left: 1rem;
+  background-color: var(--table-header-bg);
 }
 
-.md-task-list-item {
-	padding-left: 1.5rem;
-	list-style-type: none;
+thead th {
+  color: var(--table-header-text);
+  font-weight: 600;
+  padding: 7pt 10pt;
+  text-align: left;
+  border: none;
+  font-size: 10pt;
+  letter-spacing: 0.5pt;
 }
 
-.md-task-list-item > input:before {
-	content: '\221A';
-	display: inline-block;
-	width: 1.25rem;
-  	height: 1.6rem;
-	vertical-align: middle;
-	text-align: center;
-	color: #ddd;
-	background-color: #F3F2EE;
+tbody td {
+  padding: 6pt 10pt;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 10pt;
+  vertical-align: top;
 }
 
-.md-task-list-item > input:checked:before,
-.md-task-list-item > input[checked]:before{
-	color: inherit;
+tbody tr:nth-child(even) {
+  background-color: var(--table-stripe);
 }
 
-#write pre.md-meta-block {
-	min-height: 1.875rem;
-	color: #555;
-	border: 0px;
-	background: transparent;
-	margin-top: -4px;
-	margin-left: 1em;
-	margin-top: 1em;
+tbody tr:hover {
+  background-color: var(--accent-light);
 }
 
-.md-image>.md-meta {
-	color: #9B5146;
+/* === 图片 === */
+img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 6pt 0;
 }
 
-.md-image>.md-meta{
-	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+/* === 脚注 === */
+sup a {
+  color: var(--accent-color);
+  font-size: 8pt;
+  text-decoration: none;
 }
 
-
-#write>h3.md-focus:before{
-	left: -1.5rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h4.md-focus:before{
-	left: -1.5rem;
-	top: .25rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h5.md-focus:before{
-	left: -1.5rem;
-	top: .0.3125rem;
-	color:#999;
-	border-color:#999;
-}
-#write>h6.md-focus:before{
-	left: -1.5rem;
-	top: 0.3125rem;
-	color:#999;
-	border-color:#999;
+.footnotes {
+  font-size: 9pt;
+  color: var(--text-light);
+  margin-top: 20pt;
+  border-top: 1px solid var(--border-color);
+  padding-top: 8pt;
 }
 
-.md-toc:focus .md-toc-content{
-	margin-top: 19px;
+/* === 标记/高亮 === */
+mark {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 1pt 4pt;
+  border-radius: 2px;
 }
 
-.md-toc-content:empty:before{
-	color: #065588;
-}
-.md-toc-item {
-	color: #065588;
-}
-#write div.md-toc-tooltip {
-	background-color: #f3f2ee;
+/* === 删除线 === */
+del {
+  color: var(--text-light);
+  text-decoration: line-through;
 }
 
-#typora-sidebar {
-	background-color: #f3f2ee;
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
-  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+/* === 数学公式 === */
+.md-inline-math script {
+  color: var(--accent-color);
 }
 
-.pin-outline #typora-sidebar {
-	background: inherit;
-	box-shadow: none;
-	border-right: 1px dashed;
+.math-block {
+  margin: 10pt 0;
+  text-align: center;
+  font-size: 10.5pt;
 }
 
-.pin-outline #typora-sidebar:hover .outline-title-wrapper {
-	border-left:1px dashed;
+/* === 目录 === */
+.md-toc-content {
+  font-size: 10pt;
+  color: var(--text-secondary);
 }
 
-.outline-item:hover {
-  background-color: #dadada;
-  border-left: 28px solid #dadada;
-  border-right: 18px solid #dadada;
+.md-toc-content a {
+  color: var(--text-secondary);
 }
 
-.typora-node .outline-item:hover {
-  	border-right: 28px solid #dadada;
+.md-toc-content a:hover {
+  color: var(--accent-color);
 }
 
-.outline-expander:before {
-  content: "\f0da";
-  font-family: FontAwesome;
-  font-size:14px;
-  top: 1px;
+/* === YAML Front Matter === */
+pre.md-meta-block {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10pt 14pt;
+  margin-bottom: 12pt;
+  font-size: 9pt;
+  color: var(--text-light);
 }
 
-.outline-expander:hover:before,
-.outline-item-open>.outline-item>.outline-expander:before {
-  content: "\f0d7";
+/* === 源代码模式 === */
+#typora-source {
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas,
+    monospace;
+  font-size: 10pt;
+  line-height: 1.6;
 }
 
-.modal-content {
-	background-color: #f3f2ee;
-}
-
-.auto-suggest-container ul li {
-	list-style-type: none;
-}
-
-/** UI for electron */
-
-.megamenu-menu,
-#top-titlebar, #top-titlebar *,
-.megamenu-content {
-	background: #f3f2ee;
-	color: #1f0909;
-}
-
-.megamenu-menu-header {
-	border-bottom: 1px dashed #202B33;
-}
-
-.megamenu-menu {
-	box-shadow: none;
-	border-right: 1px dashed;
-}
-
-header, .context-menu, .megamenu-content, footer {
-	font-family: "PT Serif", 'Times New Roman', Times, serif;
-    color: #1f0909;
-}
-
-#megamenu-back-btn {
-	color: #1f0909;
-	border-color: #1f0909;
-}
-
-.megamenu-menu-header #megamenu-menu-header-title:before {
-	color: #1f0909;
-}
-
-.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
-	color: inherit;
-	background-color: #e8e7df;
-}
-
-.long-btn:hover {
-	background-color: #e8e7df;
-}
-
-#recent-file-panel tbody tr:nth-child(2n-1) {
-    background-color: transparent !important;
-}
-
-.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
-    color: inherit;
-}
-
-.megamenu-menu-panel .btn {
-	background-color: #D2D1D1;
-}
-
-.btn-default {
-	background-color: transparent;
-}
-
-.typora-sourceview-on #toggle-sourceview-btn,
-.ty-show-word-count #footer-word-count {
-	background: #c7c5c5;
-}
-
-#typora-quick-open {
-    background-color: inherit;
-}
-
-.md-diagram-panel {
-	margin-top: 8px;
+/* === 侧边栏 === */
+.sidebar-tabs {
+  border-bottom: 1px solid var(--border-color);
 }
 
 .file-list-item-file-name {
-	font-weight: initial;
+  font-size: 10pt;
 }
 
 .file-list-item-summary {
-	opacity: 1;
+  font-size: 9pt;
+  color: var(--text-light);
 }
 
-.file-list-item {
-	color: #777;
+/* ============================================================
+   打印/PDF 导出优化
+   ============================================================ */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm 1.8cm;
+  }
+
+  body {
+    font-size: 10pt;
+    background-color: #ffffff;
+  }
+
+  #write {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 24pt;
+    margin-top: 0;
+    letter-spacing: 3pt;
+  }
+
+  h1::after {
+    margin-top: 6pt;
+  }
+
+  h2 {
+    font-size: 12pt;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+    margin-top: 10pt;
+  }
+
+  p {
+    font-size: 10pt;
+    line-height: 1.65;
+    margin-bottom: 3pt;
+  }
+
+  li {
+    font-size: 10pt;
+    line-height: 1.65;
+    margin-bottom: 1pt;
+  }
+
+  blockquote {
+    margin: 6pt 0;
+    padding: 6pt 12pt;
+  }
+
+  blockquote p {
+    font-size: 9.5pt;
+  }
+
+  code {
+    font-size: 8.5pt;
+    padding: 1pt 5pt;
+  }
+
+  pre {
+    font-size: 8.5pt;
+    padding: 8pt 12pt;
+  }
+
+  table {
+    font-size: 9.5pt;
+  }
+
+  thead th {
+    padding: 5pt 8pt;
+  }
+
+  tbody td {
+    padding: 5pt 8pt;
+  }
+
+  hr {
+    margin: 10pt 0;
+  }
+
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+  }
+
+  /* 打印时隐藏不必要的元素 */
+  .md-toc,
+  .sidebar,
+  #typora-sidebar,
+  #top-titlebar,
+  .ty-footer {
+    display: none !important;
+  }
 }
 
-.file-list-item.active {
-	background-color: inherit;
-	color: black;
+/* ============================================================
+   简历专用增强样式
+   ============================================================ */
+
+/* --- 联系信息行样式 ---
+   使用方式: 在姓名下方用分隔的行内代码或链接
+   示例: `email@example.com` | `138-0000-0000` | [GitHub](url)
+*/
+h1 + p {
+  text-align: center;
+  font-size: 9.5pt;
+  color: var(--text-light);
+  margin-top: 2pt;
+  margin-bottom: 6pt;
+  letter-spacing: 0.5pt;
 }
 
-.ty-side-sort-btn.active {
-	background-color: inherit;
+h1 + p code {
+  font-size: 9pt;
+  padding: 1pt 5pt;
 }
 
-.file-list-item.active .file-list-item-file-name  {
-	font-weight: bold;
+h1 + p a {
+  color: var(--text-light);
+  font-size: 9.5pt;
 }
 
-.file-list-item{
-    opacity:1 !important;
+h1 + p a:hover {
+  color: var(--accent-color);
 }
 
-.file-library-node.active>.file-node-background{
-	background-color: rgba(32, 43, 51, 0.63);
-	background-color: var(--active-file-bg-color);
+/* --- 板块间距优化 ---
+   h2 之后的第一个元素减少顶部间距
+*/
+h2 + p,
+h2 + ul,
+h2 + ol,
+h2 + table,
+h2 + blockquote,
+h2 + h3 {
+  margin-top: 2pt;
 }
 
-.file-tree-node.active>.file-node-content{
-	color: white;
-	color: var(--active-file-text-color);
+/* --- 条目布局优化 ---
+   h3 之后的第一个段落减少间距
+*/
+h3 + p,
+h3 + ul,
+h3 + ol {
+  margin-top: 1pt;
 }
 
-.md-task-list-item>input {
-	margin-left: -1.7em;
-	margin-top: calc(1rem - 12px);
-	-webkit-appearance: button;
+/* --- 时间线样式 ---
+   建议使用粗体+斜体组合表示时间
+   示例: ***2020.09 - 2024.06*** 
+*/
+em strong,
+strong em {
+  color: var(--accent-color);
+  font-size: 9.5pt;
+  font-weight: 500;
 }
 
-input {
-	border: 1px solid #aaa;
+/* --- 技能标签组 ---
+   使用行内代码表示技能标签，连续的代码标签自动排列
+   示例: `Python` `JavaScript` `React` `Node.js`
+*/
+p code + code,
+li code + code {
+  margin-left: 4pt;
 }
 
-.megamenu-menu-header #megamenu-menu-header-title,
-.megamenu-menu-header:hover, 
-.megamenu-menu-header:focus {
-	color: inherit;
+/* --- 评分条样式 ---
+   使用特殊字符表示熟练度
+   示例: Python ████████░░ 80%
+*/
+p code[title]::after {
+  content: " " attr(title);
+  font-size: 8pt;
+  color: var(--text-light);
 }
 
-.dropdown-menu .divider {
-	border-color: #e5e5e5;
-	opacity: 1;
+/* --- 侧边栏信息块 ---
+   使用引用块嵌套表示侧边栏信息
+*/
+h2 + blockquote {
+  border-left-color: var(--accent-color);
+  background: linear-gradient(135deg, var(--quote-bg), var(--bg-alt));
 }
 
-/* https://github.com/typora/typora-issues/issues/2046 */
-.os-windows-7 strong,
-.os-windows-7 strong  {
-	font-weight: 760;
+/* --- 奖项/证书高亮 ---
+   使用 ==高亮== 语法标记重要内容
+*/
+mark {
+  background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+  padding: 1pt 6pt;
+  border-radius: 3px;
+  font-weight: 500;
 }
 
-.ty-preferences .btn-default {
-	background: transparent;
+/* --- 项目经验卡片效果 ---
+   使用三级标题 + 引用块组合
+*/
+h3 + blockquote {
+  border-left-color: #27ae60;
+  background-color: #f0faf4;
+  margin-top: 2pt;
 }
 
-.ty-preferences .window-header {
-	border-bottom: 1px dashed #202B33;
-	box-shadow: none;
+/* ============================================================
+   暗色模式适配（可选）
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #ecf0f1;
+    --accent-color: #5dade2;
+    --accent-light: #1c2833;
+    --text-color: #d5d8dc;
+    --text-secondary: #aeb6bf;
+    --text-light: #7f8c8d;
+    --border-color: #34495e;
+    --bg-color: #1a1a2e;
+    --bg-alt: #16213e;
+    --tag-bg: #1c2833;
+    --tag-border: #2e4053;
+    --tag-text: #5dade2;
+    --link-color: #5dade2;
+    --hr-color: #5dade2;
+    --quote-border: #5dade2;
+    --quote-bg: #1c2833;
+    --table-header-bg: #1c2833;
+    --table-header-text: #ecf0f1;
+    --table-stripe: #16213e;
+    --code-bg: #1c2833;
+    --code-text: #e74c3c;
+    --sidebar-bg: #16213e;
+  }
+
+  h1::after {
+    background: var(--accent-color);
+  }
+
+  h2 {
+    border-bottom-color: var(--accent-color);
+  }
+
+  mark {
+    background: linear-gradient(120deg, #7d6608 0%, #9a7d0a 100%);
+    color: #f9e79f;
+  }
 }
 
-#sidebar-loading-template, #sidebar-loading-template.file-list-item {
-	color: #777;
+/* ============================================================
+   动画效果（仅编辑模式，不影响导出）
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.searchpanel-search-option-btn.active {
-	background: #777;
-	color: white;
+h2 {
+  animation: fadeIn 0.3s ease-out;
 }
 
-.export-detail, .light .export-detail, 
-.light .export-item.active, 
-.light .export-items-list-control {
-	background: #e0e0e0;
-	border-radius: 2px;
-	font-weight: 700;
-	color: inherit
-}</style>
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 选中文字样式 */
+::selection {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* ============================================================
+   简历 Markdown 模板参考（注释）
+   ============================================================
+   
+   建议的简历 Markdown 结构:
+
+   # 张三
+   > 高级前端工程师 | 5年经验 | 期待远程工作机会
+   
+   `zhangsan@email.com` · `138-0000-0000` · [GitHub](https://github.com) · [个人网站](https://example.com)
+   
+   ---
+   
+   ## 专业技能
+   
+   - 前端开发: `JavaScript` `TypeScript` `React` `Vue.js` `Next.js`
+   - 后端开发: `Node.js` `Python` `Go`
+   - 工具链: `Webpack` `Vite` `Docker` `Git` `CI/CD`
+   
+   ---
+   
+   ## 工作经历
+   
+   ### ABC科技有限公司 · **高级前端工程师**
+   ***2022.03 - 至今***
+   
+   - 负责公司核心产品的前端架构设计与技术选型
+   - 主导前端工程化建设，搭建组件库与脚手架工具
+   - 优化首屏加载性能，LCP 从 3.2s 降至 1.1s
+   
+   ### XYZ互联网公司 · **前端工程师**
+   ***2019.07 - 2022.02***
+   
+   - 参与电商平台前端开发，日均 PV 500万+
+   - 封装通用业务组件，提升团队开发效率 30%
+   
+   ---
+   
+   ## 教育背景
+   
+   ### 某某大学 · **计算机科学与技术 · 本科**
+   ***2015.09 - 2019.06***
+   
+   - GPA: 3.8/4.0，专业排名前 5%
+   - 国家奖学金（2017、2018）
+   
+   ---
+   
+   ## 项目经验
+   
+   ### 开源组件库 DesignX
+   > 一个轻量级 React UI 组件库，GitHub 2.3k Stars
+   
+   - 设计并实现 30+ 通用组件，支持主题定制与国际化
+   - 编写完整文档与单元测试，覆盖率达 95%
+   
+   ============================================================ */
+</style>
 <style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
 
 <title>resume</title>
