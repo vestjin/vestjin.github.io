@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>书单 · Reading List</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<style>
+  :root {
+    /* 护眼暖纸色（浅色模式） */
+    --bg: #f2efe5;          /* 米纸色背景 */
+    --bg-soft: #ece8db;
+    --card: #fbf9f2;
+    --text: #3b3a33;
+    --text-2: #6b6a5f;
+    --text-3: #9a988b;
+    --accent: #5a7d5a;      /* 豆沙绿 */
+    --accent-soft: #7fa27f;
+    --border: #e0dccd;
+    --mark: #b0651a;        /* 搜索高亮：暖棕 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* 护眼暖黑（暗色模式），非纯黑 */
+      --bg: #121614;
+      --bg-soft: #161b18;
+      --card: #1a201c;
+      --text: #d4d7cf;
+      --text-2: #a0a399;
+      --text-3: #6a6d64;
+      --accent: #8fb594;
+      --accent-soft: #a3c5a7;
+      --border: #262d28;
+      --mark: #d9a967;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    /* 流式左右留白：手机小 / 大屏大，自动过渡 */
+    padding: 0 clamp(16px, 4vw, 32px) 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    padding: clamp(40px, 8vw, 72px) 0 clamp(16px, 3vw, 24px);
+  }
+  h1 {
+    /* 流式标题字号 */
+    font-size: clamp(22px, 4.5vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  header p { margin-top: 6px; color: var(--text-2); font-size: clamp(13px, 2.5vw, 14.5px); }
+
+  /* ===== 吸顶工具栏 ===== */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: clamp(8px, 2vw, 12px) 0 10px;
+    background: var(--bg);
+    -webkit-mask: linear-gradient(#000 88%, transparent);
+            mask: linear-gradient(#000 88%, transparent);
+  }
+  .search { position: relative; margin-bottom: 10px; }
+  .search input {
+    width: 100%;
+    padding: clamp(9px, 2vw, 11px) 14px clamp(9px, 2vw, 11px) 38px;
+    font: inherit;
+    font-size: 16px;   /* ≥16px，避免 iOS 聚焦时自动放大页面 */
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .search input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .search input::placeholder { color: var(--text-3); }
+  .search svg {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-3);
+    pointer-events: none;
+  }
+
+  /* ===== 分类筛选：手机可横向滑动 ===== */
+  .cats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .cats::-webkit-scrollbar { display: none; }
+  @media (min-width: 760px) {
+    .cats { flex-wrap: wrap; overflow: visible; }  /* 大屏换行 */
+  }
+  .cat-btn {
+    font: inherit;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text-2);
+    cursor: pointer;
+    white-space: nowrap;   /* 手机上不换行，滑动查看 */
+    transition: all .15s;
+  }
+  .cat-btn:hover { border-color: var(--accent-soft); color: var(--text); }
+  .cat-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #f6f8f4;
+  }
+  .cat-btn .count {
+    font-size: 12px;
+    opacity: .65;
+    margin-left: 2px;
+  }
+
+  /* ===== 书籍网格：1列 → 2列 → 3列 ===== */
+  #list {
+    display: grid;
+    grid-template-columns: 1fr;          /* 手机：单列 */
+    gap: 10px;
+    margin-top: clamp(16px, 3vw, 24px);
+  }
+  @media (min-width: 640px)  { #list { grid-template-columns: 1fr 1fr; } }   /* 平板：双列 */
+  @media (min-width: 1024px) { #list { grid-template-columns: 1fr 1fr 1fr; } } /* 大屏：三列 */
+  .cat-title { grid-column: 1 / -1; }
+
+  .book {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: clamp(12px, 2.5vw, 16px) clamp(14px, 2.5vw, 18px);
+  }
+  .book:hover { border-color: var(--accent-soft); }
+
+  .row1 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .title { font-size: 15.5px; font-weight: 600; flex-shrink: 1; min-width: 0; }
+  .author {
+    font-size: 12.5px;
+    color: var(--text-3);
+    margin-left: auto;
+    max-width: 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .note {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-top: 6px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  mark { background: none; color: var(--mark); font-weight: 700; }
+
+  .empty {
+    display: none;
+    text-align: center;
+    color: var(--text-3);
+    font-size: 14px;
+    padding: 60px 0;
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 书单</h1>
+  <p>共 <span id="total">0</span> 本 · 不定期更新</p>
+</header>
+
+<div class="toolbar">
+  <div class="search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="q" placeholder="搜索书名、作者或描述…" autocomplete="off">
+  </div>
+  <nav class="cats" id="cats"></nav>
+</div>
+
+<div id="list"></div>
+
+<script>
+let books = [];
+let activeCat = '全部';
+
+function highlight(text, kw) {
+  if (!kw) return text;
+  const i = text.toLowerCase().indexOf(kw);
+  if (i < 0) return text;
+  return text.slice(0, i) + '<mark>' + text.slice(i, i + kw.length) + '</mark>' + text.slice(i + kw.length);
+}
+
+function render() {
+  const kw = document.getElementById('q').value.trim().toLowerCase();
+  const cats = document.getElementById('cats');
+  const list = document.getElementById('list');
+
+  const catNames = [...new Set(books.map(b => b.cat))];
+  const counts = c => c === '全部' ? books.length : books.filter(b => b.cat === c).length;
+  cats.innerHTML = ['全部', ...catNames].map(c =>
+    `<button class="cat-btn${c === activeCat ? ' active' : ''}" data-c="${c}">${c}<span class="count">${counts(c)}</span></button>`
+  ).join('');
+  cats.querySelectorAll('.cat-btn').forEach(btn =>
+    btn.onclick = () => { activeCat = btn.dataset.c; render(); }
+  );
+
+  const shown = books.filter(b =>
+    (activeCat === '全部' || b.cat === activeCat) &&
+    (!kw || (b.title + ' ' + (b.author || '') + ' ' + b.note).toLowerCase().includes(kw))
+  );
+
+  let html = '';
+  let lastCat = null;
+  for (const b of shown) {
+    if (activeCat === '全部' && b.cat !== lastCat) {
+      lastCat = b.cat;
+      const n = shown.filter(x => x.cat === b.cat).length;
+      html += `<h2 class="cat-title">${b.cat}<span class="num">${n} 本</span></h2>`;
+    }
+    const author = b.author
+      ? `<span class="author" title="${b.author}">${highlight(b.author, kw)}</span>` : '';
+    const note = b.note ? `<div class="note">${highlight(b.note, kw)}</div>` : '';
+    html += `<div class="book"><div class="row1"><span class="title">${highlight(b.title, kw)}</span>${author}</div>${note}</div>`;
+  }
+  list.innerHTML = html;
+
+  const empty = document.getElementById('empty');
+  if (empty) empty.style.display = shown.length ? 'none' : 'block';
+}
+
+fetch('books.txt')
+  .then(r => r.text())
+  .then(text => {
+    let cat = '未分类';
+    for (const line of text.split('\n')) {
+      const t = line.trim();
+      if (!t) continue;
+      if (t.startsWith('#')) { cat = t.replace(/^#+\s*/, ''); continue; }
+      const [name, note = ''] = t.split('|');
+      if (!name) continue;
+      let title = name.trim(), author = '';
+      const sep = title.indexOf('·');
+      if (sep > 0) {
+        title = name.slice(0, sep).trim();
+        author = name.slice(sep + 1).trim();
+      }
+      books.push({ title, author, note: (note || '').trim(), cat });
+    }
+    document.getElementById('total').textContent = books.length;
+
+    const empty = document.createElement('p');
+    empty.className = 'empty';
+    empty.id = 'empty';
+    empty.textContent = '没有匹配的书 🤷';
+    document.getElementById('list').appendChild(empty);
+
+    render();
+  });
+
+document.getElementById('q').addEventListener('input', render);
+</script>
+
+</body>
+</html>
