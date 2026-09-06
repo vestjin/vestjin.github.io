@@ -2,3 +2,4 @@
 *.png
 resume/
 projects/
+.vscode/
