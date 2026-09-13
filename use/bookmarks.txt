@@ -1,9 +1,54 @@
 ## 网络
 测速网-https://www.speedtest.cn/
-Speedtest-https://www.speedtest.cn/
+Speedtest-https://www.speedtest.net/
+ip地址查询-https://ip.cn/
+
+
+## 文本处理
+JSON Tools-https://www.json.cn
+
 
 ## 图片处理
 Imgdiet-https://www.imgdiet.com/zh-CN
 docsmall-https://www.imgdiet.com/zh-CN
+remove bg-https://www.remove.bg
+智能压缩照片-https://tinify.cn/
+谷歌压缩-https://squoosh.app/
+iLoveIMG-https://www.iloveimg.com/zh-cn
 
-## 
+## 找图资源
+Pexels图片素材-https://www.pexels.com/zh-cn/
+Unsplash-https://unsplash.com/
+Pixabay图片-https://pixabay.com/zh/
+wallhaven-https://wallhaven.cc/
+
+
+## 免费API
+60s API-https://docs.60s-api.viki.moe/
+uapis-https://uapis.cn/docs/api-reference/get-misc-weather
+大米API-https://api.qqsuu.cn/
+小小API-https://api.aa1.cn/
+接口大全免费API-https://www.free-api.com/
+
+## 图床
+imgur-https://imgur.com/new
+imgbb-https://imgbb.com/
+
+
+## 博客笔记
+BLogger-https://www.blogger.com
+Google Keep-https://keep.google.com/
+
+## 网盘存储
+蓝奏云-https://up.woozooo.com/
+OK云盘-https://okpan.com/mySmallfiles
+OneDrive-https://onedrive.live.com/?view=1
+
+
+## 格式转换处理
+在线格式转换alltoall-https://www.alltoall.net/
+
+
+## 工具集合
+菜鸟工具-https://www.jyshare.com/front-end/53/
+虫部落-https://www.chongbuluo.com/
