@@ -1,3 +1,8 @@
+
+## 科学上网
+1.1.1.1-https://one.one.one.one/
+Lantern-https://lantern.io/zh
+
 ## 网络
 测速网-https://www.speedtest.cn/
 Speedtest-https://www.speedtest.net/
@@ -48,6 +53,38 @@ OneDrive-https://onedrive.live.com/?view=1
 ## 格式转换处理
 在线格式转换alltoall-https://www.alltoall.net/
 
+## 专业领域权威英文信息源
+ACPjour - https://www.acpjournals.org/
+ACS Publications - https://pubs.acs.org/
+ALZ-journal - https://alz-journals.onlinelibrary.wiley.com/
+Angewandte Chemi - https://onlinelibrary.wiley.com/
+Cell Press - https://www.cell.com/cell/home
+Dictionary by Me - https://www.merriam-webster.com/medical
+Futurism | Scien - https://futurism.com/
+JAMA - https://jamanetwork.com/
+Jourclinical - https://www.clinicalnutritionjournal.com/
+MedlinePlus - He - https://medlineplus.gov/
+Medscape - https://www.medscape.com/
+Nature - https://www.nature.com/
+Neurology - https://www.neurology.org/
+Our journal port - https://plos.org/our-journals/
+Oxford Academic - https://academic.oup.com/
+Radiological Soc - https://www.rsna.org/
+Science - https://www.science.org/
+ScienceDirect - https://www.sciencedirect.com/
+bioRxiv - https://www.biorxiv.org/
+bmjCut - https://gut.bmj.com/
+knowmaga - https://knowablemagazine.org/
+lancet - https://www.thelancet.com/
+loading - https://www.yiigle.com/index
+medRxiv.org - th - https://www.medrxiv.org/
+medical - https://medicalxpress.com/
+medicalNews - https://www.medicalnewstoday.com/
+pans - https://www.pnas.org/
+phys - https://phys.org/
+polymarket - https://polymarket.com/
+zslpubication - https://zslpublications.onlinelibrary.wiley.com/
+arxiv - https://arxiv.org/
 
 ## 工具集合
 菜鸟工具-https://www.jyshare.com/front-end/53/
