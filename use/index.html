@@ -8,6 +8,8 @@
         /* ===== 全局重置 ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: #f0f4f8;
@@ -119,6 +121,138 @@
             border-color: #1e2f4a;
         }
 
+        /* ===== 目录（可收起 + 吸顶） ===== */
+        .toc {
+            position: sticky;
+            top: 12px;
+            z-index: 30;
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .toc:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        .toc-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .toc-header:hover {
+            background: #f8fafc;
+        }
+
+        .toc-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0b1a33;
+            letter-spacing: -0.2px;
+        }
+
+        .toc-count {
+            font-size: 12px;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0 9px;
+            border-radius: 10px;
+            line-height: 1.7;
+        }
+
+        .toc-toggle {
+            margin-left: auto;
+            font-size: 13px;
+            font-family: inherit;
+            color: #64748b;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 3px 10px;
+            border-radius: 6px;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .toc-toggle:hover {
+            background: #eef2f6;
+            color: #0b1a33;
+        }
+
+        .toc-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+            padding: 2px 18px 14px;
+            max-height: 1200px;
+            opacity: 1;
+            overflow: hidden;
+            transition: max-height 0.28s ease, padding 0.28s ease, opacity 0.2s ease;
+        }
+
+        .toc.collapsed .toc-body {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+
+        .toc-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #334155;
+            background: #f8fafc;
+            border: 1px solid #eef2f6;
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .toc-item:hover {
+            background: #eef2f6;
+            border-color: #cbd5e1;
+            color: #0b1a33;
+            transform: translateY(-1px);
+        }
+
+        .toc-item .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+
+        .toc-item:hover .dot {
+            background: #0b1a33;
+        }
+
+        .toc-item .num {
+            font-size: 11px;
+            color: #94a3b8;
+            background: #eef2f6;
+            border-radius: 8px;
+            padding: 0 6px;
+            line-height: 1.6;
+            flex-shrink: 0;
+        }
+
         /* ===== 内容区域 ===== */
         .content {
             display: flex;
@@ -134,10 +268,21 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.03);
             border: 1px solid #f1f5f9;
             transition: box-shadow 0.2s;
+            scroll-margin-top: 84px;
         }
 
         .category:hover {
             box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        @keyframes catFlash {
+            0%   { background: #ffffff; }
+            25%  { background: #e8f1ff; }
+            100% { background: #ffffff; }
+        }
+
+        .category.flash {
+            animation: catFlash 1.1s ease;
         }
 
         .category-header {
@@ -364,8 +509,23 @@
                 flex: 1;
                 text-align: center;
             }
+
+            .toc { top: 8px; border-radius: 12px; }
+            .toc-header { padding: 9px 14px; }
+            .toc-title { font-size: 13px; }
+            .toc-toggle { font-size: 12px; padding: 3px 8px; }
+            .toc-body { padding: 2px 14px 12px; gap: 5px 6px; }
+            .toc-item {
+                font-size: 12px;
+                padding: 3px 8px;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
             .category {
                 padding: 12px 14px 14px;
+                scroll-margin-top: 70px;
             }
             .category-header .name {
                 font-size: 15px;
@@ -437,6 +597,16 @@
             </div>
         </header>
 
+        <!-- 目录（可收起） -->
+        <nav class="toc" id="toc" style="display:none;">
+            <div class="toc-header" id="tocHeader">
+                <span class="toc-title">📑 目录</span>
+                <span class="toc-count" id="tocCount">0</span>
+                <button class="toc-toggle" id="tocToggle" type="button">收起 ▲</button>
+            </div>
+            <div class="toc-body" id="tocBody"></div>
+        </nav>
+
         <!-- 内容 -->
         <main class="content" id="content"></main>
     </div>
@@ -447,11 +617,18 @@
 
             const TXT_FILE = 'bookmarks.txt';
             const POLL_INTERVAL = 60000;
+            const TOC_KEY = 'nav-toc-collapsed';
 
             const contentEl = document.getElementById('content');
             const statsEl = document.getElementById('stats');
             const statusTip = document.getElementById('statusTip');
             const reloadBtn = document.getElementById('reloadBtn');
+
+            const tocEl = document.getElementById('toc');
+            const tocHeader = document.getElementById('tocHeader');
+            const tocBody = document.getElementById('tocBody');
+            const tocCount = document.getElementById('tocCount');
+            const tocToggle = document.getElementById('tocToggle');
 
             let lastContent = null;
 
@@ -493,15 +670,48 @@
                 return categories;
             }
 
-            // ===== 渲染 =====
+            // ===== 工具 =====
             function escapeHtml(str) {
                 const div = document.createElement('div');
                 div.textContent = str;
                 return div.innerHTML;
             }
 
+            // ===== 目录折叠状态 =====
+            function setTocCollapsed(collapsed, save) {
+                tocEl.classList.toggle('collapsed', collapsed);
+                tocToggle.textContent = collapsed ? '展开 ▼' : '收起 ▲';
+                if (save !== false) {
+                    try { localStorage.setItem(TOC_KEY, collapsed ? '1' : '0'); } catch (e) {}
+                }
+            }
+
+            // ===== 渲染目录 =====
+            function renderToc(items) {
+                if (!items || items.length === 0) {
+                    tocEl.style.display = 'none';
+                    tocBody.innerHTML = '';
+                    return;
+                }
+
+                tocEl.style.display = '';
+                tocCount.textContent = items.length;
+                tocBody.innerHTML = items.map(it => `
+                    <a class="toc-item" href="#${it.id}" data-target="${it.id}">
+                        <span class="dot"></span>
+                        <span class="toc-name">${escapeHtml(it.name)}</span>
+                        <span class="num">${it.count}</span>
+                    </a>
+                `).join('');
+            }
+
+            // ===== 渲染主体 =====
             function render(categories) {
-                if (!categories || categories.length === 0) {
+                const valid = (categories || [])
+                    .map((cat, i) => ({ cat, i }))
+                    .filter(x => x.cat.sites && x.cat.sites.length > 0);
+
+                if (valid.length === 0) {
                     contentEl.innerHTML = `
                         <div class="empty-state">
                             <div class="icon">📭</div>
@@ -516,17 +726,26 @@
                         </div>
                     `;
                     statsEl.textContent = '0 个网站';
+                    renderToc([]);
                     return;
                 }
 
                 let totalSites = 0;
                 let html = '';
-                for (const cat of categories) {
-                    const sites = cat.sites || [];
-                    totalSites += sites.length;
-                    if (sites.length === 0) continue;
+                const tocItems = [];
 
-                    html += `<div class="category">`;
+                for (const { cat, i } of valid) {
+                    const sites = cat.sites;
+                    const catId = 'cat-' + i;
+                    totalSites += sites.length;
+
+                    tocItems.push({
+                        id: catId,
+                        name: cat.name,
+                        count: sites.length
+                    });
+
+                    html += `<div class="category" id="${catId}">`;
                     html += `<div class="category-header">`;
                     html += `<span class="name">${escapeHtml(cat.name)}</span>`;
                     html += `<span class="count">${sites.length}</span>`;
@@ -549,11 +768,12 @@
                 }
 
                 contentEl.innerHTML = html;
-                statsEl.textContent = `${totalSites} 个网站 · ${categories.filter(c => c.sites.length).length} 个分类`;
+                statsEl.textContent = `${totalSites} 个网站 · ${valid.length} 个分类`;
+                renderToc(tocItems);
             }
 
             // ===== 加载并更新 =====
-            function loadFromText(text, label) {
+            function loadFromText(text) {
                 const categories = parseTxt(text);
                 if (categories.length === 0) {
                     render([]);
@@ -568,6 +788,7 @@
             function fetchAndLoad(showLoading = true) {
                 if (showLoading) {
                     contentEl.innerHTML = `<div class="loading">⏳ 正在加载 ${TXT_FILE} ...</div>`;
+                    tocEl.style.display = 'none';
                 }
                 fetch(TXT_FILE, { cache: 'no-cache' })
                     .then(response => {
@@ -577,10 +798,14 @@
                     .then(text => {
                         if (lastContent !== null && text === lastContent) {
                             statusTip.textContent = `🔄 无变化 (${new Date().toLocaleTimeString()})`;
+                            if (showLoading) {
+                                // 手动刷新时内容没变，也要把界面还原
+                                render(parseTxt(text));
+                            }
                             return;
                         }
                         lastContent = text;
-                        loadFromText(text, TXT_FILE);
+                        loadFromText(text);
                     })
                     .catch(err => {
                         console.warn('加载 TXT 失败:', err);
@@ -589,16 +814,40 @@
                     });
             }
 
-            // ===== 手动刷新 =====
-            function manualReload() {
-                fetchAndLoad(true);
-            }
-
-            // ===== 初始化 =====
+            // ===== 事件绑定 =====
             function init() {
+                // 目录折叠：读取上次状态
+                let collapsed = false;
+                try { collapsed = localStorage.getItem(TOC_KEY) === '1'; } catch (e) {}
+                setTocCollapsed(collapsed, false);
+
+                // 点击目录头切换收起 / 展开
+                tocHeader.addEventListener('click', () => {
+                    setTocCollapsed(!tocEl.classList.contains('collapsed'));
+                });
+
+                // 点击目录项平滑滚动到对应分类
+                tocBody.addEventListener('click', (e) => {
+                    const item = e.target.closest('.toc-item');
+                    if (!item) return;
+                    e.preventDefault();
+
+                    const target = document.getElementById(item.dataset.target);
+                    if (!target) return;
+
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.classList.remove('flash');
+                    // 触发重绘以便重复播放动画
+                    void target.offsetWidth;
+                    target.classList.add('flash');
+                    setTimeout(() => target.classList.remove('flash'), 1200);
+                });
+
+                // 手动刷新
+                reloadBtn.addEventListener('click', () => fetchAndLoad(true));
+
                 fetchAndLoad(true);
                 setInterval(() => fetchAndLoad(false), POLL_INTERVAL);
-                reloadBtn.addEventListener('click', manualReload);
             }
 
             init();
