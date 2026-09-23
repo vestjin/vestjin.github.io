@@ -53,6 +53,18 @@ OneDrive-https://onedrive.live.com/?view=1
 ## 格式转换处理
 在线格式转换alltoall-https://www.alltoall.net/
 
+## 硬件与DIY
+DOIT社区-https://www.doitwiki.com/
+Arduino官网-https://www.arduino.cc/
+Arduino实验室-https://arduino.nxez.com/
+Arduino教程w3school-https://www.w3cschool.cn/arduino/
+Arduino中文社区-https://arduino.me/home
+DF创客社区-https://mc.dfrobot.com.cn/
+太极创客Arduino-http://www.taichi-maker.com/
+树莓派实验室-https://shumeipai.nxez.com/
+立创开源广场-https://oshwhub.com/
+趣讨教-https://www.qutaojiao.com/
+
 ## 专业领域权威英文信息源
 ACPjour - https://www.acpjournals.org/
 ACS Publications - https://pubs.acs.org/
