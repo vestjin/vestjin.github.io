@@ -12,6 +12,8 @@ ip地址查询-https://ip.cn/
 ## 文本处理
 JSON Tools-https://www.json.cn
 
+## 文件中转站
+filewiki-https://file.kiwi/zh
 
 ## 图片处理
 Imgdiet-https://www.imgdiet.com/zh-CN
