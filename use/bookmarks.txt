@@ -12,6 +12,7 @@ ip地址查询-https://ip.cn/
 ## 文本处理
 JSON Tools-https://www.json.cn
 
+
 ## 文件中转站
 filewiki-https://file.kiwi/zh
 
@@ -25,6 +26,10 @@ iLoveIMG-https://www.iloveimg.com/zh-cn
 
 ## 视频处理
 tools.video-https://tools.video/zh-CN
+
+## pdf处理
+PDFCandy-https://pdfcandy.com/
+donepdf-https://donepdf.com/zh
 
 ## 找图资源
 Pexels图片素材-https://www.pexels.com/zh-cn/
