@@ -37,6 +37,13 @@ Unsplash-https://unsplash.com/
 Pixabay图片-https://pixabay.com/zh/
 wallhaven-https://wallhaven.cc/
 
+## 找电子书
+Zlibrary-https://getzlib.com/
+苦瓜书盘-https://kgbook.com/
+welib-https://zh.welib.org/
+
+时光图书馆-https://atimebook.com/
+
 
 ## 免费API
 60s API-https://docs.60s-api.viki.moe/
