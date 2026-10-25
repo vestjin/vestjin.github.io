@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人导航</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="logo">🚀</span>
+      <h1>个人导航</h1>
+      <span id="totalCount" class="total-count" title="共 0 项书签">0</span>
+    </div>
+  </header>
+
+  <!-- 浮动操作面板（按钮） -->
+  <div id="floatingPanel" class="floating-panel">
+    <div class="float-actions">
+      <button id="addBtn" class="icon-btn" title="添加书签" aria-label="添加书签">＋</button>
+      <button id="refreshBtn" class="icon-btn" title="重新抓取所有书签的标题和图标" aria-label="刷新元数据">⟳</button>
+      <button id="importBtn" class="icon-btn" title="从 JSON 导入" aria-label="导入">⬇</button>
+      <button id="exportBtn" class="icon-btn" title="导出为 JSON" aria-label="导出">⬆</button>
+      <span id="syncIndicator" class="sync-indicator" title=""></span>
+      <button id="syncBtn" class="icon-btn" title="云同步设置" aria-label="云同步">☁</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">
+        分组
+        <button id="helpBtnSide" class="sidebar-help-btn" title="帮助" aria-label="帮助">❓</button>
+      </div>
+      <nav id="categoryNav" class="category-nav" aria-label="书签分组"></nav>
+      <button id="manageGroupBtn" class="sidebar-manage-btn">管理分组</button>
+    </aside>
+
+    <main class="main">
+      <div class="clock-wrap" id="clockToggle" title="点击隐藏书签，进入专注模式">
+        <div id="clockDisplay" class="clock-time">00:00:00</div>
+        <div id="clockDate" class="clock-date"></div>
+      </div>
+
+      <form id="webSearch" class="search-bar" autocomplete="off">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input id="searchInput" type="search" placeholder="搜索书签，回车搜索网页…" aria-label="搜索" />
+        <select id="webEngine" title="搜索引擎" aria-label="搜索引擎">
+          <option value="bing">Bing</option>
+          <option value="google">Google</option>
+          <option value="duckduckgo">DuckDuckGo</option>
+          <option value="yandex">Yandex</option>
+        </select>
+        <button type="submit" class="search-go" title="搜索网页" aria-label="搜索网页">→</button>
+      </form>
+
+      <div class="current-group">
+        <h2 id="currentGroupName">全部书签</h2>
+        <span id="currentGroupCount" class="group-count">0 项</span>
+      </div>
+
+      <div id="navContainer" class="nav-container"></div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div>©2022 - <span id="year"></span> 个人导航 · 部署在 GitHub Pages</div>
+    <div>数据自动抓取 · 本地存储</div>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- 书签编辑/添加模态框 -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="modalTitle">添加书签</h2>
+      <form id="bookmarkForm">
+        <label>名称 <input id="bmName" type="text" placeholder="留空自动抓取页面标题" /></label>
+        <label>网址 <span class="required">*</span> <input id="bmUrl" type="url" placeholder="https://example.com" required /></label>
+        <label>分类 <input id="bmCategory" type="text" placeholder="例如：常用" list="categoryList" /></label>
+        <datalist id="categoryList"></datalist>
+        <label>图标 URL（可选） <input id="bmIcon" type="url" placeholder="https://…" /></label>
+        <label>笔记（可选）
+          <textarea id="bmNote" rows="3" placeholder="添加备注、感想或待办事项…"></textarea>
+        </label>
+        <input id="bmId" type="hidden" />
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn ghost">取消</button>
+          <button type="submit" class="btn primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 云同步设置模态框 -->
+  <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>云同步设置</h2>
+      <p class="settings-hint">
+        使用 GitHub Gist 跨设备同步书签。<br>
+        1. 前往 <a href="https://github.com/settings/tokens/new?scopes=gist&description=Personal%20Nav%20Sync" target="_blank" rel="noopener">GitHub Tokens</a> 创建 Token（仅勾选 <code>gist</code> 权限）并复制。<br>
+        2. 前往 <a href="https://gist.github.com/" target="_blank" rel="noopener">Gist</a> 创建一个新的私有 Gist（内容可留空），复制其 ID（URL 中最后一段）。<br>
+        3. 将 Token 和 Gist ID 填入下方，启用同步并保存。<br>
+        <strong>注意：请务必保管好您的 Token 和 Gist ID，系统不会自动创建。</strong>
+      </p>
+      <form id="settingsForm">
+        <label>GitHub Token <input id="ghToken" type="password" placeholder="ghp_…" autocomplete="off" /></label>
+        <label>Gist ID <input id="ghGistId" type="text" placeholder="例如：abc123... 请手动创建 Gist 并填写 ID" autocomplete="off" /></label>
+        <label class="checkbox-label"><input id="enableSync" type="checkbox" /> 启用云同步</label>
+
+        <div style="border-top: 1px solid var(--border); margin: 16px 0; padding-top: 16px;">
+          <p class="settings-hint" style="margin-bottom: 8px;">填写自建的 Cloudflare Worker 代理地址，可彻底解决国内抓取标题慢/失败的问题。（留空则使用公共代理）</p>
+          <label>抓取代理地址 <input id="proxyUrl" type="text" placeholder="https://your-worker.workers.dev/?url=" autocomplete="off" /></label>
+        </div>
+
+        <div id="syncStatus" class="sync-status">未配置</div>
+        <div class="modal-actions settings-actions">
+          <button type="button" id="pullNow" class="btn ghost">⬇ 拉取</button>
+          <button type="button" id="pushNow" class="btn ghost">⬆ 推送</button>
+          <button type="button" id="cancelSettings" class="btn ghost">关闭</button>
+          <button type="submit" class="btn primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 分组管理模态框 -->
+  <div id="groupModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>分组管理</h2>
+      <p class="settings-hint">直接修改名称即可重命名分组（按回车或点击空白处生效）。删除分组会将组内书签移至“未分类”。</p>
+      <div id="groupList" class="group-list"></div>
+      <div class="modal-actions">
+        <button type="button" id="cancelGroup" class="btn primary">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 帮助模态框 -->
+  <div id="helpModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card help-modal">
+      <h2>📖 使用指南</h2>
+      <div class="help-content">
+        <h3>📌 核心功能</h3>
+        <ul>
+          <li><strong>书签管理</strong> – 点击“＋”添加，支持名称、网址、分类、图标和笔记（📝 标记）。</li>
+          <li><strong>分组分类</strong> – 左侧侧栏显示所有分组，点击切换；分组标题旁可折叠/展开，拖拽调整顺序。</li>
+          <li><strong>搜索过滤</strong> – 实时搜索书签名称、网址、分类和笔记内容，回车直接使用搜索引擎。</li>
+          <li><strong>拖拽排序</strong> – 拖拽卡片调整顺序（同组或跨组），拖拽分类标题调整分组顺序。</li>
+          <li><strong>元数据抓取</strong> – 自动获取网页标题和 favicon，可手动刷新。</li>
+          <li><strong>笔记功能</strong> – 每个书签可添加笔记，卡片右上角显示 📝 徽章提示。</li>
+          <li><strong>专注模式</strong> – 点击时钟区域隐藏侧栏和书签，再次点击恢复。</li>
+        </ul>
+
+        <h3>☁️ 云同步</h3>
+        <ul>
+          <li>使用 GitHub Gist 跨设备同步，需自行创建 Token 和 Gist ID。</li>
+          <li>填写后启用同步，点击“拉取”或“推送”手动同步。</li>
+          <li>本地修改后同步指示器会显示“●”，提醒您及时推送。</li>
+        </ul>
+
+        <h3>📦 数据导入/导出</h3>
+        <ul>
+          <li>导出为 JSON 备份，导入时按 URL 合并（不覆盖已有项）。</li>
+          <li>所有数据存储在浏览器本地，卸载应用或清除浏览器数据会丢失，请定期导出备份。</li>
+        </ul>
+
+        <h3>⚙️ 其他</h3>
+        <ul>
+          <li><strong>快捷键</strong>：<kbd>Ctrl+K</kbd> 聚焦搜索框，<kbd>Esc</kbd> 关闭所有弹窗/专注模式。</li>
+          <li><strong>抓取代理</strong>：可配置自建代理加速标题获取，留空使用公共代理（可能受限）。</li>
+        </ul>
+
+        <h3>⚠️ 注意事项</h3>
+        <ul>
+          <li><strong>Token 安全</strong>：GitHub Token 以明文存储在 localStorage，请勿在公共设备上使用。</li>
+          <li><strong>Gist ID 必须手动填写</strong>：系统不会自动创建 Gist，请务必先创建并填入。</li>
+          <li><strong>数据备份</strong>：建议定期导出 JSON 备份，以防浏览器数据丢失。</li>
+          <li><strong>浏览器兼容</strong>：推荐使用最新版 Chrome/Edge/Firefox，拖拽功能需现代浏览器支持。</li>
+        </ul>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="closeHelpBtn" class="btn primary">我知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
