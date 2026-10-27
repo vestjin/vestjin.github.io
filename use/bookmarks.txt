@@ -9,6 +9,8 @@ IP地址查询-https://ip.cn/
 FileKiwi 文件中转-https://file.kiwi/zh
 AllToAll 格式转换-https://www.alltoall.net/
 JSON 工具-https://www.json.cn
+iLovePDF-https://www.ilovepdf.com/zh-cn
+smallpdf-https://smallpdf.com/
 
 ## 图片与媒体处理
 Imgdiet-https://www.imgdiet.com/zh-CN

@@ -46,7 +46,13 @@
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 8px;
+    gap: 12px;
+  }
+  .header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
   }
   .header-left h1 {
     font-size: 34px;
@@ -55,6 +61,60 @@
     line-height: 1.2;
   }
   .stats { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; }
+
+  /* ===== 搜索框 ===== */
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--ink);
+    background: var(--panel);
+    padding: 4px 12px;
+    min-width: 260px;
+    transition: box-shadow 0.15s;
+  }
+  .search-wrap:focus-within { box-shadow: 3px 3px 0 rgba(26,26,26,0.15); }
+  .search-wrap .search-icon {
+    color: var(--ink-faint);
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  #searchInput {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    letter-spacing: 0.03em;
+  }
+  #searchInput::placeholder { color: var(--ink-faint); font-size: 13px; }
+  #searchClear {
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    display: none;
+  }
+  #searchClear:hover { color: var(--ink); }
+  .search-wrap.has-value #searchClear { display: inline; }
+  .search-kbd {
+    font-family: Georgia, serif;
+    font-size: 11px;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    padding: 0 5px;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .search-wrap.has-value .search-kbd { display: none; }
+
   .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .status-tip { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
   .btn {
@@ -175,6 +235,24 @@
   .category-header .count { font-size: 12px; color: var(--ink-faint); }
   .category-header .count::before { content: "· "; }
 
+  /* 搜索时：被过滤隐藏的元素 */
+  body.searching .site-card.hide,
+  body.searching .category.hide { display: none !important; }
+  body.searching .category { border-bottom: none; padding-bottom: 12px; }
+  body.searching .category:last-of-type { border-bottom: 1px solid var(--line); padding-bottom: 30px; }
+  body.searching .sites { margin-bottom: 8px; }
+
+  /* 搜索命中高亮 */
+  .site-card mark {
+    background: #f0e3b8;
+    color: inherit;
+    padding: 0 1px;
+  }
+
+  /* 无搜索结果提示 */
+  .no-result { display: none; padding: 60px 20px; text-align: center; color: var(--ink-soft); }
+  body.searching .no-result.show { display: block; }
+
   /* ===== 网站列表 ===== */
   .sites {
     display: grid;
@@ -238,18 +316,21 @@
   /* ===== 响应式 ===== */
   @media (max-width: 640px) {
     body { padding: 28px 16px 60px; }
+    .header { padding: 20px 0 16px; }
     .header-left h1 { font-size: 26px; }
+    .search-wrap { min-width: 100%; order: 3; }
     .sites { grid-template-columns: 1fr; }
     .site-card { font-size: 14px; }
     .category { padding: 26px 0 22px; }
     .category-header .name { font-size: 18px; }
     .toc { top: 10px; right: 10px; width: 190px; }
+    .search-kbd { display: none; }
   }
 
   /* ===== 打印友好 ===== */
   @media print {
     body { background: #fff; padding: 0; }
-    .toc, .header-right { display: none; }
+    .toc, .header-right, .search-wrap { display: none; }
     .category { break-inside: avoid; }
   }
 
@@ -265,6 +346,16 @@
       <h1>收藏目录</h1>
       <span class="stats" id="stats">—</span>
     </div>
+
+    <!-- 搜索框：位于标题右侧 -->
+    <div class="search-wrap" id="searchWrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="检索站点或网址…"
+             autocomplete="off" spellcheck="false" />
+      <button id="searchClear" type="button" title="清空">✕</button>
+      <span class="search-kbd">/</span>
+    </div>
+
     <div class="header-right">
       <span class="status-tip" id="statusTip">bookmarks.txt</span>
       <button class="btn btn-primary" id="reloadBtn">重新加载</button>
@@ -273,6 +364,11 @@
 
   <!-- 内容 -->
   <main id="content"></main>
+
+  <!-- 搜索无结果提示 -->
+  <div class="no-result" id="noResult">
+    未找到匹配的站点，试试其他关键词。
+  </div>
 
   <footer class="colophon">MCMXCVIII · PERSONAL INDEX</footer>
 
@@ -306,8 +402,13 @@
   const tocBody = document.getElementById('tocBody');
   const tocCount = document.getElementById('tocCount');
   const tocToggle = document.getElementById('tocToggle');
+  const searchWrap = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  const noResultEl = document.getElementById('noResult');
 
   let lastContent = null;
+  let currentCategories = [];   // 最近一次解析结果，供搜索复用
 
   /* ================= 解析 ================= */
   function parseTxt(text) {
@@ -348,6 +449,19 @@
     return div.innerHTML;
   }
 
+  // 转义正则特殊字符
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // 给文本中命中关键词的部分包上 <mark>
+  function highlight(text, keyword) {
+    const escaped = escapeHtml(text);
+    if (!keyword) return escaped;
+    const re = new RegExp('(' + escapeRegExp(escapeHtml(keyword)) + ')', 'gi');
+    return escaped.replace(re, '<mark>$1</mark>');
+  }
+
   /* ================= 折叠 ================= */
   function setCollapsed(collapsed, save) {
     tocEl.classList.toggle('collapsed', collapsed);
@@ -376,7 +490,9 @@
 
   /* ================= 渲染主体 ================= */
   function render(categories) {
-    const valid = (categories || []).filter(cat => cat.sites && cat.sites.length > 0);
+    currentCategories = categories || [];
+
+    const valid = currentCategories.filter(cat => cat.sites && cat.sites.length > 0);
 
     if (valid.length === 0) {
       contentEl.innerHTML = `
@@ -405,7 +521,7 @@
       totalSites += cat.sites.length;
       tocItems.push({ id: catId, idx, name: cat.name, count: cat.sites.length });
 
-      html += `<section class="category" id="${catId}">`;
+      html += `<section class="category" id="${catId}" data-cat-idx="${i}">`;
       html += `<div class="category-header">
                  <span class="idx">${idx}</span>
                  <span class="name">${escapeHtml(cat.name)}</span>
@@ -415,7 +531,9 @@
       for (const site of cat.sites) {
         const displayUrl = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
         html += `<a class="site-card" href="${site.url}" target="_blank" rel="noopener noreferrer"
-                    title="${escapeHtml(site.name + ' · ' + site.url)}">
+                    title="${escapeHtml(site.name + ' · ' + site.url)}"
+                    data-name="${escapeHtml(site.name.toLowerCase())}"
+                    data-url="${escapeHtml(site.url.toLowerCase())}">
                    <span class="name">${escapeHtml(site.name)}</span>
                    <span class="url">${escapeHtml(displayUrl)}</span>
                  </a>`;
@@ -426,7 +544,128 @@
     contentEl.innerHTML = html;
     statsEl.textContent = `共 ${totalSites} 则 · ${valid.length} 类`;
     renderToc(tocItems);
+
+    // 若渲染时搜索框已有内容，立即应用筛选
+    if (searchInput.value.trim()) applySearch(searchInput.value.trim());
   }
+
+  /* ================= 搜索 ================= */
+  function applySearch(rawKeyword) {
+    const keyword = rawKeyword.trim().toLowerCase();
+    const sections = contentEl.querySelectorAll('.category');
+    const cards = contentEl.querySelectorAll('.site-card');
+
+    if (!keyword) {
+      // 清空搜索：全部还原
+      document.body.classList.remove('searching');
+      noResultEl.classList.remove('show');
+      cards.forEach(c => {
+        c.classList.remove('hide');
+        const nameSpan = c.querySelector('.name');
+        const urlSpan = c.querySelector('.url');
+        const site = findSite(nameSpan.textContent, c.href);
+        if (site) {
+          nameSpan.innerHTML = escapeHtml(site.name);
+          urlSpan.innerHTML = escapeHtml(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+        }
+      });
+      sections.forEach(s => s.classList.remove('hide'));
+      // 统计还原
+      let total = 0;
+      currentCategories.forEach(cat => { total += cat.sites.length; });
+      statsEl.textContent = `共 ${total} 则 · ${currentCategories.filter(c => c.sites.length).length} 类`;
+      return;
+    }
+
+    document.body.classList.add('searching');
+    searchWrap.classList.add('has-value');
+
+    let matchedTotal = 0;
+
+    sections.forEach(section => {
+      let matchedInCat = 0;
+      section.querySelectorAll('.site-card').forEach(card => {
+        const name = card.dataset.name || '';
+        const url = card.dataset.url || '';
+        const isMatch = name.includes(keyword) || url.includes(keyword);
+        card.classList.toggle('hide', !isMatch);
+        if (isMatch) {
+          matchedInCat++;
+          matchedTotal++;
+          // 高亮 name 与 url
+          const nameSpan = card.querySelector('.name');
+          const urlSpan = card.querySelector('.url');
+          const site = findSite(nameSpan.textContent, card.href);
+          if (site) {
+            nameSpan.innerHTML = highlight(site.name, keyword);
+            urlSpan.innerHTML = highlight(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''), keyword);
+          }
+        } else {
+          // 还原未命中的，避免残留旧高亮
+          const nameSpan = card.querySelector('.name');
+          const urlSpan = card.querySelector('.url');
+          const site = findSite(nameSpan.textContent.replace(/<\/?mark>/g, ''), card.href);
+          if (site) {
+            nameSpan.innerHTML = escapeHtml(site.name);
+            urlSpan.innerHTML = escapeHtml(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+          }
+        }
+      });
+      section.classList.toggle('hide', matchedInCat === 0);
+      // 分类计数更新为命中数
+      const countEl = section.querySelector('.category-header .count');
+      if (countEl) countEl.textContent = matchedInCat + ' 则';
+    });
+
+    // 统计与无结果提示
+    statsEl.textContent = `命中 ${matchedTotal} 则`;
+    noResultEl.classList.toggle('show', matchedTotal === 0);
+  }
+
+  // 通过 href 在 currentCategories 中找回站点原始数据
+  function findSite(nameText, href) {
+    for (const cat of currentCategories) {
+      for (const site of cat.sites) {
+        if (site.name === nameText && site.url === href) return site;
+      }
+    }
+    return null;
+  }
+
+  // 输入防抖，避免大量条目时频繁操作 DOM
+  let searchTimer = null;
+  searchInput.addEventListener('input', () => {
+    const v = searchInput.value;
+    if (!v.trim()) searchWrap.classList.remove('has-value');
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => applySearch(v), 120);
+  });
+
+  // Esc 清空
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      searchWrap.classList.remove('has-value');
+      applySearch('');
+      searchInput.blur();
+    }
+  });
+
+  // 清空按钮
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchWrap.classList.remove('has-value');
+    applySearch('');
+    searchInput.focus();
+  });
+
+  // 快捷键 "/" 聚焦搜索框（输入框内除外）
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
 
   /* ================= 加载 ================= */
   function loadFromText(text) {
@@ -440,6 +679,109 @@
     statusTip.textContent = `✓ 已更新 (${new Date().toLocaleTimeString()})`;
     return true;
   }
+
+  // ===== 内嵌兜底数据（fetch 失败时使用，如 file:// 协议） =====
+  const FALLBACK_DATA = `## 网络工具
+1.1.1.1-https://one.one.one.one/
+Lantern-https://lantern.io/zh
+测速网-https://www.speedtest.cn/
+Speedtest-https://www.speedtest.net/
+IP地址查询-https://ip.cn/
+
+## 文件与格式转换
+FileKiwi 文件中转-https://file.kiwi/zh
+AllToAll 格式转换-https://www.alltoall.net/
+JSON 工具-https://www.json.cn
+
+## 图片与媒体处理
+Imgdiet-https://www.imgdiet.com/zh-CN
+Docsmall-https://www.imgdiet.com/zh-CN
+Remove.bg 抠图-https://www.remove.bg
+Tinify 压缩-https://tinify.cn/
+Squoosh 压缩-https://squoosh.app/
+iLoveIMG-https://www.iloveimg.com/zh-cn
+Tools.video-https://tools.video/zh-CN
+PDFCandy-https://pdfcandy.com/
+DonePDF-https://donepdf.com/zh
+
+## 图库素材与图床
+Pexels-https://www.pexels.com/zh-cn/
+Unsplash-https://unsplash.com/
+Pixabay-https://pixabay.com/zh/
+Wallhaven-https://wallhaven.cc/
+Imgur-https://imgur.com/new
+ImgBB-https://imgbb.com/
+
+## 电子书资源
+Z-Library-https://getzlib.com/
+苦瓜书盘-https://kgbook.com/
+WeLib-https://zh.welib.org/
+时光图书馆-https://atimebook.com/
+
+## 云盘与存储
+蓝奏云-https://up.woozooo.com/
+OK云盘-https://okpan.com/mySmallfiles
+OneDrive-https://onedrive.live.com/?view=1
+
+## 笔记与写作
+Blogger-https://www.blogger.com
+Google Keep-https://keep.google.com/
+
+## 开发者 API
+60s API-https://docs.60s-api.viki.moe/
+UAPIS-https://uapis.cn/docs/api-reference/get-misc-weather
+大米API-https://api.qqsuu.cn/
+小小API-https://api.aa1.cn/
+免费API大全-https://www.free-api.com/
+
+## 硬件与创客
+DOIT社区-https://www.doitwiki.com/
+Arduino 官网-https://www.arduino.cc/
+Arduino 实验室-https://arduino.nxez.com/
+Arduino 教程-https://www.w3cschool.cn/arduino/
+Arduino 中文社区-https://arduino.me/home
+DF创客社区-https://mc.dfrobot.com.cn/
+太极创客-https://www.taichi-maker.com/
+树莓派实验室-https://shumeipai.nxez.com/
+立创开源广场-https://oshwhub.com/
+趣讨教-https://www.qutaojiao.com/
+
+## 学术与期刊
+ACP Journals-https://www.acpjournals.org/
+ACS Publications-https://pubs.acs.org/
+Alzheimer's Journal-https://alz-journals.onlinelibrary.wiley.com/
+Angewandte Chemie-https://onlinelibrary.wiley.com/
+Cell Press-https://www.cell.com/cell/home
+Merriam-Webster 词典-https://www.merriam-webster.com/medical
+Futurism-https://futurism.com/
+JAMA-https://jamanetwork.com/
+Clinical Nutrition-https://www.clinicalnutritionjournal.com/
+MedlinePlus-https://medlineplus.gov/
+Medscape-https://www.medscape.com/
+Nature-https://www.nature.com/
+Neurology-https://www.neurology.org/
+PLOS-https://plos.org/our-journals/
+Oxford Academic-https://academic.oup.com/
+RSNA-https://www.rsna.org/
+Science-https://www.science.org/
+ScienceDirect-https://www.sciencedirect.com/
+bioRxiv-https://www.biorxiv.org/
+GUT (BMJ)-https://gut.bmj.com/
+Knowable Magazine-https://knowablemagazine.org/
+The Lancet-https://www.thelancet.com/
+Yiigle-https://www.yiigle.com/index
+medRxiv-https://www.medrxiv.org/
+Medical Xpress-https://medicalxpress.com/
+Medical News Today-https://www.medicalnewstoday.com/
+PNAS-https://www.pnas.org/
+Phys.org-https://phys.org/
+Polymarket-https://polymarket.com/
+ZSL Publications-https://zslpublications.onlinelibrary.wiley.com/
+arXiv-https://arxiv.org/
+
+## 综合工具箱
+菜鸟工具-https://www.jyshare.com/front-end/53/
+虫部落-https://www.chongbuluo.com/`;
 
   function fetchAndLoad(showLoading = true) {
     if (showLoading) {
@@ -458,14 +800,14 @@
         loadFromText(text);
       })
       .catch(() => {
-        contentEl.innerHTML = `
-          <div class="empty-state">
-            <div class="icon">✕</div>
-            <h2>加载失败</h2>
-            <p>未能读取 bookmarks.txt，请检查文件是否与本页面在同一目录。</p>
-          </div>`;
-        renderToc([]);
-        statusTip.textContent = `✕ 加载失败 (${new Date().toLocaleTimeString()})`;
+        // fetch 失败（如 file:// 被浏览器拦截）→ 使用内嵌数据
+        if (lastContent === null) {
+          lastContent = FALLBACK_DATA;
+          loadFromText(FALLBACK_DATA);
+          statusTip.textContent = `内置数据（未读取到 txt）`;
+        } else {
+          statusTip.textContent = `✕ 加载失败 (${new Date().toLocaleTimeString()})`;
+        }
       });
   }
 
@@ -481,12 +823,10 @@
     }
     setCollapsed(collapsed, false);
 
-    // 点标题栏任意处切换折叠（按钮自身也会冒泡到这里，无需单独监听）
     tocHeader.addEventListener('click', () => {
       setCollapsed(!tocEl.classList.contains('collapsed'));
     });
 
-    // 点击目录项平滑滚动 + 高亮
     tocBody.addEventListener('click', (e) => {
       const item = e.target.closest('.toc-item');
       if (!item) return;
