@@ -1,4 +1,4 @@
-*.md
+
 *.png
 # wrangler files
 .wrangler
