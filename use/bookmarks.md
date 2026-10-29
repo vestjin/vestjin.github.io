@@ -33,7 +33,7 @@ ImgBB-https://imgbb.com/
 
 ## 电子书资源
 书伴-https://bookfere.com/
-Z-Library-https://getzlib.com/
+ZLibrary-https://getzlib.com/
 苦瓜书盘-https://kgbook.com/
 WeLib-https://zh.welib.org/
 时光图书馆-https://atimebook.com/
@@ -188,3 +188,6 @@ BOSS直聘-https://www.zhipin.com/
 前程无忧-https://www.51job.com/
 程序员客栈-https://www.proginn.com/
 牛客网-https://www.nowcoder.com/
+
+## 软件管家
+大白菜软件-https://cmsblogs.cn/software.html
