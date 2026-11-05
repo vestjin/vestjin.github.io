@@ -1,6 +1,8 @@
 ## 网络工具
+
 1.1.1.1-https://one.one.one.one/
 Lantern-https://lantern.io/zh
+1ms.dog-https://1ms.dog/zh-cn/
 测速网-https://www.speedtest.cn/
 Speedtest-https://www.speedtest.net/
 IP地址查询-https://ip.cn/
@@ -13,6 +15,7 @@ iLovePDF-https://www.ilovepdf.com/zh-cn
 smallpdf-https://smallpdf.com/
 
 ## 图片与媒体处理
+图片转ico-https://www.toolhelper.cn/Image/ImageToIco
 Imgdiet-https://www.imgdiet.com/zh-CN
 Docsmall-https://www.imgdiet.com/zh-CN
 Remove.bg 抠图-https://www.remove.bg
@@ -52,28 +55,23 @@ Library Genesis+ - https://libgen.li/
 海盗湾-https://thepiratebay.org/index.html
 
 ## 网盘搜索
-
 伏羲盘-https://fuxipan.com/
-
 混合盘-https://hunhepan.com/
-
 学霸盘-https://www.xuebapan.com/
-
 爱盘搜-https://aipanso.com/?p=baidu
-
 懒盘搜索-https://www.lzpanx.com/
-
 爱盼-https://www.aipan.me/
-
 猫狸盘搜-https://alipansou.com/
-
 网盘俱乐部-https://pan.club/
-
 小云搜索-https://www.yunso.net/
-
 千帆搜索-https://pan.qianfan.app/
-
 博搜搜-https://bososo.com/
+
+
+## 磁力资源种子网站
+
+
+
 
 ## 云盘与存储
 蓝奏云-https://up.woozooo.com/
@@ -81,18 +79,16 @@ OK云盘-https://okpan.com/mySmallfiles
 OneDrive-https://onedrive.live.com/?view=1
 GoogleDrive-https://drive.google.com/drive/home
 
-
+## 油猴扩展
+油小猴-https://www.youxiaohou.com/
 
 ## 免费图床
-
 PICUI-https://picui.cn/
-
 知更鸟-https://zmingcx.com/favorites/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/
 
 
 
 ## 笔记与写作
-
 Blogger-https://www.blogger.com
 Google Keep-https://keep.google.com/
 
@@ -105,30 +101,26 @@ UAPIS-https://uapis.cn/docs/api-reference/get-misc-weather
 
 
 
+## 速查表Quick Reference
+Quick Reference-https://wangchujiang.com/reference/index.html
+
+
+
+
 ## 代码算法练习平台
-
 AtCoder-https://atcoder.jp/
-
 CodeWars-https://www.codewars.com/
-
 Exercism-https://exercism.org/zh-CN
-
 Codeforces-https://codeforces.com/
-
 Acwing-https://www.acwing.com/
-
 LintCode炼码-https://www.lintcode.com/
-
 洛谷-https://www.luogu.com.cn/
-
 LeetCode力扣-https://leetcode.cn/
-
 牛客网真题-https://www.nowcoder.com/exam/company?questionJobId=10&subTabName=written_page
 
 
 
 ## 硬件与创客
-
 DOIT社区-https://www.doitwiki.com/
 Arduino 官网-https://www.arduino.cc/
 Arduino 实验室-https://arduino.nxez.com/
@@ -172,8 +164,12 @@ Phys.org-https://phys.org/
 Polymarket-https://polymarket.com/
 ZSL Publications-https://zslpublications.onlinelibrary.wiley.com/
 arXiv-https://arxiv.org/
-
 SCI-HUB-https://sci-hub.su/
+
+
+## 语言学习
+Lingohut-https://www.lingohut.com/zh
+
 
 ## 综合工具箱
 菜鸟工具-https://www.jyshare.com/front-end/53/
