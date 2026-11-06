@@ -56,7 +56,14 @@
   }
   .cat-btn.active .count { opacity: .8; }
 
-  .cat { margin-top: clamp(24px, 4vw, 36px); }
+  /* ===== 分类区块 =====
+     content-visibility：屏幕外的分类跳过渲染，内容多时滚动性能大幅提升 */
+  .cat {
+    margin-top: clamp(24px, 4vw, 36px);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 400px;
+  }
+  .cat.hidden { display: none; }
   .cat-title {
     display: flex; align-items: baseline; gap: 10px;
     font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
@@ -72,23 +79,28 @@
     background: var(--accent); align-self: center;
   }
 
+  /* ===== 条目卡片：入场动画（初始透明下移，进视口后浮现） ===== */
   .item {
     display: flex; align-items: center; gap: 10px;
     padding: 9px 14px; margin: 6px 0;
     background: var(--card); border: 1px solid var(--border); border-radius: 8px;
     font-size: 15px;
-    transition: transform .15s, box-shadow .15s, border-color .15s;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .4s ease, transform .4s ease,
+                border-color .15s, box-shadow .15s;
   }
+  .item.visible { opacity: 1; transform: none; }
   .item:hover {
     transform: translateX(3px);
     border-color: var(--accent);
     box-shadow: 0 2px 10px rgba(43, 140, 176, 0.12);
   }
+  .item.visible:hover { transform: translateX(3px); }
   .item::before {
     content: ""; width: 6px; height: 6px; border-radius: 50%;
     background: var(--accent); opacity: .5; flex-shrink: 0;
   }
-  .cat.hidden { display: none; }
 
   /* ===== 回到顶部 ===== */
   #toTop {
@@ -104,6 +116,14 @@
   #toTop:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
   .loading { text-align: center; color: var(--text-3); padding: 60px 0; }
+
+  /* ===== 尊重系统"减少动态"设置 ===== */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .item { opacity: 1; transform: none; transition: border-color .15s; }
+    .item:hover { transform: none; }
+    #toTop { transition: opacity .25s; }
+  }
 </style>
 </head>
 <body>
@@ -123,6 +143,7 @@
 fetch('media.md')
   .then(r => { if (!r.ok) throw 0; return r.text(); })
   .then(text => {
+    /* ================= 解析 ================= */
     const cats = [];   // [{ name, items: [名字, ...] }]
     for (const line of text.split('\n')) {
       const t = line.trim();
@@ -147,7 +168,7 @@ fetch('media.md')
     document.getElementById('total').textContent = total;
     document.getElementById('content').innerHTML = html;
 
-    /* ===== 生成吸顶分类按钮 ===== */
+    /* ================= 吸顶分类栏 ================= */
     const catsNav = document.getElementById('cats');
     catsNav.innerHTML =
       `<button class="cat-btn active" data-cat="">全部<span class="count">${total}</span></button>` +
@@ -156,29 +177,72 @@ fetch('media.md')
       ).join('');
     catsNav.style.display = 'flex';
 
-    // 点击筛选：点"电视剧"只显示电视剧，再点一次或点"全部"恢复
+    // 筛选状态：'' = 显示全部（此时 scrollspy 接管高亮）
+    let filterMode = '';
+
     catsNav.addEventListener('click', e => {
       const btn = e.target.closest('.cat-btn');
       if (!btn) return;
       const picked = btn.dataset.cat;
       const isSame = btn.classList.contains('active') && picked !== '';
-      catsNav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+
+      // 切换各分类显隐
       document.querySelectorAll('.cat').forEach(sec => {
         sec.classList.toggle('hidden', picked !== '' && sec.dataset.cat !== picked);
       });
+
       if (picked === '' || isSame) {
+        // 回到"全部"视图 → 高亮"全部"，scrollspy 重新接管
+        filterMode = '';
+        catsNav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
         catsNav.querySelector('[data-cat=""]').classList.add('active');
       } else {
+        // 筛选单分类 → 固定高亮该按钮，scrollspy 暂停
+        filterMode = picked;
+        catsNav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    /* ===== 回到顶部 ===== */
+    /* ================= 入场动画：进视口才显示 ================= */
+    const io = new IntersectionObserver(entries => {
+      for (const en of entries) {
+        if (en.isIntersecting) {
+          en.target.classList.add('visible');
+          io.unobserve(en.target);   // 只触发一次
+        }
+      }
+    }, { rootMargin: '0px 0px 60px 0px' });  // 提前 60px 开始浮现
+    document.querySelectorAll('.item').forEach(el => io.observe(el));
+
+    /* ================= scrollspy：滚动时高亮当前分类 =================
+       仅在"全部"视图下生效；筛选模式下高亮权归点击的按钮 */
+    const spy = new IntersectionObserver(entries => {
+      if (filterMode !== '') return;
+      for (const en of entries) {
+        if (en.isIntersecting) {
+          const name = en.target.dataset.cat;
+          catsNav.querySelectorAll('.cat-btn').forEach(b =>
+            b.classList.toggle('active', b.dataset.cat === name)
+          );
+        }
+      }
+    }, { rootMargin: '-20% 0px -70% 0px' });   // 视口上部 20%~30% 为"阅读带"
+    document.querySelectorAll('.cat').forEach(sec => spy.observe(sec));
+
+    /* ================= 回到顶部：passive + rAF 节流 ================= */
     const toTop = document.getElementById('toTop');
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      toTop.classList.toggle('show', window.scrollY > 300);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        toTop.classList.toggle('show', window.scrollY > 300);
+        ticking = false;
+      });
     }, { passive: true });
   })
   .catch(() => {
