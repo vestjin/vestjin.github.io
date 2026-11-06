@@ -221,576 +221,1017 @@ mjx-container { break-inside: avoid; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 </style>
-<style type='text/css'  id="style-theme_css">
-:root {
-  /* == 字体设置 == */
-  /* 基准字体 */
-  /* 备选：Times, "Times New Roman" */
-  --base-Latin-font: "Latin Modern Roman", "Latin Modern Roman 10", Times;
-  --base-Chinese-font: "家族宋", "宋体-简", "华文宋体", "Noto Serif CJK SC";
-  --base-font-size: 9.5pt;
-  /* 引言字体 */
-  --quote-font: "Latin Modern Roman", "Latin Modern Roman 10", Times,
-    "Times New Roman", "华文仿宋";
-  /* em单位为一个正文字符（--base-font-size）大小，
-  例如，如果您设置 --base-font-size 为 9.5pt，那么 1.05em = 1.05*9.5pt ≈ 10pt。下面的标题字体等设置也遵循该规则。
-  这样，您就可以仅通过调整基准字体大小，而动态对其他元素大小做出调整。
-  当然，您也可以直接设置以pt或px为单位的数值，将元素的大小固定下来，如 --quote-font-size: 10pt; */
-  --quote-font-size: 1.05em;
-  /* 代码字体（代码中的中文会调用 ui-font） */
-  /* "Courier New" 从 Windows 3.1 起成为 Windows 官方提供的字体 */
-  /* "Consolas" 从 Windows Vista 起成为 Windows 官方提供的字体 */
-  --code-font: "Latin Modern Mono", "Latin Modern Mono 10", "Consolas", "Courier New";
-  /* 侧边栏字体 */
-  --ui-font: "阿里巴巴普惠体 2.0", "微软雅黑";
-  /* source mode 字体 */
-  /* 默认调用 code-font 和 ui-font */
-  --sourceMode-font: "SF Mono", "阿里巴巴普惠体 2.0", "微软雅黑";
-  /* 目录字体 */
-  /* 默认调用 base-font */
-  --toc-font: "";
-  /* 默认调用 base-font-size */
-  --toc-font-size: "";
-  /* 公式字体 */
-  --math-font-size: 1em;
-  /* 表格字体 */
-  /* 默认调用 heading-font */
-  --table-title-font: "";
-  /* 默认调用 base-font */
-  --table-font: "";
-  /* 标题字体（总设置） */
-  --heading-Latin-font: var(--base-Latin-font);
-  --heading-Chinese-font: "华文黑体";
-  /* 标题字体分别设置 */
-  /* 大标题（h1）字体 */
-  --title-Chinese-font: "华文黑体";
-  --title-font-size: 1.9em;
-  /* h2字体 */
-  --h2-Chinese-font: "华文黑体";
-  --h2-font-size: 1.5em;
-  /* h3字体 */
-  --h3-Chinese-font: "华文黑体";
-  --h3-font-size: 1.25em;
-  /* h4字体 */
-  --h4-Chinese-font: "华文楷体";
-  --h4-font-size: 1.15em;
-  /* h5字体 */
-  --h5-Chinese-font: "华文仿宋";
-  --h5-font-size: 1.10em;
-  /* h6字体 */
-  --h6-Chinese-font: "华文仿宋";
-  --h6-font-size: 1.05em;
-  /* 粗体样式设置 */
-  /* 加粗风格时使用的字重；400等同于 normal，700等同于 bold，900等同于 heavy */
-  --strong-weight: 900;
-  /* 基础行距 */
-  --base-line-height: 1.618em;
-  /* == 页面设置 == */
-  /* 打印页边距 */
-  --set-margin: 1.8cm 2cm 1.2cm 2cm !important;
-  /* == 控制设置 == */
-  /* 目录中是否显示一级标题 */
-  --toc-show-title: none;
-  /* == 颜色设置 == */
-  /* 超链接颜色 */
-  --link-color-light: #2E67D3;
-  --link-color-dark: #8bb1f9;
+<style type='text/css'  id="style-theme_css">:root {
+  /* Text editor */
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --text-color-dark: #000000;
+  --body-text-color: #222222;
+  --code-border-color: #cccccc;
+  --text-cursor-color: #bbbbbb;
+
+  --secondary-text-color: #73726e;
+  --text-accent-color: #e9e9e7;
+  --bg-color-dark: #f9f9f9;
+
+  --text-highlight-color: #4f3b2a;
+  --text-highlight-bg: #feecc8;
+
+  --code-fence-text-color: #bbbbbb;
+  --code-fence-bg-color: #21252b;
+  --code-fense-inline-bg-color: #e9e9e9;
+  --code-fense-inline-text-color: #222222;
+
+  --blockquote-bg-color: #f3f5f7;
+  --blockquote-accent-color: var(--text-color);
+  --blockquote-text-color: var(--text-color);
+
+  --light-trait-100: #38352f;
+  --light-trait-200: #37352f;
+  --light-trait-300: #37352f;
+  --light-trait-400: #37352f;
+
+  --todo-bg-color: #2eaadc;
+  --todo-tick-color: #fff;
+
+  --search-select-bg-color: #edf3ec;
+  --search-select-text-color: #448361;
+
+  --search-hit-text-color: #d44c47;
+  --search-hit-bg-color: #fdebec;
+
+  --url-text-color: #00000;
+  --url-underline-color: #222222;
+
+  --footnote-text-color: #f7f6f3;
+  --footnote-bg-color: #888884;
+
+  --table-primary-color: var(--bg-color);
+  --table-secondary-color: var(--bg-color);
+
+  --select-text-bg-color: #c0e5f4;
+
+  --code-color: #9a6e3a;
+  --code-cursor-color: #bbbbbb;
+
+  --kbd-text-color: #73726e;
+  --kbd-bg-color: var(--bg-color-dark);
+
+  /* Menu system */
+  --side-bar-bg-color: rgb(248, 248, 247);
+  --side-bar-text-color: var(--text-color);
+  --item-hover-bg-color: #e8e7e4;
+  --window-border: 1px solid var(--bg-color);
+
+  --active-file-bg-color: #e9e7e4;
+  --active-file-border-color: var(--active-file-bg-color);
+  --active-file-text-color: var(--text-color);
+
+  --footer-bg-color: var(--side-bar-bg-color);
+
+  --control-text-color: #72706b;
+
+  /* General */
+  --font-size: 16px;
+  --font-family: -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --monospace: 'Menlo', 'Fira Code','SF Mono Medium', 'Cousine', 'Consolas', monospace;
+  --heading-char-color: var(--light-trait-400);
+  --color-popover-bg-color: var(--text-color);
+  --rawblock-edit-panel-bd: var(--bg-color-dark);
+  --meta-content-color: var(--body-text-color);
+  --primary-btn-border-color: var(--body-text-color);
+  --border-radius: 4px;
+  --v-background: #282c34;
+
+
+  /* Code variables */
+  --cm-line: #bbbbbb;
+  --cm-variable: #d55fde;
+  --cm-keyword: #d55fde;
+  --cm-type: #d55fde;
+  --cm-tag: #ef596f;
+  --cm-bracket: #9b3636;
+  --cm-error: #9b3636;
+  --cm-attribute: #d19a66;
+  --cm-def: #61AFEF;
+  --cm-comment: #5c6370;
+  --cm-string: #89ca78;
+  --cm-operator: #bbbbbb;
+  --cm-number: #d19a66;
+  --cm-meta: #bbbbbb;
+  --cm-atom: #d55fde;
+  --cm-builtin: #669900;
+  --cm-property: #EF596F;
+  --cm-variable-2: #d19a66;
+  --cm-variable-3: #61AFEF;
+  --cm-gutter: #f1f3f450;
+}
+
+html {
+  font-size: var(--font-size);
 }
 
 body {
-  padding: 0 !important;
-  margin: 0 !important;
-  /* counter-reset: tableHead 0 imgHead 0; */
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  color: var(--body-text-color);
+  line-height: 1.6;
 }
 
-@media print {
-  #write {
-    padding: 0 !important;
-  }
-
-  @page {
-    margin: 1.8cm 2cm 1.2cm 2cm !important;
-    /* 页边距 */
-  }
+code {
+  background-color: var(--code-fence-bg-color);
+  padding: 4px;
 }
+
 #write {
-  font-family: var(--base-Latin-font), var(--base-Chinese-font), serif;
-  font-size: var(--base-font-size);
-  /* A4标准宽度 */
-  max-width: 21cm;
-  background-color: white;
-  /* column-count: 2;
-    column-gap: 25px;
-    column-width: 8cm; 
-    display: inline-block; */
-  /* 这里可以试分栏的，但确实不适合实现 */
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 24px 24px 100px 48px;
 }
-#write .md-math-block,
-#write .md-rawblock,
-#write p {
-  margin-top: 1em;
-  margin-bottom: 1em;
+
+@media only screen and (min-width: 1400px) {
+  #write {
+    max-width: 1024px;
+  }
 }
-#write p {
-  text-align: left;
-  line-height: var(--base-line-height);
+
+@media only screen and (min-width: 1800px) {
+  #write {
+    max-width: 1200px;
+  }
 }
-#write a {
-  color: var(--link-color-light);
+
+/* IMAGE */
+img {
+  color: transparent;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#write>ul:first-child,
+#write>ol:first-child {
+  margin-top: 30px;
+}
+
+a {
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: text;
+}
+
+cursor {
+  color: var(--text-cursor-color)
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+  text-decoration: none;
+}
+
+h1 tt,
+h1 code,
+h2 tt,
+h2 code,
+h3 tt,
+h3 code,
+h4 tt,
+h4 code,
+h5 tt,
+h5 code,
+h6 tt,
+h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  line-height: 1.3;
+  color: var(--light-trait-100);
+  border-bottom: solid 1px #eeeeee;
+}
+
+h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.625em;
+  line-height: 1.225;
+  color: var(--light-trait-200);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h3 {
+  font-size: 1.4em;
+  line-height: 1.75;
+  color: var(--light-trait-300);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h5 {
+  font-size: 1em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h6 {
+  font-size: 1em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+  line-height: 2;
+}
+
+h1::before {
+  content: 'H1';
+  bottom: 1em;
+}
+h2::before {
+  content: 'H2';
+  bottom: .85em;
+}
+h3::before, h3.md-focus:before {
+  content: 'H3';
+  top: .8em;
+}
+h4::before, h4.md-focus:before {
+  content: 'H4';
+}
+h5::before, h5.md-focus:before {
+  content: 'H5';
+  top: .05em;
+}
+h6::before, h6.md-focus:before {
+  content: 'H6';
+  top: .05em;
+}
+
+h3.md-focus:before, h4.md-focus:before, h5.md-focus:before, h6.md-focus:before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+  line-height: 2;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+  margin: 0.8em 0;
+}
+
+li>ol,
+li>ul {
+  margin: 0 0;
 }
 
 hr {
-  border-top: solid 1px #ddd;
-  margin-top: 1.8em;
-  margin-bottom: 1.8em;
+  background-color: var(--light-trait-100);
+  height: 1.5px;
+  border: none
 }
 
-img {
-  /* 避免图片在导出时被断开 */
-  page-break-inside: avoid;
-}
-
-strong {
-  font-weight: var(--strong-weight);
-}
-
-@media screen {
-  #write {
-    padding: var(--set-margin);
-    /* 添加一个淡蓝色的边框 */
-    /* border: 0.8px solid #AAC ; */
-    /* 页边阴影 */
-    box-shadow: 0 0 24px 12px #cccccc;
-  }
-}
-.MathJax {
-  font-size: var(--math-font-size);
-}
-
-/* typora 编写模式 */
-#typora-source {
-  font-family: var(--sourceMode-font), var(--code-font), var(--ui-font), monospace;
-  line-height: 2em;
-}
-
-/* 侧边大纲标题 */
-.sidebar-content .outline-h1 {
-  counter-reset: outline-h2;
-}
-.sidebar-content .outline-h2 {
-  counter-reset: outline-h3;
-}
-.sidebar-content .outline-h2 .outline-label:before {
-  counter-increment: outline-h2;
-  content: counter(outline-h2) " ";
-}
-.sidebar-content .outline-h3 {
-  counter-reset: outline-h4;
-}
-.sidebar-content .outline-h3 .outline-label:before {
-  counter-increment: outline-h3;
-  content: counter(outline-h2) "." counter(outline-h3) "  ";
-}
-.sidebar-content .outline-h4 {
-  counter-reset: outline-h5;
-}
-.sidebar-content .outline-h4 .outline-label:before {
-  counter-increment: outline-h4;
-  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "  ";
-}
-.sidebar-content .outline-h5 {
-  counter-reset: outline-h6;
-}
-.sidebar-content .outline-h5 .outline-label:before {
-  counter-increment: outline-h5;
-  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "." counter(outline-h5) "  ";
-}
-
-.sidebar-content {
-  /* 侧边栏的字体修改 */
-  font-family: var(--ui-font);
-  list-style: none;
-}
-
-/* 元数据（如 YAML front matter）的背景框 */
-pre.md-meta-block {
-  background: #cccccc;
-  padding: 1.4em;
-  font-family: var(--code-font), var(--ui-font), monospace;
-  font-size: 0.8em;
-}
-
-#write > h3.md-focus:before,
-#write > h4.md-focus:before,
-#write > h5.md-focus:before,
-#write > h6.md-focus:before,
-h3.md-focus:before,
-h4.md-focus:before,
-h5.md-focus:before,
-h6.md-focus:before {
-  color: inherit;
-  border: inherit;
-  border-radius: inherit;
-  position: inherit;
-  left: initial;
-  float: none;
-  top: initial;
-  font-size: inherit;
-  padding-left: inherit;
-  padding-right: inherit;
-  vertical-align: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-
-#write {
-  counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
-}
-#write h1,
-#write h2,
-#write h3,
-#write h4,
-#write h5,
-#write h6 {
+a,
+.md-def-url {
+  color: var(--url-text-color);
   font-weight: bold;
-  page-break-after: avoid !important;
-}
-#write h1 {
-  font-family: var(--heading-Latin-font), var(--title-Chinese-font), serif;
-  text-align: center;
-  column-span: all;
-  font-size: var(--title-font-size);
-}
-#write h2 {
-  font-family: var(--heading-Latin-font), var(--h2-Chinese-font), serif;
-  font-size: var(--h2-font-size);
-}
-#write h3 {
-  font-family: var(--heading-Latin-font), var(--h3-Chinese-font), serif;
-  font-size: var(--h3-font-size);
-  line-height: var(--h3-font-size);
-}
-#write h4 {
-  font-family: var(--heading-Latin-font), var(--h4-Chinese-font), serif;
-  font-size: var(--h4-font-size);
-  line-height: var(--h4-font-size);
-}
-#write h5 {
-  font-family: var(--heading-Latin-font), var(--h5-Chinese-font), serif;
-  font-size: var(--h5-font-size);
-  line-height: var(--h5-font-size);
-}
-#write h6 {
-  font-family: var(--heading-Latin-font), var(--h6-Chinese-font), serif;
-  font-size: var(--h6-font-size);
-  /* 没有写错，为了避免行距太小才这么写 */
-  line-height: var(--h5-font-size);
-}
-#write h1 {
-  counter-reset: h2;
-}
-#write h2 {
-  counter-reset: h3;
-}
-#write h3 {
-  counter-reset: h4;
-}
-#write h4 {
-  counter-reset: h5;
-}
-#write h5 {
-  counter-reset: h6;
+  text-decoration: none;
+  border-bottom: 0.05em solid;
+  border-color: var(--url-underline-color);
+  transition: all .1s ease-in;
 }
 
-#write h2:before {
-  counter-increment: h2;
-  content: counter(h2);
-  margin-right: 1.2em;
+a:hover {
+  text-decoration: underline;
+  opacity: 1;
 }
 
-#write h3:before, h3.md-focus.md-heading:before {
-  counter-increment: h3;
-  content: counter(h2) "." counter(h3);
-  margin-right: 1.2em;
+sup.md-footnote {
+  background-color: var(--footnote-text-color);
+  color: var(--footnote-bg-color);
 }
 
-#write h4:before, h4.md-focus.md-heading:before {
-  counter-increment: h4;
-  content: counter(h2) "." counter(h3) "." counter(h4);
-  margin-right: 1.2em;
+li p.first {
+  display: inline-block;
 }
 
-#write h5:before, h5.md-focus.md-heading:before {
-  counter-increment: h5;
-  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
-  margin-right: 1.2em;
-}
-
-#write h6:before, h6.md-focus.md-heading:before {
-  counter-increment: h6;
-  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6);
-  margin-right: 1.2em;
-}
-
-/* 参考文献（脚注）块 */
-.footnotes {
-  font-size: 0.95em;
-}
-
-.footnotes-area .footnote-line {
-  color: var(--text-color);
-}
-.footnotes-area hr {
-  border: 0;
-  color: #00000000;
-}
-
-/* 无序列表 */
-ul {
-  list-style: disc;
-}
-ul ul {
-  /*list-style: circle;*/
-  /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
-  list-style: "–   ";
-}
-ul ul ul {
-  list-style: "◦  ";
-}
-
-/* 有序列表 */
+ul,
 ol {
-  list-style: decimal;
-}
-ol ol {
-  counter-reset: liist;
-  list-style: none;
-}
-ol ol li {
-  counter-increment: liist;
-  position: relative;
-}
-ol ol li::before {
-  content: "(" counter(liist,lower-alpha) ")";
-  position: absolute;
-  left: -1.8em;
-}
-ol ol ol {
-  counter-reset: liiist;
-  list-style: none;
-  margin: 0;
-}
-ol ol ol li {
-  counter-increment: liiist;
-  position: relative;
-}
-ol ol ol li::before {
-  content: counter(liiist,lower-roman) ".";
-  align-self: flex-end;
-  position: absolute;
-  left: -4.5em;
-  /* -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;*/
-  /* 为了让项目编号是重新用句点对齐而不是左对齐 */
-  width: 4em;
-  text-align: right;
+  padding-left: 30px;
 }
 
-li {
-  position: relative;
+ul:first-child,
+ol:first-child {
+  margin-top: 0.35%;
 }
 
-ol, ul {
-  padding-inline-start: 2em;
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
 }
 
-/* task列表 */
-.md-task-list-item > input {
-  margin-top: 0.42em;
-  margin-left: -1.5em;
-  width: 1em !important;
-  height: 1em !important;
+mark,
+.ty-file-search-match-text,
+.md-search-hit {
+  background: var(--search-hit-bg-color);
+  color: var(--search-hit-text-color);
 }
 
-#write table {
-  /* 三线表第一条线宽度 */
-  border-top: 1.2pt solid;
-  /* 三线表第二条线宽度 */
-  border-bottom: 1.2pt solid;
-  font-family: var(--table-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
-  /* font-size: var(--base-font-size); */
-  text-align: center;
-  page-break-inside: avoid;
-  border-spacing: 6px;
-  /* 自动布局表格宽度，如果有时内容太紧建议直接加空格吧，我自己看不惯和页面等宽的大表格 */
-  width: auto;
-  /* 使表格默认居中；虽然这个代码不好，但好像没别的实现办法 */
-  margin: 0 auto;
-}
-#write table td {
-  padding: 2px;
-}
-#write table tr {
-  padding: 2px;
-}
-#write th {
-  padding: 0px 6px;
-}
-#write thead {
-  /* 表格标题（首行）样式 */
-  /* 三线表表头的线 */
-  border-bottom: 0.5pt solid;
-  font-family: var(--table-title-font), var(--heading-Latin-font), var(--heading-Chinese-font), serif !important;
-  /* font-size: var(--base-font-size); */
-  font-weight: var(--strong-weight);
+mark {
+  border-radius: var(--border-radius);
+  color: var(--text-highlight-color);
+  font-weight: inherit;
+  background-color: var(--text-highlight-bg);
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
-/* 一个>的引言仅为两字符缩进，使用>>的引言为传统引言样式，具有左竖线、左缩进 */
+.md-search-hit * {
+  background: var(--search-select-bg-color);
+  color: var(--search-select-text-color);
+}
+
+/* Search highlight */
+.cm-search-hit.CodeMirror-selectedtext,
+.md-search-hit.md-search-select,
+.md-search-select {
+  outline: 0 solid var(--search-select-text-color);
+}
+
+.cm-s-inner .CodeMirror-selected {
+  border-radius: 2px;
+  background-color: #404859 !important;
+}
+
+.cm-s-inner .CodeMirror-selectedtext {
+  background-color: transparent !important;
+}
+
+.outline-item.select,
+.ty-search-item-line.select,
+.ty-search-item.select {
+  outline-width: 2px;
+}
+
+.outline-item.select {
+  outline-offset: 0;
+}
+
 blockquote {
-  font-style: normal;
-  font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
-  font-size: var(--quote-font-size);
-  /* 文字离左边框的距离 */
-  padding-left: 2em;
-  padding-right: 2em;
-  /* 左边框离页面边的距离 */
-  margin-left: 0;
-}
-
-blockquote p:first-child {
-  padding-top: 1ch;
-}
-
-blockquote p:last-child {
-  padding-bottom: 1ch;
+  color: var(--blockquote-text-color);
+  margin-left: 1.75px;
+  margin-right: 0;
+  border-left: 0.5rem solid var(--blockquote-accent-color);
+  padding: 10px 14px 7px 22px;
+  /* change the quote highlight */
+  background-color: var(--blockquote-bg-color);
 }
 
 blockquote blockquote {
-  border-left: 4px solid #b3b3b3;
-  padding-left: calc(2ch - 4px);
   padding-right: 0;
-  margin-left: -4px;
-  border-radius: 0;
 }
 
-/* 行内代码 */
-code {
-  font-family: var(--code-font), var(--ui-font), monospace;
+/* Alternating color rows in table*/
+table tr:nth-child(2n) {
+  background-color: var(--table-primary-color);
 }
 
-h1 code, h2 code, h3 code, h4 code, h5 code, h6 code,
-p code,
-li code {
-  color: #3c70c6;
-  background-color: #fefefe;
-  /* 阴影 */
-  box-shadow: 0 0 1px 1px #c8d3df;
-  font-family: var(--code-font), var(--ui-font), monospace;
-  box-sizing: border-box;
-  border-right: 0px;
-  margin: 0 2px 0 2px;
-  padding: 0 2px 0 2px;
-  /* 圆角 */
-  border-radius: 2px 2px 2px 2px;
+table tr:nth-child(2n + 1) {
+  background-color: var(--table-secondary-color);
 }
 
-/* 代码块样式 */
+/* Alternating color rows in table*/
+
+table {
+  padding: 0;
+  word-break: initial;
+}
+
+table tr {
+  border-top: 1px solid var(--text-accent-color);
+  margin: 0;
+  padding: 0;
+}
+
+table tr th {
+  font-weight: bold;
+  border: 1px solid var(--text-accent-color);
+	background-color: var(--bg-color-dark);
+  border-bottom: 0;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr td {
+  border: 1px solid var(--text-accent-color);
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+
+kbd {
+  font-size: 0.875rem;
+  background: var(--kbd-bg-color);
+  border: 1px solid var(--text-accent-color);
+  box-shadow: 0 2px 0 var(--text-accent-color);
+  color: var(--kbd-text-color);
+}
+
 .md-fences,
-.CodeMirror pre {
+code,
+tt {
+  border: solid 1px var(--code-border-color);
+  color: var(--code-fence-text-color);
+  background-color: var(--code-fence-bg-color);
+  border-radius: var(--border-radius);
+  padding: 4px;
+  font-size: 0.875em;
+  font-weight: normal;
+  font-family: var(--monospace)
+}
+
+.md-pair-s code {
+  background-color: var(--code-fense-inline-bg-color);
+  color: var(--code-fense-inline-text-color);
+  border-color: var(--code-fence-text-color);
+  font-size: 0.857em;
+  padding: 4px;
+}
+
+/* CODE BLOCK */
+.md-fences {
+  padding-top: 34px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  background-color: var(--v-background);
+  border-radius: 7px;
+}
+.md-fences::before {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  content: "";
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 22px 0px #ffbd2e, 44px 0px #27c93f;
+}
+
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--bg-color-dark);
+  border: 0;
+  border-radius: var(--border-radius);
+  color: var(--secondary-text-color);
+  margin-top: 0 !important;
+}
+
+#write .mathjax-block .md-rawblock-tooltip {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+
+#write .mathjax-block .md-math-container {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+#write .md-mathblock-panel .md-rawblock-control:first-of-type {
+  border-top-left-radius: var(--border-radius);
+}
+
+.md-mathjax-midline {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.md-inline-math script {
+  color: var(--code-color);
+}
+
+.CodeMirror-lines {
+  padding-left: 4px;
+}
+
+.code-tooltip {
+  box-shadow: none;
+  border-radius: var(--border-radius);
+}
+
+#write .code-tooltip {
+  bottom: initial;
+  line-height: 2;
+  top: 4px;
+  left: initial;
+  right: 4px;
+  background: var(--bg-color-dark);
+  color: var(--text-color-dark);
+  border: 1px solid var(--code-fence-bg-color);
+  min-width: 10em;
+  font-family: var(--font-family);
   font-size: 1em;
+  padding-left: 40px;
 }
 
-.CodeMirror-wrap {
-  /* padding: 10px; */
-  font-size: 1em;
+#write .code-tooltip::before {
+  content: 'Code: ';
+  width: 4em;
+  line-height: 2.25;
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  font-weight: 700;
 }
 
-.CodeMirror-code pre {
-  font-family: var(--code-font), var(--ui-font), monospace;
+#write .code-tooltip .ty-input, .code-tooltip input {
+  line-height: 2;
+  font-weight: bold;
+  border: none;
 }
 
-/* 目录 */
+#write .md-mathblock-panel .code-tooltip {
+  right: 0;
+  border: none;
+}
+
+/* TODO */
+#write .md-task-list-item>input {
+  -webkit-appearance: initial;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  border: 1px solid var(--text-color);
+  margin-top: 0.3rem;
+  margin-left: -1.45rem;
+  height: 0.95rem;
+  width: 0.95rem;
+  transition: all 0.35s;
+}
+
+#write .md-task-list-item>input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#write .md-task-list-item>input[checked] {
+  background: var(--todo-bg-color);
+  border: 1px solid var(--todo-bg-color);
+  text-decoration: line-through;
+}
+
+#write .md-task-list-item>input[checked]::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '✓';
+  position: absolute;
+  margin-top: 0.05rem;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: var(--todo-tick-color);
+  font-size: 0.75em;
+  font-weight: 600;
+}
+
+#write .md-task-list-item>input[checked]::after {
+  text-decoration: line-through;
+}
+
+/* TODO */
+.md-image>.md-meta {
+  border-radius: var(--border-radius);
+  padding: 2px 0 0 4px;
+  font-size: 0.9em;
+  color: inherit;
+}
+
 .md-toc {
-  font-size: var(--toc-font-size);
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
 
-.md-toc-content {
-  margin-left: 2em;
-  /* 修复缺失上级标题时无法递增 */
-  counter-reset: toc-h2 toc-h3 toc-h4;
-  page-break-after: always;
+/* Source mode */
+.CodeMirror.cm-s-typora-default *,
+.cm-s-typora-default * {
+  background: inherit;
+  color: var(--body-text-color);
+  font-family: var(--monospace);
+  font-size: var(--font-size) !important;
+  font-style: normal;
+  font-weight: 500;
 }
 
-.md-toc-inner {
-  margin-left: 0 !important;
-  color: var(--text-color) !important;
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+  border-left: 2px solid var(--code-cursor-color);
 }
 
-.md-toc-item {
-  color: var(--text-color) !important;
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 2px solid var(--code-cursor-color);
 }
 
-/* 目录标题内容属性 */
-.md-toc-h2,
-.md-toc-h3,
-.md-toc-h4,
-.md-toc-h5,
-.md-toc-h6 {
-  font-size: var(--toc-font-size);
-  font-family: var(--toc-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
+.sidebar-tabs {
+  border-bottom: none;
 }
 
-.md-toc-h2 {
-  font-weight: var(--strong-weight);
+.outline-expander {
+  width: 1.5rem;
+  vertical-align: initial;
 }
 
-/* 目录标题前 */
-.md-toc-content .md-toc-h1 {
-  display: var(--toc-show-title);
-  counter-reset: toc-h2;
+.outline-expander:before,
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before,
+.outline-item-open>.outline-item>.outline-expander:hover:before {
+  content: "\f125";
+  transition: transform 125ms ease-in-out;
 }
-.md-toc-content .md-toc-h2 {
-  counter-reset: toc-h3;
+
+.outline-item-open>.outline-item>.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  transform: rotate(90deg);
 }
-.md-toc-content .md-toc-h3 {
-  counter-reset: toc-h4;
+
+.outline-label:hover {
+  text-decoration: none;
 }
-.md-toc-content .md-toc-h4 {
-  counter-reset: toc-h5;
+
+#toc-dropmenu {
+  background: var(--bg-color-dark);
 }
-.md-toc-content .md-toc-h5 {
-  counter-reset: toc-h6;
+
+#toc-dropmenu .outline-title {
+  font-size: 1rem;
+  text-transform: uppercase;
 }
-.md-toc-content .md-toc-h2:before {
-  counter-increment: toc-h2;
-  content: counter(toc-h2);
-  margin-right: 1em;
-  font-weight: var(--strong-weight);
+
+.dropdown-menu .divider {
+  display: none;
 }
-.md-toc-content .md-toc-h3:before {
-  counter-increment: toc-h3;
-  content: counter(toc-h2) "." counter(toc-h3);
-  margin-left: 1.5em;
-  margin-right: 0.5em;
+
+.context-menu {
+  border: none !important;
+  backdrop-filter: saturate(180%) blur(20px) brightness(1.1);
+  background-color: var(--bg-color-dark);
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18) !important;
 }
-.md-toc-content .md-toc-h4:before {
-  counter-increment: toc-h4;
-  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4);
-  margin-left: 3.5em;
-  margin-right: 0.5em;
+
+.file-node-background {
+  height: 31px;
 }
-.md-toc-content .md-toc-h5:before {
-  counter-increment: toc-h5;
-  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5);
-  margin-left: 5.5em;
-  margin-right: 0.5em;
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible;
 }
-.md-toc-content .md-toc-h6:before {
-  counter-increment: toc-h6;
-  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5) "." counter(toc-h6);
-  margin-left: 7.5em;
-  margin-right: 0.5em;
+
+.file-node-open-state {
+  min-width: 12px !important;
+}
+
+.file-node-icon {
+  margin-right: 8px;
+  color: var(--text-color);
+}
+
+.file-node-title-name-part {
+  font-weight: 500;
+}
+
+.file-library-node:not(.file-node-root):focus>.file-node-content {
+  outline: none;
+}
+
+/* New file animation */
+.blink-area {
+  animation: none;
+}
+
+.file-list-item-summary {
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+}
+
+#md-searchpanel input {
+  border-radius: var(--border-radius);
+  box-shadow: none;
+}
+
+#md-searchpanel input:focus {
+  box-shadow: none;
+  border-color: var(--meta-content-color);
+}
+
+#md-searchpanel .search-type-selection {
+  width: auto;
+}
+
+#md-searchpanel .btn:not(.close-btn):hover {
+  box-shadow: none;
+}
+
+.mac-seamless-mode #typora-sidebar {
+  color: var(--side-bar-text-color);
+  background-color: var(--side-bar-bg-color);
+}
+
+#md-notification .btn {
+  border: 0;
+}
+
+/* CODE HIGHLIGHT */
+pre.CodeMirror-line {
+  color: var(--cm-line) !important
+}
+
+.cm-variable {
+  color: var(--cm-variable) !important
+}
+
+.cm-keyword {
+  color: var(--cm-keyword) !important
+}
+
+.cm-type {
+  color: var(--cm-type) !important
+}
+
+.cm-tag {
+  color: var(--cm-tag) !important
+}
+
+.cm-variable-3 {
+  color: var(--cm-variable-3) !important
+}
+
+.cm-bracket {
+  color: var(--cm-bracket);
+}
+
+.cm-error {
+  color: var(--cm-error) !important;
+}
+
+.cm-attribute {
+  color: var(--cm-attribute) !important
+}
+
+.cm-def {
+  color: var(--cm-def) !important
+}
+
+.cm-comment {
+  color: var(--cm-comment) !important
+}
+
+.cm-string {
+  color: var(--cm-string) !important;
+  font-variant-ligatures: common-ligatures !important;
+}
+
+.cm-tag:not() {
+  font-weight: 700;
+}
+
+.cm-operator {
+  color: var(--cm-operator) !important
+}
+
+.cm-number {
+  color: var(--cm-number) !important
+}
+
+.cm-meta {
+  color: var(--cm-meta) !important;
+  font-weight: 700 !important;
+}
+
+.cm-atom {
+  color: var(--cm-atom) !important
+}
+
+.cm-builtin {
+  color: var(--cm-builtin) !important
+}
+
+.cm-property {
+  color: var(--cm-property) !important
+}
+
+.cm-variable-2 {
+  color: var(--cm-variable-2) !important
+}
+
+
+/* CODE HIGHLIGHT */
+
+.file-tree-node.active>.file-node-background {
+  color: var(--active-file-text-color);
+  background-color: var(--active-file-bg-color);
+  border-left: 0 solid var(--active-file-border-color) !important;
+  border-color: var(--active-file-border-color) !important;
+}
+
+.CodeMirror-gutters {
+  border-right: 1px solid var(--cm-gutter);
+  background: inherit;
+  white-space: nowrap;
+}
+
+.ty-footer,
+.sidebar-footer,
+footer {
+  backdrop-filter: saturate(120%) blur(20px) brightness(0.85);
+  border: none !important;
+  background: none;
+  background-color: var(--footer-bg-color);
+}
+
+.code-tooltip {
+  border-radius: 4px;
+  background-color: var(--code-fence-bg-color);
+  box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .52), 0 5px 14px 0 rgba(0, 0, 0, .28) !important;
+}
+
+#sidebar-files-menu {
+  color: var(--side-bar-text-color);
+  border-radius: var(--border-radius);
+  border: none !important;
+  cursor: pointer;
+  box-shadow: 0 26px 58px 0 #f7f6f3, 0 5px 14px 0 rgba(0, 0, 0, .28);
+}
+
+.code-tooltip.md-tooltip-hide.md-hover-tip {
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .52), 0 4.8px 14.4px 0 rgba(0, 0, 0, .28);
+}
+
+#typora-sidebar {
+  border-color: var(--text-cursor-color);
+  box-shadow: rgba(84, 72, 49, 0.08) -1px 0 0 0 inset;
+}
+
+#footer-word-count-info,
+#spell-check-panel {
+  border: none !important;
+  backdrop-filter: saturate(120%) blur(20px) brightness(0.85) !important;
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .32), 0 4.8px 14.4px 0 rgba(0, 0, 0, .28) !important;
+}
+
+/* Windows/Linux unibody mode */
+.megamenu-content,
+.megamenu-opened header {
+  color: var(--body-text-color);
+  background: var(--bg-color-dark);
+}
+
+#recent-file-panel-action-btn {
+  background: inherit;
+  border: 1px var(--light-trait-300) solid;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+  color: var(--text-color);
+  background: var(--bg-color-dark);
+}
+
+.megamenu-menu-panel table td:nth-child(2) {
+  color: var(--text-color);
+  background: var(--bg-color-dark);
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+  color: var(--text-color);
+  background: var(--active-file-bg-color);
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+  color: var(--text-color);
+  background: var(--active-file-bg-color);
+}
+
+.megamenu-menu-panel input[type='text'] {
+  background: inherit;
+  border: 1px var(--secondary-text-color) solid;
+}
+
+#recent-file-panel-action-btn {
+  background: inherit;
+}
+
+.megamenu-menu,
+.megamenu-content {
+  background: var(--side-bar-bg-color);
+  color: var(--text-color);
+}
+
+#top-titlebar,
+#top-titlebar * {
+  background: inherit;
+  color: var(--text-color);
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+  color: var(--text-color);
+}
+
+.megamenu-back-btn {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover,
+.megamenu-menu-header:focus {
+  color: inherit;
+}
+
+.megamenu-menu-panel table tr:nth-child(2n + 1) {
+  background-color: var(--side-bar-bg-color);
+}
+
+.file-node-content {
+  cursor: pointer !important;
+}
+
+.md-alert {
+  background-color: #f3f5f7;
+  padding-top: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-left-width: 0.5rem;
+  border-left-color: #42B985;
+}
+
+.md-alert-text {
+  font-size: 1rem;
 }
 </style>
 <style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
@@ -798,7 +1239,7 @@ li code {
 <title>about</title>
 </head>
 <body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=' first-line-indent'><style>
+<div id='write'  class=''><style>
 /* ===== 移动端适配 ===== */
 @media screen and (max-width: 768px) {
   body.typora-export {
@@ -829,6 +1270,6 @@ li code {
   h2 { font-size: 1.25rem !important; }
   h3 { font-size: 1.1rem !important; }
 }
-</style><p><a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;"><span>⬅ 返回首页</span></a></p><h1 id='关于我'><span>关于我</span></h1><p><span>我是一名正在学习和成长的开发者，对技术充满热情，正在不断提升自己的技能。如果您有任何问题或建议，欢迎联系我！</span></p><!-- 引入悬浮目录脚本（Typora 导出 HTML 时会保留此行） --><script src="assets/toc.js"></script><h2 id='联系方式'><span>联系方式</span></h2><ul><li><p><strong><span>手机号</span></strong><span>: +86 176 33088 571</span></p></li><li><p><strong><span>邮箱</span></strong><span>: </span><a href='mailto:jinmajue@gmail.com' target='_blank' class='url'>jinmajue@gmail.com</a></p></li></ul><h2 id='个人简介'><span>个人简介</span></h2><p><span>INTJ-T，独立、长期主义、想得比做得多。</span></p><p><span>日常生活里：</span><br/><span>不抽烟、不喝酒、不打游戏。</span><br/><span>喜欢读书、散步、骑行，每到一个城市先去图书馆、书店、科技馆；</span><br/><span>喜欢小孩和小狗；</span><br/><span>享受做饭、缝衣服、整理房间这些&quot;让生活有秩序&quot;的小事。</span></p><p><span>写代码这件事上：</span><br/><span>主要用 C 和 Python，对</span><strong><span>贴近底层</span></strong><span>的东西有持续的好奇心——进程怎么调度、IO 怎么阻塞、内存怎么分配、并发怎么不出问题。</span><br/><span>比起&quot;用框架堆功能&quot;，更想知道&quot;框架底下到底在干什么&quot;。</span><br/><span>习惯 GDB / strace / Valgrind 这些工具一点点把问题摸出来，</span><strong><span>享受这个过程</span></strong><span>。</span></p><p><span>技术之外，零零散散看过一些书、走过一些路、拆过几个魔方、爬过几座山、做过几道数独——具体见底部「兴趣爱好」。</span></p><hr /><h2 id='技能与专长'><span>技能与专长</span></h2><h3 id='编程语言'><span>编程语言</span></h3><ul><li><p><strong><span>C</span></strong><span>：写得最多。指针、内存管理、结构体、宏、位运算这些熟；常用 </span><code>gcc</code><span> </span><code>make</code><span> </span><code>gdb</code><span> 调试</span></p></li><li><p><strong><span>Python</span></strong><span>：写脚本、写课设、写点小工具。FastAPI 写过完整后端</span></p></li><li><p><strong><span>C++</span></strong><span>：知道基础语法，STL 常用，模板刚入门；在慢慢啃现代 C++（智能指针 / 移动语义）</span></p></li><li><p><strong><span>Java</span></strong><span>：能看懂简单业务代码，写过课程级别的小项目</span></p></li></ul><h3 id='系统与网络编程最近投入最多'><span>系统与网络编程（最近投入最多）</span></h3><ul><li><p><span>折腾过 </span><strong><span>epoll + 线程池</span></strong><span> 的 Reactor 模型，能讲清非阻塞 IO 和事件驱动是怎么回事</span></p></li><li><p><span>写过 </span><strong><span>自研 MySQL 连接池</span></strong><span>，踩过连接复用、自动重连、超时等待的坑</span></p></li><li><p><span>玩过 </span><strong><span>多线程同步</span></strong><span>——互斥锁、条件变量、生产者-消费者模型自己撸过</span></p></li><li><p><span>读过《Linux 高性能服务器编程》（游双），在读《UNIX 网络编程 卷 1》</span></p></li><li><p><span>工具链：</span><code>gcc</code><span> / </span><code>g++</code><span> / </span><code>make</code><span> / </span><code>cmake</code><span> / </span><code>gdb</code><span> / </span><code>valgrind</code><span> / </span><code>strace</code></p></li></ul><h3 id='数据库'><span>数据库</span></h3><ul><li><p><strong><span>MySQL</span></strong><span>：建表、索引、慢查询调过；用 C 封装过连接池</span></p></li><li><p><strong><span>PostgreSQL</span></strong><span>：FastAPI 项目里用过</span></p></li><li><p><strong><span>SQLite</span></strong><span>：嵌入式小项目里用</span></p></li></ul><h3 id='框架--工具--其他'><span>框架 / 工具 / 其他</span></h3><ul><li><p><span>Python：FastAPI（主）、Django（了解）</span></p></li><li><p><span>C 网络：Muduo 网络库（在学）</span></p></li><li><p><span>容器化：Docker 基本使用</span></p></li><li><p><span>版本控制：Git 日常使用</span></p></li><li><p><span>操作系统、计算机网络、数据结构这些计算机基础课都上过</span></p></li></ul><hr /><h2 id='项目经验'><span>项目经验</span></h2><h3 id='基于-linux-的云盘系统'><span>基于 Linux 的云盘系统</span></h3><p><strong><span>技术栈</span></strong><span>：C / Linux / epoll / MySQL / CMake</span></p><p><a href='https://github.com/vestjin/GraduationDesign'><span>GitHub 仓库</span></a><span> · 2024 - 2025  写了一个能扛数千并发的网盘后端。</span></p><ul><li><p><strong><span>网络层</span></strong><span>：epoll 非阻塞 IO + 自研线程池（互斥锁 + 条件变量同步任务队列）做 Reactor</span></p></li><li><p><strong><span>MySQL 连接池</span></strong><span>：自己撸的，支持连接复用、自动重连、超时等待</span></p></li><li><p><strong><span>文件传输</span></strong><span>：</span><code>sendfile</code><span> 零拷贝优化大文件下载；MD5 秒传 + 分片断点续传</span></p></li><li><p><strong><span>安全</span></strong><span>：Token 身份认证、密码 SHA256 加盐、SQL 注入防护</span></p></li><li><p><strong><span>存储</span></strong><span>：文件夹树形管理 + 用户配额</span></p></li><li><p><strong><span>工程化</span></strong><span>：CMake 多模块构建，GDB / Valgrind 排查内存与并发问题</span></p></li></ul><h3 id='恒温控制系统'><span>恒温控制系统</span></h3><p><strong><span>技术栈</span></strong><span>：C (Keil) / Python / Tkinter / SQLite · 2023-2024 学期</span></p><p><a href='https://github.com/vestjin/temperature-control-system'><span>GitHub 仓库</span></a><span> · 2023 - 2024</span></p><p><span>上下位机协作的小项目。下位机用 Keil C 写单片机串口初始化与温度采集；上位机用 Python Tkinter 做界面、Dash 画实时图表、SQLite 存数据。算是第一次完整走通&quot;嵌入式 + 上位机&quot;的协作流程。</span></p><h3 id='个人导航页-nav'><span>个人导航页 (nav)</span></h3><p><strong><span>技术栈</span></strong><span>：HTML / CSS / 原生 JavaScript (PWA) </span></p><p><a href='https://github.com/vestjin/nav'><span>GitHub 仓库</span></a><span> ·  2026.3</span></p><p><span>一个跑在自己浏览器里的&quot;个人门户&quot;。默认书签分常用 / 开发 / 学习 / 工具四类，支持添加、搜索、导入导出、刷新抓取。技术上折腾了这些：</span></p><ul><li><p><strong><span>PWA + 离线</span></strong><span>：完整 </span><code>manifest.webmanifest</code><span> + </span><code>sw.js</code><span> Service Worker，可&quot;添加到主屏幕&quot;当 App 用</span></p></li><li><p><strong><span>自动抓取</span></strong><span>：用 Google favicon 服务 + CORS 代理（allorigins / codetabs / corsproxy）自动拉页面 </span><code>&lt;title&gt;</code><span> 和图标，结果缓存 7 天</span></p></li><li><p><strong><span>云同步</span></strong><span>：通过 GitHub Gist 跨设备同步书签列表，Token + Gist ID 配一次就够</span></p></li><li><p><strong><span>交互细节</span></strong><span>：分类可折叠 / 拖动排序、卡片可拖动、内置 Bing / Google / DDG / Yandex 网页搜索</span></p></li></ul><h3 id='repo2md'><span>repo2md</span></h3><p><strong><span>技术栈</span></strong><span>：HTML / CSS / 原生 JavaScript </span></p><p><a href='https://github.com/vestjin/repo2md'><span>GitHub 仓库</span></a><span> · 2025 年底</span></p><p><span>把一整个项目文件夹喂给 AI 之前的预处理工具。选一个目录，自动过滤 </span><code>.git</code><span> / </span><code>node_modules</code><span> / 编译产物等无关文件，按后缀勾选要打包的文件，生成一份带目录树和文件内容的 markdown，可以复制或下载。</span></p><ul><li><p><strong><span>兼容性</span></strong><span>：优先用新版 </span><code>showDirectoryPicker</code><span> API；不支持的浏览器自动降级到 </span><code>webkitdirectory</code><span> 传统模式</span></p></li><li><p><strong><span>二进制识别</span></strong><span>：扩展名黑名单 + 文件头魔数（PDF / PNG / JPEG / ZIP / GZIP）双重判定，自动跳过</span></p></li><li><p><strong><span>大文件友好</span></strong><span>：流式读取（</span><code>File.stream()</code><span> + </span><code>TextDecoder</code><span>），扫描和生成过程都带进度提示</span></p></li><li><p><strong><span>安全提示</span></strong><span>：检测到 </span><code>.env</code><span> / </span><code>id_rsa</code><span> / </span><code>password</code><span> 等敏感词会弹窗提醒</span></p></li></ul><p>&nbsp;</p><h3 id='文件批量重命名工具'><span>文件批量重命名工具</span></h3><p><strong><span>技术栈</span></strong><span>：Python / Tkinter / tkinterdnd2 · 2024.8</span></p><p><span>桌面端的批量文件重命名工具，v2.0 版本支持拖拽、递归、撤销与备份。用 Tkinter 写的界面，重点打磨了&quot;批量操作的安全性&quot;：</span></p><ul><li><p><strong><span>四种重命名模式</span></strong><span>：查找替换、添加前缀/后缀、序号重命名（可设起始序号和位数）</span></p></li><li><p><strong><span>实时预览 + 冲突检测</span></strong><span>：防抖刷新预览，按目录分组检测组内重名、与磁盘已有文件冲突、非法字符，用颜色标签区分状态（有效/冲突/无效/丢失）</span></p></li><li><p><strong><span>安全兜底</span></strong><span>：执行前自动备份到 </span><code>.rename_backup</code><span> 目录，支持一键撤销上次批量操作</span></p></li><li><p><strong><span>导入方式多样</span></strong><span>：</span><code>tkinterdnd2</code><span> 拖拽（未安装自动降级）、文件夹递归遍历、剪贴板多行路径粘贴</span></p></li><li><p><strong><span>可用性细节</span></strong><span>：按扩展名/类型筛选，点击列头或下拉排序（名称/大小/修改时间），大文件 stat 信息缓存</span></p></li></ul><hr /><h2 id='教育背景'><span>教育背景</span></h2><ul><li><p><strong><span>学校</span></strong><span>: 河北科技大学</span></p></li><li><p><strong><span>专业</span></strong><span>: 计算机科学与技术</span></p></li><li><p><strong><span>时间</span></strong><span>: 2021.9 - 2026.6</span></p></li><li><p><strong><span>学位</span></strong><span>: 工学学士</span></p></li></ul><h2 id='兴趣爱好'><span>兴趣爱好</span></h2><blockquote><p><span>这部分我写得比较细，留给愿意读到这里的人。</span></p></blockquote><h3 id='物质上的喜好'><span>物质上的喜好</span></h3><ul><li><p><span>饮料：绿茶</span></p></li><li><p><span>水果：榴莲</span></p></li><li><p><span>颜色：蓝色</span></p></li><li><p><span>零食：铜锣烧红豆、菠萝包、春光椰子糖、大白兔奶糖、口香糖、饴糖</span></p></li></ul><h3 id='精神上的偏好'><span>精神上的偏好</span></h3><ul><li><p><span>兴趣：读书、魔方、塔罗牌、数独、爬山</span></p></li><li><p><span>独处：冥想、做饭、缝衣服、刷鞋洗衣服、打扫屋子、整理东西</span></p></li><li><p><span>放松：出外散步、吃辣、洗冷热交替澡、水下憋气</span></p></li><li><p><span>喜欢的小说：《蛊真人》</span></p></li><li><p><span>喜欢的游戏：口袋妖怪、Plants vs. Zombies</span></p></li><li><p><span>喜欢的动画片：《哆啦 A 梦》</span></p></li></ul><h3 id='想养但还没养的'><span>想养但还没养的</span></h3><ul><li><p><span>虹之玉（多肉）、巴西龟、金丝熊</span></p></li></ul><h3 id='偶像与佩服的人'><span>偶像与佩服的人</span></h3><ul><li><p><span>偶像：齐静春、费曼、马斯克</span></p></li><li><p><span>不知滋味，感同身受的人：张炘炀</span></p></li><li><p><span>佩服的人：曹操</span></p></li></ul><h3 id='审美'><span>审美</span></h3><ul><li><p><span>八木莉可子、泽尻英龙华、小池里奈、小仓优子</span></p></li></ul><h3 id='一些个人印记'><span>一些个人印记</span></h3><ul><li><p><span>信仰：自己教</span></p></li><li><p><span>口头禅：&quot;过了那个年纪了。&quot;</span></p></li></ul><h3 id='值得思考的事'><span>值得思考的事</span></h3><ul><li><p><span>柳天然人性实验</span></p></li><li><p><span>Marina Abramovic 行为艺术作品《节奏 0》</span></p></li><li><p><span>一场考试的男女分考场插排实验</span></p></li></ul><hr /><p><span>如果你也对这些事情感兴趣，欢迎来聊。</span></p></div></div>
+</style><p><a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;"><span>⬅ 返回首页</span></a></p><h1 id='关于我'><span>关于我</span></h1><p><span>我是一名正在学习和成长的开发者，对技术充满热情，正在不断提升自己的技能。如果您有任何问题或建议，欢迎联系我！</span></p><!-- 引入悬浮目录脚本（Typora 导出 HTML 时会保留此行） --><script src="assets/toc.js"></script><h2 id='联系方式'><span>联系方式</span></h2><ul><li><p><strong><span>手机号</span></strong><span>: +86 176 33088 571</span></p></li><li><p><strong><span>邮箱</span></strong><span>: </span><a href='mailto:jinmajue@gmail.com' target='_blank' class='url'>jinmajue@gmail.com</a></p></li></ul><h2 id='个人简介'><span>个人简介</span></h2><p><span>INTJ-T，独立、长期主义、想得比做得多。</span></p><p><span>日常生活里：</span><br/><span>不抽烟、不喝酒、偶尔打游戏很菜。贪财好色，爱捡小便宜。  </span><br/><span>喜欢小孩和小狗；</span><br/><span>享受做饭、缝衣服、整理房间这些&quot;让生活有秩序&quot;的小事。</span></p><p><span>写代码这件事上：</span><br/><span>主要用 C 和 Python，对</span><strong><span>贴近底层</span></strong><span>的东西有持续的好奇心——进程怎么调度、IO 怎么阻塞、内存怎么分配、并发怎么不出问题。</span><br/><span>比起&quot;用框架堆功能&quot;，更想知道&quot;框架底下到底在干什么&quot;。</span><br/><span>习惯 GDB / strace / Valgrind 这些工具一点点把问题摸出来，</span><strong><span>享受这个过程</span></strong><span>。</span></p><p><span>技术之外，零零散散看过一些书、走过一些路、拆过几个魔方、爬过几座山、做过几道数独——具体见底部「兴趣爱好」。</span></p><hr /><h2 id='技能与专长'><span>技能与专长</span></h2><h3 id='编程语言'><span>编程语言</span></h3><ul><li><p><strong><span>C</span></strong><span>：写得最多。指针、内存管理、结构体、宏、位运算这些熟；常用 </span><code>gcc</code><span> </span><code>make</code><span> </span><code>gdb</code><span> 调试</span></p></li><li><p><strong><span>Python</span></strong><span>：写脚本、写课设、写点小工具。FastAPI 写过完整后端</span></p></li><li><p><strong><span>C++</span></strong><span>：知道基础语法，STL 常用，模板刚入门；在慢慢啃现代 C++（智能指针 / 移动语义）</span></p></li><li><p><strong><span>Java</span></strong><span>：能看懂简单业务代码，写过课程级别的小项目</span></p></li></ul><h3 id='系统与网络编程最近投入最多'><span>系统与网络编程（最近投入最多）</span></h3><ul><li><p><span>折腾过 </span><strong><span>epoll + 线程池</span></strong><span> 的 Reactor 模型，能讲清非阻塞 IO 和事件驱动是怎么回事</span></p></li><li><p><span>写过 </span><strong><span>自研 MySQL 连接池</span></strong><span>，踩过连接复用、自动重连、超时等待的坑</span></p></li><li><p><span>玩过 </span><strong><span>多线程同步</span></strong><span>——互斥锁、条件变量、生产者-消费者模型自己撸过</span></p></li><li><p><span>读过《Linux 高性能服务器编程》（游双），在读《UNIX 网络编程 卷 1》</span></p></li><li><p><span>工具链：</span><code>gcc</code><span> / </span><code>g++</code><span> / </span><code>make</code><span> / </span><code>cmake</code><span> / </span><code>gdb</code><span> / </span><code>valgrind</code><span> / </span><code>strace</code></p></li></ul><h3 id='数据库'><span>数据库</span></h3><ul><li><p><strong><span>MySQL</span></strong><span>：建表、索引、慢查询调过；用 C 封装过连接池</span></p></li><li><p><strong><span>PostgreSQL</span></strong><span>：FastAPI 项目里用过</span></p></li><li><p><strong><span>SQLite</span></strong><span>：嵌入式小项目里用</span></p></li></ul><h3 id='框架--工具--其他'><span>框架 / 工具 / 其他</span></h3><ul><li><p><span>Python：FastAPI（主）、Django（了解）</span></p></li><li><p><span>C 网络：Muduo 网络库（在学）</span></p></li><li><p><span>容器化：Docker 基本使用</span></p></li><li><p><span>版本控制：Git 日常使用</span></p></li><li><p><span>操作系统、计算机网络、数据结构这些计算机基础课都上过</span></p></li></ul><hr /><h2 id='项目经验'><span>项目经验</span></h2><h3 id='基于-linux-的云盘系统'><span>基于 Linux 的云盘系统</span></h3><p><strong><span>技术栈</span></strong><span>：C / Linux / epoll / MySQL / CMake</span></p><p><a href='https://github.com/vestjin/GraduationDesign'><span>GitHub 仓库</span></a><span> · 2024 - 2025  写了一个能扛数千并发的网盘后端。</span></p><ul><li><p><strong><span>网络层</span></strong><span>：epoll 非阻塞 IO + 自研线程池（互斥锁 + 条件变量同步任务队列）做 Reactor</span></p></li><li><p><strong><span>MySQL 连接池</span></strong><span>：自己撸的，支持连接复用、自动重连、超时等待</span></p></li><li><p><strong><span>文件传输</span></strong><span>：</span><code>sendfile</code><span> 零拷贝优化大文件下载；MD5 秒传 + 分片断点续传</span></p></li><li><p><strong><span>安全</span></strong><span>：Token 身份认证、密码 SHA256 加盐、SQL 注入防护</span></p></li><li><p><strong><span>存储</span></strong><span>：文件夹树形管理 + 用户配额</span></p></li><li><p><strong><span>工程化</span></strong><span>：CMake 多模块构建，GDB / Valgrind 排查内存与并发问题</span></p></li></ul><h3 id='恒温控制系统'><span>恒温控制系统</span></h3><p><strong><span>技术栈</span></strong><span>：C (Keil) / Python / Tkinter / SQLite · 2023-2024 学期</span></p><p><a href='https://github.com/vestjin/temperature-control-system'><span>GitHub 仓库</span></a><span> · 2023 - 2024</span></p><p><span>上下位机协作的小项目。下位机用 Keil C 写单片机串口初始化与温度采集；上位机用 Python Tkinter 做界面、Dash 画实时图表、SQLite 存数据。算是第一次完整走通&quot;嵌入式 + 上位机&quot;的协作流程。</span></p><h3 id='个人导航页-nav'><span>个人导航页 (nav)</span></h3><p><strong><span>技术栈</span></strong><span>：HTML / CSS / 原生 JavaScript (PWA) </span></p><p><a href='https://github.com/vestjin/nav'><span>GitHub 仓库</span></a><span> ·  2026.3</span></p><p><span>一个跑在自己浏览器里的&quot;个人门户&quot;。默认书签分常用 / 开发 / 学习 / 工具四类，支持添加、搜索、导入导出、刷新抓取。技术上折腾了这些：</span></p><ul><li><p><strong><span>PWA + 离线</span></strong><span>：完整 </span><code>manifest.webmanifest</code><span> + </span><code>sw.js</code><span> Service Worker，可&quot;添加到主屏幕&quot;当 App 用</span></p></li><li><p><strong><span>自动抓取</span></strong><span>：用 Google favicon 服务 + CORS 代理（allorigins / codetabs / corsproxy）自动拉页面 </span><code>&lt;title&gt;</code><span> 和图标，结果缓存 7 天</span></p></li><li><p><strong><span>云同步</span></strong><span>：通过 GitHub Gist 跨设备同步书签列表，Token + Gist ID 配一次就够</span></p></li><li><p><strong><span>交互细节</span></strong><span>：分类可折叠 / 拖动排序、卡片可拖动、内置 Bing / Google / DDG / Yandex 网页搜索</span></p></li></ul><h3 id='repo2md'><span>repo2md</span></h3><p><strong><span>技术栈</span></strong><span>：HTML / CSS / 原生 JavaScript </span></p><p><a href='https://github.com/vestjin/repo2md'><span>GitHub 仓库</span></a><span> · 2025 年底</span></p><p><span>把一整个项目文件夹喂给 AI 之前的预处理工具。选一个目录，自动过滤 </span><code>.git</code><span> / </span><code>node_modules</code><span> / 编译产物等无关文件，按后缀勾选要打包的文件，生成一份带目录树和文件内容的 markdown，可以复制或下载。</span></p><ul><li><p><strong><span>兼容性</span></strong><span>：优先用新版 </span><code>showDirectoryPicker</code><span> API；不支持的浏览器自动降级到 </span><code>webkitdirectory</code><span> 传统模式</span></p></li><li><p><strong><span>二进制识别</span></strong><span>：扩展名黑名单 + 文件头魔数（PDF / PNG / JPEG / ZIP / GZIP）双重判定，自动跳过</span></p></li><li><p><strong><span>大文件友好</span></strong><span>：流式读取（</span><code>File.stream()</code><span> + </span><code>TextDecoder</code><span>），扫描和生成过程都带进度提示</span></p></li><li><p><strong><span>安全提示</span></strong><span>：检测到 </span><code>.env</code><span> / </span><code>id_rsa</code><span> / </span><code>password</code><span> 等敏感词会弹窗提醒</span></p></li></ul><p>&nbsp;</p><h3 id='文件批量重命名工具'><span>文件批量重命名工具</span></h3><p><strong><span>技术栈</span></strong><span>：Python / Tkinter / tkinterdnd2 · 2024.8</span></p><p><span>桌面端的批量文件重命名工具，v2.0 版本支持拖拽、递归、撤销与备份。用 Tkinter 写的界面，重点打磨了&quot;批量操作的安全性&quot;：</span></p><ul><li><p><strong><span>四种重命名模式</span></strong><span>：查找替换、添加前缀/后缀、序号重命名（可设起始序号和位数）</span></p></li><li><p><strong><span>实时预览 + 冲突检测</span></strong><span>：防抖刷新预览，按目录分组检测组内重名、与磁盘已有文件冲突、非法字符，用颜色标签区分状态（有效/冲突/无效/丢失）</span></p></li><li><p><strong><span>安全兜底</span></strong><span>：执行前自动备份到 </span><code>.rename_backup</code><span> 目录，支持一键撤销上次批量操作</span></p></li><li><p><strong><span>导入方式多样</span></strong><span>：</span><code>tkinterdnd2</code><span> 拖拽（未安装自动降级）、文件夹递归遍历、剪贴板多行路径粘贴</span></p></li><li><p><strong><span>可用性细节</span></strong><span>：按扩展名/类型筛选，点击列头或下拉排序（名称/大小/修改时间），大文件 stat 信息缓存</span></p></li></ul><hr /><h2 id='教育背景'><span>教育背景</span></h2><ul><li><p><strong><span>学校</span></strong><span>: 河北科技大学</span></p></li><li><p><strong><span>专业</span></strong><span>: 计算机科学与技术</span></p></li><li><p><strong><span>时间</span></strong><span>: 2021.9 - 2026.6</span></p></li><li><p><strong><span>学位</span></strong><span>: 工学学士</span></p></li></ul><h2 id='兴趣爱好'><span>兴趣爱好</span></h2><blockquote><p><span>这部分我写得比较细，留给愿意读到这里的人。</span></p></blockquote><h3 id='物质上的喜好'><span>物质上的喜好</span></h3><ul><li><p><span>饮料：绿茶</span></p></li><li><p><span>水果：榴莲</span></p></li><li><p><span>颜色：蓝色</span></p></li><li><p><span>零食：铜锣烧红豆、菠萝包、春光椰子糖、大白兔奶糖、口香糖、饴糖</span></p></li></ul><h3 id='精神上的偏好'><span>精神上的偏好</span></h3><ul><li><p><a href='https://www.jinmajue.top/book/'><span>书单</span></a><span>、</span><a href='https://www.jinmajue.top/music_online/'><span>歌单</span></a><span>、</span><a href='https://www.jinmajue.top/book/media.html'><span>影视集</span></a><span>、</span></p></li><li><p><span>兴趣：读书、魔方、塔罗牌、数独、爬山</span></p></li><li><p><span>独处：冥想、做饭、缝衣服、刷鞋洗衣服、打扫屋子、整理东西</span></p></li><li><p><span>放松：出外散步、吃辣、洗冷热交替澡、水下憋气</span></p></li><li><p><span>喜欢的小说：《蛊真人》</span></p></li><li><p><span>喜欢的游戏：口袋妖怪、Plants vs. Zombies</span></p></li><li><p><span>喜欢的动画片：《哆啦 A 梦》</span></p></li></ul><h3 id='想养但还没养的'><span>想养但还没养的</span></h3><ul><li><p><span>虹之玉（多肉）、巴西龟、金丝熊</span></p></li></ul><h3 id='偶像与佩服的人'><span>偶像与佩服的人</span></h3><ul><li><p><span>偶像：齐静春、费曼、马斯克</span></p></li><li><p><span>不知滋味，感同身受的人：张炘炀</span></p></li><li><p><span>佩服的人：曹操</span></p></li></ul><h3 id='审美'><span>审美</span></h3><ul><li><p><span>八木莉可子、泽尻英龙华、小池里奈、小仓优子</span></p></li></ul><h3 id='一些个人印记'><span>一些个人印记</span></h3><ul><li><p><span>信仰：自己教</span></p></li><li><p><span>口头禅：&quot;过了那个年纪了。&quot;</span></p></li></ul><h3 id='值得思考的事'><span>值得思考的事</span></h3><ul><li><p><span>柳天然人性实验</span></p></li><li><p><span>Marina Abramovic 行为艺术作品《节奏 0》</span></p></li><li><p><span>一场考试的男女分考场插排实验</span></p></li></ul><hr /><p><span>如果你也对这些事情感兴趣，欢迎来聊。</span></p></div></div>
 </body>
 </html>

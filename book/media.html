@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>片单 · Watch List</title>
+<style>
+  :root {
+    --bg: #f2f8fb;
+    --card: #ffffff;
+    --text: #24404f;
+    --text-3: #8fa8b5;
+    --accent: #2b8cb0;
+    --accent-soft: #d7ecf5;
+    --border: #d8e6ed;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7;
+    padding: 0 clamp(16px, 4vw, 32px) 80px; max-width: 720px; margin: 0 auto;
+  }
+  header { padding: clamp(40px, 8vw, 64px) 0 clamp(16px, 3vw, 24px); }
+  h1 {
+    font-size: clamp(22px, 4.5vw, 28px); font-weight: 700;
+    font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
+  }
+  h1::before { content: "— "; color: var(--accent); }
+  h1::after { content: " —"; color: var(--accent); }
+  header p { margin-top: 6px; color: var(--text-3); font-size: 14px; }
+
+  /* ===== 吸顶分类栏 ===== */
+  .cats {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; gap: 8px; flex-wrap: nowrap; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding: 10px 0; margin: 0 calc(-1 * clamp(16px, 4vw, 32px));
+    padding-left: clamp(16px, 4vw, 32px); padding-right: clamp(16px, 4vw, 32px);
+    background: var(--bg);
+    box-shadow: 0 6px 12px -8px rgba(43, 140, 176, 0.25);
+  }
+  .cats::-webkit-scrollbar { display: none; }
+  .cat-btn {
+    font: inherit; font-size: 13.5px; padding: 5px 16px;
+    border-radius: 99px; border: 1px solid var(--border);
+    background: var(--card); color: var(--text);
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: all .15s;
+  }
+  .cat-btn .count { font-size: 12px; opacity: .6; margin-left: 3px; }
+  .cat-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cat-btn.active {
+    background: var(--accent); border-color: var(--accent);
+    color: #fff;
+  }
+  .cat-btn.active .count { opacity: .8; }
+
+  .cat { margin-top: clamp(24px, 4vw, 36px); }
+  .cat-title {
+    display: flex; align-items: baseline; gap: 10px;
+    font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
+    font-size: 18px; font-weight: 700;
+    border-bottom: 2px solid var(--accent-soft); padding-bottom: 8px; margin-bottom: 10px;
+  }
+  .cat-title .num {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    font-family: -apple-system, "PingFang SC", sans-serif;
+  }
+  .cat-title::before {
+    content: ""; width: 4px; height: 16px; border-radius: 2px;
+    background: var(--accent); align-self: center;
+  }
+
+  .item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px; margin: 6px 0;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 15px;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .item:hover {
+    transform: translateX(3px);
+    border-color: var(--accent);
+    box-shadow: 0 2px 10px rgba(43, 140, 176, 0.12);
+  }
+  .item::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); opacity: .5; flex-shrink: 0;
+  }
+  .cat.hidden { display: none; }
+
+  /* ===== 回到顶部 ===== */
+  #toTop {
+    position: fixed; right: clamp(16px, 4vw, 40px); bottom: 32px;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--card); color: var(--accent);
+    font-size: 18px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(43, 140, 176, 0.18);
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: all .25s; z-index: 20;
+  }
+  #toTop.show { opacity: 1; pointer-events: auto; transform: none; }
+  #toTop:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .loading { text-align: center; color: var(--text-3); padding: 60px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>片单</h1>
+  <p>共 <span id="total">0</span> 部 · 不定期更新</p>
+</header>
+
+<!-- 吸顶分类栏：数据加载后自动生成 -->
+<nav class="cats" id="cats" style="display:none;"></nav>
+
+<div id="content"><p class="loading">正在加载 …</p></div>
+
+<button id="toTop" title="回到顶部" aria-label="回到顶部">↑</button>
+
+<script>
+fetch('media.md')
+  .then(r => { if (!r.ok) throw 0; return r.text(); })
+  .then(text => {
+    const cats = [];   // [{ name, items: [名字, ...] }]
+    for (const line of text.split('\n')) {
+      const t = line.trim();
+      if (!t) continue;
+      if (t.startsWith('#')) {
+        cats.push({ name: t.replace(/^#+\s*/, ''), items: [] });
+        continue;
+      }
+      cats[cats.length - 1].items.push(t);
+    }
+
+    const valid = cats.filter(c => c.items.length);
+    let total = 0, html = '';
+    for (const cat of valid) {
+      total += cat.items.length;
+      html += `<section class="cat" data-cat="${cat.name}"><h2 class="cat-title">${cat.name}<span class="num">${cat.items.length} 部</span></h2>`;
+      for (const name of cat.items) {
+        html += `<div class="item">${name}</div>`;
+      }
+      html += `</section>`;
+    }
+    document.getElementById('total').textContent = total;
+    document.getElementById('content').innerHTML = html;
+
+    /* ===== 生成吸顶分类按钮 ===== */
+    const catsNav = document.getElementById('cats');
+    catsNav.innerHTML =
+      `<button class="cat-btn active" data-cat="">全部<span class="count">${total}</span></button>` +
+      valid.map(c =>
+        `<button class="cat-btn" data-cat="${c.name}">${c.name}<span class="count">${c.items.length}</span></button>`
+      ).join('');
+    catsNav.style.display = 'flex';
+
+    // 点击筛选：点"电视剧"只显示电视剧，再点一次或点"全部"恢复
+    catsNav.addEventListener('click', e => {
+      const btn = e.target.closest('.cat-btn');
+      if (!btn) return;
+      const picked = btn.dataset.cat;
+      const isSame = btn.classList.contains('active') && picked !== '';
+      catsNav.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cat').forEach(sec => {
+        sec.classList.toggle('hidden', picked !== '' && sec.dataset.cat !== picked);
+      });
+      if (picked === '' || isSame) {
+        catsNav.querySelector('[data-cat=""]').classList.add('active');
+      } else {
+        btn.classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ===== 回到顶部 ===== */
+    const toTop = document.getElementById('toTop');
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+      toTop.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
+  })
+  .catch(() => {
+    document.getElementById('content').innerHTML =
+      '<p class="loading">⚠ 未读取到 media.md，请确认它与本页面在同一目录。</p>';
+  });
+</script>
+</body>
+</html>

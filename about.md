@@ -174,6 +174,8 @@ INTJ-T，独立、长期主义、想得比做得多。
 - 零食：铜锣烧红豆、菠萝包、春光椰子糖、大白兔奶糖、口香糖、饴糖
 
 ### 精神上的偏好
+
+- [书单](https://www.jinmajue.top/book/)、[歌单](https://www.jinmajue.top/music_online/)、[影视集](https://www.jinmajue.top/book/media.html)、
 - 兴趣：读书、魔方、塔罗牌、数独、爬山
 - 独处：冥想、做饭、缝衣服、刷鞋洗衣服、打扫屋子、整理东西
 - 放松：出外散步、吃辣、洗冷热交替澡、水下憋气
