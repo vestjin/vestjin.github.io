@@ -1,21 +1,22 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f1ecdf;
-  --bg-soft: #ebe5d2;
-  --card: #fbf8f0;
-  --card-hover: #f7f2e6;
-  --border: #e3dac6;
-  --text: #3b352c;
-  --text-dim: #8a8273;
-  --primary: #6f9472;
-  --primary-hover: #5b7f5e;
-  --primary-soft: rgba(111, 148, 114, 0.12);
-  --danger: #c4736a;
-  --shadow: 0 1px 2px rgba(60, 50, 30, 0.06);
-  --shadow-md: 0 4px 12px rgba(60, 50, 30, 0.08);
+  --bg: #fdf2ec;              /* 蜜桃白底色 */
+  --bg-soft: #fae8dd;
+  --card: #fffaf6;
+  --card-hover: #fdeee4;
+  --border: #f2ddcf;
+  --text: #4a3a33;            /* 暖棕文字 */
+  --text-dim: #a08b80;
+  --primary: #e07a5f;         /* 陶土橙主色 */
+  --primary-hover: #c96a50;
+  --primary-soft: rgba(224, 122, 95, 0.12);
+  --danger: #b5564f;
+  --shadow: 0 1px 2px rgba(90, 55, 40, 0.06);
+  --shadow-md: 0 4px 12px rgba(90, 55, 40, 0.09);
   --radius: 10px;
 }
+
 
 html, body {
   height: 100%;
@@ -222,11 +223,11 @@ button { font: inherit; }
   padding: 0 8px 0 56px;
   transition: transform 0.3s ease, border-color 0.15s, box-shadow 0.15s;
   max-width: 720px; width: 100%; margin: 10px auto 0;
-  box-shadow: 0 4px 16px rgba(111, 148, 114, 0.08);
+  box-shadow: 0 4px 16px rgba(224, 122, 95, 0.08);
 }
 .search-bar:focus-within {
   border-color: var(--primary);
-  box-shadow: 0 4px 16px rgba(111, 148, 114, 0.15), 0 0 0 4px var(--primary-soft);
+  box-shadow: 0 4px 16px rgba(224, 122, 95, 0.15), 0 0 0 4px var(--primary-soft);
 }
 .search-bar .search-icon {
   position: absolute; left: 20px; top: 50%;
@@ -442,7 +443,7 @@ button { font: inherit; }
 }
 .sync-indicator:empty { display: none; }
 .sync-indicator.syncing { color: #b08c4a; }
-.sync-indicator.synced { color: #6f9472; }
+.sync-indicator.synced { color: #e07a5f; }
 .sync-indicator.error { color: var(--danger); }
 .sync-indicator.unsaved {
   color: #b08c4a; background: rgba(176, 140, 74, 0.1);
@@ -462,7 +463,7 @@ button { font: inherit; }
   padding: 6px 10px; border-radius: 6px; margin-top: 10px;
   word-break: break-all; white-space: pre-line;
 }
-.sync-status.ok { color: #5b7f5e; }
+.sync-status.ok { color: #c96a50; }
 .sync-status.error { color: var(--danger); }
 .sync-status.busy { color: #b08c4a; }
 .settings-actions { flex-wrap: wrap; }
