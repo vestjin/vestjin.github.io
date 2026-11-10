@@ -1,4 +1,30 @@
-## 网络工具
+
+## 搜索引擎与导航
+
+Google-https://www.google.com
+Bing-https://www.bing.com
+NAVER-https://search.naver.com
+DuckDuckGo-https://duckduckgo.com
+Yahoo-https://hk.search.yahoo.com
+Yandex-https://yandex.com
+GoogleDrive-https://drive.google.com/drive/home
+Google Keep-https://keep.google.com/
+虫部落-https://www.chongbuluo.com/
+
+
+
+## 百科与知识问答
+
+维基百科-https://zh.wikipedia.org
+Fandom-https://www.fandom.com
+wikiHow-https://www.wikihow.com
+Merriam-Webster 词典-https://www.merriam-webster.com/medical
+框框大学-https://www.kkdaxue.com/
+Loot Drop-https://www.loot-drop.io/
+
+
+
+## 网络与网络工具
 
 1.1.1.1-https://one.one.one.one/
 Lantern-https://lantern.io/zh
@@ -7,14 +33,20 @@ Lantern-https://lantern.io/zh
 Speedtest-https://www.speedtest.net/
 IP地址查询-https://ip.cn/
 
-## 文件与格式转换
+
+
+## 文件转换与压缩
+
 FileKiwi 文件中转-https://file.kiwi/zh
 AllToAll 格式转换-https://www.alltoall.net/
 JSON 工具-https://www.json.cn
 iLovePDF-https://www.ilovepdf.com/zh-cn
 smallpdf-https://smallpdf.com/
 
+
+
 ## 图片与媒体处理
+
 图片转ico-https://www.toolhelper.cn/Image/ImageToIco
 Imgdiet-https://www.imgdiet.com/zh-CN
 Docsmall-https://www.imgdiet.com/zh-CN
@@ -26,15 +58,37 @@ Tools.video-https://tools.video/zh-CN
 PDFCandy-https://pdfcandy.com/
 DonePDF-https://donepdf.com/zh
 
-## 图库素材与图床
+
+
+
+## 素材图库与图床
+
 Pexels-https://www.pexels.com/zh-cn/
 Unsplash-https://unsplash.com/
 Pixabay-https://pixabay.com/zh/
 Wallhaven-https://wallhaven.cc/
 Imgur-https://imgur.com/new
 ImgBB-https://imgbb.com/
+Picx-https://picx.xpoet.cn/images-hosting#/?jump=0
+PICUI-https://picui.cn/
+知更鸟-https://zmingcx.com/favorites/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/
 
-## 电子书资源
+
+
+
+## 网页模板与设计
+
+html5up-https://html5up.net/
+htmlrev-https://htmlrev.com/
+freeehtml5-https://freehtml5.co/
+tooplate-https://www.tooplate.com/
+free-templates-http://cruip.com/free-templates/
+
+
+
+
+## 电子书与学习资料
+
 书伴-https://bookfere.com/
 ZLibrary-https://getzlib.com/
 苦瓜书盘-https://kgbook.com/
@@ -50,11 +104,21 @@ vdoc.pub-https://vdoc.pub/
 FreeComputerbooks-https://freecomputerbooks.com/
 standardebooks-https://standardebooks.org/
 Open TextBook Library-https://open.umn.edu/opentextbooks/
-eBooks and Texts Internet Archive - https://archive.org/details/texts
-Library Genesis+ - https://libgen.li/
-海盗湾-https://thepiratebay.org/index.html
+eBooks and Texts Internet Archive-https://archive.org/details/texts
+Library Genesis+-https://libgen.li/
+Library of short stories-https://www.libraryofshortstories.com/
+博看书苑APP-https://download.bookan.com.cn
+Ebook foundation-https://ebookfoundation.github.io/free-programming-books/
+Free Programming Books-https://goalkicker.com/
+FreeNookcentre-https://www.freebookcentre.net/
+Essential Programming Books-https://programming-books.arslexis.io/index-grid
+PDFDrive-https://pdfdrive.com/
+freemdict-https://downloads.freemdict.com/
+MIT OpenCourseWare-https://ocw.mit.edu/
 
-## 网盘搜索
+
+
+## 网盘搜索与云存储
 伏羲盘-https://fuxipan.com/
 混合盘-https://hunhepan.com/
 学霸盘-https://www.xuebapan.com/
@@ -66,48 +130,97 @@ Library Genesis+ - https://libgen.li/
 小云搜索-https://www.yunso.net/
 千帆搜索-https://pan.qianfan.app/
 博搜搜-https://bososo.com/
-
-
-## 磁力资源种子网站
-
-
-
-
-## 云盘与存储
 蓝奏云-https://up.woozooo.com/
 OK云盘-https://okpan.com/mySmallfiles
 OneDrive-https://onedrive.live.com/?view=1
-GoogleDrive-https://drive.google.com/drive/home
 
-## 油猴扩展
+
+
+## 虚拟手机号与接码
+sms bus-https://sms-bus.com/zh
+freereceive-https://www.freereceivesms.com/
+sms activate-https://sms-activate.io/cn
+bestsms-https://bestsms.xyz/
+
+
+
+
+## 磁力与种子资源
+
+海盗湾-https://thepiratebay.org/index.html
+1337x-https://1337x.to/home/
+KickAssTorrents-https://katcr.to/
+EZTV-https://eztvx.to/
+BT4G-https://bt4gprx.com/
+Torlock-https://www.torlock2.com/
+动漫花园-https://www.dmhy.org/
+
+
+
+
+## 浏览器扩展与脚本
+
 油小猴-https://www.youxiaohou.com/
 
-## 免费图床
-PICUI-https://picui.cn/
-知更鸟-https://zmingcx.com/favorites/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/
 
 
 
 ## 笔记与写作
-Blogger-https://www.blogger.com
-Google Keep-https://keep.google.com/
 
-## 开发者 API
+Blogger-https://www.blogger.com
+
+
+
+
+## 开发者API
+
 60s API-https://docs.60s-api.viki.moe/
 UAPIS-https://uapis.cn/docs/api-reference/get-misc-weather
 大米API-https://api.qqsuu.cn/
 小小API-https://api.aa1.cn/
 免费API大全-https://www.free-api.com/
+mxnzp-https://www.mxnzp.com/doc/1
+API大全-https://qwq.tangdouz.com/
 
 
 
-## 速查表Quick Reference
+## 技术社区与资讯
+
+GitHub-https://github.com
+StackOverflow-https://stackoverflow.com
+哔哩哔哩-https://search.bilibili.com
+sdk-https://www.sdk.cn/
+helloGithub-https://hellogithub.com/
+Futurism-https://futurism.com/
+
+
+
+
+## 速查与工具箱
+cheatsheets-https://cheatsheets.zip/
 Quick Reference-https://wangchujiang.com/reference/index.html
+quickref-https://quickref.me/
+菜鸟工具-https://www.jyshare.com/front-end/53/
+matools-https://www.matools.com/
+Learnxiny-https://learnxinyminutes.com/
+
+
+## 编程文档与教程
+freecodecamp-https://www.freecodecamp.org/chinese/learn
+javaGuide-https://javaguide.cn/
+菜鸟教程-https://www.runoob.com/
+小林coding-https://xiaolincoding.com/
+TobebetterJava-https://javabetter.cn/
+Road 2 code-https://www.r2coding.com/
+csdiy-https://csdiy.wiki/
+像小说一样品读 Linux 0.11 核心代码-https://github.com/dibingfa/flash-linux0.11-talk
+《动手学深度学习》-https://github.com/d2l-ai/d2l-zh
 
 
 
 
-## 代码算法练习平台
+
+## 编程练习与算法
 AtCoder-https://atcoder.jp/
 CodeWars-https://www.codewars.com/
 Exercism-https://exercism.org/zh-CN
@@ -117,10 +230,34 @@ LintCode炼码-https://www.lintcode.com/
 洛谷-https://www.luogu.com.cn/
 LeetCode力扣-https://leetcode.cn/
 牛客网真题-https://www.nowcoder.com/exam/company?questionJobId=10&subTabName=written_page
+TheAlgorithms-https://github.com/TheAlgorithms
+Hello algo-https://www.hello-algo.com/
+OI wiki-https://oi-wiki.org/
+
+
+
+
+
+## 网络安全
+Go Awabins-https://gtfobins.org/
+tryhackme-https://tryhackme.com/?vccr=1
+hackthebox-https://www.hackthebox.com/
+hacker blog-https://hsctf.com/
+google gruyere-https://google-gruyere.appspot.com/
+flaws cloud-http://flaws.cloud/
+hack yourself first-https://hack-yourself-first.com/
+juice shop-https://juice-shop.herokuapp.com/#/search
+xss game-https://xss-game.appspot.com/
+war game-https://overthewire.org/wargames/
+IO game-http://io.netgarage.org/
+Smashthestack-https://www.smashthestack.org/main.html
+Andriodlabs-https://securitycompass.github.io/AndroidLabs/index.html
+
 
 
 
 ## 硬件与创客
+
 DOIT社区-https://www.doitwiki.com/
 Arduino 官网-https://www.arduino.cc/
 Arduino 实验室-https://arduino.nxez.com/
@@ -132,14 +269,16 @@ DF创客社区-https://mc.dfrobot.com.cn/
 立创开源广场-https://oshwhub.com/
 趣讨教-https://www.qutaojiao.com/
 
+
+
+
 ## 学术与期刊
+
 ACP Journals-https://www.acpjournals.org/
 ACS Publications-https://pubs.acs.org/
 Alzheimer's Journal-https://alz-journals.onlinelibrary.wiley.com/
 Angewandte Chemie-https://onlinelibrary.wiley.com/
 Cell Press-https://www.cell.com/cell/home
-Merriam-Webster 词典-https://www.merriam-webster.com/medical
-Futurism-https://futurism.com/
 JAMA-https://jamanetwork.com/
 Clinical Nutrition-https://www.clinicalnutritionjournal.com/
 MedlinePlus-https://medlineplus.gov/
@@ -161,21 +300,23 @@ Medical Xpress-https://medicalxpress.com/
 Medical News Today-https://www.medicalnewstoday.com/
 PNAS-https://www.pnas.org/
 Phys.org-https://phys.org/
-Polymarket-https://polymarket.com/
 ZSL Publications-https://zslpublications.onlinelibrary.wiley.com/
 arXiv-https://arxiv.org/
 SCI-HUB-https://sci-hub.su/
 
 
+
+
 ## 语言学习
+
 Lingohut-https://www.lingohut.com/zh
+BritishCouncil-https://learnenglish.britishcouncil.org/
 
 
-## 综合工具箱
-菜鸟工具-https://www.jyshare.com/front-end/53/
-虫部落-https://www.chongbuluo.com/
 
-## 找工作
+
+## 招聘与求职
+
 Linkedin-https://www.linkedin.com/
 中国公共招聘网-http://job.mohrss.gov.cn/
 就业在线-https://www.jobonline.cn/
@@ -185,5 +326,58 @@ BOSS直聘-https://www.zhipin.com/
 程序员客栈-https://www.proginn.com/
 牛客网-https://www.nowcoder.com/
 
-## 软件管家
+
+
+
+## 软件下载
+
 大白菜软件-https://cmsblogs.cn/software.html
+
+
+
+
+## 金融与预测市场
+
+Polymarket-https://polymarket.com/
+
+
+
+
+## AI 工具与助手
+
+
+
+
+
+
+
+## 视频与影视资源
+
+
+
+## 音乐与音频
+
+
+
+## 游戏与娱乐
+
+
+
+## 购物与比价
+
+
+
+## 旅行与出行
+
+
+
+## 美食与生活
+
+
+
+## 政务与公共服务
+
+
+
+## 设计灵感与配色
+
