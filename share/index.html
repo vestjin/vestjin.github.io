@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>手记档案馆</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f0a832'/%3E%3Crect x='3' y='5' width='3' height='3' fill='%2316130f'/%3E%3Crect x='10' y='5' width='3' height='3' fill='%2316130f'/%3E%3Crect x='4' y='10' width='8' height='2' fill='%2316130f'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<link rel="preconnect" href="https://fonts.font.im">
+<link href="https://fonts.font.im/css2?family=ZCOOL+QingKe+HuangYou&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdmirror.cn/npm/marked@4.3.0/marked.min.js"></script>
+<script src="https://cdn.jsdmirror.cn/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <style>
 :root{
   --bg:#16130f; --panel:#1e1913;
@@ -264,7 +264,7 @@ a{color:inherit;text-decoration:none}
     <nav id="cats"></nav>
     <div class="side-foot">
       <div id="statusLine"><span class="dot"></span>同源加载 · 无任何 API</div>
-      <div style="color:var(--dim)">push 后刷新即见<br>新文件记得更新清单</div>
+      <div style="color:var(--dim)">push 后刷新即见<br>新文件记得更新 files.txt</div>
       <button id="refreshBtn" type="button">↻ 强制刷新缓存</button>
     </div>
   </aside>
@@ -276,40 +276,39 @@ a{color:inherit;text-decoration:none}
 
 <script>
 /* ═══════════════════════════════════════════════════════════
- * 文件清单 —— 唯一需要维护的地方
+ * 渲染逻辑
  *
- * 用法：每次往文件夹里加了新 .md，就在对应数组里加一行 '文件名.md'
- * 顺序 = 页面显示顺序，可随意调整
+ * 分类和文件清单从 files.txt 读取：
+ *   [分类名]          → 标记一个分类
+ *   文件名.md          → 该分类下的文档（每行一个）
+ *   # 开头            → 注释，忽略
+ *   空行              → 忽略
  * ═══════════════════════════════════════════════════════════ */
+
 const SITE_NAME = '手记档案馆';
 const BRANCH    = 'main';
+const REPO_URL  = 'https://github.com/vestjin/share';
 
-const FILES = {
-  '游戏类文档': [
-    '王者荣耀-评分机制.md',
-    '金铲铲玩法.md'
-  ],
-  '临时文档分享': [
-    'temp.md',
-    'test.md',
-    '运行filebrowser.md',
-    'pi.md'
-  ],
-  'home': [
-    '鸡鸭鹅养殖.md',
-    '老年人健康问题速查.md',
-    '果树-软枣猕猴桃.md',
-    '花卉-艾草-薄荷.md',
-    '蔬菜种植.md',
-    '草莓种植.md',
-    '刺猬.md',
-    '枸杞管理.md'
-  ],
-};
-/* ═══════════════════ 配置结束，以下不用动 ═══════════════════ */
+/* ── 从 files.txt 解析出 FILES 对象 ── */
+function parseFilesTxt(text){
+  const files = {};
+  let cur = null;
+  text.split(/\r?\n/).forEach(raw=>{
+    const line = raw.trim();
+    if(!line || line.startsWith('#')) return;
+    const m = line.match(/^$$(.+)$$$/);
+    if(m){
+      cur = m[1].trim();
+      if(!files[cur]) files[cur] = [];
+    } else if(cur){
+      files[cur].push(line);
+    }
+  });
+  return files;
+}
 
-const REPO_URL = 'https://github.com/vestjin/share';
-
+/* ── 全局状态 ── */
+let FILES = {};
 const state = { view:'list', cur:null, curFile:null, tocItems:[] };
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -341,7 +340,7 @@ function toast(msg){
   clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
 }
 
-/* ── 同源读取 md（无跨域、无 API、无限额） ── */
+/* ── 同源读取文件 ── */
 async function fetchRaw(path){
   const res = await fetch('./' + enc(path), { cache:'no-cache' });
   if(!res.ok) throw new Error('HTTP ' + res.status);
@@ -400,7 +399,6 @@ function slugify(s){
     .replace(/^-|-$/g,'') || 'sec';
 }
 
-/* 收集 h2/h3，补上 id，返回目录数据 */
 function buildToc(paper){
   const body = paper.querySelector('.md-body');
   if(!body) return [];
@@ -429,7 +427,6 @@ function buildToc(paper){
   return items;
 }
 
-/* 渲染并接管目录交互 */
 function setupToc(items, root){
   state.tocItems = items;
 
@@ -452,7 +449,6 @@ function setupToc(items, root){
       <span class="toc-tx">${esc(it.text)}</span>
     </button>`).join('');
 
-  /* 桌面端折叠状态持久化 */
   const collapsed = localStorage.getItem('tocCollapsed') === '1';
   tocEl.classList.toggle('collapsed', collapsed);
   toggle.textContent = isMobile() ? '×' : (collapsed ? '›' : '‹');
@@ -481,7 +477,6 @@ function setupToc(items, root){
   updateActiveToc();
 }
 
-/* 视口变化时同步按钮图标 / 关掉抽屉 */
 let resizeTimer;
 window.addEventListener('resize', ()=>{
   clearTimeout(resizeTimer);
@@ -516,7 +511,6 @@ function scrollToHead(id){
   window.scrollTo({ top: y < 0 ? 0 : y, behavior: 'smooth' });
 }
 
-/* 滚动高亮当前小节 */
 function updateActiveToc(){
   const items = state.tocItems;
   if(!items || !items.length) return;
@@ -544,7 +538,6 @@ function updateActiveToc(){
     if(on) activeLink = l;
   });
 
-  /* 让高亮项始终留在目录可视区内（只滚目录自身，不带动页面） */
   if(activeLink){
     const lb = activeLink.getBoundingClientRect();
     const cb = tocBody.getBoundingClientRect();
@@ -553,15 +546,31 @@ function updateActiveToc(){
   }
 }
 
-/* ── 初始化 ── */
-function init(){
+/* ── 初始化：先加载 files.txt，再渲染 ── */
+async function init(){
   $('#siteName').textContent = SITE_NAME;
   document.title = SITE_NAME;
+
+  try{
+    const txt = await fetchRaw('files.txt');
+    FILES = parseFilesTxt(txt);
+  }catch(e){
+    $('#view').innerHTML = `<div class="empty">无法加载 <code>files.txt</code>，请确认文件已提交到仓库根目录。<br>（${esc(e.message)}）</div>`;
+    return;
+  }
+
+  const folders = Object.keys(FILES);
+  if(!folders.length){
+    $('#view').innerHTML = `<div class="empty"><code>files.txt</code> 里还没有任何分类。<br>参照文件内注释格式添加即可。</div>`;
+    return;
+  }
+
   setupRenderer();
   renderSidebar();
-  if(!location.hash) location.hash = '#/'+enc(Object.keys(FILES)[0]);
+  if(!location.hash) location.hash = '#/'+enc(folders[0]);
   else onRoute();
 }
+
 function renderSidebar(){
   $('#cats').innerHTML = Object.keys(FILES).map((f,i)=>`
     <a class="cat${i===0?' on':''}" data-folder="${esc(f)}" href="#/${enc(f)}">
@@ -594,7 +603,7 @@ function showList(folder, keepFilter){
     $('#flist').innerHTML = !files.length
       ? `<div class="empty">这个分类还没有文件。<br>
           ① 在 GitHub App 里新建 <code>${esc(folder)}/笔记名.md</code>；<br>
-          ② 打开 <code>index.html</code>，在顶部 <code>FILES</code> 对应数组里加一行 <code>'笔记名.md'</code> 并提交；<br>
+          ② 打开 <code>files.txt</code>，在 <code>[${esc(folder)}]</code> 下面加一行 <code>笔记名.md</code> 并提交；<br>
           <span class="tip">刷新本页即可看到。</span></div>`
       : (!shown.length
         ? `<div class="empty">没有匹配「${esc(q)}」的文档。</div>`
@@ -668,10 +677,8 @@ async function showArticle(folder, fileName){
       <h1>${esc(title)}</h1><hr class="art-title-rule">
       <div class="md-body">${html}</div>`;
 
-    /* ★ 生成并挂载目录 */
     setupToc(buildToc(paper), v);
 
-    /* 跨文档锚点跳转 */
     const anchorMeta = paper.querySelector('[data-anchor]');
     if(anchorMeta){
       const a = anchorMeta.dataset.anchor;
@@ -691,7 +698,7 @@ async function showArticle(folder, fileName){
     window.scrollTo({ top:0 });
   }catch(e){
     v.querySelector('.paper').innerHTML = `<div class="art-meta"><b>出错了</b></div><h1>无法加载这篇文档</h1><hr class="art-title-rule">
-      <p style="color:var(--paper-mut)">检查两件事：① 文件 <code style="font-family:var(--mono)">${esc(filePath)}</code> 是否真的已提交到仓库；② <code>index.html</code> 顶部 <code>FILES</code> 清单里写的文件名是否和实际一致（含大小写、扩展名）。<br>（${esc(e.message)}）</p>`;
+      <p style="color:var(--paper-mut)">检查两件事：① 文件 <code style="font-family:var(--mono)">${esc(filePath)}</code> 是否真的已提交到仓库；② <code>files.txt</code> 里 <code>[${esc(folder)}]</code> 下面写的文件名是否和实际一致（含大小写、扩展名）。<br>（${esc(e.message)}）</p>`;
     const t = v.querySelector('#toc'); if(t) t.style.display = 'none';
     const f = v.querySelector('#tocFab'); if(f) f.style.display = 'none';
   }
