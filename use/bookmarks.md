@@ -42,11 +42,47 @@ AllToAll 格式转换-https://www.alltoall.net/
 JSON 工具-https://www.json.cn
 iLovePDF-https://www.ilovepdf.com/zh-cn
 smallpdf-https://smallpdf.com/
+PDF 24 TOOLS-https://www.tools.pdf24.org/zh
+Convertio-https://www.convertio.co/zh
+Online OCR-https://www.onlineocr.net/
+PDF to Word Converter-https://www.pdftoword.com/
+加加PDF-https://www.addpdf.cn/pdf-to-word
+PDFconverter-https://www.pdfconverter.com
+PDFbao-http://www.pdfbao.com/
+LightPDF-https://lightpdf.com/zh/
+CloudConvert-https://cloudconvert.com/pdf-to-doc
+迅捷PDF转换器-https://app.xunjiepdf.com/
+UPDF-https://www.updf.cn/updf/
+PDF2go-https://www.pdf2go.com/zh/
+ABBYY FineReader-https://ocr.abbyy.cn/
+PDF.IO-https://pdf.io/tw/
+PDFtodoc-http://pdf2doc.com/zh/
+记灵工具-https://remeins.com/
+超级PDF-https://xpdf.cn/
+TinyWow-https://tinywow.com/
+免费即时PDF转换器-https://www.pdfwordconvert.com/zh/
+Online PDF to Image-https://www.onlinepdftoimage.com/zh/
+Split a PDF-https://www.splitapdf.com/zh/
+Aconvert-https://www.aconvert.com/
+ZAMZAR-https://www.zamzar.com/
+CAJ转PDF转换器-https://caj2pdf-qt.sainnhe.dev/
+Web Apps by 123apps-https://123apps.com/
+在线文档翻译器-https://www.onlinedoctranslator.com/zh-CN/
+HiPDF-https://www.hipdf.cn/
+PDF派-https://www.pdfpai.com/
+RightPDF-https://online.rightpdf.com/cn/office-to-pdf
+Doc to PDF-https://doctopdf.com/zh/
+PDF Burger-https://pdfburger.com/combine-to-pdf
+PDF转换器-https://pdf.to/
+
 
 
 
 ## 图片与媒体处理
-
+Bigjpg-https://bigjpg.com
+DanGo-https://dango.ai
+VocalRemover-https://vocalremover.org
+SnapTik（抖音无水印下载）-https://snaptik.app/
 图片转ico-https://www.toolhelper.cn/Image/ImageToIco
 Imgdiet-https://www.imgdiet.com/zh-CN
 Docsmall-https://www.imgdiet.com/zh-CN
@@ -61,8 +97,15 @@ DonePDF-https://donepdf.com/zh
 
 
 
-## 素材图库与图床
+## 设计工具
+ProcessOn-https://www.processon.com
+GitMind-https://gitmind.cn
 
+
+
+## 素材图库与图床
+优品PPT-www.ypppt.com
+HiPPTE-www.hippter.com
 Pexels-https://www.pexels.com/zh-cn/
 Unsplash-https://unsplash.com/
 Pixabay-https://pixabay.com/zh/
@@ -88,14 +131,16 @@ free-templates-http://cruip.com/free-templates/
 
 
 ## 电子书与学习资料
-
 书伴-https://bookfere.com/
 ZLibrary-https://getzlib.com/
 苦瓜书盘-https://kgbook.com/
+熊猫搜书-https://xmsoushu.com/
 WeLib-https://zh.welib.org/
 时光图书馆-https://atimebook.com/
 安娜的档案-https://annas-archive.is/zh-cn
+古登堡-https://www.gutenberg.org/
 鸠摩搜索-https://www.jiumodiary.com/
+恩京的书房-https://www.enjing.net/
 Sobooks-https://sobooks.cc/
 书栈网-https://www.bookstack.cn/
 Green Tea Press-https://greenteapress.com/wp/
@@ -115,6 +160,22 @@ Essential Programming Books-https://programming-books.arslexis.io/index-grid
 PDFDrive-https://pdfdrive.com/
 freemdict-https://downloads.freemdict.com/
 MIT OpenCourseWare-https://ocw.mit.edu/
+沉金书屋-https://www.chenjin5.com/
+ebooklist-https://ebooklist.mobi/
+走读派读书导航-http://www.zoudupai.com/
+书格-https://www.shuge.org/
+七彩英语电子书下载站-http://www.qcenglish.com/
+Plant ebook-https://www.planetebook.com/
+科学文库-https://book.sciencereading.cn/shop/main/Login/shopFrame.do
+Manybooks-https://manybooks.net/
+DigiLibrary-https://digilibraries.com/
+OpenLibrary-https://openlibrary.org/
+
+
+
+
+
+
 
 
 
@@ -317,6 +378,7 @@ BritishCouncil-https://learnenglish.britishcouncil.org/
 
 ## 招聘与求职
 
+国聘网-https://www.iguopin.com/
 Linkedin-https://www.linkedin.com/
 中国公共招聘网-http://job.mohrss.gov.cn/
 就业在线-https://www.jobonline.cn/
