@@ -387,9 +387,9 @@ BOSS直聘-https://www.zhipin.com/
 前程无忧-https://www.51job.com/
 程序员客栈-https://www.proginn.com/
 牛客网-https://www.nowcoder.com/
-
-
-
+公考雷达-https://www.gongkaoleida.com/
+上岸鸭公考-https://www.gwy.com/
+中国人社服务平台-https://www.mohrss.gov.cn/SYrlzyhshbzb/fwyd/bszn/
 
 ## 软件下载
 

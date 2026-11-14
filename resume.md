@@ -1,63 +1,5 @@
-<!-- Google 翻译插件 -->
-<div id="google_translate_element" style="position: fixed; top: 20px; right: 150px; z-index: 1000;" class="no-print"></div>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'zh-CN', 
-            includedLanguages: 'en,zh-CN',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<style>
-/* 彻底隐藏 Google 翻译的顶部工具栏 (长条框) */
-.VIpgJd-ZVi9od-ORHb-OEVmcd {
-    display: none !important;
-}
-/* 修复 Google 翻译强行给 body 和 html 添加的 top 偏移 */
-html, body {
-    top: 0 !important;
-    margin-top: 0 !important;
-}
-/* 打印时隐藏不需要的元素 */
-@media print {
-    .no-print {
-        display: none !important;
-    }
-}
-/* ===== 移动端适配 ===== */
-@media screen and (max-width: 768px) {
-  body.typora-export {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-  table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-  }
-  pre, code {
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    word-break: break-all;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  h1 { font-size: 1.5rem !important; }
-  h2 { font-size: 1.25rem !important; }
-  h3 { font-size: 1.1rem !important; }
-  /* 翻译按钮和打印按钮在移动端缩小 */
-  #google_translate_element {
-    top: 10px !important;
-    right: 80px !important;
-  }
-}
-</style>
+
+
 
 <a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;" class="no-print">⬅ 返回首页</a>
 <button onclick="window.print()" style="position: fixed; top: 20px; right: 20px; color: #fff; font-weight: bold; background: #007bff; padding: 8px 12px; border: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000; cursor: pointer;" class="no-print">⬇ 保存为 PDF</button>
@@ -70,7 +12,7 @@ html, body {
 
 ### 河北科技大学 - 本科 - 计算机科学与技术专业   (2021.9 - 2026.6) 
 
-**出生年月**：2002/09   |   **籍贯** ：河北省邢台市  |   **身高/体重**：175cm/55kg
+**性别**：男   |   **出生年月**：2002/09   |   **籍贯** ：河北省邢台市  |   **身高/体重**：175cm/55kg
 
 **民族**：汉族   |   **政治面貌**：共青团员   |   **证书：** 英语四级；普通话二级甲等；驾驶证C1
 

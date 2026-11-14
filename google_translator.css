@@ -1,0 +1,59 @@
+<div id="google_translate_element" style="position: fixed; top: 20px; right: 150px; z-index: 1000;" class="no-print"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'zh-CN', 
+            includedLanguages: 'en,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<style>
+/* 彻底隐藏 Google 翻译的顶部工具栏 (长条框) */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none !important;
+}
+/* 修复 Google 翻译强行给 body 和 html 添加的 top 偏移 */
+html, body {
+    top: 0 !important;
+    margin-top: 0 !important;
+}
+/* 打印时隐藏不需要的元素 */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
+/* ===== 移动端适配 ===== */
+@media screen and (max-width: 768px) {
+  body.typora-export {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  pre, code {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    word-break: break-all;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  h3 { font-size: 1.1rem !important; }
+  /* 翻译按钮和打印按钮在移动端缩小 */
+  #google_translate_element {
+    top: 10px !important;
+    right: 80px !important;
+  }
+}
+</style>

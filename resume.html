@@ -221,862 +221,1025 @@ mjx-container { break-inside: avoid; }
 .md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 </style>
-<style type='text/css'  id="style-theme_css">/* ============================================================
-   Resume Theme for Typora
-   简历主题 - 专为 Markdown 简历设计
-   版本: 1.0
-   
-   使用说明:
-   1. 将此文件复制到 Typora 主题目录
-      - Windows: %APPDATA%/Typora/themes/
-      - macOS: ~/Library/Application Support/Typora/themes/
-      - Linux: ~/.config/Typora/themes/
-   2. 重启 Typora，在"主题"菜单中选择 "resume-theme"
-   3. 导出 PDF 时选择该主题即可获得精美简历
-   
-   Markdown 简历结构建议:
-   - # 姓名（一级标题作为姓名）
-   - > 个人简介/求职意向（引用块）
-   - ## 教育背景 / 工作经历 / 项目经验（二级标题作为板块）
-   - ### 公司/学校名称（三级标题作为条目）
-   - **粗体** 用于职位/学位
-   - `代码` 用于技能标签
-   - --- 分隔线用于板块分隔
-   - | 表格 | 用于结构化信息
-   ============================================================ */
-
-/* === 基础变量 === */
-:root {
-  --primary-color: #2c3e50;
-  --accent-color: #3498db;
-  --accent-light: #ebf5fb;
-  --text-color: #333333;
-  --text-secondary: #555555;
-  --text-light: #777777;
-  --border-color: #dce1e6;
+<style type='text/css'  id="style-theme_css">:root {
+  /* Text editor */
   --bg-color: #ffffff;
-  --bg-alt: #f8f9fa;
-  --tag-bg: #e8f4fd;
-  --tag-border: #b3d9f2;
-  --tag-text: #1a6fa3;
-  --link-color: #2980b9;
-  --hr-color: #3498db;
-  --quote-border: #3498db;
-  --quote-bg: #f0f7fc;
-  --table-header-bg: #2c3e50;
-  --table-header-text: #ffffff;
-  --table-stripe: #f5f8fa;
-  --code-bg: #f0f3f5;
-  --code-text: #c7254e;
-  --sidebar-bg: #f5f7fa;
-  --page-margin: 1.8cm;
+  --text-color: #222222;
+  --text-color-dark: #000000;
+  --body-text-color: #222222;
+  --code-border-color: #cccccc;
+  --text-cursor-color: #bbbbbb;
+
+  --secondary-text-color: #73726e;
+  --text-accent-color: #e9e9e7;
+  --bg-color-dark: #f9f9f9;
+
+  --text-highlight-color: #4f3b2a;
+  --text-highlight-bg: #feecc8;
+
+  --code-fence-text-color: #bbbbbb;
+  --code-fence-bg-color: #21252b;
+  --code-fense-inline-bg-color: #e9e9e9;
+  --code-fense-inline-text-color: #222222;
+
+  --blockquote-bg-color: #f3f5f7;
+  --blockquote-accent-color: var(--text-color);
+  --blockquote-text-color: var(--text-color);
+
+  --light-trait-100: #38352f;
+  --light-trait-200: #37352f;
+  --light-trait-300: #37352f;
+  --light-trait-400: #37352f;
+
+  --todo-bg-color: #2eaadc;
+  --todo-tick-color: #fff;
+
+  --search-select-bg-color: #edf3ec;
+  --search-select-text-color: #448361;
+
+  --search-hit-text-color: #d44c47;
+  --search-hit-bg-color: #fdebec;
+
+  --url-text-color: #00000;
+  --url-underline-color: #222222;
+
+  --footnote-text-color: #f7f6f3;
+  --footnote-bg-color: #888884;
+
+  --table-primary-color: var(--bg-color);
+  --table-secondary-color: var(--bg-color);
+
+  --select-text-bg-color: #c0e5f4;
+
+  --code-color: #9a6e3a;
+  --code-cursor-color: #bbbbbb;
+
+  --kbd-text-color: #73726e;
+  --kbd-bg-color: var(--bg-color-dark);
+
+  /* Menu system */
+  --side-bar-bg-color: rgb(248, 248, 247);
+  --side-bar-text-color: var(--text-color);
+  --item-hover-bg-color: #e8e7e4;
+  --window-border: 1px solid var(--bg-color);
+
+  --active-file-bg-color: #e9e7e4;
+  --active-file-border-color: var(--active-file-bg-color);
+  --active-file-text-color: var(--text-color);
+
+  --footer-bg-color: var(--side-bar-bg-color);
+
+  --control-text-color: #72706b;
+
+  /* General */
+  --font-size: 16px;
+  --font-family: -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --monospace: 'Menlo', 'Fira Code','SF Mono Medium', 'Cousine', 'Consolas', monospace;
+  --heading-char-color: var(--light-trait-400);
+  --color-popover-bg-color: var(--text-color);
+  --rawblock-edit-panel-bd: var(--bg-color-dark);
+  --meta-content-color: var(--body-text-color);
+  --primary-btn-border-color: var(--body-text-color);
+  --border-radius: 4px;
+  --v-background: #282c34;
+
+
+  /* Code variables */
+  --cm-line: #bbbbbb;
+  --cm-variable: #d55fde;
+  --cm-keyword: #d55fde;
+  --cm-type: #d55fde;
+  --cm-tag: #ef596f;
+  --cm-bracket: #9b3636;
+  --cm-error: #9b3636;
+  --cm-attribute: #d19a66;
+  --cm-def: #61AFEF;
+  --cm-comment: #5c6370;
+  --cm-string: #89ca78;
+  --cm-operator: #bbbbbb;
+  --cm-number: #d19a66;
+  --cm-meta: #bbbbbb;
+  --cm-atom: #d55fde;
+  --cm-builtin: #669900;
+  --cm-property: #EF596F;
+  --cm-variable-2: #d19a66;
+  --cm-variable-3: #61AFEF;
+  --cm-gutter: #f1f3f450;
 }
 
-/* === 全局样式 === */
+html {
+  font-size: var(--font-size);
+}
+
 body {
-  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--bg-color);
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--body-text-color);
+  line-height: 1.6;
+}
+
+code {
+  background-color: var(--code-fence-bg-color);
+  padding: 4px;
 }
 
 #write {
-  max-width: 800px;
+  max-width: 768px;
   margin: 0 auto;
-  padding: var(--page-margin) 2.2cm;
+  padding: 24px 24px 100px 48px;
 }
 
-/* 内容区域背景 */
-content {
-  background-color: var(--bg-color);
+@media only screen and (min-width: 1400px) {
+  #write {
+    max-width: 1024px;
+  }
 }
 
-/* === 一级标题 - 姓名 === */
-h1 {
-  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
-  font-size: 26pt;
-  font-weight: 700;
-  color: var(--primary-color);
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 4pt;
-  padding-bottom: 0;
-  letter-spacing: 4pt;
+@media only screen and (min-width: 1800px) {
+  #write {
+    max-width: 1200px;
+  }
+}
+
+/* IMAGE */
+img {
+  color: transparent;
   border: none;
-  line-height: 1.3;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-h1::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent-color);
-  margin: 8pt auto 0 auto;
-  border-radius: 2px;
+#write>ul:first-child,
+#write>ol:first-child {
+  margin-top: 30px;
 }
 
-/* === 二级标题 - 板块标题（教育背景、工作经历等）=== */
-h2 {
-  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
-  font-size: 13pt;
-  font-weight: 700;
-  color: var(--primary-color);
-  margin-top: 18pt;
-  margin-bottom: 8pt;
-  padding-bottom: 4pt;
-  padding-left: 0;
-  border-bottom: 2px solid var(--accent-color);
-  letter-spacing: 2pt;
-  line-height: 1.4;
-}
-
-/* === 三级标题 - 条目标题（公司名、学校名等）=== */
-h3 {
-  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
-  font-size: 11pt;
-  font-weight: 600;
+a {
   color: var(--text-color);
-  margin-top: 12pt;
-  margin-bottom: 2pt;
-  border: none;
-  line-height: 1.5;
 }
 
-/* === 四级标题 - 子条目 === */
-h4 {
-  font-family: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
-    "Microsoft YaHei", sans-serif;
-  font-size: 10.5pt;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-top: 8pt;
-  margin-bottom: 2pt;
-  border: none;
-  line-height: 1.5;
-}
-
+h1,
+h2,
+h3,
+h4,
 h5,
 h6 {
-  font-size: 10pt;
-  color: var(--text-light);
-  margin-top: 6pt;
-  margin-bottom: 2pt;
-}
-
-/* === 段落 === */
-p {
-  font-size: 10.5pt;
-  line-height: 1.7;
-  margin-top: 2pt;
-  margin-bottom: 4pt;
-  color: var(--text-color);
-  text-align: justify;
-}
-
-/* === 引用块 - 个人简介/求职意向 === */
-blockquote {
-  border-left: 3px solid var(--quote-border);
-  background-color: var(--quote-bg);
-  margin: 8pt 0;
-  padding: 8pt 14pt;
-  border-radius: 0 4px 4px 0;
-  font-size: 10pt;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-blockquote p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 10pt;
-}
-
-blockquote blockquote {
-  border-left-color: #7fb3d8;
-  background-color: #e8f1f7;
-}
-
-/* === 列表 === */
-ul,
-ol {
-  margin-top: 2pt;
-  margin-bottom: 4pt;
-  padding-left: 1.4em;
-}
-
-li {
-  font-size: 10.5pt;
-  line-height: 1.7;
-  margin-bottom: 1pt;
-  color: var(--text-color);
-}
-
-/* 无序列表样式 */
-ul li::marker {
-  color: var(--accent-color);
-  font-size: 8pt;
-}
-
-/* 二级列表 */
-ul ul,
-ol ol,
-ul ol,
-ol ul {
-  margin-top: 1pt;
-  margin-bottom: 1pt;
-}
-
-/* 任务列表 */
-.task-list-item {
-  list-style-type: none;
   position: relative;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: text;
 }
 
-.task-list-item input[type="checkbox"] {
-  margin-right: 6px;
-  accent-color: var(--accent-color);
+cursor {
+  color: var(--text-cursor-color)
 }
 
-/* === 粗体与斜体 === */
-strong {
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-em {
-  font-style: italic;
-  color: var(--text-secondary);
-}
-
-/* === 行内代码 - 技能标签 === */
-code {
-  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas,
-    monospace;
-  font-size: 9pt;
-  background-color: var(--tag-bg);
-  color: var(--tag-text);
-  padding: 1.5pt 6pt;
-  border-radius: 3px;
-  border: 1px solid var(--tag-border);
-  white-space: nowrap;
-  font-weight: 500;
-}
-
-/* === 代码块 === */
-pre {
-  background-color: var(--code-bg);
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  margin: 8pt 0;
-  padding: 10pt 14pt;
-  font-size: 9pt;
-  line-height: 1.6;
-  overflow-x: auto;
-}
-
-pre code {
-  background-color: transparent;
-  color: var(--text-color);
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  font-size: 9pt;
-  white-space: pre;
-}
-
-/* === 分隔线 === */
-hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--accent-color),
-    transparent
-  );
-  margin: 14pt 0;
-}
-
-/* === 链接 === */
-a {
-  color: var(--link-color);
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
+}
+
+h1 tt,
+h1 code,
+h2 tt,
+h2 code,
+h3 tt,
+h3 code,
+h4 tt,
+h4 code,
+h5 tt,
+h5 code,
+h6 tt,
+h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  line-height: 1.3;
+  color: var(--light-trait-100);
+  border-bottom: solid 1px #eeeeee;
+}
+
+h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.625em;
+  line-height: 1.225;
+  color: var(--light-trait-200);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h3 {
+  font-size: 1.4em;
+  line-height: 1.75;
+  color: var(--light-trait-300);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h5 {
+  font-size: 1em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h6 {
+  font-size: 1em;
+  color: var(--light-trait-400);
+  border-bottom: dashed 1px #eeeeee;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+  line-height: 2;
+}
+
+h1::before {
+  content: 'H1';
+  bottom: 1em;
+}
+h2::before {
+  content: 'H2';
+  bottom: .85em;
+}
+h3::before, h3.md-focus:before {
+  content: 'H3';
+  top: .8em;
+}
+h4::before, h4.md-focus:before {
+  content: 'H4';
+}
+h5::before, h5.md-focus:before {
+  content: 'H5';
+  top: .05em;
+}
+h6::before, h6.md-focus:before {
+  content: 'H6';
+  top: .05em;
+}
+
+h3.md-focus:before, h4.md-focus:before, h5.md-focus:before, h6.md-focus:before {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 0;
+  color: #b4b4b4;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  left: auto;
+  float: none;
+  padding: 0;
+  line-height: 2;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+  margin: 0.8em 0;
+}
+
+li>ol,
+li>ul {
+  margin: 0 0;
+}
+
+hr {
+  background-color: var(--light-trait-100);
+  height: 1.5px;
+  border: none
+}
+
+a,
+.md-def-url {
+  color: var(--url-text-color);
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 0.05em solid;
+  border-color: var(--url-underline-color);
+  transition: all .1s ease-in;
 }
 
 a:hover {
-  border-bottom-color: var(--link-color);
+  text-decoration: underline;
+  opacity: 1;
 }
 
-/* === 表格 === */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 8pt 0;
-  font-size: 10pt;
-  overflow: hidden;
-  border-radius: 4px;
+sup.md-footnote {
+  background-color: var(--footnote-text-color);
+  color: var(--footnote-bg-color);
 }
 
-thead {
-  background-color: var(--table-header-bg);
+li p.first {
+  display: inline-block;
 }
 
-thead th {
-  color: var(--table-header-text);
-  font-weight: 600;
-  padding: 7pt 10pt;
-  text-align: left;
-  border: none;
-  font-size: 10pt;
-  letter-spacing: 0.5pt;
+ul,
+ol {
+  padding-left: 30px;
 }
 
-tbody td {
-  padding: 6pt 10pt;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-color);
-  font-size: 10pt;
-  vertical-align: top;
+ul:first-child,
+ol:first-child {
+  margin-top: 0.35%;
 }
 
-tbody tr:nth-child(even) {
-  background-color: var(--table-stripe);
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
 }
 
-tbody tr:hover {
-  background-color: var(--accent-light);
+mark,
+.ty-file-search-match-text,
+.md-search-hit {
+  background: var(--search-hit-bg-color);
+  color: var(--search-hit-text-color);
 }
 
-/* === 图片 === */
-img {
-  max-width: 100%;
-  border-radius: 4px;
-  margin: 6pt 0;
-}
-
-/* === 脚注 === */
-sup a {
-  color: var(--accent-color);
-  font-size: 8pt;
-  text-decoration: none;
-}
-
-.footnotes {
-  font-size: 9pt;
-  color: var(--text-light);
-  margin-top: 20pt;
-  border-top: 1px solid var(--border-color);
-  padding-top: 8pt;
-}
-
-/* === 标记/高亮 === */
 mark {
-  background-color: #fff3cd;
-  color: #856404;
-  padding: 1pt 4pt;
-  border-radius: 2px;
+  border-radius: var(--border-radius);
+  color: var(--text-highlight-color);
+  font-weight: inherit;
+  background-color: var(--text-highlight-bg);
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
-/* === 删除线 === */
-del {
-  color: var(--text-light);
+.md-search-hit * {
+  background: var(--search-select-bg-color);
+  color: var(--search-select-text-color);
+}
+
+/* Search highlight */
+.cm-search-hit.CodeMirror-selectedtext,
+.md-search-hit.md-search-select,
+.md-search-select {
+  outline: 0 solid var(--search-select-text-color);
+}
+
+.cm-s-inner .CodeMirror-selected {
+  border-radius: 2px;
+  background-color: #404859 !important;
+}
+
+.cm-s-inner .CodeMirror-selectedtext {
+  background-color: transparent !important;
+}
+
+.outline-item.select,
+.ty-search-item-line.select,
+.ty-search-item.select {
+  outline-width: 2px;
+}
+
+.outline-item.select {
+  outline-offset: 0;
+}
+
+blockquote {
+  color: var(--blockquote-text-color);
+  margin-left: 1.75px;
+  margin-right: 0;
+  border-left: 0.5rem solid var(--blockquote-accent-color);
+  padding: 10px 14px 7px 22px;
+  /* change the quote highlight */
+  background-color: var(--blockquote-bg-color);
+}
+
+blockquote blockquote {
+  padding-right: 0;
+}
+
+/* Alternating color rows in table*/
+table tr:nth-child(2n) {
+  background-color: var(--table-primary-color);
+}
+
+table tr:nth-child(2n + 1) {
+  background-color: var(--table-secondary-color);
+}
+
+/* Alternating color rows in table*/
+
+table {
+  padding: 0;
+  word-break: initial;
+}
+
+table tr {
+  border-top: 1px solid var(--text-accent-color);
+  margin: 0;
+  padding: 0;
+}
+
+table tr th {
+  font-weight: bold;
+  border: 1px solid var(--text-accent-color);
+	background-color: var(--bg-color-dark);
+  border-bottom: 0;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr td {
+  border: 1px solid var(--text-accent-color);
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+  margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  margin-bottom: 0;
+}
+
+kbd {
+  font-size: 0.875rem;
+  background: var(--kbd-bg-color);
+  border: 1px solid var(--text-accent-color);
+  box-shadow: 0 2px 0 var(--text-accent-color);
+  color: var(--kbd-text-color);
+}
+
+.md-fences,
+code,
+tt {
+  border: solid 1px var(--code-border-color);
+  color: var(--code-fence-text-color);
+  background-color: var(--code-fence-bg-color);
+  border-radius: var(--border-radius);
+  padding: 4px;
+  font-size: 0.875em;
+  font-weight: normal;
+  font-family: var(--monospace)
+}
+
+.md-pair-s code {
+  background-color: var(--code-fense-inline-bg-color);
+  color: var(--code-fense-inline-text-color);
+  border-color: var(--code-fence-text-color);
+  font-size: 0.857em;
+  padding: 4px;
+}
+
+/* CODE BLOCK */
+.md-fences {
+  padding-top: 34px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  background-color: var(--v-background);
+  border-radius: 7px;
+}
+.md-fences::before {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  content: "";
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 22px 0px #ffbd2e, 44px 0px #27c93f;
+}
+
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--bg-color-dark);
+  border: 0;
+  border-radius: var(--border-radius);
+  color: var(--secondary-text-color);
+  margin-top: 0 !important;
+}
+
+#write .mathjax-block .md-rawblock-tooltip {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+
+#write .mathjax-block .md-math-container {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+#write .md-mathblock-panel .md-rawblock-control:first-of-type {
+  border-top-left-radius: var(--border-radius);
+}
+
+.md-mathjax-midline {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.md-inline-math script {
+  color: var(--code-color);
+}
+
+.CodeMirror-lines {
+  padding-left: 4px;
+}
+
+.code-tooltip {
+  box-shadow: none;
+  border-radius: var(--border-radius);
+}
+
+#write .code-tooltip {
+  bottom: initial;
+  line-height: 2;
+  top: 4px;
+  left: initial;
+  right: 4px;
+  background: var(--bg-color-dark);
+  color: var(--text-color-dark);
+  border: 1px solid var(--code-fence-bg-color);
+  min-width: 10em;
+  font-family: var(--font-family);
+  font-size: 1em;
+  padding-left: 40px;
+}
+
+#write .code-tooltip::before {
+  content: 'Code: ';
+  width: 4em;
+  line-height: 2.25;
+  position: absolute;
+  top: 0;
+  left: 0.75em;
+  font-weight: 700;
+}
+
+#write .code-tooltip .ty-input, .code-tooltip input {
+  line-height: 2;
+  font-weight: bold;
+  border: none;
+}
+
+#write .md-mathblock-panel .code-tooltip {
+  right: 0;
+  border: none;
+}
+
+/* TODO */
+#write .md-task-list-item>input {
+  -webkit-appearance: initial;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  border: 1px solid var(--text-color);
+  margin-top: 0.3rem;
+  margin-left: -1.45rem;
+  height: 0.95rem;
+  width: 0.95rem;
+  transition: all 0.35s;
+}
+
+#write .md-task-list-item>input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#write .md-task-list-item>input[checked] {
+  background: var(--todo-bg-color);
+  border: 1px solid var(--todo-bg-color);
   text-decoration: line-through;
 }
 
-/* === 数学公式 === */
-.md-inline-math script {
-  color: var(--accent-color);
+#write .md-task-list-item>input[checked]::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '✓';
+  position: absolute;
+  margin-top: 0.05rem;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: var(--todo-tick-color);
+  font-size: 0.75em;
+  font-weight: 600;
 }
 
-.math-block {
-  margin: 10pt 0;
-  text-align: center;
-  font-size: 10.5pt;
+#write .md-task-list-item>input[checked]::after {
+  text-decoration: line-through;
 }
 
-/* === 目录 === */
-.md-toc-content {
-  font-size: 10pt;
-  color: var(--text-secondary);
+/* TODO */
+.md-image>.md-meta {
+  border-radius: var(--border-radius);
+  padding: 2px 0 0 4px;
+  font-size: 0.9em;
+  color: inherit;
 }
 
-.md-toc-content a {
-  color: var(--text-secondary);
+.md-toc {
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
 
-.md-toc-content a:hover {
-  color: var(--accent-color);
+/* Source mode */
+.CodeMirror.cm-s-typora-default *,
+.cm-s-typora-default * {
+  background: inherit;
+  color: var(--body-text-color);
+  font-family: var(--monospace);
+  font-size: var(--font-size) !important;
+  font-style: normal;
+  font-weight: 500;
 }
 
-/* === YAML Front Matter === */
-pre.md-meta-block {
-  background-color: var(--bg-alt);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 10pt 14pt;
-  margin-bottom: 12pt;
-  font-size: 9pt;
-  color: var(--text-light);
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
+  border-left: 2px solid var(--code-cursor-color);
 }
 
-/* === 源代码模式 === */
-#typora-source {
-  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas,
-    monospace;
-  font-size: 10pt;
-  line-height: 1.6;
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 2px solid var(--code-cursor-color);
 }
 
-/* === 侧边栏 === */
 .sidebar-tabs {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: none;
 }
 
-.file-list-item-file-name {
-  font-size: 10pt;
+.outline-expander {
+  width: 1.5rem;
+  vertical-align: initial;
+}
+
+.outline-expander:before,
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before,
+.outline-item-open>.outline-item>.outline-expander:hover:before {
+  content: "\f125";
+  transition: transform 125ms ease-in-out;
+}
+
+.outline-item-open>.outline-item>.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  transform: rotate(90deg);
+}
+
+.outline-label:hover {
+  text-decoration: none;
+}
+
+#toc-dropmenu {
+  background: var(--bg-color-dark);
+}
+
+#toc-dropmenu .outline-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.dropdown-menu .divider {
+  display: none;
+}
+
+.context-menu {
+  border: none !important;
+  backdrop-filter: saturate(180%) blur(20px) brightness(1.1);
+  background-color: var(--bg-color-dark);
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .22), 0 4.8px 14.4px 0 rgba(0, 0, 0, .18) !important;
+}
+
+.file-node-background {
+  height: 31px;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible;
+}
+
+.file-node-open-state {
+  min-width: 12px !important;
+}
+
+.file-node-icon {
+  margin-right: 8px;
+  color: var(--text-color);
+}
+
+.file-node-title-name-part {
+  font-weight: 500;
+}
+
+.file-library-node:not(.file-node-root):focus>.file-node-content {
+  outline: none;
+}
+
+/* New file animation */
+.blink-area {
+  animation: none;
 }
 
 .file-list-item-summary {
-  font-size: 9pt;
-  color: var(--text-light);
+  font-size: var(--font-size);
+  font-family: var(--font-family);
 }
 
-/* ============================================================
-   打印/PDF 导出优化
-   ============================================================ */
-@media print {
-  @page {
-    size: A4;
-    margin: 1.5cm 1.8cm;
-  }
-
-  body {
-    font-size: 10pt;
-    background-color: #ffffff;
-  }
-
-  #write {
-    padding: 0;
-    margin: 0;
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 24pt;
-    margin-top: 0;
-    letter-spacing: 3pt;
-  }
-
-  h1::after {
-    margin-top: 6pt;
-  }
-
-  h2 {
-    font-size: 12pt;
-    margin-top: 14pt;
-    margin-bottom: 6pt;
-  }
-
-  h3 {
-    font-size: 10.5pt;
-    margin-top: 10pt;
-  }
-
-  p {
-    font-size: 10pt;
-    line-height: 1.65;
-    margin-bottom: 3pt;
-  }
-
-  li {
-    font-size: 10pt;
-    line-height: 1.65;
-    margin-bottom: 1pt;
-  }
-
-  blockquote {
-    margin: 6pt 0;
-    padding: 6pt 12pt;
-  }
-
-  blockquote p {
-    font-size: 9.5pt;
-  }
-
-  code {
-    font-size: 8.5pt;
-    padding: 1pt 5pt;
-  }
-
-  pre {
-    font-size: 8.5pt;
-    padding: 8pt 12pt;
-  }
-
-  table {
-    font-size: 9.5pt;
-  }
-
-  thead th {
-    padding: 5pt 8pt;
-  }
-
-  tbody td {
-    padding: 5pt 8pt;
-  }
-
-  hr {
-    margin: 10pt 0;
-  }
-
-  a {
-    color: var(--text-color);
-    text-decoration: none;
-    border: none;
-  }
-
-  /* 打印时隐藏不必要的元素 */
-  .md-toc,
-  .sidebar,
-  #typora-sidebar,
-  #top-titlebar,
-  .ty-footer {
-    display: none !important;
-  }
+#md-searchpanel input {
+  border-radius: var(--border-radius);
+  box-shadow: none;
 }
 
-/* ============================================================
-   简历专用增强样式
-   ============================================================ */
-
-/* --- 联系信息行样式 ---
-   使用方式: 在姓名下方用分隔的行内代码或链接
-   示例: `email@example.com` | `138-0000-0000` | [GitHub](url)
-*/
-h1 + p {
-  text-align: center;
-  font-size: 9.5pt;
-  color: var(--text-light);
-  margin-top: 2pt;
-  margin-bottom: 6pt;
-  letter-spacing: 0.5pt;
+#md-searchpanel input:focus {
+  box-shadow: none;
+  border-color: var(--meta-content-color);
 }
 
-h1 + p code {
-  font-size: 9pt;
-  padding: 1pt 5pt;
+#md-searchpanel .search-type-selection {
+  width: auto;
 }
 
-h1 + p a {
-  color: var(--text-light);
-  font-size: 9.5pt;
+#md-searchpanel .btn:not(.close-btn):hover {
+  box-shadow: none;
 }
 
-h1 + p a:hover {
-  color: var(--accent-color);
+.mac-seamless-mode #typora-sidebar {
+  color: var(--side-bar-text-color);
+  background-color: var(--side-bar-bg-color);
 }
 
-/* --- 板块间距优化 ---
-   h2 之后的第一个元素减少顶部间距
-*/
-h2 + p,
-h2 + ul,
-h2 + ol,
-h2 + table,
-h2 + blockquote,
-h2 + h3 {
-  margin-top: 2pt;
+#md-notification .btn {
+  border: 0;
 }
 
-/* --- 条目布局优化 ---
-   h3 之后的第一个段落减少间距
-*/
-h3 + p,
-h3 + ul,
-h3 + ol {
-  margin-top: 1pt;
+/* CODE HIGHLIGHT */
+pre.CodeMirror-line {
+  color: var(--cm-line) !important
 }
 
-/* --- 时间线样式 ---
-   建议使用粗体+斜体组合表示时间
-   示例: ***2020.09 - 2024.06*** 
-*/
-em strong,
-strong em {
-  color: var(--accent-color);
-  font-size: 9.5pt;
-  font-weight: 500;
+.cm-variable {
+  color: var(--cm-variable) !important
 }
 
-/* --- 技能标签组 ---
-   使用行内代码表示技能标签，连续的代码标签自动排列
-   示例: `Python` `JavaScript` `React` `Node.js`
-*/
-p code + code,
-li code + code {
-  margin-left: 4pt;
+.cm-keyword {
+  color: var(--cm-keyword) !important
 }
 
-/* --- 评分条样式 ---
-   使用特殊字符表示熟练度
-   示例: Python ████████░░ 80%
-*/
-p code[title]::after {
-  content: " " attr(title);
-  font-size: 8pt;
-  color: var(--text-light);
+.cm-type {
+  color: var(--cm-type) !important
 }
 
-/* --- 侧边栏信息块 ---
-   使用引用块嵌套表示侧边栏信息
-*/
-h2 + blockquote {
-  border-left-color: var(--accent-color);
-  background: linear-gradient(135deg, var(--quote-bg), var(--bg-alt));
+.cm-tag {
+  color: var(--cm-tag) !important
 }
 
-/* --- 奖项/证书高亮 ---
-   使用 ==高亮== 语法标记重要内容
-*/
-mark {
-  background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
-  padding: 1pt 6pt;
-  border-radius: 3px;
-  font-weight: 500;
+.cm-variable-3 {
+  color: var(--cm-variable-3) !important
 }
 
-/* --- 项目经验卡片效果 ---
-   使用三级标题 + 引用块组合
-*/
-h3 + blockquote {
-  border-left-color: #27ae60;
-  background-color: #f0faf4;
-  margin-top: 2pt;
+.cm-bracket {
+  color: var(--cm-bracket);
 }
 
-/* ============================================================
-   暗色模式适配（可选）
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #ecf0f1;
-    --accent-color: #5dade2;
-    --accent-light: #1c2833;
-    --text-color: #d5d8dc;
-    --text-secondary: #aeb6bf;
-    --text-light: #7f8c8d;
-    --border-color: #34495e;
-    --bg-color: #1a1a2e;
-    --bg-alt: #16213e;
-    --tag-bg: #1c2833;
-    --tag-border: #2e4053;
-    --tag-text: #5dade2;
-    --link-color: #5dade2;
-    --hr-color: #5dade2;
-    --quote-border: #5dade2;
-    --quote-bg: #1c2833;
-    --table-header-bg: #1c2833;
-    --table-header-text: #ecf0f1;
-    --table-stripe: #16213e;
-    --code-bg: #1c2833;
-    --code-text: #e74c3c;
-    --sidebar-bg: #16213e;
-  }
-
-  h1::after {
-    background: var(--accent-color);
-  }
-
-  h2 {
-    border-bottom-color: var(--accent-color);
-  }
-
-  mark {
-    background: linear-gradient(120deg, #7d6608 0%, #9a7d0a 100%);
-    color: #f9e79f;
-  }
+.cm-error {
+  color: var(--cm-error) !important;
 }
 
-/* ============================================================
-   动画效果（仅编辑模式，不影响导出）
-   ============================================================ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.cm-attribute {
+  color: var(--cm-attribute) !important
 }
 
-h2 {
-  animation: fadeIn 0.3s ease-out;
+.cm-def {
+  color: var(--cm-def) !important
 }
 
-/* 平滑滚动 */
-html {
-  scroll-behavior: smooth;
+.cm-comment {
+  color: var(--cm-comment) !important
 }
 
-/* 选中文字样式 */
-::selection {
-  background-color: var(--accent-color);
-  color: #ffffff;
+.cm-string {
+  color: var(--cm-string) !important;
+  font-variant-ligatures: common-ligatures !important;
 }
 
-/* 滚动条美化 */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.cm-tag:not() {
+  font-weight: 700;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-alt);
+.cm-operator {
+  color: var(--cm-operator) !important
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 3px;
+.cm-number {
+  color: var(--cm-number) !important
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color);
+.cm-meta {
+  color: var(--cm-meta) !important;
+  font-weight: 700 !important;
 }
 
-/* ============================================================
-   简历 Markdown 模板参考（注释）
-   ============================================================
-   
-   建议的简历 Markdown 结构:
+.cm-atom {
+  color: var(--cm-atom) !important
+}
 
-   # 张三
-   > 高级前端工程师 | 5年经验 | 期待远程工作机会
-   
-   `zhangsan@email.com` · `138-0000-0000` · [GitHub](https://github.com) · [个人网站](https://example.com)
-   
-   ---
-   
-   ## 专业技能
-   
-   - 前端开发: `JavaScript` `TypeScript` `React` `Vue.js` `Next.js`
-   - 后端开发: `Node.js` `Python` `Go`
-   - 工具链: `Webpack` `Vite` `Docker` `Git` `CI/CD`
-   
-   ---
-   
-   ## 工作经历
-   
-   ### ABC科技有限公司 · **高级前端工程师**
-   ***2022.03 - 至今***
-   
-   - 负责公司核心产品的前端架构设计与技术选型
-   - 主导前端工程化建设，搭建组件库与脚手架工具
-   - 优化首屏加载性能，LCP 从 3.2s 降至 1.1s
-   
-   ### XYZ互联网公司 · **前端工程师**
-   ***2019.07 - 2022.02***
-   
-   - 参与电商平台前端开发，日均 PV 500万+
-   - 封装通用业务组件，提升团队开发效率 30%
-   
-   ---
-   
-   ## 教育背景
-   
-   ### 某某大学 · **计算机科学与技术 · 本科**
-   ***2015.09 - 2019.06***
-   
-   - GPA: 3.8/4.0，专业排名前 5%
-   - 国家奖学金（2017、2018）
-   
-   ---
-   
-   ## 项目经验
-   
-   ### 开源组件库 DesignX
-   > 一个轻量级 React UI 组件库，GitHub 2.3k Stars
-   
-   - 设计并实现 30+ 通用组件，支持主题定制与国际化
-   - 编写完整文档与单元测试，覆盖率达 95%
-   
-   ============================================================ */
+.cm-builtin {
+  color: var(--cm-builtin) !important
+}
+
+.cm-property {
+  color: var(--cm-property) !important
+}
+
+.cm-variable-2 {
+  color: var(--cm-variable-2) !important
+}
+
+
+/* CODE HIGHLIGHT */
+
+.file-tree-node.active>.file-node-background {
+  color: var(--active-file-text-color);
+  background-color: var(--active-file-bg-color);
+  border-left: 0 solid var(--active-file-border-color) !important;
+  border-color: var(--active-file-border-color) !important;
+}
+
+.CodeMirror-gutters {
+  border-right: 1px solid var(--cm-gutter);
+  background: inherit;
+  white-space: nowrap;
+}
+
+.ty-footer,
+.sidebar-footer,
+footer {
+  backdrop-filter: saturate(120%) blur(20px) brightness(0.85);
+  border: none !important;
+  background: none;
+  background-color: var(--footer-bg-color);
+}
+
+.code-tooltip {
+  border-radius: 4px;
+  background-color: var(--code-fence-bg-color);
+  box-shadow: 0 26px 58px 0 rgba(0, 0, 0, .52), 0 5px 14px 0 rgba(0, 0, 0, .28) !important;
+}
+
+#sidebar-files-menu {
+  color: var(--side-bar-text-color);
+  border-radius: var(--border-radius);
+  border: none !important;
+  cursor: pointer;
+  box-shadow: 0 26px 58px 0 #f7f6f3, 0 5px 14px 0 rgba(0, 0, 0, .28);
+}
+
+.code-tooltip.md-tooltip-hide.md-hover-tip {
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .52), 0 4.8px 14.4px 0 rgba(0, 0, 0, .28);
+}
+
+#typora-sidebar {
+  border-color: var(--text-cursor-color);
+  box-shadow: rgba(84, 72, 49, 0.08) -1px 0 0 0 inset;
+}
+
+#footer-word-count-info,
+#spell-check-panel {
+  border: none !important;
+  backdrop-filter: saturate(120%) blur(20px) brightness(0.85) !important;
+  box-shadow: 0 25.6px 57.6px 0 rgba(0, 0, 0, .32), 0 4.8px 14.4px 0 rgba(0, 0, 0, .28) !important;
+}
+
+/* Windows/Linux unibody mode */
+.megamenu-content,
+.megamenu-opened header {
+  color: var(--body-text-color);
+  background: var(--bg-color-dark);
+}
+
+#recent-file-panel-action-btn {
+  background: inherit;
+  border: 1px var(--light-trait-300) solid;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+  color: var(--text-color);
+  background: var(--bg-color-dark);
+}
+
+.megamenu-menu-panel table td:nth-child(2) {
+  color: var(--text-color);
+  background: var(--bg-color-dark);
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+  color: var(--text-color);
+  background: var(--active-file-bg-color);
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+  color: var(--text-color);
+  background: var(--active-file-bg-color);
+}
+
+.megamenu-menu-panel input[type='text'] {
+  background: inherit;
+  border: 1px var(--secondary-text-color) solid;
+}
+
+#recent-file-panel-action-btn {
+  background: inherit;
+}
+
+.megamenu-menu,
+.megamenu-content {
+  background: var(--side-bar-bg-color);
+  color: var(--text-color);
+}
+
+#top-titlebar,
+#top-titlebar * {
+  background: inherit;
+  color: var(--text-color);
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+  color: var(--text-color);
+}
+
+.megamenu-back-btn {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover,
+.megamenu-menu-header:focus {
+  color: inherit;
+}
+
+.megamenu-menu-panel table tr:nth-child(2n + 1) {
+  background-color: var(--side-bar-bg-color);
+}
+
+.file-node-content {
+  cursor: pointer !important;
+}
+
+.md-alert {
+  background-color: #f3f5f7;
+  padding-top: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-left-width: 0.5rem;
+  border-left-color: #42B985;
+}
+
+.md-alert-text {
+  font-size: 1rem;
+}
 </style>
 <style type='text/css'  id="style-lp">ol, ul {padding-left: 40px}</style>
 
 <title>resume</title>
 </head>
 <body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=' first-line-indent'><!-- Google 翻译插件 --><div id="google_translate_element" style="position: fixed; top: 20px; right: 150px; z-index: 1000;" class="no-print"></div>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'zh-CN', 
-            includedLanguages: 'en,zh-CN',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<style>
-/* 彻底隐藏 Google 翻译的顶部工具栏 (长条框) */
-.VIpgJd-ZVi9od-ORHb-OEVmcd {
-    display: none !important;
-}
-/* 修复 Google 翻译强行给 body 和 html 添加的 top 偏移 */
-html, body {
-    top: 0 !important;
-    margin-top: 0 !important;
-}
-/* 打印时隐藏不需要的元素 */
-@media print {
-    .no-print {
-        display: none !important;
-    }
-}
-/* ===== 移动端适配 ===== */
-@media screen and (max-width: 768px) {
-  body.typora-export {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-  table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-  }
-  pre, code {
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    word-break: break-all;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  h1 { font-size: 1.5rem !important; }
-  h2 { font-size: 1.25rem !important; }
-  h3 { font-size: 1.1rem !important; }
-  /* 翻译按钮和打印按钮在移动端缩小 */
-  #google_translate_element {
-    top: 10px !important;
-    right: 80px !important;
-  }
-}
-</style><p><a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;" class="no-print"><span>⬅ 返回首页</span></a>
-<button onclick="window.print()" style="position: fixed; top: 20px; right: 20px; color: #fff; font-weight: bold; background: #007bff; padding: 8px 12px; border: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000; cursor: pointer;" class="no-print"><span>⬇ 保存为 PDF</span></button></p><h1 id='靳马珏'><span>靳马珏</span></h1><blockquote><p><span>电话：</span><code>(+86)176-33088-571</code><span>       邮箱：</span><code>17633088571@163.com</code></p></blockquote><h2 id='基本信息'><span>基本信息</span></h2><h3 id='河北科技大学---本科---计算机科学与技术专业---20219---20266'><span>河北科技大学 - 本科 - 计算机科学与技术专业   (2021.9 - 2026.6) </span></h3><p><strong><span>出生年月</span></strong><span>：2002/09   |   </span><strong><span>籍贯</span></strong><span> ：河北省邢台市  |   </span><strong><span>身高/体重</span></strong><span>：175cm/55kg</span></p><p><strong><span>民族</span></strong><span>：汉族   |   </span><strong><span>政治面貌</span></strong><span>：共青团员   |   </span><strong><span>证书：</span></strong><span> 英语四级；普通话二级甲等；驾驶证C1</span></p><p><strong><span>相关课程</span></strong><span>：数据库原理及应用，数据结构，计算机网络，操作系统，编译原理...</span></p><hr /><h2 id='校园项目经历'><span>校园项目经历</span></h2><h3 id='毕业设计---基于linux的云盘系统--clinux-系统编程--高并发网络服务-🔗-源码仓库'><span>毕业设计-  </span><u><span>基于Linux的云盘系统</span></u><span>  （C/Linux 系统编程 · 高并发网络服务）　🔗 </span><a href='https://github.com/vestjin/GraduationDesign'><span>源码仓库</span></a></h3><p><strong><span>技术栈</span></strong><span>：C / Linux / epoll / MySQL / CMake / GCC / GDB</span></p><p><strong><span>项目描述</span></strong><span>：基于 Linux C 语言自主开发的高性能云盘存储服务，采用 </span><code>epoll + 线程池</code><span> 的 Reactor 并发模型，单机可稳定承载数千并发连接。</span></p><p><strong><span>核心工作</span></strong><span>：</span></p><ul><li><p><strong><span>高并发网络层</span></strong><span>：基于 epoll 实现非阻塞 IO 事件驱动，配合自研线程池（互斥锁 + 条件变量同步任务队列）构建 Reactor 模型，避免线程频繁创建销毁开销。</span></p></li><li><p><strong><span>MySQL 连接池</span></strong><span>：自研连接池支持连接复用、自动重连与超时等待（条件变量 + 超时返回），有效缓解高并发下数据库连接瓶颈。</span></p></li><li><p><strong><span>文件传输优化</span></strong><span>：使用 </span><code>sendfile</code><span> 零拷贝技术优化大文件下载与预览，减少 CPU 与用户态/内核态内存拷贝开销；实现基于 MD5 校验的文件秒传与分片断点续传。</span></p></li><li><p><strong><span>安全与存储</span></strong><span>：用户 Token 身份认证、密码 SHA256 加盐加密存储、SQL 注入防护；实现文件夹树形管理（创建/重命名/移动/删除）及用户存储配额控制。</span></p></li><li><p><strong><span>工程化</span></strong><span>：使用 CMake 构建多模块工程，GDB 调试定位内存与并发问题，Valgrind 检测内存泄漏。</span></p></li></ul><h3 id='恒温控制系统-2023-2024第二学期--🔗-源码仓库'><u><span>恒温控制系统</span></u><span>	</span><span>2023-2024第二学期  🔗 </span><a href='https://github.com/vestjin/temperature-control-system'><span>源码仓库</span></a></h3><p><span>恒温控制系统由上位机和下位机组成，通过串口通信实现温度采集与控制。</span></p><ul><li><p><strong><span>下位机（C/嵌入式）</span></strong><span>：使用 Keil C 完成单片机串口初始化与温度采集控制逻辑，实现上下位机串口协议通信。</span></p></li><li><p><strong><span>上位机（Python）</span></strong><span>：使用 Tkinter 设计用户界面，Dash 库绘制温度数据图表，SQLite 存储温度数据并支持历史查询。</span></p></li></ul><h3 id='鲜花商城的后端系统-2023-2024第一学期'><span>鲜花商城的后端系统</span><span>	</span><span>2023-2024第一学期    </span></h3><p><span>技术栈：Python，FastAPI， PostgreSQL, Docker使用 Python 和 FastAPI 开发 RESTful API，确保高效的数据处理和快速响应。设计 PostgreSQL 数据库结构，优化了数据存储和查询性能。通过 Docker 容器化部署数据库和应用，确保系统的一致性和可扩展性。我主要实现购物车管理和订单处理功能,用户可以将商品添加到购物车、更新数量或删除商品。支持订单创建、更新订单状态（如支付、发货、完成）以及订单历史查询。  </span></p><hr /><h2 id='专业技能'><span>专业技能</span></h2><ul><li><p><strong><span>C/C++ 编程</span></strong><span>：熟练掌握 C/C++，理解 C++11 常用特性（智能指针、lambda、右值引用、STL 容器与算法），熟悉面向对象与 RAII 思想，注重编写清晰、高效、可维护的代码。</span></p></li><li><p><strong><span>Linux 系统编程</span></strong><span>：熟悉 Linux 下文件 IO、多线程/多进程编程、进程间通信（管道、共享内存、消息队列、信号），理解 epoll 事件驱动与 Reactor 并发模型。</span></p></li><li><p><strong><span>网络编程</span></strong><span>：熟悉 TCP/IP 协议栈与 socket 编程，掌握非阻塞 IO、IO 多路复用、零拷贝（sendfile）等技术。</span></p></li><li><p><strong><span>多线程与并发</span></strong><span>：熟悉线程池实现、互斥锁、条件变量、原子操作，了解常见死锁与竞态问题的排查与规避。</span></p></li><li><p><strong><span>数据库</span></strong><span>：熟悉 MySQL，了解 PostgreSQL、SQLite，具备连接池设计与 SQL 调优基础。</span></p></li><li><p><strong><span>开发工具链</span></strong><span>：使用 GCC/GDB/Make/CMake，了解 Valgrind 内存检测；使用 Git 进行版本管理与多人协作。</span></p></li><li><p><strong><span>数据结构与算法</span></strong><span>：掌握常用数据结构（链表、哈希表、树、图）与算法，具备正则表达式使用经验。</span></p></li><li><p><strong><span>其他</span></strong><span>：了解 Python/Java，具备跨语言协作与快速原型开发能力；良好的沟通与团队协作能力。</span></p><p>&nbsp;</p></li></ul><h2 id='自我评价'><span>自我评价</span></h2><ul><li><p><strong><span>团队协作与融入</span></strong><span> ：在最短的时间内理解团队文化，找准自己的位置，并主动与同事建立良好的工作关系；</span></p></li><li><p><strong><span>抗压与稳重</span></strong><span> ：坚韧和冷静。压力对我而言不是阻碍，而是前进的动力。</span></p></li><li><p><strong><span>认真负责</span></strong><span>：注重细节，追求卓越，并以高标准要求自己。每一个细节、每一个流程我都会认真对待，确保工作的质量和完整性</span></p></li></ul></div></div>
+<div id='write'  class=''><p>&nbsp;</p><p><a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;" class="no-print"><span>⬅ 返回首页</span></a>
+<button onclick="window.print()" style="position: fixed; top: 20px; right: 20px; color: #fff; font-weight: bold; background: #007bff; padding: 8px 12px; border: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000; cursor: pointer;" class="no-print"><span>⬇ 保存为 PDF</span></button></p><h1 id='靳马珏'><span>靳马珏</span></h1><blockquote><p><span>电话：</span><code>(+86)176-33088-571</code><span>       邮箱：</span><code>17633088571@163.com</code></p></blockquote><h2 id='基本信息'><span>基本信息</span></h2><h3 id='河北科技大学---本科---计算机科学与技术专业---20219---20266'><span>河北科技大学 - 本科 - 计算机科学与技术专业   (2021.9 - 2026.6) </span></h3><p><strong><span>性别</span></strong><span>：男   |   </span><strong><span>出生年月</span></strong><span>：2002/09   |   </span><strong><span>籍贯</span></strong><span> ：河北省邢台市  |   </span><strong><span>身高/体重</span></strong><span>：175cm/55kg</span></p><p><strong><span>民族</span></strong><span>：汉族   |   </span><strong><span>政治面貌</span></strong><span>：共青团员   |   </span><strong><span>证书：</span></strong><span> 英语四级；普通话二级甲等；驾驶证C1</span></p><p><strong><span>相关课程</span></strong><span>：数据库原理及应用，数据结构，计算机网络，操作系统，编译原理...</span></p><hr /><h2 id='校园项目经历'><span>校园项目经历</span></h2><h3 id='毕业设计---基于linux的云盘系统--clinux-系统编程--高并发网络服务-🔗-源码仓库'><span>毕业设计-  </span><u><span>基于Linux的云盘系统</span></u><span>  （C/Linux 系统编程 · 高并发网络服务）　🔗 </span><a href='https://github.com/vestjin/GraduationDesign'><span>源码仓库</span></a></h3><p><strong><span>技术栈</span></strong><span>：C / Linux / epoll / MySQL / CMake / GCC / GDB</span></p><p><strong><span>项目描述</span></strong><span>：基于 Linux C 语言自主开发的高性能云盘存储服务，采用 </span><code>epoll + 线程池</code><span> 的 Reactor 并发模型，单机可稳定承载数千并发连接。</span></p><p><strong><span>核心工作</span></strong><span>：</span></p><ul><li><p><strong><span>高并发网络层</span></strong><span>：基于 epoll 实现非阻塞 IO 事件驱动，配合自研线程池（互斥锁 + 条件变量同步任务队列）构建 Reactor 模型，避免线程频繁创建销毁开销。</span></p></li><li><p><strong><span>MySQL 连接池</span></strong><span>：自研连接池支持连接复用、自动重连与超时等待（条件变量 + 超时返回），有效缓解高并发下数据库连接瓶颈。</span></p></li><li><p><strong><span>文件传输优化</span></strong><span>：使用 </span><code>sendfile</code><span> 零拷贝技术优化大文件下载与预览，减少 CPU 与用户态/内核态内存拷贝开销；实现基于 MD5 校验的文件秒传与分片断点续传。</span></p></li><li><p><strong><span>安全与存储</span></strong><span>：用户 Token 身份认证、密码 SHA256 加盐加密存储、SQL 注入防护；实现文件夹树形管理（创建/重命名/移动/删除）及用户存储配额控制。</span></p></li><li><p><strong><span>工程化</span></strong><span>：使用 CMake 构建多模块工程，GDB 调试定位内存与并发问题，Valgrind 检测内存泄漏。</span></p></li></ul><h3 id='恒温控制系统-2023-2024第二学期--🔗-源码仓库'><u><span>恒温控制系统</span></u><span>	</span><span>2023-2024第二学期  🔗 </span><a href='https://github.com/vestjin/temperature-control-system'><span>源码仓库</span></a></h3><p><span>恒温控制系统由上位机和下位机组成，通过串口通信实现温度采集与控制。</span></p><ul><li><p><strong><span>下位机（C/嵌入式）</span></strong><span>：使用 Keil C 完成单片机串口初始化与温度采集控制逻辑，实现上下位机串口协议通信。</span></p></li><li><p><strong><span>上位机（Python）</span></strong><span>：使用 Tkinter 设计用户界面，Dash 库绘制温度数据图表，SQLite 存储温度数据并支持历史查询。</span></p></li></ul><h3 id='鲜花商城的后端系统-2023-2024第一学期'><span>鲜花商城的后端系统</span><span>	</span><span>2023-2024第一学期    </span></h3><p><span>技术栈：Python，FastAPI， PostgreSQL, Docker使用 Python 和 FastAPI 开发 RESTful API，确保高效的数据处理和快速响应。设计 PostgreSQL 数据库结构，优化了数据存储和查询性能。通过 Docker 容器化部署数据库和应用，确保系统的一致性和可扩展性。我主要实现购物车管理和订单处理功能,用户可以将商品添加到购物车、更新数量或删除商品。支持订单创建、更新订单状态（如支付、发货、完成）以及订单历史查询。  </span></p><hr /><h2 id='专业技能'><span>专业技能</span></h2><ul><li><p><strong><span>C/C++ 编程</span></strong><span>：熟练掌握 C/C++，理解 C++11 常用特性（智能指针、lambda、右值引用、STL 容器与算法），熟悉面向对象与 RAII 思想，注重编写清晰、高效、可维护的代码。</span></p></li><li><p><strong><span>Linux 系统编程</span></strong><span>：熟悉 Linux 下文件 IO、多线程/多进程编程、进程间通信（管道、共享内存、消息队列、信号），理解 epoll 事件驱动与 Reactor 并发模型。</span></p></li><li><p><strong><span>网络编程</span></strong><span>：熟悉 TCP/IP 协议栈与 socket 编程，掌握非阻塞 IO、IO 多路复用、零拷贝（sendfile）等技术。</span></p></li><li><p><strong><span>多线程与并发</span></strong><span>：熟悉线程池实现、互斥锁、条件变量、原子操作，了解常见死锁与竞态问题的排查与规避。</span></p></li><li><p><strong><span>数据库</span></strong><span>：熟悉 MySQL，了解 PostgreSQL、SQLite，具备连接池设计与 SQL 调优基础。</span></p></li><li><p><strong><span>开发工具链</span></strong><span>：使用 GCC/GDB/Make/CMake，了解 Valgrind 内存检测；使用 Git 进行版本管理与多人协作。</span></p></li><li><p><strong><span>数据结构与算法</span></strong><span>：掌握常用数据结构（链表、哈希表、树、图）与算法，具备正则表达式使用经验。</span></p></li><li><p><strong><span>其他</span></strong><span>：了解 Python/Java，具备跨语言协作与快速原型开发能力；良好的沟通与团队协作能力。</span></p><p>&nbsp;</p></li></ul><h2 id='自我评价'><span>自我评价</span></h2><ul><li><p><strong><span>团队协作与融入</span></strong><span> ：在最短的时间内理解团队文化，找准自己的位置，并主动与同事建立良好的工作关系；</span></p></li><li><p><strong><span>抗压与稳重</span></strong><span> ：坚韧和冷静。压力对我而言不是阻碍，而是前进的动力。</span></p></li><li><p><strong><span>认真负责</span></strong><span>：注重细节，追求卓越，并以高标准要求自己。每一个细节、每一个流程我都会认真对待，确保工作的质量和完整性</span></p></li></ul></div></div>
 </body>
 </html>
