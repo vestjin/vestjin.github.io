@@ -2,7 +2,7 @@
 
 
 <a href="index.html" style="position: fixed; top: 20px; left: 20px; text-decoration: none; color: #333; font-weight: bold; background: #f0f0f0; padding: 8px 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000;" class="no-print">⬅ 返回首页</a>
-<button onclick="window.print()" style="position: fixed; top: 20px; right: 20px; color: #fff; font-weight: bold; background: #007bff; padding: 8px 12px; border: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 1000; cursor: pointer;" class="no-print">⬇ 保存为 PDF</button>
+
 
 # 靳马珏
 
