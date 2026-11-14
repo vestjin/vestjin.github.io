@@ -1,731 +1,852 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>手记档案馆</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23f0a832'/%3E%3Crect x='3' y='5' width='3' height='3' fill='%2316130f'/%3E%3Crect x='10' y='5' width='3' height='3' fill='%2316130f'/%3E%3Crect x='4' y='10' width='8' height='2' fill='%2316130f'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.font.im">
-<link href="https://fonts.font.im/css2?family=ZCOOL+QingKe+HuangYou&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdmirror.cn/npm/marked@4.3.0/marked.min.js"></script>
-<script src="https://cdn.jsdmirror.cn/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>收藏目录</title>
+
+<!-- ===== SVG 标签页图标（墨线书签） ===== -->
+<link rel="icon" type="image/svg+xml"
+  href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="%23faf8f4"/><path d="M20 12h24v40L32 42 20 52z" fill="none" stroke="%231a1a1a" stroke-width="4" stroke-linejoin="round"/><line x1="26" y1="22" x2="38" y2="22" stroke="%231a1a1a" stroke-width="3" stroke-linecap="round"/></svg>'>
+
 <style>
-:root{
-  --bg:#16130f; --panel:#1e1913;
-  --line:#352c1f; --line2:#4a3d29;
-  --amber:#f0a832; --amber-deep:#b37816;
-  --ink:#e9e1d0; --mut:#8f8471; --dim:#5f584a;
-  --green:#4ade80; --paper:#f4efe3; --paper-ink:#2b241a; --paper-mut:#7d7362;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
-  --disp:'ZCOOL QingKe HuangYou','PingFang SC','Microsoft YaHei',sans-serif;
-  --body:-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);letter-spacing:.02em;min-height:100vh}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--amber);color:#16130f}
-
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amber);z-index:99;transition:width .1s linear;display:none}
-
-.wrap{display:grid;grid-template-columns:292px 1fr;max-width:1320px;margin:0 auto;min-height:100vh}
-#side{border-right:1px solid var(--line);padding:26px 0 20px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto}
-
-.brand{padding:0 22px 20px;border-bottom:1px dashed var(--line2)}
-.brand-row{display:flex;align-items:center;gap:12px}
-#pixlogo{width:33px;height:24px;position:relative;flex:none}
-#pixlogo i{position:absolute;top:0;left:0;width:3px;height:3px;background:var(--amber)}
-.brand h1{font-family:var(--disp);font-size:24px;font-weight:400;line-height:1.1;letter-spacing:.06em}
-.brand p{margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--mut)}
-.brand p b{color:var(--amber-deep);font-weight:400}
-
-.cats-hint{padding:18px 22px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.25em;color:var(--dim)}
-#cats{display:flex;flex-direction:column}
-.cat{display:flex;align-items:baseline;gap:10px;padding:13px 22px;border-left:3px solid transparent;position:relative;transition:background .12s,color .12s}
-.cat .no{font-family:var(--mono);font-size:11px;color:var(--dim);width:20px;flex:none;transition:color .12s}
-.cat .nm{font-family:var(--disp);font-size:19px;letter-spacing:.08em;flex:1;min-width:0}
-.cat .nm small{display:block;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.05em;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cat .cnt{font-family:var(--mono);font-size:11px;color:var(--mut);flex:none}
-.cat .cnt b{color:var(--amber);font-weight:700;font-size:14px}
-.cat:hover{background:var(--amber);color:#16130f}
-.cat:hover .no,.cat:hover .nm small,.cat:hover .cnt,.cat:hover .cnt b{color:#16130f}
-.cat.on{border-left-color:var(--amber);background:var(--panel)}
-.cat.on::before{content:'▸';position:absolute;left:6px;top:14px;color:var(--amber);font-size:11px}
-.cat.on .nm{color:var(--amber)}
-.cat.on .cnt b{color:var(--amber)}
-
-.side-foot{margin-top:auto;padding:18px 22px 0;border-top:1px dashed var(--line2);font-family:var(--mono);font-size:10.5px;color:var(--mut);line-height:2}
-.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:1px}
-.dot.warn{background:var(--amber)}
-#refreshBtn{background:none;border:1px solid var(--line2);color:var(--mut);font-family:var(--mono);font-size:10px;padding:4px 10px;cursor:pointer;margin-top:8px;letter-spacing:.1em;transition:.12s}
-#refreshBtn:hover{border-color:var(--amber);color:var(--amber)}
-
-#main{padding:34px clamp(18px,4vw,44px) 60px;min-width:0}
-.view-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
-.view-head h2{font-family:var(--disp);font-size:clamp(26px,4vw,36px);font-weight:400;letter-spacing:.08em}
-.view-head h2 span{color:var(--amber)}
-.view-head .folder{font-family:var(--mono);font-size:11px;color:var(--mut)}
-.head-rule{border:none;border-top:1px solid var(--line2);margin:12px 0 4px;position:relative}
-.head-rule::after{content:'';position:absolute;left:0;top:-4px;width:52px;height:7px;background:var(--amber)}
-
-.filter-row{margin:16px 0 6px}
-#filter{width:min(320px,100%);background:transparent;border:none;border-bottom:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:13px;padding:8px 2px;outline:none;transition:border-color .15s}
-#filter:focus{border-bottom-color:var(--amber)}
-#filter::placeholder{color:var(--dim)}
-
-.flist{margin-top:8px}
-.fitem{display:flex;align-items:baseline;gap:12px;padding:13px 10px;border-bottom:1px solid var(--line);transition:background .12s,color .12s;cursor:pointer}
-.fitem .no{font-family:var(--mono);font-size:11px;color:var(--amber-deep);width:26px;flex:none}
-.fitem .fn{flex:1;min-width:0;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fitem:hover{background:var(--amber);color:#16130f}
-.fitem:hover .no{color:#16130f}
-
-.empty{margin-top:28px;border:1px dashed var(--line2);padding:30px 26px;color:var(--mut);font-size:14px;line-height:2}
-.empty code{font-family:var(--mono);color:var(--amber);background:var(--panel);padding:2px 7px;font-size:12.5px}
-.empty .tip{color:var(--amber-deep)}
-
-.art-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.ghostbtn{background:none;border:1px solid var(--line2);color:var(--ink);font-family:var(--mono);font-size:12px;padding:7px 14px;cursor:pointer;letter-spacing:.05em;transition:.12s}
-.ghostbtn:hover{border-color:var(--amber);color:var(--amber)}
-.art-actions{display:flex;gap:8px;flex-wrap:wrap}
-.paper{position:relative;background:var(--paper);color:var(--paper-ink);padding:clamp(24px,4vw,52px);line-height:1.9;font-size:16.5px}
-.paper::before,.paper::after{content:'';position:absolute;width:16px;height:16px;pointer-events:none}
-.paper::before{top:8px;left:8px;border-top:2px solid var(--amber);border-left:2px solid var(--amber)}
-.paper::after{bottom:8px;right:8px;border-bottom:2px solid var(--amber);border-right:2px solid var(--amber)}
-.art-meta{font-family:var(--mono);font-size:11px;color:var(--paper-mut);letter-spacing:.12em;margin-bottom:14px}
-.art-meta b{color:var(--amber-deep);font-weight:700}
-.paper h1{font-family:var(--disp);font-size:clamp(24px,4.5vw,34px);font-weight:400;line-height:1.35;letter-spacing:.04em;margin-bottom:6px}
-.art-title-rule{border:none;border-top:2px solid var(--paper-ink);position:relative;margin:14px 0 30px}
-.art-title-rule::after{content:'';position:absolute;left:0;top:3px;width:100%;border-top:1px solid var(--paper-ink)}
-
-.md-body h2{font-family:var(--disp);font-size:21px;font-weight:400;margin:34px 0 12px;padding-left:14px;border-left:4px solid var(--amber-deep);letter-spacing:.05em;scroll-margin-top:22px}
-.md-body h3{font-size:17.5px;margin:26px 0 10px;color:#4a3a20;scroll-margin-top:22px}
-.md-body p{margin:12px 0}
-.md-body ul,.md-body ol{padding-left:1.5em;margin:12px 0}
-.md-body li{margin:5px 0}
-.md-body li::marker{color:var(--amber-deep)}
-.md-body blockquote{border-left:3px solid var(--amber-deep);background:#ece5d5;margin:16px 0;padding:10px 18px;color:#5c5240}
-.md-body code{font-family:var(--mono);font-size:.85em;background:#e7dfcd;padding:2px 6px;border-radius:2px;color:#8a4b12}
-.md-body pre{background:#efe8d8;border:1px solid #ddd2ba;padding:14px 16px;overflow-x:auto;margin:16px 0;line-height:1.6}
-.md-body pre code{background:none;padding:0;color:#3a3225;font-size:13.5px}
-.md-body img{max-width:100%;display:block;margin:18px auto;border:1px solid #d8cdb4}
-.md-body table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
-.md-body th,.md-body td{border:1px solid #cfc3a6;padding:7px 12px;text-align:left}
-.md-body th{background:#eae2ce;font-family:var(--mono);font-size:12.5px}
-.md-body hr{border:none;border-top:1px dashed #c3b796;margin:26px 0}
-.md-body a{color:#a05e10;border-bottom:1px solid #d3a95f}
-.md-body a:hover{color:#7a4408}
-.hljs-comment,.hljs-quote{color:#96896f;font-style:italic}
-.hljs-keyword,.hljs-selector-tag,.hljs-literal,.hljs-name{color:#a1417c}
-.hljs-string,.hljs-attr,.hljs-template-variable{color:#7a5c12}
-.hljs-number,.hljs-symbol,.hljs-bullet{color:#3f6fa8}
-.hljs-title,.hljs-function,.hljs-built_in{color:#8a4b12}
-.hljs-section,.hljs-attribute{color:#2f7a52}
-
-.art-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
-.art-nav a{flex:1;border:1px solid var(--line2);padding:13px 16px;font-size:13px;color:var(--mut);transition:.12s;min-width:0}
-.art-nav a:hover{border-color:var(--amber);color:var(--amber)}
-.art-nav a b{display:block;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.2em;margin-bottom:5px}
-.art-nav a:hover b{color:var(--amber)}
-.art-nav .nx{text-align:right}
-.art-nav a span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* ═══════════ 目录（TOC） ═══════════ */
-.art-layout{display:flex;gap:22px;align-items:flex-start}
-.art-main{flex:1;min-width:0}
-
-.toc{
-  flex:none;width:206px;
-  position:sticky;top:18px;
-  max-height:calc(100vh - 36px);
-  display:flex;flex-direction:column;
-  background:var(--panel);
-  border:1px solid var(--line);
-  transition:width .22s cubic-bezier(.4,0,.2,1);
-  overflow:hidden;
-}
-.toc-head{
-  display:flex;align-items:center;justify-content:space-between;gap:6px;
-  padding:10px 8px 10px 14px;border-bottom:1px dashed var(--line2);flex:none;
-}
-.toc-title{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;
-  color:var(--amber);white-space:nowrap;
-}
-.toc-toggle{
-  background:none;border:1px solid var(--line2);color:var(--mut);
-  width:22px;height:22px;padding:0;flex:none;cursor:pointer;
-  font-family:var(--mono);font-size:13px;line-height:1;
-  display:flex;align-items:center;justify-content:center;transition:.12s;
-}
-.toc-toggle:hover{border-color:var(--amber);color:var(--amber);background:rgba(240,168,50,.08)}
-.toc-body{
-  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
-  padding:7px 0 12px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent;
-}
-.toc-body::-webkit-scrollbar{width:5px}
-.toc-body::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
-.toc-body::-webkit-scrollbar-track{background:transparent}
-
-.toc-link{
-  display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;
-  background:none;border:none;border-left:2px solid transparent;
-  font-family:var(--body);font-size:13px;line-height:1.55;color:var(--mut);
-  padding:7px 11px 7px 12px;cursor:pointer;transition:background .12s,color .12s,border-color .12s;
-}
-.toc-link .toc-no{
-  font-family:var(--mono);font-size:10px;color:var(--dim);
-  flex:none;width:15px;padding-top:2px;transition:color .12s;
-}
-.toc-link .toc-tx{
-  flex:1;min-width:0;word-break:break-word;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.toc-link.lv3{padding-left:24px;font-size:12.5px}
-.toc-link.lv3 .toc-no{width:auto}
-.toc-link.lv3 .toc-no::before{content:'·'}
-.toc-link:hover{background:rgba(240,168,50,.09);color:var(--ink)}
-.toc-link.on{border-left-color:var(--amber);color:var(--amber);background:rgba(240,168,50,.08)}
-.toc-link.on .toc-no{color:var(--amber)}
-.toc-link:focus-visible{outline:1px solid var(--amber);outline-offset:-2px}
-
-.toc.collapsed{width:42px}
-.toc.collapsed .toc-head{padding:10px 0;justify-content:center}
-.toc.collapsed .toc-title{display:none}
-.toc.collapsed .toc-body{display:none}
-
-.toc-fab{
-  display:none;position:fixed;right:16px;bottom:20px;z-index:70;
-  width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
-  background:var(--amber);color:#16130f;font-size:20px;
-  align-items:center;justify-content:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.45);transition:transform .14s;
-}
-.toc-fab:active{transform:scale(.92)}
-.toc-scrim{display:none;position:fixed;inset:0;background:rgba(8,6,4,.62);z-index:55}
-
-@media (max-width:1120px){
-  .art-layout{display:block}
-  .toc{
-    position:fixed;top:0;right:0;bottom:0;left:auto;
-    width:min(300px,84vw);height:100%;max-height:none;
-    z-index:60;border:none;border-left:1px solid var(--line2);
-    transform:translateX(101%);
-    transition:transform .26s cubic-bezier(.4,0,.2,1);
-    box-shadow:-16px 0 44px rgba(0,0,0,.55);
-    padding-top:env(safe-area-inset-top);
+  /* ===== 纸感基调 ===== */
+  :root {
+    --paper: #faf8f4;
+    --ink: #1a1a1a;
+    --ink-soft: #6b6558;
+    --ink-faint: #a39c8e;
+    --line: #e3ddd0;
+    --line-dark: #1a1a1a;
+    --panel: #fffdf8;
   }
-  .toc.open{transform:none}
-  .toc.collapsed{width:min(300px,84vw)}
-  .toc.collapsed .toc-head{padding:10px 8px 10px 14px;justify-content:space-between}
-  .toc.collapsed .toc-title{display:block}
-  .toc.collapsed .toc-body{display:block}
-  .toc-fab{display:flex}
-  .toc-scrim.show{display:block}
-}
 
-#toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#0d0b08;border:1px solid var(--amber);color:var(--amber);font-family:var(--mono);font-size:12.5px;padding:11px 22px;opacity:0;pointer-events:none;transition:.25s;z-index:100;letter-spacing:.05em}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-.loading{font-family:var(--mono);font-size:13px;color:var(--mut);padding:40px 0;letter-spacing:.15em}
-.loading::after{content:'▮';color:var(--amber);animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
+  body {
+    font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    padding: 48px 20px 80px;
+    display: flex;
+    justify-content: center;
+  }
 
-@media (max-width:860px){
-  .wrap{grid-template-columns:1fr}
-  #side{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding-bottom:14px}
-  .brand{padding-bottom:14px}
-  .cats-hint{padding:12px 18px 6px}
-  #cats{flex-direction:row;overflow-x:auto;padding:0 12px;gap:2px;scrollbar-width:none}
-  #cats::-webkit-scrollbar{display:none}
-  .cat{border-left:none;border-bottom:3px solid transparent;padding:10px 14px;flex:none}
-  .cat .nm{font-size:16px}
-  .cat .nm small,.cat .no{display:none}
-  .cat.on::before{left:4px;top:50%;transform:translateY(-50%)}
-  #main{padding:24px 16px 60px}
-  .paper{font-size:15.5px;padding:22px 18px}
-}
+  .app { max-width: 860px; width: 100%; }
+
+  /* ===== 头部 ===== */
+  .header {
+    border-top: 3px double var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    padding: 28px 0 20px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .header-left h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+  }
+  .stats { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; }
+
+  /* ===== 搜索框 ===== */
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--ink);
+    background: var(--panel);
+    padding: 4px 12px;
+    min-width: 260px;
+    transition: box-shadow 0.15s;
+  }
+  .search-wrap:focus-within { box-shadow: 3px 3px 0 rgba(26,26,26,0.15); }
+  .search-wrap .search-icon {
+    color: var(--ink-faint);
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  #searchInput {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    letter-spacing: 0.03em;
+  }
+  #searchInput::placeholder { color: var(--ink-faint); font-size: 13px; }
+  #searchClear {
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    display: none;
+  }
+  #searchClear:hover { color: var(--ink); }
+  .search-wrap.has-value #searchClear { display: inline; }
+  .search-kbd {
+    font-family: Georgia, serif;
+    font-size: 11px;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    padding: 0 5px;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+  .search-wrap.has-value .search-kbd { display: none; }
+
+  .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .status-tip { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .btn {
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 5px 16px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #3a3a3a; border-color: #3a3a3a; }
+
+  /* ===== 固定右上角目录（不可拖，可折叠） ===== */
+  .toc {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    width: 230px;
+    background: var(--panel);
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 rgba(26,26,26,0.12);
+  }
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f4efe4;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    user-select: none;
+  }
+  .toc-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    flex: 1;
+  }
+  .toc-count { font-size: 11px; color: var(--ink-faint); }
+  .toc-toggle {
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--line);
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.15s;
+  }
+  .toc-toggle:hover { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+
+  .toc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px 12px;
+    max-height: 65vh;
+    overflow-y: auto;
+  }
+  .toc.collapsed .toc-body { display: none; }
+  .toc.collapsed { width: auto; }
+  .toc.collapsed .toc-header { border-bottom: none; }
+  .toc.collapsed .toc-count { display: none; }
+
+  .toc-item {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 3px 4px;
+    transition: all 0.15s;
+  }
+  .toc-item:hover { color: var(--ink); background: #f1ece0; }
+  .toc-item .num {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-right: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== 分类 ===== */
+  .category {
+    padding: 34px 0 30px;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 24px;
+  }
+  @keyframes catFlash {
+    0%   { background: transparent; }
+    30%  { background: #f1ece0; }
+    100% { background: transparent; }
+  }
+  .category.flash { animation: catFlash 1.2s ease; }
+
+  .category-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+  .category-header .idx {
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+  .category-header .name { font-size: 20px; font-weight: 700; letter-spacing: 0.08em; }
+  .category-header .count { font-size: 12px; color: var(--ink-faint); }
+  .category-header .count::before { content: "· "; }
+
+  /* 搜索时：被过滤隐藏的元素 */
+  body.searching .site-card.hide,
+  body.searching .category.hide { display: none !important; }
+  body.searching .category { border-bottom: none; padding-bottom: 12px; }
+  body.searching .category:last-of-type { border-bottom: 1px solid var(--line); padding-bottom: 30px; }
+  body.searching .sites { margin-bottom: 8px; }
+
+  /* 搜索命中高亮 */
+  .site-card mark {
+    background: #f0e3b8;
+    color: inherit;
+    padding: 0 1px;
+  }
+
+  /* 无搜索结果提示 */
+  .no-result { display: none; padding: 60px 20px; text-align: center; color: var(--ink-soft); }
+  body.searching .no-result.show { display: block; }
+
+  /* ===== 网站列表 ===== */
+  .sites {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0 40px;
+  }
+  .site-card {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px dotted var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 15px;
+    overflow: hidden;
+  }
+  .site-card:hover { border-bottom-color: var(--ink); }
+  .site-card .name { font-weight: 600; flex-shrink: 0; }
+  .site-card .url {
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-family: Georgia, "Times New Roman", serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    direction: ltr;
+    transition: color 0.15s;
+  }
+  .site-card:hover .url { color: var(--ink-soft); }
+
+  /* ===== 空状态 ===== */
+  .empty-state { padding: 80px 20px; text-align: center; border-bottom: 1px solid var(--line); }
+  .empty-state .icon { font-size: 40px; margin-bottom: 16px; }
+  .empty-state h2 { font-size: 22px; margin-bottom: 8px; letter-spacing: 0.1em; }
+  .empty-state p { color: var(--ink-soft); font-size: 15px; max-width: 420px; margin: 0 auto 24px; }
+  .empty-state .hint {
+    text-align: left;
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    border-left: 2px solid var(--ink);
+    background: #f4f0e8;
+  }
+  .empty-state .hint code { font-family: Georgia, serif; color: var(--ink); }
+
+  .loading { text-align: center; padding: 80px 20px; color: var(--ink-faint); font-size: 14px; letter-spacing: 0.1em; }
+
+  .colophon {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+    padding-top: 32px;
+    letter-spacing: 0.15em;
+  }
+  .colophon::before { content: "❦"; display: block; font-size: 16px; margin-bottom: 10px; }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 640px) {
+    body { padding: 28px 16px 60px; }
+    .header { padding: 20px 0 16px; }
+    .header-left h1 { font-size: 26px; }
+    .search-wrap { min-width: 100%; order: 3; }
+    .sites { grid-template-columns: 1fr; }
+    .site-card { font-size: 14px; }
+    .category { padding: 26px 0 22px; }
+    .category-header .name { font-size: 18px; }
+    .toc { top: 10px; right: 10px; width: 190px; }
+    .search-kbd { display: none; }
+  }
+
+  /* ===== 打印友好 ===== */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .toc, .header-right, .search-wrap { display: none; }
+    .category { break-inside: avoid; }
+  }
+
+  ::selection { background: #e8e0cf; }
 </style>
 </head>
 <body>
+<div class="app">
 
-<div id="progress"></div>
-
-<div class="wrap">
-  <aside id="side">
-    <div class="brand">
-      <div class="brand-row">
-        <div id="pixlogo" aria-hidden="true"></div>
-        <h1 id="siteName">手记档案馆</h1>
-      </div>
-      <p id="brandSub">FIELD NOTES // <b>vestjin/share</b></p>
+  <!-- 头部 -->
+  <header class="header">
+    <div class="header-left">
+      <h1>收藏目录</h1>
+      <span class="stats" id="stats">—</span>
     </div>
-    <div class="cats-hint">── 分类目录 ──</div>
-    <nav id="cats"></nav>
-    <div class="side-foot">
-      <div id="statusLine"><span class="dot"></span>同源加载 · 无任何 API</div>
-      <div style="color:var(--dim)">push 后刷新即见<br>新文件记得更新清单</div>
-      <button id="refreshBtn" type="button">↻ 强制刷新缓存</button>
-    </div>
-  </aside>
 
-  <main id="main"><div id="view"><div class="loading">LOADING</div></div></main>
+    <!-- 搜索框：位于标题右侧 -->
+    <div class="search-wrap" id="searchWrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="检索站点或网址…"
+             autocomplete="off" spellcheck="false" />
+      <button id="searchClear" type="button" title="清空">✕</button>
+      <span class="search-kbd">/</span>
+    </div>
+
+    <div class="header-right">
+      <span class="status-tip" id="statusTip">bookmarks.md</span>
+      <button class="btn btn-primary" id="reloadBtn">重新加载</button>
+    </div>
+  </header>
+
+  <!-- 内容 -->
+  <main id="content"></main>
+
+  <!-- 搜索无结果提示 -->
+  <div class="no-result" id="noResult">
+    未找到匹配的站点，试试其他关键词。
+  </div>
+
+  <footer class="colophon">MCMXCVIII · PERSONAL INDEX</footer>
+
 </div>
 
-<div id="toast"></div>
+<!-- 固定右上角目录（不可拖，可折叠） -->
+<nav class="toc" id="toc" style="display:none;">
+  <div class="toc-header" id="tocHeader">
+    <span class="toc-title">目 录</span>
+    <span class="toc-count" id="tocCount">0</span>
+    <button class="toc-toggle" id="tocToggle" type="button">−</button>
+  </div>
+  <div class="toc-body" id="tocBody"></div>
+</nav>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
- * 文件清单 —— 唯一需要维护的地方
- *
- * 用法：每次往文件夹里加了新 .md，就在对应数组里加一行 '文件名.md'
- * 顺序 = 页面显示顺序，可随意调整
- * ═══════════════════════════════════════════════════════════ */
-const SITE_NAME = '手记档案馆';
-const BRANCH    = 'main';
+(function() {
+  'use strict';
 
-const FILES = {
-  '游戏类文档': [
-    '王者荣耀-评分机制.md',
-    '金铲铲玩法.md'
-  ],
-  '临时文档分享': [
-    'temp.md',
-    'test.md',
-    '运行filebrowser.md',
-    'pi.md'
-  ],
-  'home': [
-    '鸡鸭鹅养殖.md',
-    '老年人健康问题速查.md',
-    '果树-软枣猕猴桃.md',
-    '花卉-艾草-薄荷.md',
-    '蔬菜种植.md',
-    '草莓种植.md',
-    '刺猬.md',
-    '枸杞管理.md'
-  ],
-};
-/* ═══════════════════ 配置结束，以下不用动 ═══════════════════ */
+  const TXT_FILE = 'bookmarks.md';
+  const POLL_INTERVAL = 60000;
+  const KEY_COLLAPSED = 'nav-toc-collapsed';
+  const MOBILE_BREAKPOINT = 640;
 
-const REPO_URL = 'https://github.com/vestjin/share';
-
-const state = { view:'list', cur:null, curFile:null, tocItems:[] };
-const $ = s => document.querySelector(s);
-const esc = s => String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const enc = p => p.split('/').map(encodeURIComponent).join('/');
-
-/* ── 像素小人 logo ── */
-(function(){
-  const art = [
-    '..#.....#..',
-    '...#...#...',
-    '..#######..',
-    '.##.###.##.',
-    '###########',
-    '#.#######.#',
-    '#.#.....#.#',
-    '...##.##...',
-  ];
-  const shadows = [];
-  art.forEach((row,y)=>[...row].forEach((c,x)=>{ if(c==='#') shadows.push(`${x*3}px ${y*3}px 0 0 var(--amber)`); }));
-  const i = document.createElement('i');
-  i.style.boxShadow = shadows.join(',');
-  i.style.background = 'transparent';
-  $('#pixlogo').appendChild(i);
-})();
-
-let toastTimer;
-function toast(msg){
-  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
-}
-
-/* ── 同源读取 md（无跨域、无 API、无限额） ── */
-async function fetchRaw(path){
-  const res = await fetch('./' + enc(path), { cache:'no-cache' });
-  if(!res.ok) throw new Error('HTTP ' + res.status);
-  return res.text();
-}
-
-/* ── Markdown 渲染：相对路径图片/链接重写 + 站内 .md 跳转 ── */
-function resolveRel(baseDir, rel){
-  const parts = baseDir ? baseDir.split('/') : [];
-  rel.split('/').forEach(p=>{ if(p==='..') parts.pop(); else if(p && p!=='.') parts.push(p); });
-  return parts.join('/');
-}
-function setupRenderer(){
-  const r = new marked.Renderer();
-  r.image = function(href, title, text){
-    const abs = /^(https?:|data:)/.test(href) ? href : './' + enc(resolveRel(curDir(), href));
-    return `<img src="${esc(abs)}" alt="${esc(text||'')}" ${title?`title="${esc(title)}"`:''} loading="lazy">`;
-  };
-  r.link = function(href, title, text){
-    const [file, anchor] = href.split('#');
-    if(!/^(https?:|mailto:|#)/.test(href) && /\.md$/i.test(file)){
-      const target = resolveRel(curDir(), file);
-      return `<a href="#/${enc(target)}"${anchor?` data-anchor="${esc(anchor)}"`:''}>${text}</a>`;
-    }
-    const abs = /^(https?:|mailto:|#)/.test(href) ? href : './' + enc(resolveRel(curDir(), href));
-    return `<a href="${esc(abs)}" target="_blank" rel="noopener">${text}</a>`;
-  };
-  marked.setOptions({
-    renderer:r, gfm:true, breaks:true,
-    highlight:(code, lang)=>{
-      try{
-        if(typeof hljs !== 'undefined'){
-          return lang && hljs.getLanguage(lang) ? hljs.highlight(code,{language:lang}).value : hljs.highlightAuto(code).value;
-        }
-      }catch(e){}
-      return code;
-    }
-  });
-}
-const curDir = () => { const i = (state.curFile||'').lastIndexOf('/'); return i>0 ? state.curFile.slice(0,i) : ''; };
-
-/* ── 工具 ── */
-const baseName = p => p.split('/').pop().replace(/\.md$/i,'');
-
-/* ═══════════════════════════════════════════════════════════
- * 目录（TOC）
- * ═══════════════════════════════════════════════════════════ */
-const MOBILE_Q = '(max-width:1120px)';
-const isMobile = () => window.matchMedia(MOBILE_Q).matches;
-
-function slugify(s){
-  return String(s).trim().toLowerCase()
-    .replace(/[\s\u3000]+/g,'-')
-    .replace(/[^\w\u4e00-\u9fa5\-]/g,'')
-    .replace(/-+/g,'-')
-    .replace(/^-|-$/g,'') || 'sec';
-}
-
-/* 收集 h2/h3，补上 id，返回目录数据 */
-function buildToc(paper){
-  const body = paper.querySelector('.md-body');
-  if(!body) return [];
-  const used = new Set();
-  const items = [];
-  let n = 0;
-  body.querySelectorAll('h2, h3').forEach(h=>{
-    const text = (h.textContent || '').trim();
-    if(!text) return;
-    let id = h.id;
-    if(!id){
-      const base = slugify(text);
-      id = base;
-      let k = 1;
-      while(used.has(id) || document.getElementById(id)){ id = base + '-' + (++k); }
-      h.id = id;
-    }
-    used.add(id);
-    const level = h.tagName === 'H3' ? 3 : 2;
-    if(level === 2) n++;
-    items.push({
-      id, text, level,
-      num: level === 2 ? String(n).padStart(2,'0') : ''
-    });
-  });
-  return items;
-}
-
-/* 渲染并接管目录交互 */
-function setupToc(items, root){
-  state.tocItems = items;
-
-  const tocEl   = root.querySelector('#toc');
-  const tocBody = root.querySelector('#tocBody');
-  const toggle  = root.querySelector('#tocToggle');
-  const fab     = root.querySelector('#tocFab');
-  const scrim   = root.querySelector('#tocScrim');
-  if(!tocEl || !tocBody) return;
-
-  if(!items.length){
-    tocEl.style.display = 'none';
-    if(fab) fab.style.display = 'none';
-    return;
-  }
-
-  tocBody.innerHTML = items.map(it=>`
-    <button type="button" class="toc-link lv${it.level}" data-target="${esc(it.id)}" title="${esc(it.text)}">
-      <span class="toc-no">${esc(it.num)}</span>
-      <span class="toc-tx">${esc(it.text)}</span>
-    </button>`).join('');
-
-  /* 桌面端折叠状态持久化 */
-  const collapsed = localStorage.getItem('tocCollapsed') === '1';
-  tocEl.classList.toggle('collapsed', collapsed);
-  toggle.textContent = isMobile() ? '×' : (collapsed ? '›' : '‹');
-
-  tocBody.querySelectorAll('.toc-link').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      scrollToHead(btn.dataset.target);
-      if(isMobile()) closeDrawer();
-    });
-  });
-
-  toggle.addEventListener('click', ()=>{
-    if(isMobile()){ closeDrawer(); return; }
-    const c = tocEl.classList.toggle('collapsed');
-    toggle.textContent = c ? '›' : '‹';
-    localStorage.setItem('tocCollapsed', c ? '1' : '0');
-  });
-
-  if(fab)   fab.addEventListener('click', openDrawer);
-  if(scrim) scrim.addEventListener('click', closeDrawer);
-
-  function openDrawer(){ tocEl.classList.add('open'); scrim && scrim.classList.add('show'); }
-  function closeDrawer(){ tocEl.classList.remove('open'); scrim && scrim.classList.remove('show'); }
-
-  syncTocUI();
-  updateActiveToc();
-}
-
-/* 视口变化时同步按钮图标 / 关掉抽屉 */
-let resizeTimer;
-window.addEventListener('resize', ()=>{
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(syncTocUI, 140);
-});
-function syncTocUI(){
-  const tocEl  = document.getElementById('toc');
-  const toggle = document.getElementById('tocToggle');
-  const scrim  = document.getElementById('tocScrim');
-  if(!tocEl || !toggle) return;
-  if(isMobile()){
-    toggle.textContent = '×';
-    tocEl.classList.remove('collapsed');
-  }else{
-    tocEl.classList.remove('open');
-    if(scrim) scrim.classList.remove('show');
-    toggle.textContent = tocEl.classList.contains('collapsed') ? '›' : '‹';
-  }
-}
-
-function closeDrawer(){
+  const contentEl = document.getElementById('content');
+  const statsEl = document.getElementById('stats');
+  const statusTip = document.getElementById('statusTip');
+  const reloadBtn = document.getElementById('reloadBtn');
   const tocEl = document.getElementById('toc');
-  const scrim = document.getElementById('tocScrim');
-  if(tocEl) tocEl.classList.remove('open');
-  if(scrim) scrim.classList.remove('show');
-}
-
-function scrollToHead(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const y = el.getBoundingClientRect().top + window.scrollY - 18;
-  window.scrollTo({ top: y < 0 ? 0 : y, behavior: 'smooth' });
-}
-
-/* 滚动高亮当前小节 */
-function updateActiveToc(){
-  const items = state.tocItems;
-  if(!items || !items.length) return;
+  const tocHeader = document.getElementById('tocHeader');
   const tocBody = document.getElementById('tocBody');
-  if(!tocBody) return;
+  const tocCount = document.getElementById('tocCount');
+  const tocToggle = document.getElementById('tocToggle');
+  const searchWrap = document.getElementById('searchWrap');
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  const noResultEl = document.getElementById('noResult');
 
-  const heads = items.map(it => document.getElementById(it.id)).filter(Boolean);
-  if(!heads.length) return;
+  let lastContent = null;
+  let currentCategories = [];   // 最近一次解析结果，供搜索复用
 
-  let activeId = heads[0].id;
-  const EDGE = 96;
-  for(const el of heads){
-    if(el.getBoundingClientRect().top <= EDGE) activeId = el.id;
-    else break;
+  /* ================= 解析 ================= */
+  function parseTxt(text) {
+    const lines = text.split(/\r?\n/);
+    const categories = [];
+    let currentCategory = null;
+    for (let raw of lines) {
+      const line = raw.trim();
+      if (!line) continue;
+      if (line.startsWith('##')) {
+        const name = line.replace(/^##\s*/, '').trim();
+        if (name) {
+          currentCategory = { name, sites: [] };
+          categories.push(currentCategory);
+        }
+        continue;
+      }
+      if (line.includes('-')) {
+        const idx = line.indexOf('-');
+        const siteName = line.slice(0, idx).trim();
+        let siteUrl = line.slice(idx + 1).trim();
+        if (siteUrl && !/^https?:\/\//i.test(siteUrl)) siteUrl = 'https://' + siteUrl;
+        if (siteName && siteUrl) {
+          if (!currentCategory) {
+            currentCategory = { name: '未分类', sites: [] };
+            categories.push(currentCategory);
+          }
+          currentCategory.sites.push({ name: siteName, url: siteUrl });
+        }
+      }
+    }
+    return categories;
   }
-  if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2){
-    activeId = heads[heads.length - 1].id;
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
   }
 
-  const links = tocBody.querySelectorAll('.toc-link');
-  let activeLink = null;
-  links.forEach(l=>{
-    const on = l.dataset.target === activeId;
-    l.classList.toggle('on', on);
-    if(on) activeLink = l;
+  // 转义正则特殊字符
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // 给文本中命中关键词的部分包上 <mark>
+  function highlight(text, keyword) {
+    const escaped = escapeHtml(text);
+    if (!keyword) return escaped;
+    const re = new RegExp('(' + escapeRegExp(escapeHtml(keyword)) + ')', 'gi');
+    return escaped.replace(re, '<mark>$1</mark>');
+  }
+
+  /* ================= 折叠 ================= */
+  function setCollapsed(collapsed, save) {
+    tocEl.classList.toggle('collapsed', collapsed);
+    tocToggle.textContent = collapsed ? '+' : '−';
+    tocToggle.title = collapsed ? '展开目录' : '折叠目录';
+    if (save !== false) {
+      try { localStorage.setItem(KEY_COLLAPSED, collapsed ? '1' : '0'); } catch (e) {}
+    }
+  }
+
+  /* ================= 渲染目录 ================= */
+  function renderToc(items) {
+    if (!items || items.length === 0) {
+      tocEl.style.display = 'none';
+      tocBody.innerHTML = '';
+      return;
+    }
+    tocEl.style.display = '';
+    tocCount.textContent = items.length + ' 类';
+    tocBody.innerHTML = items.map(it =>
+      `<a class="toc-item" href="#${it.id}" data-target="${it.id}">
+         <span class="num">${it.idx}</span>${escapeHtml(it.name)}
+       </a>`
+    ).join('');
+  }
+
+  /* ================= 渲染主体 ================= */
+  function render(categories) {
+    currentCategories = categories || [];
+
+    const valid = currentCategories.filter(cat => cat.sites && cat.sites.length > 0);
+
+    if (valid.length === 0) {
+      contentEl.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">✕</div>
+          <h2>暂无收录</h2>
+          <p>请确保 bookmarks.md 与本页面位于同一目录，且包含有效的分类与网址。</p>
+          <div class="hint">
+            文件格式：<br />
+            <code>## 分类名称</code><br />
+            <code>网站名-https://example.com</code>
+          </div>
+        </div>`;
+      statsEl.textContent = '共 0 条';
+      renderToc([]);
+      return;
+    }
+
+    let totalSites = 0;
+    let html = '';
+    const tocItems = [];
+
+    valid.forEach((cat, i) => {
+      const idx = String(i + 1).padStart(2, '0');
+      const catId = 'cat-' + i;
+      totalSites += cat.sites.length;
+      tocItems.push({ id: catId, idx, name: cat.name, count: cat.sites.length });
+
+      html += `<section class="category" id="${catId}" data-cat-idx="${i}">`;
+      html += `<div class="category-header">
+                 <span class="idx">${idx}</span>
+                 <span class="name">${escapeHtml(cat.name)}</span>
+                 <span class="count">${cat.sites.length} 则</span>
+               </div>`;
+      html += `<div class="sites">`;
+      for (const site of cat.sites) {
+        const displayUrl = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        html += `<a class="site-card" href="${site.url}" target="_blank" rel="noopener noreferrer"
+                    title="${escapeHtml(site.name + ' · ' + site.url)}"
+                    data-name="${escapeHtml(site.name.toLowerCase())}"
+                    data-url="${escapeHtml(site.url.toLowerCase())}">
+                   <span class="name">${escapeHtml(site.name)}</span>
+                   <span class="url">${escapeHtml(displayUrl)}</span>
+                 </a>`;
+      }
+      html += `</div></section>`;
+    });
+
+    contentEl.innerHTML = html;
+    statsEl.textContent = `共 ${totalSites} 则 · ${valid.length} 类`;
+    renderToc(tocItems);
+
+    // 若渲染时搜索框已有内容，立即应用筛选
+    if (searchInput.value.trim()) applySearch(searchInput.value.trim());
+  }
+
+  /* ================= 搜索 ================= */
+  function applySearch(rawKeyword) {
+    const keyword = rawKeyword.trim().toLowerCase();
+    const sections = contentEl.querySelectorAll('.category');
+    const cards = contentEl.querySelectorAll('.site-card');
+
+    if (!keyword) {
+      // 清空搜索：全部还原
+      document.body.classList.remove('searching');
+      noResultEl.classList.remove('show');
+      cards.forEach(c => {
+        c.classList.remove('hide');
+        const nameSpan = c.querySelector('.name');
+        const urlSpan = c.querySelector('.url');
+        const site = findSite(nameSpan.textContent, c.href);
+        if (site) {
+          nameSpan.innerHTML = escapeHtml(site.name);
+          urlSpan.innerHTML = escapeHtml(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+        }
+      });
+      sections.forEach(s => s.classList.remove('hide'));
+      // 统计还原
+      let total = 0;
+      currentCategories.forEach(cat => { total += cat.sites.length; });
+      statsEl.textContent = `共 ${total} 则 · ${currentCategories.filter(c => c.sites.length).length} 类`;
+      return;
+    }
+
+    document.body.classList.add('searching');
+    searchWrap.classList.add('has-value');
+
+    let matchedTotal = 0;
+
+    sections.forEach(section => {
+      let matchedInCat = 0;
+      section.querySelectorAll('.site-card').forEach(card => {
+        const name = card.dataset.name || '';
+        const url = card.dataset.url || '';
+        const isMatch = name.includes(keyword) || url.includes(keyword);
+        card.classList.toggle('hide', !isMatch);
+        if (isMatch) {
+          matchedInCat++;
+          matchedTotal++;
+          // 高亮 name 与 url
+          const nameSpan = card.querySelector('.name');
+          const urlSpan = card.querySelector('.url');
+          const site = findSite(nameSpan.textContent, card.href);
+          if (site) {
+            nameSpan.innerHTML = highlight(site.name, keyword);
+            urlSpan.innerHTML = highlight(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''), keyword);
+          }
+        } else {
+          // 还原未命中的，避免残留旧高亮
+          const nameSpan = card.querySelector('.name');
+          const urlSpan = card.querySelector('.url');
+          const site = findSite(nameSpan.textContent.replace(/<\/?mark>/g, ''), card.href);
+          if (site) {
+            nameSpan.innerHTML = escapeHtml(site.name);
+            urlSpan.innerHTML = escapeHtml(site.url.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+          }
+        }
+      });
+      section.classList.toggle('hide', matchedInCat === 0);
+      // 分类计数更新为命中数
+      const countEl = section.querySelector('.category-header .count');
+      if (countEl) countEl.textContent = matchedInCat + ' 则';
+    });
+
+    // 统计与无结果提示
+    statsEl.textContent = `命中 ${matchedTotal} 则`;
+    noResultEl.classList.toggle('show', matchedTotal === 0);
+  }
+
+  // 通过 href 在 currentCategories 中找回站点原始数据
+  function findSite(nameText, href) {
+    for (const cat of currentCategories) {
+      for (const site of cat.sites) {
+        if (site.name === nameText && site.url === href) return site;
+      }
+    }
+    return null;
+  }
+
+  // 输入防抖，避免大量条目时频繁操作 DOM
+  let searchTimer = null;
+  searchInput.addEventListener('input', () => {
+    const v = searchInput.value;
+    if (!v.trim()) searchWrap.classList.remove('has-value');
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => applySearch(v), 120);
   });
 
-  /* 让高亮项始终留在目录可视区内（只滚目录自身，不带动页面） */
-  if(activeLink){
-    const lb = activeLink.getBoundingClientRect();
-    const cb = tocBody.getBoundingClientRect();
-    if(lb.top < cb.top) tocBody.scrollTop -= (cb.top - lb.top) + 8;
-    else if(lb.bottom > cb.bottom) tocBody.scrollTop += (lb.bottom - cb.bottom) + 8;
-  }
-}
-
-/* ── 初始化 ── */
-function init(){
-  $('#siteName').textContent = SITE_NAME;
-  document.title = SITE_NAME;
-  setupRenderer();
-  renderSidebar();
-  if(!location.hash) location.hash = '#/'+enc(Object.keys(FILES)[0]);
-  else onRoute();
-}
-function renderSidebar(){
-  $('#cats').innerHTML = Object.keys(FILES).map((f,i)=>`
-    <a class="cat${i===0?' on':''}" data-folder="${esc(f)}" href="#/${enc(f)}">
-      <span class="no">0${i+1}</span>
-      <span class="nm">${esc(f)}<small>/${esc(f)} · ${FILES[f].length} 篇</small></span>
-      <span class="cnt"><b>${FILES[f].length}</b></span>
-    </a>`).join('');
-}
-function markCat(folder){
-  document.querySelectorAll('.cat').forEach(a=>a.classList.toggle('on', a.dataset.folder===folder));
-}
-
-/* ── 视图：文件清单 ── */
-function showList(folder, keepFilter){
-  state.view = 'list'; state.cur = folder; state.curFile = null; state.tocItems = [];
-  markCat(folder);
-  $('#progress').style.display='none';
-  const files = FILES[folder] || [];
-  const v = $('#view');
-  v.innerHTML = `
-    <div class="view-head">
-      <h2>${esc(folder)}<span>_</span></h2>
-      <span class="folder">/${esc(folder)} · ${BRANCH}</span>
-    </div><hr class="head-rule">
-    <div class="filter-row"><input id="filter" type="text" placeholder="过滤标题…（实时）" value="${esc(keepFilter||'')}"></div>
-    <div id="flist" class="flist"></div>`;
-  const render = q => {
-    const kw = q.trim().toLowerCase();
-    const shown = kw ? files.filter(f=>f.toLowerCase().includes(kw)) : files;
-    $('#flist').innerHTML = !files.length
-      ? `<div class="empty">这个分类还没有文件。<br>
-          ① 在 GitHub App 里新建 <code>${esc(folder)}/笔记名.md</code>；<br>
-          ② 打开 <code>index.html</code>，在顶部 <code>FILES</code> 对应数组里加一行 <code>'笔记名.md'</code> 并提交；<br>
-          <span class="tip">刷新本页即可看到。</span></div>`
-      : (!shown.length
-        ? `<div class="empty">没有匹配「${esc(q)}」的文档。</div>`
-        : shown.map((f,i)=>`
-            <a class="fitem" href="#/${enc(folder)}/${enc(f)}">
-              <span class="no">${String(i+1).padStart(2,'0')}</span>
-              <span class="fn">${esc(baseName(f))}</span>
-            </a>`).join(''));
-  };
-  render(keepFilter||'');
-  $('#filter').addEventListener('input', e=>render(e.target.value));
-}
-
-/* ── 视图：文章 ── */
-async function showArticle(folder, fileName){
-  state.view = 'article'; state.cur = folder; state.curFile = folder + '/' + fileName;
-  state.tocItems = [];
-  markCat(folder);
-  $('#progress').style.display='block';
-  const filePath = folder + '/' + fileName;
-  const files = FILES[folder] || [];
-  const idx = files.indexOf(fileName);
-  const v = $('#view');
-  const editUrl = `${REPO_URL}/edit/${BRANCH}/${enc(filePath)}`;
-  const viewUrl = `${REPO_URL}/blob/${BRANCH}/${enc(filePath)}`;
-  v.innerHTML = `
-    <div class="art-top">
-      <button class="ghostbtn" id="backBtn" type="button">‹ 返回列表</button>
-      <div class="art-actions">
-        <button class="ghostbtn" id="shareBtn" type="button">⧉ 复制链接</button>
-        <a class="ghostbtn" href="${esc(viewUrl)}" target="_blank" rel="noopener">Raw</a>
-        <a class="ghostbtn" href="${esc(editUrl)}" target="_blank" rel="noopener">✎ 在 GitHub 编辑</a>
-      </div>
-    </div>
-    <div class="art-layout">
-      <div class="art-main">
-        <article class="paper"><div class="loading">LOADING</div></article>
-        <nav class="art-nav" id="artNav"></nav>
-      </div>
-      <aside class="toc" id="toc" aria-label="文章目录">
-        <div class="toc-head">
-          <span class="toc-title">目录</span>
-          <button class="toc-toggle" id="tocToggle" type="button" aria-label="收起或展开目录">‹</button>
-        </div>
-        <nav class="toc-body" id="tocBody"></nav>
-      </aside>
-    </div>
-    <button class="toc-fab" id="tocFab" type="button" aria-label="打开目录">☰</button>
-    <div class="toc-scrim" id="tocScrim"></div>`;
-
-  $('#backBtn').onclick = ()=>{ location.hash = '#/'+enc(folder); };
-  $('#shareBtn').onclick = async ()=>{
-    try{ await navigator.clipboard.writeText(location.href); toast('链接已复制，快去分享吧'); }
-    catch(e){
-      const ta = document.createElement('textarea'); ta.value = location.href;
-      document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); toast('链接已复制，快去分享吧'); }catch(_){ toast('复制失败，请手动复制地址栏'); }
-      ta.remove();
+  // Esc 清空
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      searchWrap.classList.remove('has-value');
+      applySearch('');
+      searchInput.blur();
     }
-  };
+  });
 
-  try{
-    const md = await fetchRaw(filePath);
-    const m = md.match(/^#\s+(.+)\r?$/m);
-    const title = m ? m[1].trim() : baseName(fileName);
-    const html = marked.parse(md);
-    const words = Math.max(1, Math.round(md.length/3));
-    const paper = v.querySelector('.paper');
-    paper.innerHTML = `
-      <div class="art-meta">${idx>=0?('NO.'+String(idx+1).padStart(2,'0')+' / '):''}<b>${esc(folder)}</b> · 约 ${words} 字 · 预计 ${Math.max(1,Math.round(words/400))} 分钟</div>
-      <h1>${esc(title)}</h1><hr class="art-title-rule">
-      <div class="md-body">${html}</div>`;
+  // 清空按钮
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchWrap.classList.remove('has-value');
+    applySearch('');
+    searchInput.focus();
+  });
 
-    /* ★ 生成并挂载目录 */
-    setupToc(buildToc(paper), v);
+  // 快捷键 "/" 聚焦搜索框（输入框内除外）
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
 
-    /* 跨文档锚点跳转 */
-    const anchorMeta = paper.querySelector('[data-anchor]');
-    if(anchorMeta){
-      const a = anchorMeta.dataset.anchor;
-      anchorMeta.removeAttribute('data-anchor');
-      requestAnimationFrame(()=>{
-        const t = document.getElementById(a) || document.getElementsByName(a)[0];
-        if(t) t.scrollIntoView();
+  /* ================= 加载 ================= */
+  function loadFromText(text) {
+    const categories = parseTxt(text);
+    if (categories.length === 0) {
+      render([]);
+      statusTip.textContent = `⚠ 格式无效 (${new Date().toLocaleTimeString()})`;
+      return false;
+    }
+    render(categories);
+    statusTip.textContent = `✓ 已更新 (${new Date().toLocaleTimeString()})`;
+    return true;
+  }
+
+  // ===== 内嵌兜底数据（fetch 失败时使用，如 file:// 协议） =====
+  const FALLBACK_DATA = `## 网络工具
+1.1.1.1-https://one.one.one.one/
+Lantern-https://lantern.io/zh
+测速网-https://www.speedtest.cn/
+Speedtest-https://www.speedtest.net/
+IP地址查询-https://ip.cn/
+
+## 文件与格式转换
+FileKiwi 文件中转-https://file.kiwi/zh
+AllToAll 格式转换-https://www.alltoall.net/
+JSON 工具-https://www.json.cn
+
+## 图片与媒体处理
+Imgdiet-https://www.imgdiet.com/zh-CN
+Docsmall-https://www.imgdiet.com/zh-CN
+Remove.bg 抠图-https://www.remove.bg
+Tinify 压缩-https://tinify.cn/
+Squoosh 压缩-https://squoosh.app/
+iLoveIMG-https://www.iloveimg.com/zh-cn
+Tools.video-https://tools.video/zh-CN
+PDFCandy-https://pdfcandy.com/
+DonePDF-https://donepdf.com/zh
+
+## 图库素材与图床
+Pexels-https://www.pexels.com/zh-cn/
+Unsplash-https://unsplash.com/
+Pixabay-https://pixabay.com/zh/
+Wallhaven-https://wallhaven.cc/
+Imgur-https://imgur.com/new
+ImgBB-https://imgbb.com/
+
+## 电子书资源
+Z-Library-https://getzlib.com/
+苦瓜书盘-https://kgbook.com/
+WeLib-https://zh.welib.org/
+时光图书馆-https://atimebook.com/
+
+## 云盘与存储
+蓝奏云-https://up.woozooo.com/
+OK云盘-https://okpan.com/mySmallfiles
+OneDrive-https://onedrive.live.com/?view=1
+
+## 笔记与写作
+Blogger-https://www.blogger.com
+Google Keep-https://keep.google.com/
+
+## 开发者 API
+60s API-https://docs.60s-api.viki.moe/
+UAPIS-https://uapis.cn/docs/api-reference/get-misc-weather
+大米API-https://api.qqsuu.cn/
+小小API-https://api.aa1.cn/
+免费API大全-https://www.free-api.com/
+
+## 硬件与创客
+DOIT社区-https://www.doitwiki.com/
+Arduino 官网-https://www.arduino.cc/
+Arduino 实验室-https://arduino.nxez.com/
+Arduino 教程-https://www.w3cschool.cn/arduino/
+Arduino 中文社区-https://arduino.me/home
+DF创客社区-https://mc.dfrobot.com.cn/
+太极创客-https://www.taichi-maker.com/
+树莓派实验室-https://shumeipai.nxez.com/
+立创开源广场-https://oshwhub.com/
+趣讨教-https://www.qutaojiao.com/
+
+## 学术与期刊
+ACP Journals-https://www.acpjournals.org/
+ACS Publications-https://pubs.acs.org/
+Alzheimer's Journal-https://alz-journals.onlinelibrary.wiley.com/
+Angewandte Chemie-https://onlinelibrary.wiley.com/
+Cell Press-https://www.cell.com/cell/home
+Merriam-Webster 词典-https://www.merriam-webster.com/medical
+Futurism-https://futurism.com/
+JAMA-https://jamanetwork.com/
+Clinical Nutrition-https://www.clinicalnutritionjournal.com/
+MedlinePlus-https://medlineplus.gov/
+Medscape-https://www.medscape.com/
+Nature-https://www.nature.com/
+Neurology-https://www.neurology.org/
+PLOS-https://plos.org/our-journals/
+Oxford Academic-https://academic.oup.com/
+RSNA-https://www.rsna.org/
+Science-https://www.science.org/
+ScienceDirect-https://www.sciencedirect.com/
+bioRxiv-https://www.biorxiv.org/
+GUT (BMJ)-https://gut.bmj.com/
+Knowable Magazine-https://knowablemagazine.org/
+The Lancet-https://www.thelancet.com/
+Yiigle-https://www.yiigle.com/index
+medRxiv-https://www.medrxiv.org/
+Medical Xpress-https://medicalxpress.com/
+Medical News Today-https://www.medicalnewstoday.com/
+PNAS-https://www.pnas.org/
+Phys.org-https://phys.org/
+Polymarket-https://polymarket.com/
+ZSL Publications-https://zslpublications.onlinelibrary.wiley.com/
+arXiv-https://arxiv.org/
+
+## 综合工具箱
+菜鸟工具-https://www.jyshare.com/front-end/53/
+虫部落-https://www.chongbuluo.com/`;
+
+  function fetchAndLoad(showLoading = true) {
+    if (showLoading) {
+      contentEl.innerHTML = `<div class="loading">正在加载 …</div>`;
+      tocEl.style.display = 'none';
+    }
+    fetch(TXT_FILE, { cache: 'no-cache' })
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(text => {
+        if (lastContent !== null && text === lastContent) {
+          statusTip.textContent = `— 无变化 (${new Date().toLocaleTimeString()})`;
+          if (showLoading) render(parseTxt(text));
+          return;
+        }
+        lastContent = text;
+        loadFromText(text);
+      })
+      .catch(() => {
+        // fetch 失败（如 file:// 被浏览器拦截）→ 使用内嵌数据
+        if (lastContent === null) {
+          lastContent = FALLBACK_DATA;
+          loadFromText(FALLBACK_DATA);
+          statusTip.textContent = `内置数据（未读取到 txt）`;
+        } else {
+          statusTip.textContent = `✕ 加载失败 (${new Date().toLocaleTimeString()})`;
+        }
       });
-    }
-
-    if(files.length>1 && idx>=0){
-      const prev = files[idx-1], next = files[idx+1];
-      $('#artNav').innerHTML =
-        (prev?`<a href="#/${enc(folder)}/${enc(prev)}"><b>‹ PREV</b><span>${esc(baseName(prev))}</span></a>`:'<a style="visibility:hidden"></a>')+
-        (next?`<a class="nx" href="#/${enc(folder)}/${enc(next)}"><b>NEXT ›</b><span>${esc(baseName(next))}</span></a>`:'<a style="visibility:hidden"></a>');
-    }
-    window.scrollTo({ top:0 });
-  }catch(e){
-    v.querySelector('.paper').innerHTML = `<div class="art-meta"><b>出错了</b></div><h1>无法加载这篇文档</h1><hr class="art-title-rule">
-      <p style="color:var(--paper-mut)">检查两件事：① 文件 <code style="font-family:var(--mono)">${esc(filePath)}</code> 是否真的已提交到仓库；② <code>index.html</code> 顶部 <code>FILES</code> 清单里写的文件名是否和实际一致（含大小写、扩展名）。<br>（${esc(e.message)}）</p>`;
-    const t = v.querySelector('#toc'); if(t) t.style.display = 'none';
-    const f = v.querySelector('#tocFab'); if(f) f.style.display = 'none';
   }
-}
 
-/* ── 路由 ── */
-function onRoute(){
-  const h = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
-  const seg = h.split('/').filter(Boolean);
-  const folders = Object.keys(FILES);
-  if(!seg.length || !FILES[seg[0]]){
-    history.replaceState(null,'','#/'+enc(folders[0]));
-    showList(folders[0]); return;
+  /* ================= 初始化 ================= */
+  function init() {
+    // 折叠状态：手机端默认折叠，桌面端记忆上次状态
+    let collapsed;
+    const isMobile = window.matchMedia('(max-width: ' + MOBILE_BREAKPOINT + 'px)').matches;
+    if (isMobile) {
+      collapsed = true;
+    } else {
+      try { collapsed = localStorage.getItem(KEY_COLLAPSED) === '1'; } catch (e) { collapsed = false; }
+    }
+    setCollapsed(collapsed, false);
+
+    tocHeader.addEventListener('click', () => {
+      setCollapsed(!tocEl.classList.contains('collapsed'));
+    });
+
+    tocBody.addEventListener('click', (e) => {
+      const item = e.target.closest('.toc-item');
+      if (!item) return;
+      e.preventDefault();
+      const target = document.getElementById(item.dataset.target);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.remove('flash');
+      void target.offsetWidth;
+      target.classList.add('flash');
+      setTimeout(() => target.classList.remove('flash'), 1300);
+    });
+
+    reloadBtn.addEventListener('click', () => fetchAndLoad(true));
+    fetchAndLoad(true);
+    setInterval(() => fetchAndLoad(false), POLL_INTERVAL);
   }
-  if(seg.length>1) showArticle(seg[0], seg.slice(1).join('/'));
-  else showList(seg[0], '');
-}
 
-/* ── 滚动：阅读进度 + 目录高亮 ── */
-let tocRaf = null;
-window.addEventListener('scroll', ()=>{
-  if(state.view!=='article') return;
-  const h = document.documentElement;
-  const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
-  $('#progress').style.width = (p*100)+'%';
-  if(tocRaf) return;
-  tocRaf = requestAnimationFrame(()=>{ tocRaf = null; updateActiveToc(); });
-}, { passive:true });
-
-/* ── 刷新按钮 ── */
-$('#refreshBtn').addEventListener('click', ()=>location.reload());
-
-window.addEventListener('hashchange', onRoute);
-init();
+  init();
+})();
 </script>
 </body>
 </html>
