@@ -84,7 +84,24 @@ just for fun·Linus Torvalds||未读
 算法图解·阿迪蒂亚·S. 巴尔加瓦|图解形式讲算法，入门友好到犯规。|已读
 程序员的算法趣题·增井敏克|2016日本IT图书大赏作品，69道趣味谜题边玩边练算法思维。|已读
 黑客与画家·保罗·格雷厄姆|硅谷创业之父YC创始人的文集，程序员必读的思考方式与创造观。|已读
-深入理解计算机系统·Randal E. Bryant||未读
+深入理解计算机系统·Randal E. Bryant|从程序员视角剖析计算机系统底层原理，涵盖数据表示、机器级代码、存储器层次结构、链接、异常控制流、虚拟内存与并发编程等核心主题，是贯通软硬件协同工作机制的经典教材。|未读
+
+Python 核心编程·Wesley J. Chun|系统讲解 Python 语言核心内容的经典教程，覆盖语法基础、内置对象类型、函数与模块、面向对象编程等，配有针对性的示例与练习。|未读
+C++完全参考手册·Herbert Schildt|全面收录 C++ 语法、关键字与标准库的大型参考手册，篇幅厚重，兼具系统教程与案头工具书两种用途。|未读
+Java 编程思想·Bruce Eckel|以面向对象思想为主线的 Java 经典读物，从基础语法讲到多线程、泛型、集合与 I/O，示例精炼，讲解深入浅出。|未读
+Real World Haskell·Bryan O'Sullivan、John Goerzen、Don Stewart|侧重实际应用的 Haskell 教程，涵盖基本语法、函数式编程、数据库与网络等应用领域，篇幅精炼，读完即可上手写程序。|未读
+GNU Emacs Lisp Reference Manual·Bil Lewis、Dan LaLiberte、Richard Stallman 等|Emacs Lisp 的官方参考手册，系统收录语言特性与内置 API，是编写 Emacs 扩展、自查配置问题的权威工具书。|未读
+The Ruby Programming Language·David Flanagan、Yukihiro Matsumoto|由 Ruby 之父松本行弘参与编写的语言权威指南，详述语法结构、对象模型、闭包与元编程，示例均带有详细注释。|未读
+Vala Tutorial·GNOME 项目|GNOME 官方的 Vala 语言教程，介绍其兼顾 C 级速度与现代语法的特点及 GLib/GObject 开发，上手后配合 API 文档即可编写 GTK+ 应用。|未读
+Rust 语言圣经·孙飞（Sunface）|中文社区广受好评的 Rust 系统教程，清晰讲解所有权等核心概念，并覆盖线程与异步模型等进阶主题，既可循序学习，也适合日后当工具书查阅。|未读
+精通正则表达式·Jeffrey E. F. Friedl|正则表达式领域的经典专著，重在培养构建正则表达式的思路与方法，学完后对 Perl、Elisp 等语言的正则变体也能触类旁通。|未读
+重构 改善既有代码设计·Martin Fowler|软件重构领域的奠基之作，系统梳理改善既有代码设计的成套手法与实施时机，示例以 Java 编写，方法论适用于各类编程语言。|未读
+Xlib - C Language X Interface·Adrian Nye、Tim O'Reilly 编|X Window System 的 C 语言底层接口官方参考手册，详列 Xlib 函数与协议细节，是开发 Linux 桌面环境与 X11 应用的必备文档。|未读
+Gtk+ Programming Tutorials·Tony Gale、Ian Main|以 C 接口讲授 GTK+ 图形编程的入门教程，由浅入深覆盖窗口、信号回调与常用部件，学后可无缝衔接官方开发手册。|未读
+PyQt5 Tutorial·Jan Bodnar|ZetCode 出品的 PyQt5 系统教程，借助 Python 的简洁语法讲授 Qt 界面开发，涵盖布局、事件与信号、对话框、绘图等内容。|未读
+Rails Tutorial·Michael Hartl|以实例驱动的 Ruby on Rails 权威入门书，从零开始完整演示搭建并部署一个网站的全流程，难度适中，是学习 Rails 的标准起点。|未读
+CSS 世界·张鑫旭|CSS 进阶专著，以"流"为线索深入讲解浏览器实现细节与 CSS 工作原理，结合实战案例解析疑难，适合有项目基础后进阶阅读。|未读
+图解密码技术·结城浩|以图配文讲解对称密码、公钥密码、单向散列函数、消息认证码、数字签名与伪随机数生成器六大密码技术及其组合应用，叙述平实、公式精简。|未读
 
 # 漫画
 不白吃漫画·我是不白吃|轻松涨知识的美食科普漫画。|已读
