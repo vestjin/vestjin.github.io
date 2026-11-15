@@ -196,7 +196,7 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 8px 12px 12px;
+    padding: 8px 12px 16px;
     max-height: 65vh;
     overflow-y: auto;
   }
@@ -205,15 +205,18 @@
   .toc.collapsed .toc-header { border-bottom: none; }
   .toc.collapsed .toc-count { display: none; }
 
+  /* ✅ 关键修复：去掉 overflow:hidden / nowrap / ellipsis，
+     允许长分类名自动换行，彻底杜绝下延被裁 */
   .toc-item {
+    display: block;
     font-size: 13px;
     color: var(--ink-soft);
     text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 4px 4px;
-    line-height: 1.7;
+    white-space: normal;
+    word-break: break-all;
+    overflow: visible;
+    padding: 5px 6px;
+    line-height: 1.6;
     transition: all 0.15s;
   }
   .toc-item:hover { color: var(--ink); background: #f1ece0; }
@@ -381,6 +384,7 @@
 
   ::selection { background: #e8e0cf; }
 </style>
+
 
 </head>
 <body>
