@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>收藏目录</title>
 
+<!-- ✅ 修复：显式加载 Noto Serif SC webfont，避免访客没有本机字体时回退到 SimSun 导致字头被裁 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
 <!-- ===== SVG 标签页图标（墨线书签） ===== -->
 <link rel="icon" type="image/svg+xml"
   href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="%23faf8f4"/><path d="M20 12h24v40L32 42 20 52z" fill="none" stroke="%231a1a1a" stroke-width="4" stroke-linejoin="round"/><line x1="26" y1="22" x2="38" y2="22" stroke="%231a1a1a" stroke-width="3" stroke-linecap="round"/></svg>'>
@@ -28,13 +33,13 @@
     font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
     background: var(--paper);
     color: var(--ink);
-    line-height: 1.7;
+    line-height: 1.8;
     padding: 48px 20px 80px;
     display: flex;
     justify-content: center;
   }
 
-  .app { max-width: 860px; width: 100%; }
+  .app { max-width: 860px; width: 100%; overflow: visible; }
 
   /* ===== 头部 ===== */
   .header {
@@ -58,9 +63,10 @@
     font-size: 34px;
     font-weight: 700;
     letter-spacing: 0.12em;
-    line-height: 1.2;
+    line-height: 1.5;
+    padding-bottom: 4px;
   }
-  .stats { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; }
+  .stats { font-size: 13px; color: var(--ink-soft); letter-spacing: 0.05em; line-height: 1.8; }
 
   /* ===== 搜索框 ===== */
   .search-wrap {
@@ -69,7 +75,7 @@
     gap: 8px;
     border: 1px solid var(--ink);
     background: var(--panel);
-    padding: 4px 12px;
+    padding: 6px 12px;
     min-width: 260px;
     transition: box-shadow 0.15s;
   }
@@ -77,7 +83,7 @@
   .search-wrap .search-icon {
     color: var(--ink-faint);
     font-size: 14px;
-    line-height: 1;
+    line-height: 1.6;
     flex-shrink: 0;
   }
   #searchInput {
@@ -89,6 +95,8 @@
     outline: none;
     width: 100%;
     letter-spacing: 0.03em;
+    line-height: 1.8;
+    padding-bottom: 2px;
   }
   #searchInput::placeholder { color: var(--ink-faint); font-size: 13px; }
   #searchClear {
@@ -99,8 +107,9 @@
     border: none;
     cursor: pointer;
     padding: 0 2px;
-    line-height: 1;
+    line-height: 1.6;
     display: none;
+    flex-shrink: 0;
   }
   #searchClear:hover { color: var(--ink); }
   .search-wrap.has-value #searchClear { display: inline; }
@@ -109,14 +118,14 @@
     font-size: 11px;
     color: var(--ink-faint);
     border: 1px solid var(--line);
-    padding: 0 5px;
-    line-height: 1.6;
+    padding: 1px 5px;
+    line-height: 1.7;
     flex-shrink: 0;
   }
   .search-wrap.has-value .search-kbd { display: none; }
 
   .header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .status-tip { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .status-tip { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; line-height: 1.8; }
   .btn {
     font-family: inherit;
     font-size: 13px;
@@ -124,16 +133,17 @@
     background: transparent;
     border: 1px solid var(--ink);
     border-radius: 0;
-    padding: 5px 16px;
+    padding: 6px 16px;
     cursor: pointer;
     letter-spacing: 0.08em;
+    line-height: 1.6;
     transition: all 0.15s;
   }
   .btn:hover { background: var(--ink); color: var(--paper); }
   .btn-primary { background: var(--ink); color: var(--paper); }
   .btn-primary:hover { background: #3a3a3a; border-color: #3a3a3a; }
 
-  /* ===== 固定右上角目录（不可拖，可折叠） ===== */
+  /* ===== 固定右上角目录 ===== */
   .toc {
     position: fixed;
     top: 16px;
@@ -148,7 +158,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 10px 12px;
     background: #f4efe4;
     border-bottom: 1px solid var(--line);
     cursor: pointer;
@@ -160,23 +170,25 @@
     letter-spacing: 0.2em;
     color: var(--ink);
     flex: 1;
+    line-height: 1.6;
   }
-  .toc-count { font-size: 11px; color: var(--ink-faint); }
+  .toc-count { font-size: 11px; color: var(--ink-faint); line-height: 1.6; }
   .toc-toggle {
     font-family: inherit;
     font-size: 12px;
     color: var(--ink-soft);
     background: none;
     border: 1px solid var(--line);
-    width: 20px;
-    height: 20px;
-    line-height: 1;
+    width: 22px;
+    height: 22px;
+    line-height: 1.8;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     padding: 0;
     transition: all 0.15s;
+    flex-shrink: 0;
   }
   .toc-toggle:hover { background: var(--ink); color: var(--panel); border-color: var(--ink); }
 
@@ -200,7 +212,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 3px 4px;
+    padding: 4px 4px;
+    line-height: 1.7;
     transition: all 0.15s;
   }
   .toc-item:hover { color: var(--ink); background: #f1ece0; }
@@ -216,6 +229,7 @@
     padding: 34px 0 30px;
     border-bottom: 1px solid var(--line);
     scroll-margin-top: 24px;
+    overflow: visible;
   }
   @keyframes catFlash {
     0%   { background: transparent; }
@@ -224,15 +238,28 @@
   }
   .category.flash { animation: catFlash 1.2s ease; }
 
-  .category-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+  .category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 4px;
+  }
   .category-header .idx {
     font-size: 13px;
     color: var(--ink-faint);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.05em;
+    line-height: 1.8;
   }
-  .category-header .name { font-size: 20px; font-weight: 700; letter-spacing: 0.08em; }
-  .category-header .count { font-size: 12px; color: var(--ink-faint); }
+  .category-header .name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    padding-bottom: 4px;
+  }
+  .category-header .count { font-size: 12px; color: var(--ink-faint); line-height: 1.8; }
   .category-header .count::before { content: "· "; }
 
   /* 搜索时：被过滤隐藏的元素 */
@@ -250,7 +277,7 @@
   }
 
   /* 无搜索结果提示 */
-  .no-result { display: none; padding: 60px 20px; text-align: center; color: var(--ink-soft); }
+  .no-result { display: none; padding: 60px 20px; text-align: center; color: var(--ink-soft); line-height: 1.8; }
   body.searching .no-result.show { display: block; }
 
   /* ===== 网站列表 ===== */
@@ -264,15 +291,21 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 8px;
-    padding: 7px 0;
+    padding: 8px 0 10px;
     border-bottom: 1px dotted var(--line);
     text-decoration: none;
     color: var(--ink);
     font-size: 15px;
-    overflow: hidden;
+    overflow: visible;
+    line-height: 1.7;
   }
   .site-card:hover { border-bottom-color: var(--ink); }
-  .site-card .name { font-weight: 600; flex-shrink: 0; }
+  .site-card .name {
+    font-weight: 600;
+    flex-shrink: 0;
+    line-height: 1.7;
+    padding-bottom: 2px;
+  }
   .site-card .url {
     font-size: 12px;
     color: var(--ink-faint);
@@ -281,15 +314,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     direction: ltr;
+    line-height: 1.7;
+    padding-bottom: 2px;
     transition: color 0.15s;
   }
   .site-card:hover .url { color: var(--ink-soft); }
 
   /* ===== 空状态 ===== */
   .empty-state { padding: 80px 20px; text-align: center; border-bottom: 1px solid var(--line); }
-  .empty-state .icon { font-size: 40px; margin-bottom: 16px; }
-  .empty-state h2 { font-size: 22px; margin-bottom: 8px; letter-spacing: 0.1em; }
-  .empty-state p { color: var(--ink-soft); font-size: 15px; max-width: 420px; margin: 0 auto 24px; }
+  .empty-state .icon { font-size: 40px; margin-bottom: 16px; line-height: 1.4; }
+  .empty-state h2 { font-size: 22px; margin-bottom: 8px; letter-spacing: 0.1em; line-height: 1.6; padding-bottom: 4px; }
+  .empty-state p { color: var(--ink-soft); font-size: 15px; max-width: 420px; margin: 0 auto 24px; line-height: 1.8; }
   .empty-state .hint {
     text-align: left;
     font-size: 14px;
@@ -299,30 +334,40 @@
     padding: 16px 20px;
     border-left: 2px solid var(--ink);
     background: #f4f0e8;
+    line-height: 1.8;
   }
   .empty-state .hint code { font-family: Georgia, serif; color: var(--ink); }
 
-  .loading { text-align: center; padding: 80px 20px; color: var(--ink-faint); font-size: 14px; letter-spacing: 0.1em; }
+  .loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--ink-faint);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
 
   .colophon {
     text-align: center;
     font-size: 12px;
     color: var(--ink-faint);
     padding-top: 32px;
+    padding-bottom: 6px;
     letter-spacing: 0.15em;
+    line-height: 1.8;
   }
-  .colophon::before { content: "❦"; display: block; font-size: 16px; margin-bottom: 10px; }
+  .colophon::before { content: "❦"; display: block; font-size: 16px; margin-bottom: 10px; line-height: 1.4; }
 
   /* ===== 响应式 ===== */
   @media (max-width: 640px) {
     body { padding: 28px 16px 60px; }
     .header { padding: 20px 0 16px; }
-    .header-left h1 { font-size: 26px; }
+    .header-left h1 { font-size: 26px; line-height: 1.5; }
     .search-wrap { min-width: 100%; order: 3; }
     .sites { grid-template-columns: 1fr; }
     .site-card { font-size: 14px; }
     .category { padding: 26px 0 22px; }
-    .category-header .name { font-size: 18px; }
+    .category-header .name { font-size: 18px; line-height: 1.5; }
     .toc { top: 10px; right: 10px; width: 190px; }
     .search-kbd { display: none; }
   }
@@ -336,6 +381,7 @@
 
   ::selection { background: #e8e0cf; }
 </style>
+
 </head>
 <body>
 <div class="app">
