@@ -172,6 +172,7 @@ DigiLibrary-https://digilibraries.com/
 OpenLibrary-https://openlibrary.org/
 
 
+Read Something Wonderful-https://readsomethingwonderful.com/
 
 
 
@@ -267,6 +268,9 @@ Learnxiny-https://learnxinyminutes.com/
 
 
 ## 编程文档与教程
+
+RFC Editor-https://www.rfc-editor.org/
+
 freecodecamp-https://www.freecodecamp.org/chinese/learn
 javaGuide-https://javaguide.cn/
 菜鸟教程-https://www.runoob.com/
@@ -276,6 +280,21 @@ Road 2 code-https://www.r2coding.com/
 csdiy-https://csdiy.wiki/
 像小说一样品读 Linux 0.11 核心代码-https://github.com/dibingfa/flash-linux0.11-talk
 《动手学深度学习》-https://github.com/d2l-ai/d2l-zh
+这批属于编程学习课程/教程，直接归入文件中已有的分类：
+Python-https://pythontutorial.net
+JavaScript-https://goldsuite.gumroad.com/l/miqqb/0100tt
+SQL-https://sqlbolt.com
+Git-https://git-tower.com/learn
+Azure-https://alison.com/tag/microsoft-azure
+HTML-https://codecademy.com/learn/learn-html
+CSS-https://css-tricks.com
+AWS-https://edx.org/school/aws
+Angular-https://angular.io
+Vue-https://scrimba.com/learn/learnvue
+Tailwind-https://geeksforgeeks.org/tailwind-css/
+Algorithms-https://programiz.com/dsa
+React-https://java67.com/2018/02/5-free-react-courses-for-web-developers.html
+DevOps-https://classcentral.com/subject/devops
 
 
 
@@ -296,6 +315,17 @@ Hello algo-https://www.hello-algo.com/
 OI wiki-https://oi-wiki.org/
 
 
+
+## Web 项目练习（HTML/CSS/JS）
+
+
+30 Web Projects-https://github.com/PacktPublishing/30-Web-Projects-with-HTML-CSS-and-JavaScript
+Small projects-https://github.com/WebDevVikramChoudhary/small_projects_for_beginners_using_Html-Css-Js
+50 Projects - 50 Days-https://github.com/bradtraversy/50projects50days
+Vanilla Web Projects-https://github.com/bradtraversy/vanillawebprojects
+30 Day Vanilla JS Challenge-https://github.com/wesbos/JavaScript30
+Awesome JavaScript Projects-https://github.com/Vishal-raj-1/Awesome-JavaScript-Projects
+50 Projects in 50 Days-https://github.com/PacktPublishing/50-Projects-In-50-Days---HTML-CSS-JavaScript
 
 
 
