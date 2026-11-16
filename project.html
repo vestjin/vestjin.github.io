@@ -5,446 +5,250 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vestjin · 项目</title>
   <meta name="description" content="Vestjin 的项目集合，包含开源工具、博客与服务等。">
-
-  <!-- 标签页 ico：内联 SVG 雨云图标 -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23141a2e'/%3E%3Cstop offset='1' stop-color='%23203050'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23sky)'/%3E%3Cpath d='M20 32a9 9 0 0 1 2-17.8A12 12 0 0 1 45 18.5 8.5 8.5 0 0 1 44 32z' fill='%239fb6d8'/%3E%3Cpath d='M20 32a9 9 0 0 1 2-17.8A12 12 0 0 1 45 18.5 8.5 8.5 0 0 1 44 32z' fill='%236f8bb4' opacity='.55'/%3E%3Cg stroke='%237ec3f0' stroke-width='3' stroke-linecap='round'%3E%3Cline x1='24' y1='38' x2='21' y2='46'/%3E%3Cline x1='33' y1='38' x2='30' y2='46'/%3E%3Cline x1='42' y1='38' x2='39' y2='46'/%3E%3C/g%3E%3C/svg%3E">
-
   <meta property="og:title" content="Vestjin · 项目">
   <meta property="og:description" content="Vestjin 的项目集合">
+
   <style>
-    /* --- 基础：雨夜配色 --- */
+    :root {
+      --text: #1f2430;
+      --text-dim: #6b7280;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #e5e7eb;
+      --bg: #fafafa;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #0a0f1e;
-      color: #e8ecf4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background-image: linear-gradient(180deg, #070b16 0%, #0d1428 40%, #131d38 75%, #0a0f1e 100%);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    ::selection { background: rgba(110, 160, 230, 0.45); color: #fff; }
-
-    /* --- 雨夜画布 --- */
-    #rain {
-      position: fixed; inset: 0;
-      width: 100%; height: 100%;
-      z-index: 0; pointer-events: none; display: block;
-    }
-
-    /* --- 远处城市窗灯（固定装饰点） --- */
-    .city-lights {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      height: 22vh;
-      z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(circle 2px at 8% 70%, rgba(255, 210, 140, 0.8), transparent 100%),
-        radial-gradient(circle 2px at 12% 45%, rgba(200, 220, 255, 0.6), transparent 100%),
-        radial-gradient(circle 2px at 17% 80%, rgba(255, 190, 130, 0.7), transparent 100%),
-        radial-gradient(circle 2px at 24% 55%, rgba(255, 230, 180, 0.5), transparent 100%),
-        radial-gradient(circle 2px at 31% 75%, rgba(180, 210, 255, 0.6), transparent 100%),
-        radial-gradient(circle 2px at 40% 50%, rgba(255, 200, 150, 0.6), transparent 100%),
-        radial-gradient(circle 2px at 55% 72%, rgba(220, 235, 255, 0.5), transparent 100%),
-        radial-gradient(circle 2px at 63% 48%, rgba(255, 195, 140, 0.65), transparent 100%),
-        radial-gradient(circle 2px at 72% 78%, rgba(190, 215, 255, 0.55), transparent 100%),
-        radial-gradient(circle 2px at 80% 52%, rgba(255, 225, 170, 0.6), transparent 100%),
-        radial-gradient(circle 2px at 88% 70%, rgba(210, 230, 255, 0.5), transparent 100%),
-        radial-gradient(circle 2px at 95% 58%, rgba(255, 200, 145, 0.6), transparent 100%);
-      opacity: 0.85;
-    }
-
-    /* --- 左上角返回首页按钮 --- */
-    .back-home {
-      position: fixed;
-      top: 1.2rem; left: 1.2rem;
-      z-index: 10;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      color: #e8ecf4;
-      text-decoration: none;
-      font-size: 0.95rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(150, 180, 230, 0.28);
-      backdrop-filter: blur(8px) saturate(160%);
-      -webkit-backdrop-filter: blur(8px) saturate(160%);
-      transition: background 0.3s, transform 0.2s;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-    }
-    .back-home:hover { background: rgba(255, 255, 255, 0.18); transform: translateX(-2px); }
-    .back-home svg { width: 1em; height: 1em; }
-
-    /* --- 主卡片 --- */
-    main.container {
-      position: relative;
-      z-index: 1;
-      margin: 5rem auto 3rem auto;
-      padding: 2.5rem 2rem;
-      border-radius: 18px;
-      max-width: 640px;
-      width: 90%;
-      box-sizing: border-box;
-      background:
-        linear-gradient(145deg, rgba(16, 24, 44, 0.52) 0%, rgba(10, 16, 32, 0.40) 45%, rgba(14, 22, 40, 0.50) 100%);
-      backdrop-filter: blur(14px) saturate(150%);
-      -webkit-backdrop-filter: blur(14px) saturate(150%);
-      box-shadow:
-        0 16px 48px rgba(0, 0, 0, 0.55),
-        0 6px 16px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(160, 190, 240, 0.22),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-    main.container::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: inherit; padding: 1px;
-      background: linear-gradient(145deg,
-        rgba(170, 200, 245, 0.40) 0%,
-        rgba(255, 255, 255, 0.08) 35%,
-        rgba(255, 255, 255, 0.04) 65%,
-        rgba(120, 160, 220, 0.30) 100%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none; z-index: 2;
-    }
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(16px) scale(0.98); }
-      to   { opacity: 1; transform: none; }
-    }
-
-    h1.page-title {
-      font-size: 2rem;
-      margin: 0 0 0.4rem 0;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.5);
-    }
-    .page-sub {
-      font-size: 1rem; font-style: italic;
-      color: rgba(200, 214, 236, 0.85); margin: 0;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-    }
-
-    .divider {
-      width: 80px; height: 1px; border: none;
-      margin: 1.5rem auto;
-      background: linear-gradient(to right, transparent, rgba(150, 185, 235, 0.8), transparent);
-    }
-
-    /* --- 项目列表 --- */
-    .project-list {
-      list-style: none;
-      margin: 0; padding: 0;
-      text-align: left;
-    }
-    .project-list li {
-      margin: 0.6rem 0;
-      padding: 1rem 1.1rem;
-      border-radius: 10px;
-      background: rgba(140, 175, 230, 0.07);
-      border-left: 2px solid rgba(120, 165, 230, 0.85);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      transition: background 0.3s, transform 0.2s;
-    }
-    .project-list li:hover {
-      background: rgba(150, 185, 235, 0.15);
-      transform: translateX(4px);
-    }
-    .project-list a {
-      color: #b5d0f5;
-      font-size: 1.15rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .project-list a:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
-    .project-list .desc {
-      display: block;
-      margin-top: 0.4rem;
-      font-size: 0.92rem;
-      color: rgba(200, 214, 236, 0.75);
       line-height: 1.6;
     }
-    .project-list .tag {
-      display: inline-block;
-      margin-left: 0.5rem;
-      padding: 0.1rem 0.55rem;
+
+    ::selection { background: rgba(37, 99, 235, 0.2); }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* 顶部导航 */
+    header.top {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    header.top a { color: var(--text-dim); font-size: 0.9rem; }
+    header.top a:hover { color: var(--accent); }
+
+    /* 页头 */
+    .intro {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .intro h1 {
+      font-size: 1.8rem;
+      margin: 0 0 0.3rem;
+      letter-spacing: 0.5px;
+    }
+    .intro p {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    /* 项目列表 */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .project:hover {
+      border-color: #c7d2fe;
+      box-shadow: 0 2px 12px rgba(37, 99, 235, 0.07);
+    }
+
+    .project-head {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .project-head .title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .project-head .title:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    .tag {
       font-size: 0.72rem;
       font-weight: 500;
-      vertical-align: middle;
-      color: #c8dcf8;
-      border: 1px solid rgba(130, 170, 230, 0.5);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
       border-radius: 999px;
-    }
-    .demo {
-        font-size: 0.75em;
-        margin-left: 8px;
-        color: #888;
-        text-decoration: underline;
+      padding: 0.1rem 0.6rem;
+      white-space: nowrap;
     }
 
-
-    .footnote {
-      margin-top: 2rem;
-      font-size: 0.82rem;
-      color: rgba(200, 214, 236, 0.55);
+    .links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
     }
-    .footnote a { color: #b5d0f5; text-decoration: none; }
-    .footnote a:hover { color: #fff; }
+    .links a { display: inline-flex; align-items: center; gap: 0.3rem; }
+    .links svg { width: 0.95em; height: 0.95em; }
 
-    /* --- 自适应 / 兼容 --- */
+    .project .desc {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+    }
+
+    /* 页脚 */
+    footer {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
     @media (max-width: 480px) {
-      main.container { padding: 2rem 1.2rem; margin-top: 4.2rem; }
-      h1.page-title { font-size: 1.6rem; }
-      .back-home { top: 0.8rem; left: 0.8rem; font-size: 0.85rem; padding: 0.4rem 0.8rem; }
+      .intro h1 { font-size: 1.5rem; }
+      .project { padding: 1rem 1rem; }
     }
-    @media (max-width: 768px) { body { background-attachment: scroll; } }
-    @media (prefers-reduced-motion: reduce) { main.container { animation: none; } }
-    @supports not (backdrop-filter: blur(1px)) {
-      main.container { background: rgba(14, 22, 40, 0.88); }
-    }
-
   </style>
 </head>
 <body>
-  <canvas id="rain" aria-hidden="true"></canvas>
-  <div class="city-lights" aria-hidden="true"></div>
 
-  <!-- 左上角返回首页 -->
-  <a class="back-home" href="index.html" title="返回首页">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M15 18l-6-6 6-6"/>
-    </svg>
-    首页
-  </a>
+  <header class="top">
+    <a href="index.html">← 返回首页</a>
+    <a href="https://blog.jinmajue.top">博客</a>
+  </header>
 
-  <main class="container">
-    <h1 class="page-title">Projects</h1>
-    <p class="page-sub">雨夜适合安静地做点东西。</p>
-    <hr class="divider">
+  <div class="intro">
+    <h1>Projects</h1>
+    <p>我做过的东西，点标题或 GitHub 前往仓库，标了“在线”的可以直接用。</p>
+  </div>
 
-    <ul class="project-list">
-      <!-- ↓↓↓ 在这里添加项目 ↓↓↓ -->
-      <li>
-        <a href="https://github.com/vestjin/vestjin.github.io">个人导航</a>
-        <a class="demo" href="https://vestjin.github.io/nav">[在线使用]</a>
+  <main>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/nav">个人导航</a>
         <span class="tag">前端工具</span>
-        <p>零依赖的个人起始页：书签分组管理、拖拽排序、笔记备注、元数据自动抓取，支持 GitHub Gist 云同步（含双向合并与删除墓碑机制）、PWA 离线安装和专注模式，数据全部存于本地。</p>
-      </li>
-      
-      <li>
-        <a href="https://github.com/vestjin/repo2md">repo2md</a>
-        <a class="demo" href="https://www.jinmajue.top/repo2md/">[在线体验]</a>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/nav">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="https://vestjin.github.io/nav">在线使用 →</a>
+      </div>
+      <p class="desc">零依赖的个人起始页：书签分组管理、拖拽排序、笔记备注，支持 GitHub Gist 云同步（含双向合并与删除墓碑机制）、PWA 离线安装和专注模式，数据全部存于本地。</p>
+    </section>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/repo2md">repo2md</a>
         <span class="tag">前端工具</span>
-        <p>纯前端的项目文档转换工具：把本地文件夹或压缩包（ZIP / TAR / GZ）一键转成 Markdown，支持文件树勾选、后缀筛选、二进制与敏感文件检测，全程在浏览器内完成，文件不上传。</p>
-      </li>
-      <li>
-        <a href="https://github.com/vestjin/vestjin.github.io">share · 手记档案馆</a>
-        <a class="demo" href="https://www.jinmajue.top/share/">[在线访问]</a>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/repo2md">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.jinmajue.top/repo2md/">在线体验 →</a>
+      </div>
+      <p class="desc">纯前端的项目文档转换工具：把本地文件夹或压缩包（ZIP / TAR / GZ）一键转成 Markdown，支持文件树勾选、后缀筛选、二进制与敏感文件检测，全程在浏览器内完成，文件不上传。</p>
+    </section>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/vestjin.github.io">share · 手记档案馆</a>
         <span class="tag">Web / 前端</span>
-        <p>部署在 GitHub Pages 的轻量 Markdown 文档站：只用一个 files.txt 维护分类清单，支持实时过滤、文章目录（TOC）、站内跳转和滚动高亮，零后端、零构建。</p>
-      </li>
-      <li>
-        <a href="https://github.com/vestjin/GraduationDesign">Linux 云盘系统</a>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/vestjin.github.io">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.jinmajue.top/share/">在线访问 →</a>
+      </div>
+      <p class="desc">部署在 GitHub Pages 的轻量 Markdown 文档站：只用一个 files.txt 维护分类清单，支持实时过滤、文章目录（TOC）、站内跳转和滚动高亮，零后端、零构建。</p>
+    </section>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/GraduationDesign">Linux 云盘系统</a>
         <span class="tag">Linux C/C++</span>
-        <p>毕业设计：Epoll + 线程池 + MySQL 连接池实现的网盘服务端，支持 5MB 分片上传、断点续传、MD5 秒传、文件增删改移与配额管理，前端带并发上传队列。</p>
-      </li>
-      <li>
-        <a href="https://github.com/vestjin/calc">C 语言命令行计算器</a>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/GraduationDesign">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <p class="desc">毕业设计：Epoll + 线程池 + MySQL 连接池实现的网盘服务端，支持 5MB 分片上传、断点续传、MD5 秒传、文件增删改移与配额管理，前端带并发上传队列。</p>
+    </section>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/calc">C 语言命令行计算器</a>
         <span class="tag">Linux C/C++</span>
-        <p>多模块设计的命令行计算器：递归下降解析表达式，支持变量赋值、进制转换、内置数学函数，附带方程求解器（二分法 / 高斯消元）与计算步骤追踪。</p>
-      </li>
-      <li>
-        <a href="https://github.com/vestjin/temperature-control-system">温度控制系统</a>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/calc">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <p class="desc">多模块设计的命令行计算器：递归下降解析表达式，支持变量赋值、进制转换、内置数学函数，附带方程求解器（二分法 / 高斯消元）与计算步骤追踪。</p>
+    </section>
+
+    <section class="project">
+      <div class="project-head">
+        <a class="title" href="https://github.com/vestjin/temperature-control-system">温度控制系统</a>
         <span class="tag">嵌入式 / 51单片机</span>
-        <p>最早的项目：51 单片机实现 PID 温控与数码管显示，Python 上位机支持串口通信、语音识别设定温度、SQLite 历史存储与 Dash 实时绘图，附 Proteus 仿真。</p>
-      </li>
+      </div>
+      <div class="links">
+        <a href="https://github.com/vestjin/temperature-control-system">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <p class="desc">最早的项目：51 单片机实现 PID 温控与数码管显示，Python 上位机支持串口通信、语音识别设定温度、SQLite 历史存储与 Dash 实时绘图，附 Proteus 仿真。</p>
+    </section>
 
-
-      <!-- ↑↑↑ 复制上面整个 <li>…</li> 即可继续添加 ↑↑↑ -->
-    </ul>
-
-    <p class="footnote">更多动态见 <a href="https://blog.jinmajue.top">博客</a> · 返回 <a href="index.html">首页</a></p>
   </main>
 
-  <script>
-    (function () {
-      /* ===== 雨夜 ===== */
-      const canvas = document.getElementById('rain');
-      const ctx = canvas.getContext('2d');
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const mobile = window.innerWidth < 768;
-      const cores = navigator.hardwareConcurrency || 4;
-      const isLowEnd = cores <= 4;
+  <footer>
+    更多动态见 <a href="https://blog.jinmajue.top">博客</a>
+  </footer>
 
-      const FPS = isLowEnd ? 24 : 30;
-      const RAIN_COUNT = (isLowEnd && mobile) ? 60 : mobile ? 110 : 190;  // 雨丝数
-      const RIPPLE_MAX = isLowEnd ? 20 : 46;                              // 同时存在的涟漪数
-      const LIGHTNING = !isLowEnd;                                        // 是否有闪电
-
-      let w = 0, h = 0, dpr = 1;
-      let drops = [];
-      let ripples = [];
-      let flash = 0;            // 闪电亮度 0~1
-      let nextFlashAt = 6;      // 距下次闪电的秒数
-      let time = 0;
-
-      const groundY = () => h * 0.97;   // 涟漪出现的大致“地面”高度（屏幕下沿附近）
-
-      /* ---- 雨丝 ---- */
-      function makeDrop(initial) {
-        return {
-          x: Math.random() * (w + 200) - 100,
-          y: initial ? Math.random() * h : -30 - Math.random() * 80,
-          len: 10 + Math.random() * 22,
-          speed: 380 + Math.random() * 340,   // px/s
-          drift: 1.1 + Math.random() * 0.5,   // 斜率（风）
-          alpha: 0.12 + Math.random() * 0.22,
-          width: 0.6 + Math.random() * 0.9
-        };
-      }
-
-      /* ---- 涟漪（雨滴落地的椭圆扩散） ---- */
-      function makeRipple(x, y) {
-        return {
-          x: x, y: y,
-          r: 1,
-          maxR: 6 + Math.random() * 14,
-          life: 1,
-          fade: 1.8 + Math.random() * 1.2   // 1/s
-        };
-      }
-
-      /* ---- 闪电 ---- */
-      function triggerFlash() {
-        flash = 0.55 + Math.random() * 0.45;
-        // 二次闪烁
-        if (Math.random() < 0.5) {
-          setTimeout(function () { flash = Math.max(flash, 0.35); }, 110);
-        }
-      }
-
-      function drawFlash() {
-        if (flash > 0.01) {
-          ctx.fillStyle = 'rgba(190, 210, 255, ' + (flash * 0.10).toFixed(3) + ')';
-          ctx.fillRect(0, 0, w, h);
-        }
-      }
-
-      function render(dt) {
-        ctx.clearRect(0, 0, w, h);
-
-        /* --- 雨丝 --- */
-        ctx.lineCap = 'round';
-        for (let i = 0; i < drops.length; i++) {
-          const d = drops[i];
-          d.x += d.speed * d.drift * dt;
-          d.y += d.speed * dt;
-          if (d.y > groundY()) {
-            // 落地 → 生成涟漪（概率控制密度）
-            if (Math.random() < 0.22 && ripples.length < RIPPLE_MAX) {
-              ripples.push(makeRipple(d.x, groundY() - Math.random() * h * 0.06));
-            }
-            drops[i] = makeDrop(false);
-            continue;
-          }
-          const dx = d.len * d.drift * 0.45;
-          const grad = ctx.createLinearGradient(d.x - dx, d.y - d.len, d.x, d.y);
-          grad.addColorStop(0, 'rgba(160, 190, 235, 0)');
-          grad.addColorStop(1, 'rgba(170, 200, 240, ' + d.alpha.toFixed(3) + ')');
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = d.width;
-          ctx.beginPath();
-          ctx.moveTo(d.x - dx, d.y - d.len);
-          ctx.lineTo(d.x, d.y);
-          ctx.stroke();
-        }
-
-        /* --- 涟漪 --- */
-        for (let i = ripples.length - 1; i >= 0; i--) {
-          const r = ripples[i];
-          r.r += (r.maxR / 0.6) * dt;         // 约 0.6 秒扩到 maxR
-          r.life -= r.fade * dt;
-          if (r.life <= 0 || r.r > r.maxR) {
-            ripples.splice(i, 1);
-            continue;
-          }
-          const a = r.life * 0.35;
-          ctx.strokeStyle = 'rgba(150, 185, 235, ' + a.toFixed(3) + ')';
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.ellipse(r.x, r.y, r.r, r.r * 0.32, 0, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-
-        drawFlash();
-      }
-
-      function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = window.innerWidth; h = window.innerHeight;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        drops = [];
-        for (let i = 0; i < RAIN_COUNT; i++) drops.push(makeDrop(true));
-        ripples = [];
-      }
-
-      let lastTime = 0;
-      let lastRender = 0;
-      const FRAME_INTERVAL = 1000 / FPS;
-
-      function loop(t) {
-        if (!lastTime) lastTime = t;
-        const dt = Math.min((t - lastTime) / 1000, 0.1);
-        lastTime = t;
-        time += dt;
-
-        // 闪电计时
-        if (LIGHTNING) {
-          nextFlashAt -= dt;
-          if (nextFlashAt <= 0) {
-            triggerFlash();
-            nextFlashAt = 8 + Math.random() * 14;   // 每 8~22 秒一次
-          }
-          if (flash > 0) flash = Math.max(0, flash - dt * 2.2);
-        }
-
-        if (t - lastRender >= FRAME_INTERVAL) {
-          lastRender = t;
-          render(dt);
-        }
-        requestAnimationFrame(loop);
-      }
-
-      resize();
-      render(0.016);
-      if (!reduceMotion) requestAnimationFrame(loop);
-
-      let rt = null;
-      window.addEventListener('resize', function () {
-        clearTimeout(rt); rt = setTimeout(resize, 150);
-      });
-
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) lastTime = 0;
-      });
-    })();
-  </script>
 </body>
 </html>
