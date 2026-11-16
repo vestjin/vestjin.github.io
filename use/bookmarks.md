@@ -407,10 +407,26 @@ BritishCouncil-https://learnenglish.britishcouncil.org/
 
 
 ## 招聘与求职
-
-国聘网-https://www.iguopin.com/
-Linkedin-https://www.linkedin.com/
+国家大学生就业服务平台-https://www.ncss.cn/
+国资央企招聘平台-https://cujiuye.iguopin.com/
 中国公共招聘网-http://job.mohrss.gov.cn/
+国聘网-https://www.iguopin.com/
+高校人才网-https://www.gaoxiaojob.com/
+中国就业网-https://chinajob.mohrss.gov.cn/
+青年国际实习交流计划-https://intern.newjobs.com.cn/
+应届生求职网-https://www.yingjiesheng.com/
+
+军队人才网-http://81rc.81.cn/index.html
+中国铁路人才网-https://rczp.china-railway.com.cn/index.html
+银行招聘网-https://www.yinhangzhaopin.com/
+国家电网-https://zhaopin.sgcc.com.cn/sgcchr/static/home.html
+中国南方电网-https://zhaopin.csg.cn/#/index
+中国石化-http://www.sinopec.com/index.shtml
+中国石油-https://zhaopin.cnpc.com.cn/
+中国海油-https://cnooc.zhaopin.com/
+国家烟草局-http://www.tobacco.gov.cn/gjyc/zpxx/list.shtml
+
+Linkedin-https://www.linkedin.com/
 就业在线-https://www.jobonline.cn/
 BOSS直聘-https://www.zhipin.com/
 智联招聘-https://www.zhaopin.com/
