@@ -21,8 +21,8 @@ wikiHow-https://www.wikihow.com
 Merriam-Webster 词典-https://www.merriam-webster.com/medical
 框框大学-https://www.kkdaxue.com/
 Loot Drop-https://www.loot-drop.io/
-
-
+OpenKG 开放知识图谱-https://openkg.cn/
+Quora-https://www.quora.com/
 
 ## 网络与网络工具
 
@@ -195,7 +195,7 @@ Read Something Wonderful-https://readsomethingwonderful.com/
 蓝奏云-https://up.woozooo.com/
 OK云盘-https://okpan.com/mySmallfiles
 OneDrive-https://onedrive.live.com/?view=1
-
+百度网盘-https://pan.baidu.com/disk/main
 
 
 ## 虚拟手机号与接码
@@ -232,7 +232,8 @@ Torlock-https://www.torlock2.com/
 Blogger-https://www.blogger.com
 
 
-
+## 创业与产品发现
+Ideasearch-https://www.ideasearch.com.cn/
 
 ## 开发者API
 
@@ -246,31 +247,47 @@ API大全-https://qwq.tangdouz.com/
 
 
 
-## 技术社区与资讯
+## 技术/社区与资讯/Blog
 
-GitHub-https://github.com
+GitHub-https://githuBlogb.com
 StackOverflow-https://stackoverflow.com
 哔哩哔哩-https://search.bilibili.com
 sdk-https://www.sdk.cn/
 helloGithub-https://hellogithub.com/
 Futurism-https://futurism.com/
-
-
-
+Substack-https://substack.com/@substack
+掘金-https://juejin.cn/
+Stack Overflow Questions-https://stackoverflow.com/questions
+Hacker News-https://news.ycombinator.com/
+Gitee 码云-https://gitee.com/
+Discord-https://discord.com/
+Quora-https://www.quora.com/
 
 ## 速查与工具箱
+cdnjs-https://cdnjs.com/
+Desmos 图形计算器-https://www.desmos.com/?lang=zh-CN
+caniuse-https://caniuse.com/
+
+Choose a License-https://choosealicense.com/
 cheatsheets-https://cheatsheets.zip/
 Quick Reference-https://wangchujiang.com/reference/index.html
 quickref-https://quickref.me/
 菜鸟工具-https://www.jyshare.com/front-end/53/
 matools-https://www.matools.com/
 Learnxiny-https://learnxinyminutes.com/
-
+regex101-https://regex101.com/
+JSFiddle-https://jsfiddle.net/
+DB-Engines-https://db-engines.com/en/ranking
 
 ## 编程文档与教程
 
 RFC Editor-https://www.rfc-editor.org/
 
+W3Cschool 教程-https://www.w3cschool.cn/tutorial
+MDN Web 文档-https://developer.mozilla.org/zh-CN/
+W3Schools-https://www.w3schools.com/
+GeeksforGeeks-https://www.geeksforgeeks.org/
+51自学网-https://www.51zxw.net/
 freecodecamp-https://www.freecodecamp.org/chinese/learn
 javaGuide-https://javaguide.cn/
 菜鸟教程-https://www.runoob.com/
@@ -298,6 +315,36 @@ DevOps-https://classcentral.com/subject/devops
 
 
 
+## 招聘与求职
+国家大学生就业服务平台-https://www.ncss.cn/
+国资央企招聘平台-https://cujiuye.iguopin.com/
+中国公共招聘网-http://job.mohrss.gov.cn/
+国聘网-https://www.iguopin.com/
+高校人才网-https://www.gaoxiaojob.com/
+中国就业网-https://chinajob.mohrss.gov.cn/
+青年国际实习交流计划-https://intern.newjobs.com.cn/
+应届生求职网-https://www.yingjiesheng.com/
+
+军队人才网-http://81rc.81.cn/index.html
+中国铁路人才网-https://rczp.china-railway.com.cn/index.html
+银行招聘网-https://www.yinhangzhaopin.com/
+国家电网-https://zhaopin.sgcc.com.cn/sgcchr/static/home.html
+中国南方电网-https://zhaopin.csg.cn/#/index
+中国石化-http://www.sinopec.com/index.shtml
+中国石油-https://zhaopin.cnpc.com.cn/
+中国海油-https://cnooc.zhaopin.com/
+国家烟草局-http://www.tobacco.gov.cn/gjyc/zpxx/list.shtml
+
+Linkedin-https://www.linkedin.com/
+就业在线-https://www.jobonline.cn/
+BOSS直聘-https://www.zhipin.com/
+智联招聘-https://www.zhaopin.com/
+前程无忧-https://www.51job.com/
+程序员客栈-https://www.proginn.com/
+牛客网-https://www.nowcoder.com/
+公考雷达-https://www.gongkaoleida.com/
+上岸鸭公考-https://www.gwy.com/
+中国人社服务平台-https://www.mohrss.gov.cn/SYrlzyhshbzb/fwyd/bszn/
 
 
 ## 编程练习与算法
@@ -359,12 +406,14 @@ DF创客社区-https://mc.dfrobot.com.cn/
 树莓派实验室-https://shumeipai.nxez.com/
 立创开源广场-https://oshwhub.com/
 趣讨教-https://www.qutaojiao.com/
-
+Instructables-https://www.instructables.com/
 
 
 
 ## 学术与期刊
-
+医脉通-https://www.medlive.cn/
+默沙东诊疗手册-https://www.msdmanuals.cn/
+中国医学期刊-https://www.medjournals.cn/index.do
 ACP Journals-https://www.acpjournals.org/
 ACS Publications-https://pubs.acs.org/
 Alzheimer's Journal-https://alz-journals.onlinelibrary.wiley.com/
@@ -402,45 +451,15 @@ SCI-HUB-https://sci-hub.su/
 
 Lingohut-https://www.lingohut.com/zh
 BritishCouncil-https://learnenglish.britishcouncil.org/
+BBC Learning English-https://www.bbc.co.uk/learningenglish
 
 
 
-
-## 招聘与求职
-国家大学生就业服务平台-https://www.ncss.cn/
-国资央企招聘平台-https://cujiuye.iguopin.com/
-中国公共招聘网-http://job.mohrss.gov.cn/
-国聘网-https://www.iguopin.com/
-高校人才网-https://www.gaoxiaojob.com/
-中国就业网-https://chinajob.mohrss.gov.cn/
-青年国际实习交流计划-https://intern.newjobs.com.cn/
-应届生求职网-https://www.yingjiesheng.com/
-
-军队人才网-http://81rc.81.cn/index.html
-中国铁路人才网-https://rczp.china-railway.com.cn/index.html
-银行招聘网-https://www.yinhangzhaopin.com/
-国家电网-https://zhaopin.sgcc.com.cn/sgcchr/static/home.html
-中国南方电网-https://zhaopin.csg.cn/#/index
-中国石化-http://www.sinopec.com/index.shtml
-中国石油-https://zhaopin.cnpc.com.cn/
-中国海油-https://cnooc.zhaopin.com/
-国家烟草局-http://www.tobacco.gov.cn/gjyc/zpxx/list.shtml
-
-Linkedin-https://www.linkedin.com/
-就业在线-https://www.jobonline.cn/
-BOSS直聘-https://www.zhipin.com/
-智联招聘-https://www.zhaopin.com/
-前程无忧-https://www.51job.com/
-程序员客栈-https://www.proginn.com/
-牛客网-https://www.nowcoder.com/
-公考雷达-https://www.gongkaoleida.com/
-上岸鸭公考-https://www.gwy.com/
-中国人社服务平台-https://www.mohrss.gov.cn/SYrlzyhshbzb/fwyd/bszn/
 
 ## 软件下载
 
 大白菜软件-https://cmsblogs.cn/software.html
-
+腾讯软件中心-https://pc.qq.com/
 
 
 
@@ -452,7 +471,7 @@ Polymarket-https://polymarket.com/
 
 
 ## AI 工具与助手
-
+AI 工具集-https://ai-bot.cn/
 
 
 
@@ -460,7 +479,9 @@ Polymarket-https://polymarket.com/
 
 
 ## 视频与影视资源
+CCTV 节目官网-https://tv.cctv.com/lm/index.shtml
 
+TED-https://www.ted.com/
 
 
 ## 音乐与音频
