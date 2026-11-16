@@ -1,6 +1,6 @@
 /* =========================================================
- * 个人导航页 - 主逻辑 (完整版：Gist ID手动配置 + 笔记徽章 + 帮助
- *                  + 同步合并/时间戳 + 墓碑删除记录)
+ * 个人导航页 - 主逻辑（功能与原版一致：Gist 同步 + 笔记徽章 + 帮助
+ *                  + 同步合并/时间戳 + 墓碑删除记录）
  * ========================================================= */
 (function () {
   'use strict';
@@ -49,7 +49,7 @@
   };
   const saveBookmarks = (list) => localStorage.setItem(LS_KEY, JSON.stringify(list));
 
-  // ---------- 删除墓碑（记录删除时间，供同步合并判定） ----------
+  // ---------- 删除墓碑 ----------
   const loadTombstones = () => {
     try { const raw = localStorage.getItem(LS_TOMBSTONES); if (raw) { const t = JSON.parse(raw); if (t && typeof t === 'object') return t; } } catch (e) {}
     return {};
@@ -165,19 +165,18 @@
     const h = String(now.getHours()).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2, '0');
     const s = String(now.getSeconds()).padStart(2, '0');
-    display.textContent = `${h}:${m}:${s}`;
+    display.innerHTML = `${h}:${m}<span class="sec">:${s}</span>`;
 
     const dateEl = $('#clockDate');
     if (dateEl) {
       const weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
-      const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${weekdays[now.getDay()]}`;
-      dateEl.textContent = dateStr;
+      dateEl.textContent = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${weekdays[now.getDay()]}`;
     }
   };
 
   let bookmarks = loadBookmarks();
 
-  // ---------- 渲染书签 ----------
+  // ---------- 渲染 ----------
   const getSortedCategories = (keys) => {
     return keys.sort((a, b) => {
       const ai = categoryOrder.indexOf(a); const bi = categoryOrder.indexOf(b);
@@ -198,9 +197,9 @@
     if (currentCategory !== '__all__' && !counts[currentCategory]) saveCurrentCategory('__all__');
 
     const cats = getSortedCategories(Object.keys(counts));
-    let html = `<button type="button" class="cat-item ${currentCategory === '__all__' ? 'active' : ''}" data-cat="__all__"><span class="cat-name">全部</span><span class="cat-count">${bookmarks.length}</span></button>`;
-    cats.forEach((cat) => {
-      html += `<button type="button" class="cat-item ${currentCategory === cat ? 'active' : ''}" data-cat="${escapeHtml(cat)}"><span class="cat-name">${escapeHtml(cat)}</span><span class="cat-count">${counts[cat]}</span></button>`;
+    let html = `<button type="button" class="cat-item ${currentCategory === '__all__' ? 'active' : ''}" data-cat="__all__"><span class="cat-index">00</span><span class="cat-name">全部</span><span class="cat-leader"></span><span class="cat-count">${bookmarks.length}</span></button>`;
+    cats.forEach((cat, i) => {
+      html += `<button type="button" class="cat-item ${currentCategory === cat ? 'active' : ''}" data-cat="${escapeHtml(cat)}"><span class="cat-index">${String(i + 1).padStart(2, '0')}</span><span class="cat-name">${escapeHtml(cat)}</span><span class="cat-leader"></span><span class="cat-count">${counts[cat]}</span></button>`;
     });
     nav.innerHTML = html;
   };
@@ -248,7 +247,7 @@
     if (groupCountEl) groupCountEl.textContent = (kw && scopedTotal > 0) ? `${filtered.length} / ${scopedTotal}` : `${scopedTotal} 项`;
 
     if (filtered.length === 0) {
-      container.innerHTML = `<div class="empty">${kw ? '没有匹配的书签' : '暂无书签，点击右上角 ＋ 添加一个吧'}</div>`;
+      container.innerHTML = `<div class="empty">${kw ? '没有匹配的书签' : '暂无书签，点击 ＋ 添加一个吧'}</div>`;
       updateTotalCount(scopedTotal, filtered.length, kw);
       renderSidebar();
       return;
@@ -258,7 +257,7 @@
     const sortedCats = getSortedCategories(Object.keys(scopedCats));
 
     container.innerHTML = sortedCats.map((cat) => {
-      const items = scopedCats[cat].shown.map((bm) => {
+      const items = scopedCats[cat].shown.map((bm, i) => {
         const m = meta[bm.id] || {};
         const displayName = bm.name || m.title || safeHost(bm.url);
         const iconUrl = bm.icon || m.icon || buildFaviconUrl(bm.url);
@@ -268,16 +267,17 @@
         return `
           <a class="card" href="${escapeHtml(bm.url)}" target="_blank" rel="noopener noreferrer" data-id="${escapeHtml(bm.id)}" draggable="true" title="${escapeHtml(tooltip)}">
             <div class="card-drag" aria-hidden="true" title="拖动排序">⠿</div>
-            ${hasNote ? `<div class="note-badge" title="含有笔记">📝</div>` : ''}
+            ${hasNote ? `<div class="note-badge" title="含有笔记">注</div>` : ''}
             <div class="card-icon">
               <img src="${escapeHtml(iconUrl)}" alt="" decoding="async" draggable="false" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="fallback" style="display:none">${escapeHtml(firstChar)}</div>
             </div>
             <div class="card-name">${escapeHtml(displayName)}</div>
             <div class="card-url">${escapeHtml(safeHost(bm.url))}</div>
+            <div class="card-index">${String(i + 1).padStart(2, '0')}</div>
             <div class="card-actions">
               <button type="button" data-action="edit" data-id="${escapeHtml(bm.id)}" title="编辑" draggable="false">✎</button>
-              <button type="button" data-action="del" data-id="${escapeHtml(bm.id)}" title="删除" draggable="false" class="del">🗑</button>
+              <button type="button" data-action="del" data-id="${escapeHtml(bm.id)}" title="删除" draggable="false" class="del">✕</button>
             </div>
           </a>`;
       }).join('');
@@ -340,7 +340,7 @@
     if (action === 'del') {
       if (confirm(`确定要删除 "${bm.name || safeHost(bm.url)}" 吗？`)) {
         bookmarks = bookmarks.filter((b) => b.id !== id);
-        addTombstone(id); // 记录删除墓碑，供同步合并
+        addTombstone(id);
         saveBookmarks(bookmarks);
         render($('#searchInput').value);
         showToast('已删除');
@@ -384,7 +384,6 @@
   const onDragOver = (e) => {
     if (!drag.kind) return;
     e.preventDefault(); e.dataTransfer.dropEffect = 'move';
-    // 修复：三个选择器必须写在同一个参数字符串中
     document.querySelectorAll('.drag-over, .drag-over-before, .drag-over-after').forEach((el) => el.classList.remove('drag-over', 'drag-over-before', 'drag-over-after'));
     if (drag.kind === 'card') {
       const targetCard = e.target.closest('.card[draggable="true"]');
@@ -431,7 +430,7 @@
     if (dragIdx < 0) return;
     const [moved] = bookmarks.splice(dragIdx, 1);
     if (sourceCat !== targetCat) moved.category = targetCat;
-    touch(moved); // 打时间戳，供同步合并判定
+    touch(moved);
     const tgtIdx = bookmarks.findIndex((b) => b.id === targetId);
     if (tgtIdx < 0) {
       let last = -1;
@@ -447,13 +446,12 @@
     if (dragIdx < 0) return;
     const [moved] = bookmarks.splice(dragIdx, 1);
     moved.category = targetCat;
-    touch(moved); // 打时间戳
+    touch(moved);
     let last = -1;
     for (let i = 0; i < bookmarks.length; i++) { if ((bookmarks[i].category || '未分类') === targetCat) last = i; }
     bookmarks.splice(last + 1, 0, moved);
   };
 
-  // 修复：先移除源分组再插入，避免重复 push 产生重复项
   const reorderCategory = (sourceCat, targetCat, before) => {
     const next = categoryOrder.filter((c) => c !== sourceCat);
     const tgtIdx = next.indexOf(targetCat);
@@ -526,7 +524,7 @@
         <div class="group-mgr-item" data-cat="${escapeHtml(cat)}">
           <input type="text" class="group-mgr-input" value="${escapeHtml(cat)}" data-old="${escapeHtml(cat)}" />
           <span class="group-mgr-count">${count} 项</span>
-          <button type="button" class="btn ghost danger group-mgr-del" data-cat="${escapeHtml(cat)}">删除</button>
+          <button type="button" class="btn danger group-mgr-del" data-cat="${escapeHtml(cat)}">删除</button>
         </div>
       `;
     });
@@ -655,7 +653,7 @@
     render($('#searchInput').value);
   };
 
-  // ---------- 云同步（含合并逻辑）----------
+  // ---------- 云同步 ----------
   const GIST_API = 'https://api.github.com';
   const GIST_FILE = 'nav-bookmarks.json';
 
@@ -700,17 +698,16 @@
       if (!bm || !bm.id) return;
       const tombTs = mergedTomb[bm.id] || 0;
       const bmTs = bm.updatedAt || 0;
-      if (tombTs && bmTs <= tombTs) return; // 删除晚于最后修改，丢弃
+      if (tombTs && bmTs <= tombTs) return;
       const cur = pick.get(bm.id);
       if (!cur) { pick.set(bm.id, bm); order.push(bm.id); return; }
-      if (bmTs > (cur.updatedAt || 0)) pick.set(bm.id, bm); // 同 id 取较新
+      if (bmTs > (cur.updatedAt || 0)) pick.set(bm.id, bm);
     };
 
     const seq = remoteOrderFirst ? [remoteList, localList] : [localList, remoteList];
     seq.forEach((list) => (list || []).forEach(consider));
 
     const mergedList = order.filter((id) => pick.has(id)).map((id) => pick.get(id));
-    // 已保留（复活）的条目不应再被墓碑压制
     mergedList.forEach((bm) => { delete mergedTomb[bm.id]; });
 
     return { bookmarks: mergedList, tombstones: mergedTomb };
@@ -748,10 +745,8 @@
     let remoteTombstones = {};
     let remoteUpdatedAt = 0;
     if (Array.isArray(parsed)) {
-      // 旧格式：纯书签数组
       remoteBookmarks = parsed;
     } else if (typeof parsed === 'object' && parsed !== null) {
-      // 新格式（v2）：{ version, updatedAt, bookmarks, tombstones }
       remoteBookmarks = Array.isArray(parsed.bookmarks) ? parsed.bookmarks : [];
       if (parsed.tombstones && typeof parsed.tombstones === 'object') remoteTombstones = parsed.tombstones;
       remoteUpdatedAt = Number(parsed.updatedAt) || 0;
@@ -769,7 +764,7 @@
     const payload = buildSyncPayload();
     await gistRequest('/gists/' + effectiveGistId, 'PATCH', { files: { [GIST_FILE]: { content: JSON.stringify(payload, null, 2) } } });
     cfg.lastSync = nowTs();
-    cfg.lastPushTs = payload.updatedAt; // 记录最后一次推送的时间戳
+    cfg.lastPushTs = payload.updatedAt;
     saveSyncConfig(cfg);
   };
 
@@ -802,7 +797,6 @@
       saveSyncConfig(cfg);
 
       if (beforeState !== afterState) {
-        // 合并结果与本地不同，需要推送回 Gist 以达成一致
         pendingPush = true;
         setSyncIndicator('unsaved', '●');
         setSyncStatus('已合并远程修改，建议推送一次以达成一致', 'busy');
@@ -846,14 +840,12 @@
 
   const openSettings = () => {
     const cfg = loadSyncConfig();
-    const lastSyncTime = cfg.lastSync ? new Date(cfg.lastSync).toLocaleString('zh-CN') : '从未同步';
-    setSyncStatus(`上次同步：${lastSyncTime}`, cfg.lastSync ? 'ok' : '');
-    const effectiveId = getGistId();
     $('#ghToken').value = cfg.token || '';
     $('#ghGistId').value = cfg.gistId || '';
     $('#ghGistId').placeholder = '例如：abc123... 请手动创建 Gist 并填写 ID';
     $('#enableSync').checked = !!cfg.enabled;
     $('#proxyUrl').value = localStorage.getItem(LS_PROXY) || '';
+    const effectiveId = getGistId();
     let infoLine = '';
     if (effectiveId) { infoLine = `当前 Gist: ${effectiveId}`; }
     if (cfg.lastSync) { setSyncStatus(`上次同步：${new Date(cfg.lastSync).toLocaleString('zh-CN')}\n${infoLine}`, 'ok'); }
@@ -917,18 +909,15 @@
     $('#cancelSettings').addEventListener('click', closeSettings);
     $('#settingsModal').addEventListener('click', (e) => { if (e.target.id === 'settingsModal') closeSettings(); });
     $('#settingsForm').addEventListener('submit', saveSettings);
-    // 合并逻辑下拉取不再破坏本地，直接拉取合并即可
     $('#pullNow').addEventListener('click', () => doPull(false));
     $('#pushNow').addEventListener('click', () => doPush());
 
-    // 帮助
     document.getElementById('helpBtnSide').addEventListener('click', openHelp);
     document.getElementById('closeHelpBtn').addEventListener('click', closeHelp);
     document.getElementById('helpModal').addEventListener('click', (e) => {
       if (e.target.id === 'helpModal') closeHelp();
     });
 
-    // 分组管理
     const manageGroupBtn = $('#manageGroupBtn');
     const cancelGroupBtn = $('#cancelGroup');
     const groupModal = $('#groupModal');
@@ -942,11 +931,9 @@
       groupList.addEventListener('click', onGroupMgrDel);
     }
 
-    // 分类导航
     $('#categoryNav').addEventListener('click', onCategoryNavClick);
     $('#navContainer').addEventListener('click', onCardAction);
 
-    // 拖拽
     const navEl = $('#navContainer');
     navEl.addEventListener('dragstart', onDragStart);
     navEl.addEventListener('dragend', onDragEnd);
@@ -961,7 +948,6 @@
       e.preventDefault(); header.click();
     });
 
-    // 全局快捷键
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal();
@@ -973,7 +959,6 @@
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); $('#searchInput').focus(); $('#searchInput').select(); }
     });
 
-    // 年份
     $('#year').textContent = new Date().getFullYear();
   };
 
@@ -996,7 +981,7 @@
   const showUpdateToast = () => {
     const t = document.createElement('div');
     t.className = 'update-toast';
-    t.innerHTML = `<span>新版本已就绪</span><button type="button" class="btn primary" style="padding:4px 12px;font-size:12px;">刷新</button>`;
+    t.innerHTML = `<span>新版本已就绪</span><button type="button" class="btn primary" style="padding:4px 12px;font-size:10px;">刷新</button>`;
     t.querySelector('button').addEventListener('click', () => { navigator.serviceWorker.getRegistration().then((reg) => { reg && reg.waiting && reg.waiting.postMessage('SKIP_WAITING'); }); });
     document.body.appendChild(t);
   };
@@ -1023,4 +1008,4 @@
   };
 
   document.addEventListener('DOMContentLoaded', init);
-})()
+})();

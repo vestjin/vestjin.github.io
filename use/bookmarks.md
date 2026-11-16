@@ -32,7 +32,9 @@ Lantern-https://lantern.io/zh
 测速网-https://www.speedtest.cn/
 Speedtest-https://www.speedtest.net/
 IP地址查询-https://ip.cn/
+Cloudflare Dashboard-https://dash.cloudflare.com/
 
+Tunnl-https://tunnl.gg/docs
 
 
 ## 文件转换与压缩
@@ -223,7 +225,7 @@ Torlock-https://www.torlock2.com/
 ## 浏览器扩展与脚本
 
 油小猴-https://www.youxiaohou.com/
-
+Open VSX Registry-https://open-vsx.org/
 
 
 
@@ -244,7 +246,7 @@ UAPIS-https://uapis.cn/docs/api-reference/get-misc-weather
 免费API大全-https://www.free-api.com/
 mxnzp-https://www.mxnzp.com/doc/1
 API大全-https://qwq.tangdouz.com/
-
+EmailJS-https://dashboard.emailjs.com/sign-in
 
 
 ## 技术/社区与资讯/Blog
@@ -283,6 +285,8 @@ DB-Engines-https://db-engines.com/en/ranking
 
 RFC Editor-https://www.rfc-editor.org/
 
+
+
 W3Cschool 教程-https://www.w3cschool.cn/tutorial
 MDN Web 文档-https://developer.mozilla.org/zh-CN/
 W3Schools-https://www.w3schools.com/
@@ -291,6 +295,7 @@ GeeksforGeeks-https://www.geeksforgeeks.org/
 freecodecamp-https://www.freecodecamp.org/chinese/learn
 javaGuide-https://javaguide.cn/
 菜鸟教程-https://www.runoob.com/
+CodeFather 代码父亲-https://www.codefather.cn/
 小林coding-https://xiaolincoding.com/
 TobebetterJava-https://javabetter.cn/
 Road 2 code-https://www.r2coding.com/
@@ -473,7 +478,7 @@ Polymarket-https://polymarket.com/
 ## AI 工具与助手
 AI 工具集-https://ai-bot.cn/
 
-
+Hugging Face-https://huggingface.co/
 
 
 
