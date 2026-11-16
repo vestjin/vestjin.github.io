@@ -189,6 +189,13 @@
       border: 1px solid rgba(130, 170, 230, 0.5);
       border-radius: 999px;
     }
+    .demo {
+        font-size: 0.75em;
+        margin-left: 8px;
+        color: #888;
+        text-decoration: underline;
+    }
+
 
     .footnote {
       margin-top: 2rem;
@@ -209,6 +216,7 @@
     @supports not (backdrop-filter: blur(1px)) {
       main.container { background: rgba(14, 22, 40, 0.88); }
     }
+
   </style>
 </head>
 <body>
@@ -229,22 +237,36 @@
     <hr class="divider">
 
     <ul class="project-list">
-      <!-- ↓↓↓ 在这里按格式添加你的项目 ↓↓↓ -->
+      <!-- ↓↓↓ 在这里添加项目 ↓↓↓ -->
       <li>
-        <a href="https://github.com/vestjin" target="_blank" rel="noopener">示例项目 A</a>
+        <a href="https://github.com/vestjin/repo2md">repo2md</a>
+        <a class="demo" href="https://www.jinmajue.top/repo2md/">[在线体验]</a>
+        <span class="tag">前端工具</span>
+        <p>纯前端的项目文档转换工具：把本地文件夹或压缩包（ZIP / TAR / GZ）一键转成 Markdown，支持文件树勾选、后缀筛选、二进制与敏感文件检测，全程在浏览器内完成，文件不上传。</p>
+      </li>
+      <li>
+        <a href="https://github.com/vestjin/vestjin.github.io">share · 手记档案馆</a>
+        <a class="demo" href="https://www.jinmajue.top/share/">[在线访问]</a>
+        <span class="tag">Web / 前端</span>
+        <p>部署在 GitHub Pages 的轻量 Markdown 文档站：只用一个 files.txt 维护分类清单，支持实时过滤、文章目录（TOC）、站内跳转和滚动高亮，零后端、零构建。</p>
+      </li>
+      <li>
+        <a href="https://github.com/vestjin/GraduationDesign">Linux 云盘系统</a>
         <span class="tag">Linux C/C++</span>
-        <span class="desc">这是一个项目简介占位，写一两句话说明它是什么、做了什么、亮点在哪。</span>
+        <p>毕业设计：Epoll + 线程池 + MySQL 连接池实现的网盘服务端，支持 5MB 分片上传、断点续传、MD5 秒传、文件增删改移与配额管理，前端带并发上传队列。</p>
       </li>
       <li>
-        <a href="https://github.com/vestjin" target="_blank" rel="noopener">示例项目 B</a>
-        <span class="tag">后端开发</span>
-        <span class="desc">第二个项目简介占位。把 href 换成你的项目链接（GitHub / 演示站均可）。</span>
+        <a href="https://github.com/vestjin/calc">C 语言命令行计算器</a>
+        <span class="tag">Linux C/C++</span>
+        <p>多模块设计的命令行计算器：递归下降解析表达式，支持变量赋值、进制转换、内置数学函数，附带方程求解器（二分法 / 高斯消元）与计算步骤追踪。</p>
       </li>
       <li>
-        <a href="https://github.com/vestjin" target="_blank" rel="noopener">示例项目 C</a>
-        <span class="tag">工具</span>
-        <span class="desc">第三个项目简介占位。名称可点击，右侧标签可选，删除 &lt;span class="tag"&gt; 即可。</span>
+        <a href="https://github.com/vestjin/temperature-control-system">温度控制系统</a>
+        <span class="tag">嵌入式 / 51单片机</span>
+        <p>最早的项目：51 单片机实现 PID 温控与数码管显示，Python 上位机支持串口通信、语音识别设定温度、SQLite 历史存储与 Dash 实时绘图，附 Proteus 仿真。</p>
       </li>
+
+
       <!-- ↑↑↑ 复制上面整个 <li>…</li> 即可继续添加 ↑↑↑ -->
     </ul>
 
