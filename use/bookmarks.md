@@ -1,5 +1,5 @@
 
-## 搜索引擎与导航
+## 搜索引擎与导航站
 
 Google-https://www.google.com
 Bing-https://www.bing.com
@@ -8,8 +8,19 @@ DuckDuckGo-https://duckduckgo.com
 Yahoo-https://hk.search.yahoo.com
 Yandex-https://yandex.com
 GoogleDrive-https://drive.google.com/drive/home
+
 Google Keep-https://keep.google.com/
 虫部落-https://www.chongbuluo.com/
+Tbox导航-https://www.tboxn.com/
+硬核指南-https://yinghezhinan.com/
+小众技术工具库-https://www.xiaozhongjishu.com/
+图欧资源库-https://tuostudy.upnb.top/
+叛逆草导航-https://www.pncao.com/
+小众软件-https://www.appinn.com/
+app喵-https://www.appmiao.com/
+
+
+
 
 
 
@@ -23,6 +34,10 @@ Merriam-Webster 词典-https://www.merriam-webster.com/medical
 Loot Drop-https://www.loot-drop.io/
 OpenKG 开放知识图谱-https://openkg.cn/
 Quora-https://www.quora.com/
+Debian 自由软件介绍-https://www.debian.org/intro/free
+
+
+
 
 ## 网络与网络工具
 
@@ -35,6 +50,11 @@ IP地址查询-https://ip.cn/
 Cloudflare Dashboard-https://dash.cloudflare.com/
 
 Tunnl-https://tunnl.gg/docs
+路由器网-https://www.luyouqi.com/
+
+
+
+
 
 
 ## 文件转换与压缩
@@ -117,7 +137,7 @@ ImgBB-https://imgbb.com/
 Picx-https://picx.xpoet.cn/images-hosting#/?jump=0
 PICUI-https://picui.cn/
 知更鸟-https://zmingcx.com/favorites/%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A/
-
+好壁纸-https://haowallpaper.com/
 
 
 
@@ -234,8 +254,13 @@ Open VSX Registry-https://open-vsx.org/
 Blogger-https://www.blogger.com
 
 
+
+
 ## 创业与产品发现
 Ideasearch-https://www.ideasearch.com.cn/
+
+
+
 
 ## 开发者API
 
@@ -249,7 +274,7 @@ API大全-https://qwq.tangdouz.com/
 EmailJS-https://dashboard.emailjs.com/sign-in
 
 
-## 技术/社区与资讯/Blog
+## 技术/社区与资讯/Blog博客
 
 GitHub-https://githuBlogb.com
 StackOverflow-https://stackoverflow.com
@@ -264,6 +289,23 @@ Hacker News-https://news.ycombinator.com/
 Gitee 码云-https://gitee.com/
 Discord-https://discord.com/
 Quora-https://www.quora.com/
+
+52im 即时通讯开发网-http://www.52im.net/
+A姐分享-https://www.ahhhhfs.com/
+HackerNoon-https://hackernoon.com/
+pjreddie-https://pjreddie.com/
+美团技术团队技术博客-https://tech.meituan.com/
+云风的博客-https://blog.codingnow.com/
+阮一峰的网络日志-https://www.ruanyifeng.com/blog/index.html
+酷壳-https://coolshell.cn/
+廖雪峰的官方网站-https://liaoxuefeng.com/index.html?src=redirect
+Dunwu 技术笔记-https://dunwu.github.io/
+Matthias Endler 的博客-https://endler.dev/
+Eric S. Raymond 个人网站-https://catb.org/~esr/
+Susan Rigetti 个人网站-https://www.susanrigetti.com/
+Debian 自由软件介绍-https://www.debian.org/intro/free
+ARCHgrid 格筑设计-https://archgrid.net/
+
 
 ## 速查与工具箱
 cdnjs-https://cdnjs.com/
@@ -281,9 +323,12 @@ regex101-https://regex101.com/
 JSFiddle-https://jsfiddle.net/
 DB-Engines-https://db-engines.com/en/ranking
 
-## 编程文档与教程
 
+
+## 编程文档与教程
+开发者导航-http://cxy521.com/
 RFC Editor-https://www.rfc-editor.org/
+showmeai-https://www.showmeai.tech/
 
 
 
@@ -295,14 +340,25 @@ GeeksforGeeks-https://www.geeksforgeeks.org/
 freecodecamp-https://www.freecodecamp.org/chinese/learn
 javaGuide-https://javaguide.cn/
 菜鸟教程-https://www.runoob.com/
+
+Wschool-https://www.w3school.com.cn/index.html
+w3schools教程-https://www.w3ccoo.com/
+Dotcpp编程-https://www.dotcpp.com/
+菜鸟鸭教程-https://www.cainiaoya.com/
+无涯教程-https://www.learnfk.com/
+BootWiki教程-https://www.bootwiki.com/old
+
+
 CodeFather 代码父亲-https://www.codefather.cn/
 小林coding-https://xiaolincoding.com/
 TobebetterJava-https://javabetter.cn/
+Java全栈知识体系-https://pdai.tech/
 Road 2 code-https://www.r2coding.com/
 csdiy-https://csdiy.wiki/
 像小说一样品读 Linux 0.11 核心代码-https://github.com/dibingfa/flash-linux0.11-talk
 《动手学深度学习》-https://github.com/d2l-ai/d2l-zh
-这批属于编程学习课程/教程，直接归入文件中已有的分类：
+
+
 Python-https://pythontutorial.net
 JavaScript-https://goldsuite.gumroad.com/l/miqqb/0100tt
 SQL-https://sqlbolt.com
@@ -395,7 +451,7 @@ war game-https://overthewire.org/wargames/
 IO game-http://io.netgarage.org/
 Smashthestack-https://www.smashthestack.org/main.html
 Andriodlabs-https://securitycompass.github.io/AndroidLabs/index.html
-
+Hacksplaining-https://www.hacksplaining.com/lessons
 
 
 
@@ -412,7 +468,7 @@ DF创客社区-https://mc.dfrobot.com.cn/
 立创开源广场-https://oshwhub.com/
 趣讨教-https://www.qutaojiao.com/
 Instructables-https://www.instructables.com/
-
+路由器网-https://www.luyouqi.com/
 
 
 ## 学术与期刊
@@ -476,11 +532,20 @@ Polymarket-https://polymarket.com/
 
 
 ## AI 工具与助手
+Claude-https://claude.com/
+Gemini-https://gemini.google.com/app
+ChatGLM 智谱清言-https://chatglm.cn
+Perplexity-https://www.perplexity.ai/
+Poe-https://poe.com/
+Mistral Chat-https://chat.mistral.ai/work
+Pi-https://pi.ai/discover
+Genspark-https://www.genspark.ai/
+Bylo.ai-https://bylo.ai/
+Raphael-https://raphael.app/zh
 AI 工具集-https://ai-bot.cn/
-
 Hugging Face-https://huggingface.co/
-
-
+Felo-https://felo.ai/search
+SearchForJohn-https://www.searchforjohn.com/
 
 
 ## 视频与影视资源
