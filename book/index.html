@@ -10,38 +10,40 @@
   <style>
     :root {
       /* ===== 墨色书卷风 · 浅色模式 ===== */
-      --bg: #f5f1e8;            /* 宣纸 */
+      --bg: #f5f1e8;              /* 宣纸 */
       --bg-soft: #ede7d9;
       --card: #fdfaf3;
-      --text: #2f2a24;          /* 玄墨 */
+      --text: #2f2a24;            /* 玄墨 */
       --text-2: #6e6558;
       --text-3: #a39a89;
-      --accent: #a4392f;        /* 朱砂红 */
+      --accent: #a4392f;          /* 朱砂红 */
       --accent-soft: #c46a5e;
       --border: #ddd4c1;
-      --mark: #b0651a;          /* 搜索高亮：暖棕 */
+      --mark: #b0651a;            /* 搜索高亮：暖棕 */
 
       /* ===== 阅读状态色（代码编辑器风格） ===== */
-      --read: #1a7f37;          /* GitHub 绿 */
-      --unread: #cf222e;        /* GitHub 红 */
+      --read: #1a7f37;            /* GitHub 绿 */
+      --reading: #9a6700;         /* 在读：琥珀金 */
+      --unread: #cf222e;          /* GitHub 红 */
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
         /* ===== 墨色书卷风 · 暗色模式 ===== */
-        --bg: #17140f;          /* 暖墨黑 */
+        --bg: #17140f;            /* 暖墨黑 */
         --bg-soft: #1d1913;
         --card: #221d16;
         --text: #e0d8c8;
         --text-2: #a89e8b;
         --text-3: #6f6656;
-        --accent: #d9695a;      /* 朱砂提亮 */
+        --accent: #d9695a;        /* 朱砂提亮 */
         --accent-soft: #e08a7c;
         --border: #2e2820;
         --mark: #e0a458;
 
         /* 终端风格状态色 */
         --read: #3fb950;
+        --reading: #d29922;
         --unread: #f85149;
       }
     }
@@ -63,17 +65,14 @@
     header {
       padding: clamp(40px, 8vw, 72px) 0 clamp(16px, 3vw, 24px);
     }
-
     h1 {
       font-size: clamp(22px, 4.5vw, 28px);
       font-weight: 700;
       letter-spacing: -0.02em;
       font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
     }
-
     h1::before { content: "— "; color: var(--accent); }
     h1::after  { content: " —"; color: var(--accent); }
-
     header p {
       margin-top: 6px;
       color: var(--text-2);
@@ -92,12 +91,11 @@
     }
 
     .search { position: relative; margin-bottom: 10px; }
-
     .search input {
       width: 100%;
       padding: clamp(9px, 2vw, 11px) 14px clamp(9px, 2vw, 11px) 38px;
       font: inherit;
-      font-size: 16px; /* ≥16px，避免 iOS 聚焦时自动放大页面 */
+      font-size: 16px;  /* ≥16px，避免 iOS 聚焦时自动放大页面 */
       color: var(--text);
       background: var(--card);
       border: 1px solid var(--border);
@@ -105,14 +103,11 @@
       outline: none;
       transition: border-color .15s, box-shadow .15s;
     }
-
     .search input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0  0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
     }
-
     .search input::placeholder { color: var(--text-3); }
-
     .search svg {
       position: absolute;
       left: 12px;
@@ -122,7 +117,7 @@
       pointer-events: none;
     }
 
-    /* ===== 分类筛选：手机可横向滑动 ===== */
+    /* ===== 筛选按钮：手机可横向滑动 ===== */
     .cats {
       display: flex;
       gap: 8px;
@@ -132,13 +127,11 @@
       scrollbar-width: none;
       padding-bottom: 2px;
     }
-
     .cats::-webkit-scrollbar { display: none; }
-
+    .cats + .cats { margin-top: 8px; }  /* 状态筛选行与分类行的间距 */
     @media (min-width: 760px) {
       .cats { flex-wrap: wrap; overflow: visible; } /* 大屏换行 */
     }
-
     .cat-btn {
       font: inherit;
       font-size: 13px;
@@ -151,32 +144,24 @@
       white-space: nowrap;
       transition: all .15s;
     }
-
     .cat-btn:hover {
       border-color: var(--accent-soft);
       color: var(--text);
     }
-
     .cat-btn.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #fdfaf3;
     }
-
-    .cat-btn .count {
-      font-size: 12px;
-      opacity: .65;
-      margin-left: 2px;
-    }
+    .cat-btn .count { font-size: 12px; opacity: .65; margin-left: 2px; }
 
     /* ===== 书籍网格：1列 → 2列 → 3列 ===== */
     #list {
       display: grid;
-      grid-template-columns: 1fr; /* 手机：单列 */
+      grid-template-columns: 1fr;   /* 手机：单列 */
       gap: 10px;
       margin-top: clamp(16px, 3vw, 24px);
     }
-
     @media (min-width: 640px)  { #list { grid-template-columns: 1fr 1fr; } }       /* 平板：双列 */
     @media (min-width: 1024px) { #list { grid-template-columns: 1fr 1fr 1fr; } }   /* 大屏：三列 */
 
@@ -189,7 +174,6 @@
       padding-bottom: 8px;
       margin-top: 10px;
     }
-
     .cat-title .num {
       font-size: 12px;
       color: var(--text-3);
@@ -207,20 +191,17 @@
       padding: clamp(12px, 2.5vw, 16px) clamp(14px, 2.5vw, 18px);
       transition: border-color .15s, transform .15s;
     }
-
     .book:hover { transform: translateX(2px); }
 
     /* 状态色：左侧竖条常驻淡色，悬停变纯色 */
-    .book.read   { border-left-color: color-mix(in srgb, var(--read) 55%, var(--border)); }
-    .book.unread { border-left-color: color-mix(in srgb, var(--unread) 45%, var(--border)); }
-    .book.read:hover   { border-left-color: var(--read); }
-    .book.unread:hover { border-left-color: var(--unread); }
+    .book.read    { border-left-color: color-mix(in srgb, var(--read)    55%, var(--border)); }
+    .book.reading { border-left-color: color-mix(in srgb, var(--reading) 45%, var(--border)); }
+    .book.unread  { border-left-color: color-mix(in srgb, var(--unread)  45%, var(--border)); }
+    .book.read:hover    { border-left-color: var(--read); }
+    .book.reading:hover { border-left-color: var(--reading); }
+    .book.unread:hover  { border-left-color: var(--unread); }
 
-    .row1 {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
+    .row1 { display: flex; align-items: baseline; gap: 10px; }
 
     /* ===== 状态标签：小圆点 + 等宽字体，GitHub label 风格 ===== */
     .status {
@@ -237,7 +218,6 @@
       border-radius: 99px;
       transform: translateY(-1px);
     }
-
     .status::before {
       content: "";
       width: 6px;
@@ -245,16 +225,9 @@
       border-radius: 50%;
       background: currentColor;
     }
-
-    .book.read .status {
-      color: var(--read);
-      background: color-mix(in srgb, var(--read) 12%, transparent);
-    }
-
-    .book.unread .status {
-      color: var(--unread);
-      background: color-mix(in srgb, var(--unread) 10%, transparent);
-    }
+    .book.read    .status { color: var(--read);    background: color-mix(in srgb, var(--read)    12%, transparent); }
+    .book.reading .status { color: var(--reading); background: color-mix(in srgb, var(--reading) 12%, transparent); }
+    .book.unread  .status { color: var(--unread);  background: color-mix(in srgb, var(--unread)  10%, transparent); }
 
     .title {
       font-size: 15.5px;
@@ -263,7 +236,6 @@
       min-width: 0;
       font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
     }
-
     .author {
       font-size: 12.5px;
       color: var(--text-3);
@@ -273,7 +245,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .note {
       font-size: 14px;
       color: var(--text-2);
@@ -284,12 +255,7 @@
       overflow: hidden;
     }
 
-    mark {
-      background: none;
-      color: var(--mark);
-      font-weight: 700;
-    }
-
+    mark { background: none; color: var(--mark); font-weight: 700; }
     .empty {
       display: none;
       text-align: center;
@@ -303,7 +269,7 @@
 <body>
   <header>
     <h1>书单</h1>
-    <p>共 <span id="total">0</span> 本 · 已读 <span id="read">0</span> 本 · 不定期更新</p>
+    <p>共 <span id="total">0</span> 本 · 已读 <span id="read">0</span> 本 · 在读 <span id="reading">0</span> 本 · 不定期更新</p>
   </header>
 
   <div class="toolbar">
@@ -312,6 +278,7 @@
       <input type="search" id="q" placeholder="搜索书名、作者或描述…" autocomplete="off">
     </div>
     <nav class="cats" id="cats"></nav>
+    <nav class="cats" id="stats"></nav>
   </div>
 
   <div id="list"></div>
@@ -319,6 +286,13 @@
   <script>
     let books = [];
     let activeCat = '全部';
+    let activeStatus = '全部'; // 全部 | read | reading | unread
+
+    const STATUS_META = {
+      read:    { label: '已读' },
+      reading: { label: '在读' },
+      unread:  { label: '未读' },
+    };
 
     function highlight(text, kw) {
       if (!kw) return text;
@@ -330,34 +304,51 @@
     function render() {
       const kw = document.getElementById('q').value.trim().toLowerCase();
       const cats = document.getElementById('cats');
+      const stats = document.getElementById('stats');
       const list = document.getElementById('list');
+
+      // ===== 分类筛选按钮 =====
       const catNames = [...new Set(books.map(b => b.cat))];
-      const counts = c => c === '全部' ? books.length : books.filter(b => b.cat === c).length;
+      const catCount = c => c === '全部' ? books.length : books.filter(b => b.cat === c).length;
       cats.innerHTML = ['全部', ...catNames].map(c =>
-        `<button class="cat-btn${c === activeCat ? ' active' : ''}" data-c="${c}">${c}<span class="count">${counts(c)}</span></button>`
+        `<button class="cat-btn${c === activeCat ? ' active' : ''}" data-c="${c}">${c}<span class="count">${catCount(c)}</span></button>`
       ).join('');
       cats.querySelectorAll('.cat-btn').forEach(btn => btn.onclick = () => {
         activeCat = btn.dataset.c;
         render();
       });
 
+      // ===== 状态筛选按钮 =====
+      const stCount = s => s === '全部' ? books.length : books.filter(b => b.state === s).length;
+      stats.innerHTML = ['全部', 'read', 'reading', 'unread'].map(s => {
+        const label = s === '全部' ? '全部状态' : STATUS_META[s].label;
+        return `<button class="cat-btn st-btn${s === activeStatus ? ' active' : ''}" data-s="${s}">${label}<span class="count">${stCount(s)}</span></button>`;
+      }).join('');
+      stats.querySelectorAll('.st-btn').forEach(btn => btn.onclick = () => {
+        activeStatus = btn.dataset.s;
+        render();
+      });
+
+      // ===== 过滤：分类 × 状态 × 关键词（三维叠加取交集） =====
       const shown = books.filter(b =>
         (activeCat === '全部' || b.cat === activeCat) &&
+        (activeStatus === '全部' || b.state === activeStatus) &&
         (!kw || (b.title + ' ' + (b.author || '') + ' ' + b.note).toLowerCase().includes(kw))
       );
 
       let html = '';
       let lastCat = null;
       for (const b of shown) {
-        if (activeCat === '全部' && b.cat !== lastCat) {
+        // 仅在"全部状态"视图下按分类显示分组标题
+        if (activeCat === '全部' && activeStatus === '全部' && b.cat !== lastCat) {
           lastCat = b.cat;
           const n = shown.filter(x => x.cat === b.cat).length;
           html += `<h2 class="cat-title">${b.cat}<span class="num">${n} 本</span></h2>`;
         }
         const author = b.author ? `<span class="author" title="${b.author}">${highlight(b.author, kw)}</span>` : '';
         const note = b.note ? `<div class="note">${highlight(b.note, kw)}</div>` : '';
-        const cls = b.read ? 'book read' : 'book unread';
-        const status = `<span class="status">${b.read ? '已读' : '未读'}</span>`;
+        const cls = 'book ' + b.state;
+        const status = `<span class="status">${STATUS_META[b.state].label}</span>`;
         html += `<div class="${cls}"><div class="row1">${status}<span class="title">${highlight(b.title, kw)}</span>${author}</div>${note}</div>`;
       }
       list.innerHTML = html;
@@ -373,10 +364,7 @@
         for (const line of text.split('\n')) {
           const t = line.trim();
           if (!t) continue;
-          if (t.startsWith('#')) {
-            cat = t.replace(/^#+\s*/, '');
-            continue;
-          }
+          if (t.startsWith('#')) { cat = t.replace(/^#+\s*/, ''); continue; }
           const parts = t.split('|');
           const name = parts[0] || '';
           const note = (parts[1] || '').trim();
@@ -388,11 +376,16 @@
             title = name.slice(0, sep).trim();
             author = name.slice(sep + 1).trim();
           }
-          // 状态解析：含"读"且不含"未" → 已读（"已读"/"读完"均可）
-          books.push({ title, author, note, read: status.includes('读') && !status.includes('未'), cat });
+          // 状态解析：在读 > 未读 > 已读（先判"在读"，避免其含"读"字被误判为已读）
+          let state = 'unread';
+          if (status.includes('在读') || status.includes('正在读')) state = 'reading';
+          else if (status.includes('未读')) state = 'unread';
+          else if (status.includes('读')) state = 'read'; // 已读 / 读完
+          books.push({ title, author, note, state, cat });
         }
         document.getElementById('total').textContent = books.length;
-        document.getElementById('read').textContent = books.filter(b => b.read).length;
+        document.getElementById('read').textContent = books.filter(b => b.state === 'read').length;
+        document.getElementById('reading').textContent = books.filter(b => b.state === 'reading').length;
         const empty = document.createElement('p');
         empty.className = 'empty';
         empty.id = 'empty';
