@@ -382,6 +382,11 @@ DevOps-https://classcentral.com/subject/devops
 中国公共招聘网-http://job.mohrss.gov.cn/
 国聘网-https://www.iguopin.com/
 高校人才网-https://www.gaoxiaojob.com/
+
+中智招聘网-https://www.ciiczhaopin.com/index
+
+中国人事考试网-http://www.cpta.com.cn/
+
 中国就业网-https://chinajob.mohrss.gov.cn/
 青年国际实习交流计划-https://intern.newjobs.com.cn/
 应届生求职网-https://www.yingjiesheng.com/
