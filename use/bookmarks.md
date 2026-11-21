@@ -21,7 +21,79 @@ app喵-https://www.appmiao.com/
 
 
 
+## 国家政策政务网站
 
+国家社会保险公共服务平台-https://si.12333.gov.cn/index.jhtml
+
+全国人社政务服务平台-https://12333.gov.cn/
+
+中华人民共和国人力资源和社会保障部-https://www.mohrss.gov.cn/index.html
+
+国家医疗保障局-https://www.nhsa.gov.cn/
+
+国家医保服务平台-https://fuwu.nhsa.gov.cn/
+
+中国政府网-https://www.gov.cn
+
+国家政务服务平台-https://www.gjzwfw.gov.cn
+
+国家税务总局-https://www.chinatax.gov.cn
+
+中国人民银行-http://www.pbc.gov.cn
+
+中国人民银行征信中心-https://ipcrs.pbccrc.org.cn
+
+国家外汇管理局-https://www.safe.gov.cn
+
+住房和城乡建设部-https://www.mohurd.gov.cn
+
+全国不动产登记网上一窗办事平台-https://bdcyc.mnr.gov.cn
+
+公安部交管12123-https://www.122.gov.cn
+
+国家移民管理局-https://www.nia.gov.cn
+
+铁路12306-https://www.12306.cn
+
+中国民用航空局-http://www.caac.gov.cn
+
+国家邮政局-https://www.spb.gov.cn
+
+教育部政务服务平台-https://zwfw.moe.gov.cn
+
+国家智慧教育公共服务平台-https://www.smartedu.cn
+
+中国教育考试网-https://www.neea.edu.cn
+
+国家卫生健康委员会-http://www.nhc.gov.cn
+
+国家药品监督管理局-https://www.nmpa.gov.cn
+
+全国12315平台-https://www.12315.cn
+
+国家市场监督管理总局-https://www.samr.gov.cn
+
+国家反诈中心-http://www.12381.cn
+
+民政一体化政务服务平台-https://zwfw.mca.gov.cn
+
+退役军人事务部-https://www.mva.gov.cn
+
+中国裁判文书网-https://wenshu.court.gov.cn
+
+中国法律服务网-https://www.12348.gov.cn
+
+国家信访局-https://www.gjxfj.gov.cn
+
+国家电网-https://www.sgcc.com.cn
+
+中国气象局-https://www.cma.gov.cn
+
+国家能源局-https://www.nea.gov.cn
+
+国家统计局国家数据-https://data.stats.gov.cn
+
+信用中国-https://www.creditchina.gov.cn
 
 
 ## 百科与知识问答
