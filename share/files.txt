@@ -12,6 +12,9 @@ temp.md
 test.md
 运行filebrowser.md
 pi.md
+热度偏见.md
+大脑休息.md
+
 
 [home]
 鸡鸭鹅养殖.md
