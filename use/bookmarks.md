@@ -387,6 +387,8 @@ Awesome Open Source-https://awesomeopensource.com/
 
 Zotero 中文社区-https://zotero-chinese.com/
 
+Good First Issue-https://www.goodfirstissue.org/zh
+
 
 ## 速查与工具箱
 cdnjs-https://cdnjs.com/
@@ -584,11 +586,12 @@ Awesome JavaScript Projects-https://github.com/Vishal-raj-1/Awesome-JavaScript-P
 ## 网络安全
 NISP 国家信息安全水平考试-https://www.nisp.org.cn/ 
 
-
-
 Go Awabins-https://gtfobins.org/
 tryhackme-https://tryhackme.com/?vccr=1
 hackthebox-https://www.hackthebox.com/
+
+CodeLivly-https://codelivly.com/
+
 hacker blog-https://hsctf.com/
 google gruyere-https://google-gruyere.appspot.com/
 flaws cloud-http://flaws.cloud/
@@ -669,6 +672,8 @@ SCI-HUB-https://sci-hub.su/
 Lingohut-https://www.lingohut.com/zh
 BritishCouncil-https://learnenglish.britishcouncil.org/
 BBC Learning English-https://www.bbc.co.uk/learningenglish
+
+WordsFunny-https://wordsfunny.com/
 
 
 
