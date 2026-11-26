@@ -14,6 +14,8 @@ test.md
 pi.md
 热度偏见.md
 大脑休息.md
+转移注意力.md
+
 
 
 [home]
@@ -33,3 +35,4 @@ pi.md
 电器充电.md
 家里的电器.md
 烤箱使用.md
+脱发调理.md

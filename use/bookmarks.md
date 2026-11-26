@@ -19,7 +19,9 @@ Tbox导航-https://www.tboxn.com/
 小众软件-https://www.appinn.com/
 app喵-https://www.appmiao.com/
 
+DICOMP 数智胜任力-https://dicomp.net/
 
+趣站导航-https://www.quzhan.top/
 
 ## 国家政策政务网站
 
@@ -188,14 +190,16 @@ Tools.video-https://tools.video/zh-CN
 PDFCandy-https://pdfcandy.com/
 DonePDF-https://donepdf.com/zh
 
-
+在线PS 网页版-https://zaixianps.net/
 
 
 ## 设计工具
 ProcessOn-https://www.processon.com
 GitMind-https://gitmind.cn
 
+在线思维导图 Mind Map-https://wanglin2.github.io/mind-map/#/
 
+ ioDraw 在线绘图-https://www.iodraw.com/disk
 
 ## 素材图库与图床
 优品PPT-www.ypppt.com
@@ -345,8 +349,9 @@ mxnzp-https://www.mxnzp.com/doc/1
 API大全-https://qwq.tangdouz.com/
 EmailJS-https://dashboard.emailjs.com/sign-in
 
-
 ## 技术/社区与资讯/Blog博客
+
+GitHub 官方组织主页-https://github.com/github
 
 GitHub-https://githuBlogb.com
 StackOverflow-https://stackoverflow.com
@@ -378,6 +383,10 @@ Susan Rigetti 个人网站-https://www.susanrigetti.com/
 Debian 自由软件介绍-https://www.debian.org/intro/free
 ARCHgrid 格筑设计-https://archgrid.net/
 
+Awesome Open Source-https://awesomeopensource.com/
+
+Zotero 中文社区-https://zotero-chinese.com/
+
 
 ## 速查与工具箱
 cdnjs-https://cdnjs.com/
@@ -395,14 +404,50 @@ regex101-https://regex101.com/
 JSFiddle-https://jsfiddle.net/
 DB-Engines-https://db-engines.com/en/ranking
 
+DevHints 速查表-https://devhints.io/
 
+httpbin-https://httpbin.org/ 
+
+Compiler Explorer (Godbolt)-https://godbolt.org/ 
+
+free-for.dev-https://free-for.dev/ 
+
+OnlineGDB 在线调试器-https://www.onlinegdb.com/
 
 ## 编程文档与教程
 开发者导航-http://cxy521.com/
 RFC Editor-https://www.rfc-editor.org/
 showmeai-https://www.showmeai.tech/
 
+CentOS 文档-https://docs.centos.org/ 
+
+Read the Docs-https://about.readthedocs.com/ 
+
+FastAPI 官方文档（中文）-https://fastapi.tiangolo.com/zh/ 
+
+Tour of Rust（中文）-https://tourofrust.com/00_zh-cn.html
+
+cppreference-https://en.cppreference.com/ 
+
+EasyX 图形库-https://easyx.cn/ 
+
+GTK 文档-https://www.gtk.org/docs/ 
+
+Hacking C++-https://hackingcpp.com/index 
+
+ISO C++ 入门-https://isocpp.org/get-started 
+
+C FAQ-https://c-faq.com/
+
+
+
 HackWay-https://hackway.org/
+
+Spring 官方网站-https://spring.io/ 
+
+Python 官方文档（中文）-https://docs.python.org/zh-cn/3
+
+MySQL 官方文档-https://dev.mysql.com/doc/
 
 W3Cschool 教程-https://www.w3cschool.cn/tutorial
 MDN Web 文档-https://developer.mozilla.org/zh-CN/
@@ -446,7 +491,29 @@ Algorithms-https://programiz.com/dsa
 React-https://java67.com/2018/02/5-free-react-courses-for-web-developers.html
 DevOps-https://classcentral.com/subject/devops
 
+OceanBase MiniOB-https://oceanbase.github.io/miniob/ 
 
+Bootlin 文档-https://bootlin.com/docs/
+
+MIT Missing Semester 中文版-https://missing-semester-cn.github.io/ 
+
+操作系统动手实现 1000 行-https://operating-system-in-1000-lines.vercel.app/zh/ roadmap.sh 开发者路线图-https://roadmap.sh/
+
+Bootstrap 中文网-https://www.bootcss.com/ 
+
+GitHub Training Manual-https://githubtraining.github.io/training-manual/#/
+
+SQL Teaching-https://www.sqlteaching.com/
+
+
+
+Awesome Python-https://awesome-python.com/ 
+
+HowtoForge 教程-https://www.howtoforge.com/tutorials/
+
+ Linux 内核官网-https://www.kernel.org/ 
+
+GNU/Linux 文档（中文）-https://gnu-linux.readthedocs.io/zh/latest/index.html
 
 ## 招聘与求职
 国家大学生就业服务平台-https://www.ncss.cn/
@@ -515,6 +582,10 @@ Awesome JavaScript Projects-https://github.com/Vishal-raj-1/Awesome-JavaScript-P
 
 
 ## 网络安全
+NISP 国家信息安全水平考试-https://www.nisp.org.cn/ 
+
+
+
 Go Awabins-https://gtfobins.org/
 tryhackme-https://tryhackme.com/?vccr=1
 hackthebox-https://www.hackthebox.com/
@@ -530,7 +601,15 @@ Smashthestack-https://www.smashthestack.org/main.html
 Andriodlabs-https://securitycompass.github.io/AndroidLabs/index.html
 Hacksplaining-https://www.hacksplaining.com/lessons
 
+Sec-Wiki-https://www.sec-wiki.com/index.php 
 
+CNVD 国家信息安全漏洞共享平台-https://www.cnvd.org.cn/ 
+
+Cheat Engine Wiki-https://wiki.cheatengine.org/index.php?title=Main_Page 
+
+Google Bughunters-https://bughunters.google.com/learn 
+
+Web 安全入门文档-https://websec.readthedocs.io/zh/latest/
 
 ## 硬件与创客
 
@@ -624,6 +703,10 @@ Hugging Face-https://huggingface.co/
 Felo-https://felo.ai/search
 SearchForJohn-https://www.searchforjohn.com/
 
+UCI 机器学习数据库-https://archive.ics.uci.edu/
+
+DeepWiki-https://deepwiki.com/
+
 
 ## 视频与影视资源
 CCTV 节目官网-https://tv.cctv.com/lm/index.shtml
@@ -641,7 +724,7 @@ TED-https://www.ted.com/
 
 ## 购物与比价
 
-
+AMZ123 跨境导航-https://www.amz123.com/
 
 ## 旅行与出行
 
@@ -657,3 +740,4 @@ TED-https://www.ted.com/
 
 ## 设计灵感与配色
 
+Web Design Museum-https://webdesignmuseum.org/
